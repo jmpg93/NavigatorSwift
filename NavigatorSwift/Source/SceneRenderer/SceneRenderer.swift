@@ -106,7 +106,7 @@ public extension SceneRenderer {
 
 		let visibleViewController = self.visibleViewController(from: rootViewController)
 
-		if visibleViewController.isBeingDisplayedModally && scene.sceneHandler.name == visibleViewController.sceneName {
+		if visibleViewController.isBeingDisplayedModally && scene.sceneHandler.name.value == visibleViewController.sceneName {
 			visibleViewController.dismiss(animated: animated, completion: completion)
 		}
 	}
@@ -132,7 +132,7 @@ private extension SceneRenderer {
 		}
 
 		for navigationController in viewControllerContainer.firstLevelNavigationControllers {
-			if let rootViewController = navigationController.viewControllers.first, scenesNotInStackYet.first?.sceneHandler.name == rootViewController.sceneName {
+			if let rootViewController = navigationController.viewControllers.first, scenesNotInStackYet.first?.sceneHandler.name.value == rootViewController.sceneName {
 				optionalNavigationControllerToRecycle = navigationController
 			}
 		}
@@ -236,7 +236,7 @@ private extension SceneRenderer {
 
 	///Returns Yes if the viewController is handled by the scene and also is presented as require the scene, NO otherwise.
 	func isViewController(_ viewController: UIViewController, recyclableBy scene: Scene) -> Bool {
-		let isManagedByScene = scene.sceneHandler.name == viewController.sceneName
+		let isManagedByScene = scene.sceneHandler.name.value == viewController.sceneName
 		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene)
 		let isViewControllerRecyclable = scene.sceneHandler.isViewControllerRecyclable
 
@@ -250,7 +250,7 @@ private extension SceneRenderer {
 		var isEqual: Bool = false
 
 		if let rootViewController = viewControllerContainer.rootViewController as? UINavigationController {
-			isEqual = rootViewController.viewControllers.first?.sceneName == scene.sceneHandler.name
+			isEqual = rootViewController.viewControllers.first?.sceneName == scene.sceneHandler.name.value
 		}
 
 		return isEqual

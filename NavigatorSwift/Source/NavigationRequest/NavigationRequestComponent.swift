@@ -9,12 +9,12 @@
 import Foundation
 
 public class NavigationRequestComponent {
-	public let name: String
+	public let name: SceneName
 	public let presentMode: ScenePresentationType
 	public let parameters: Parameters
 	public let animated: Bool
 
-	public init(name: String, presentMode: ScenePresentationType, parameters: Parameters, animated: Bool) {
+	public init(name: SceneName, presentMode: ScenePresentationType, parameters: Parameters, animated: Bool) {
 		self.name = name
 		self.presentMode = presentMode
 		self.parameters = parameters
@@ -25,7 +25,7 @@ public class NavigationRequestComponent {
 		var string = ""
 		
 		// add the scene name
-		string += name
+		string += name.value
 		// add meta data for the scene
 		string += "\(Delimiters.leftMetaDataDelimiter)"
 		// presentation Mode

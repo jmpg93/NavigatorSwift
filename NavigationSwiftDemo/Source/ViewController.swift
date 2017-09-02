@@ -18,9 +18,9 @@ class ViewController: UIViewController {
 		let nav = navigator(for: view.window!)
 		let requestProvider = DefaultNavigationRequestProvider()
 		let request = requestProvider.navigationRequest { builder in
-			builder.appendPushScene(withName: "Login")
-			builder.appendPushScene(withName: "Login")
-			builder.appendPushScene(withName: "Login")
+			builder.appendPushScene(withName: .login)
+			builder.appendPushScene(withName: .login)
+			builder.appendPushScene(withName: .login)
 		}
 
 		nav.navigateToScene(withAbsoluteURL: request.url, parameters: [:])

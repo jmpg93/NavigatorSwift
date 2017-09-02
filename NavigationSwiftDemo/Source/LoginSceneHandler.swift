@@ -9,9 +9,13 @@
 import Foundation
 import NavigatorSwift
 
+extension SceneName {
+	static let login: SceneName = "Login"
+}
+
 class LoginSceneHandler: SceneHandler {
-	var name: String {
-		return "Login"
+	var name: SceneName {
+		return .login
 	}
 
 	func buildViewController(with parameters: Parameters) -> UIViewController {

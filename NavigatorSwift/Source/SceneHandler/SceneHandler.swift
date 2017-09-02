@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol SceneHandler: class {
-	var name: String { get }
+	var name: SceneName { get }
 	var isViewControllerRecyclable: Bool { get }
 
 	func buildViewController(with parameters: Parameters) -> UIViewController
@@ -28,7 +28,7 @@ public extension SceneHandler {
 extension SceneHandler {
 	func _buildViewController(with parameters: Parameters) -> UIViewController {
 		let viewController = buildViewController(with: parameters)
-		viewController.sceneName = name
+		viewController.sceneName = name.value
 		return viewController
 	}
 }

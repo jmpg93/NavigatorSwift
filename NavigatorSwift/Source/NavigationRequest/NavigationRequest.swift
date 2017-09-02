@@ -43,13 +43,13 @@ public extension NavigationRequest {
 // MARK: - NavigationRequestBuilder Protocol
 
 public extension NavigationRequest {
-	func appendPushScene(withName name: String) {
+	func appendPushScene(withName name: SceneName) {
 		appendPushScene(withName: name,
 		                parameters: [:],
 		                animated: true)
 	}
 
-	func appendPushScene(withName name: String, parameters: Parameters, animated: Bool) {
+	func appendPushScene(withName name: SceneName, parameters: Parameters, animated: Bool) {
 		let component = NavigationRequestComponent(name: name,
 		                                           presentMode: .push,
 		                                           parameters: parameters,
@@ -57,13 +57,13 @@ public extension NavigationRequest {
 		components.append(component)
 	}
 
-	func appendModalScene(withName name: String) {
+	func appendModalScene(withName name: SceneName) {
 		appendModalScene(withName: name,
 		                 parameters: [:],
 		                 animated: true)
 	}
 
-	func appendModalScene(withName name: String, parameters: Parameters, animated: Bool) {
+	func appendModalScene(withName name: SceneName, parameters: Parameters, animated: Bool) {
 		let component = NavigationRequestComponent(name: name,
 		                                           presentMode: .modal,
 		                                           parameters: parameters,
@@ -71,13 +71,13 @@ public extension NavigationRequest {
 		components.append(component)
 	}
 
-	func appendModalWithNavigationScene(withName name: String) {
+	func appendModalWithNavigationScene(withName name: SceneName) {
 		appendModalWithNavigationScene(withName: name,
 		                               parameters: [:],
 		                               animated: true)
 	}
 
-	func appendModalWithNavigationScene(withName name: String, parameters: Parameters, animated: Bool) {
+	func appendModalWithNavigationScene(withName name: SceneName, parameters: Parameters, animated: Bool) {
 		let component = NavigationRequestComponent(name: name,
 		                                           presentMode: .modalInsideNavigationBar,
 		                                           parameters: parameters,

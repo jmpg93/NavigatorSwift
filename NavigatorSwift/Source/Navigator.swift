@@ -53,11 +53,11 @@ public extension Navigator {
 // MARK: - Navigating with Scene names
 
 public extension Navigator {
-	func pushSceneNamed(_ name: String) -> Bool {
+	func pushSceneNamed(_ name: SceneName) -> Bool {
 		return pushSceneNamed(name, parameters: [:], animated: true)
 	}
 
-	func pushSceneNamed(_ name: String, parameters: Parameters, animated: Bool) -> Bool {
+	func pushSceneNamed(_ name: SceneName, parameters: Parameters, animated: Bool) -> Bool {
 		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
 			builder.appendPushScene(withName: name, parameters: parameters, animated: animated)
 		}
@@ -65,11 +65,11 @@ public extension Navigator {
 		return navigateToScene(withRelativeURL: navigationRequest.url, parameters: navigationRequest.allParameters, completion: nil)
 	}
 
-	func presentSceneNamed(_ name: String, completion: CompletionBlock? = nil) -> Bool {
+	func presentSceneNamed(_ name: SceneName, completion: CompletionBlock? = nil) -> Bool {
 		return presentSceneNamed(name, parameters: [:], animated: true, completion: completion)
 	}
 
-	func presentSceneNamed(_ name: String, parameters: Parameters, animated: Bool, completion: CompletionBlock? = nil) -> Bool {
+	func presentSceneNamed(_ name: SceneName, parameters: Parameters, animated: Bool, completion: CompletionBlock? = nil) -> Bool {
 		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
 			builder.appendModalScene(withName: name, parameters: parameters, animated: animated)
 		}
@@ -77,11 +77,11 @@ public extension Navigator {
 		return navigateToScene(withRelativeURL: navigationRequest.url, parameters: navigationRequest.allParameters, completion: completion)
 	}
 
-	func presentNavigationController(withSceneNamed name: String, completion: CompletionBlock? = nil) -> Bool {
+	func presentNavigationController(withSceneNamed name: SceneName, completion: CompletionBlock? = nil) -> Bool {
 		return presentNavigationController(withSceneNamed: name, parameters: [:], animated: true, completion: completion)
 	}
 
-	func presentNavigationController(withSceneNamed name: String, parameters: Parameters, animated: Bool, completion: CompletionBlock? = nil) -> Bool {
+	func presentNavigationController(withSceneNamed name: SceneName, parameters: Parameters, animated: Bool, completion: CompletionBlock? = nil) -> Bool {
 		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
 			builder.appendModalWithNavigationScene(withName: name, parameters: parameters, animated: animated)
 		}
@@ -105,7 +105,7 @@ public extension Navigator {
 		sceneRenderer.dismissScene(animated: animated, completion: completion)
 	}
 
-	func dismissSceneNamed(_ name: String, animated: Bool, completion: CompletionBlock? = nil) {
+	func dismissSceneNamed(_ name: SceneName, animated: Bool, completion: CompletionBlock? = nil) {
 		if let scene = sceneMatcher.scene(withName: name, typePresentation: .modal, animated: true) {
 			sceneRenderer.dismiss(scene, animated: animated, completion: completion)
 		} else {

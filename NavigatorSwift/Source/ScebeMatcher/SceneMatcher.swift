@@ -15,7 +15,7 @@ public class SceneMatcher {
 	}
 
 	/// Contains all the scenes registered in the system by their name.
-	fileprivate var sceneHandlersByName: [String: SceneHandler] = [:]
+	fileprivate var sceneHandlersByName: [SceneName: SceneHandler] = [:]
 	fileprivate var scenePresentationTypeMapper: [String: ScenePresentationType] = [Delimiters.presentAsPushValue: .push,
 	                                                                                Delimiters.presenteAsModalValue: .modal,
 	                                                                                Delimiters.presentAsModalWithNavigationControllerValue: .modalInsideNavigationBar]
@@ -31,7 +31,7 @@ public extension SceneMatcher {
 		sceneHandlersByName[sceneHandler.name] = sceneHandler
 	}
 
-	func scene(withName name: String, typePresentation: ScenePresentationType, animated: Bool) -> Scene? {
+	func scene(withName name: SceneName, typePresentation: ScenePresentationType, animated: Bool) -> Scene? {
 		guard let sceneHandler = sceneHandlersByName[name] else { return nil }
 
 		return Scene(sceneHandler: sceneHandler,
@@ -54,7 +54,7 @@ public extension SceneMatcher {
 
 		for pathComponent in pathComponents {
 			// Each pathComponent has the form sceneName{presentedAs=push|modal|modalInNav;animated=0|1}
-			let sceneName = self.sceneName(from: pathComponent)
+			let sceneName = SceneName(self.sceneName(from: pathComponent))
 			let metaData = metadata(from: pathComponent)
 
 			guard let sceneHandlerCandidate = sceneHandlersByName[sceneName] else {
