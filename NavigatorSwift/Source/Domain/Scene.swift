@@ -8,7 +8,8 @@
 
 import Foundation
 class Scene {
-	weak var sceneHandler: SceneHandler?
+	unowned let sceneHandler: SceneHandler
+	
 	let parameters: Parameters
 	let type: ScenePresentationType
 	let isAnimated: Bool

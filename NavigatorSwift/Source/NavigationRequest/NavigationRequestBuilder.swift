@@ -9,46 +9,42 @@
 import Foundation
 
 protocol NavigationRequestBuilder {
-	/**
-	Append a scene with a push animation.
 
-	@param name The name of the scene for append.
-	*/
+	/// Append a scene with a push animation.
+	///
+	/// - parameter: name The name of the scene for append.
 	func appendPushScene(withName name: String)
-	/**
-	Append a scene with a push animation.
 
-	@param name The name of the scene for append.
-	@param parameters The parameters that are sent to the scene
-	@param animated Pass YES to animate the presentation; otherwise, pass NO.
-	*/
+
+	/// Append a scene with a push animation.
+	///
+	/// - parameter: name The name of the scene for append.
+	/// - parameter: parameters The parameters that are sent to the scene
+	/// - parameter: animated Pass YES to animate the presentation; otherwise, pass NO.
 	func appendPushScene(withName name: String, parameters: Parameters, animated: Bool)
-	/**
-	Appends a view controller modally.
 
-	@param name The name of the scene for append.
-	*/
+	/// Appends a view controller modally.
+	///
+	/// - parameter: name The name of the scene for append.
 	func appendModalScene(withName name: String)
-	/**
-	Appends a view controller modally.
 
-	@param name The name of the scene for append.
-	@param parameters The parameters that are sent to the scene
-	@param animated Pass YES to animate the presentation; otherwise, pass NO.
-	*/
+	/// Appends a view controller modally.
+	///
+	/// - parameter: name The name of the scene for append.
+	/// - parameter: parameters The parameters that are sent to the scene
+	/// - parameter: animated Pass YES to animate the presentation; otherwise, pass NO.
 	func appendModalScene(withName name: String, parameters: Parameters, animated: Bool)
-	/**
-	Appends a view controller modally inside a UINavigationController.
 
-	@param name The name of the scene for append.
-	*/
+
+	/// Appends a view controller modally inside a UINavigationController.
+	///
+	/// - parameter: name The name of the scene for append.
 	func appendModalWithNavigationScene(withName name: String)
-	/**
-	Appends a view controller modally inside a UINavigationController.
 
-	@param name The name of the scene for append.
-	@param parameters The parameters that are sent to the scene
-	@param animated Pass YES to animate the presentation; otherwise, pass NO.
-	*/
+	/// Appends a view controller modally inside a UINavigationController.
+	///
+	/// - parameter: name The name of the scene for append.
+	/// - parameter: parameters The parameters that are sent to the scene
+	/// - parameter: animated Pass YES to animate the presentation; otherwise, pass NO.
 	func appendModalWithNavigationScene(withName name: String, parameters: Parameters, animated: Bool)
 }

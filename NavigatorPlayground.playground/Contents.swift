@@ -3,4 +3,3 @@
 import UIKit
 import NavigatorSwift
 
-let navigati

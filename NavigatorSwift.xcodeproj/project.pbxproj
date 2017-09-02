@@ -18,6 +18,12 @@
 		6C27A9681F59E34D00311918 /* NavigationRequestComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9671F59E34D00311918 /* NavigationRequestComponent.swift */; };
 		6C27A96A1F59E36400311918 /* NavigationRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9691F59E36400311918 /* NavigationRequestBuilder.swift */; };
 		6C27A96C1F59E39500311918 /* NavigationRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A96B1F59E39500311918 /* NavigationRequestProvider.swift */; };
+		6C27A9731F5A096400311918 /* SceneRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9721F5A096400311918 /* SceneRenderer.swift */; };
+		6CC4FA971F5AC9A1003B748A /* SceneMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4FA961F5AC9A1003B748A /* SceneMatcher.swift */; };
+		6CC4FA991F5AD190003B748A /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4FA981F5AD190003B748A /* Navigator.swift */; };
+		6CC4FA9B1F5AD459003B748A /* FeaturesSceneHandlerRegisters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4FA9A1F5AD459003B748A /* FeaturesSceneHandlerRegisters.swift */; };
+		6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8BAD11F5A0F0400559655 /* ViewControllerContainer.swift */; };
+		6CC8BAD41F5A127200559655 /* NavigationBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +41,12 @@
 		6C27A9671F59E34D00311918 /* NavigationRequestComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRequestComponent.swift; sourceTree = "<group>"; };
 		6C27A9691F59E36400311918 /* NavigationRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRequestBuilder.swift; sourceTree = "<group>"; };
 		6C27A96B1F59E39500311918 /* NavigationRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRequestProvider.swift; sourceTree = "<group>"; };
+		6C27A9721F5A096400311918 /* SceneRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRenderer.swift; sourceTree = "<group>"; };
+		6CC4FA961F5AC9A1003B748A /* SceneMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneMatcher.swift; sourceTree = "<group>"; };
+		6CC4FA981F5AD190003B748A /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		6CC4FA9A1F5AD459003B748A /* FeaturesSceneHandlerRegisters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesSceneHandlerRegisters.swift; sourceTree = "<group>"; };
+		6CC8BAD11F5A0F0400559655 /* ViewControllerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
+		6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +98,13 @@
 		6C27A9571F59E22000311918 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6C27A9591F59E2A000311918 /* Parameters.swift */,
-				6C27A96E1F59E3B700311918 /* Scene */,
+				6CC4FA981F5AD190003B748A /* Navigator.swift */,
+				6CC4FA9A1F5AD459003B748A /* FeaturesSceneHandlerRegisters.swift */,
+				6CC4FA951F5AC995003B748A /* ScebeMatcher */,
+				6C27A96F1F5A090600311918 /* Domain */,
+				6C27A9701F5A093000311918 /* SceneHandler */,
 				6C27A96D1F59E3A500311918 /* NavigationRequest */,
+				6C27A9711F5A094500311918 /* SceneRenderer */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -105,15 +121,41 @@
 			path = NavigationRequest;
 			sourceTree = "<group>";
 		};
-		6C27A96E1F59E3B700311918 /* Scene */ = {
+		6C27A96F1F5A090600311918 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6C27A9591F59E2A000311918 /* Parameters.swift */,
 				6C27A95F1F59E2E900311918 /* Scene.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6C27A9701F5A093000311918 /* SceneHandler */ = {
+			isa = PBXGroup;
+			children = (
+				6C27A95D1F59E2D500311918 /* ScenePresentationType.swift */,
 				6C27A9631F59E32000311918 /* SceneHandlerRegistrable.swift */,
 				6C27A9611F59E2FD00311918 /* SceneHandler.swift */,
-				6C27A95D1F59E2D500311918 /* ScenePresentationType.swift */,
 			);
-			path = Scene;
+			path = SceneHandler;
+			sourceTree = "<group>";
+		};
+		6C27A9711F5A094500311918 /* SceneRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				6C27A9721F5A096400311918 /* SceneRenderer.swift */,
+				6CC8BAD11F5A0F0400559655 /* ViewControllerContainer.swift */,
+				6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */,
+			);
+			path = SceneRenderer;
+			sourceTree = "<group>";
+		};
+		6CC4FA951F5AC995003B748A /* ScebeMatcher */ = {
+			isa = PBXGroup;
+			children = (
+				6CC4FA961F5AC9A1003B748A /* SceneMatcher.swift */,
+			);
+			path = ScebeMatcher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,10 +240,16 @@
 				6C27A96A1F59E36400311918 /* NavigationRequestBuilder.swift in Sources */,
 				6C27A9641F59E32000311918 /* SceneHandlerRegistrable.swift in Sources */,
 				6C27A9601F59E2E900311918 /* Scene.swift in Sources */,
+				6CC4FA971F5AC9A1003B748A /* SceneMatcher.swift in Sources */,
 				6C27A9621F59E2FD00311918 /* SceneHandler.swift in Sources */,
+				6C27A9731F5A096400311918 /* SceneRenderer.swift in Sources */,
 				6C27A95E1F59E2D500311918 /* ScenePresentationType.swift in Sources */,
+				6CC8BAD41F5A127200559655 /* NavigationBarContainer.swift in Sources */,
+				6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */,
+				6CC4FA9B1F5AD459003B748A /* FeaturesSceneHandlerRegisters.swift in Sources */,
 				6C27A9661F59E33200311918 /* NavigationRequest.swift in Sources */,
 				6C27A95A1F59E2A000311918 /* Parameters.swift in Sources */,
+				6CC4FA991F5AD190003B748A /* Navigator.swift in Sources */,
 				6C27A9681F59E34D00311918 /* NavigationRequestComponent.swift in Sources */,
 				6C27A96C1F59E39500311918 /* NavigationRequestProvider.swift in Sources */,
 				6C27A95C1F59E2C100311918 /* NavigationRequestBuilderBlock.swift in Sources */,
