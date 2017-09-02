@@ -50,6 +50,11 @@ public extension SceneRenderer {
 	/// - parameter: scenes An array of Scenes to add on to the navigation stack.
 	/// - parameter: completion The block to execute after the last scene is presented.
 	func addScenesOntoStack(_ scenes: [Scene], completion: CompletionBlock? = nil) {
+		//TODO: Check
+		if viewControllerContainer == nil {
+			installScene(asRootViewController: scenes.first!)
+		}
+
 		guard let rootViewController = viewControllerContainer?.rootViewController else {
 			return
 		}

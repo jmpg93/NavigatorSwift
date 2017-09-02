@@ -13,11 +13,14 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
+
 	@IBAction func push(_ sender: UIButton) {
 		let nav = navigator(for: view.window!)
 		let requestProvider = DefaultNavigationRequestProvider()
 		let request = requestProvider.navigationRequest { builder in
-			builder.appendModalWithNavigationScene(withName: "Login")
+			builder.appendPushScene(withName: "Login")
+			builder.appendPushScene(withName: "Login")
+			builder.appendPushScene(withName: "Login")
 		}
 
 		nav.navigateToScene(withAbsoluteURL: request.url, parameters: [:])
