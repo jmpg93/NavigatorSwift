@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SceneHandlerRegistrable {
+public protocol SceneHandlerRegistrable {
 	func sceneHandlersToRegister() -> [SceneHandler]
 }
 

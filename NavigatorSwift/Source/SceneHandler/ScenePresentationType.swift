@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ScenePresentationType: Int {
+public enum ScenePresentationType: Int {
 	case push = 0
 	case modal
 	case modalInsideNavigationBar

@@ -8,14 +8,12 @@
 
 import Foundation
 
-class Navigator {
-	let sceneMatcher: SceneMatcher
-	let sceneRenderer: SceneRenderer
-	let navigationRequestProvider: NavigationRequestProvider
+public class Navigator {
+	fileprivate let sceneMatcher: SceneMatcher
+	fileprivate let sceneRenderer: SceneRenderer
+	fileprivate let navigationRequestProvider: NavigationRequestProvider
 
-	init(sceneMatcher: SceneMatcher, sceneRenderer: SceneRenderer,
-	     featuresSceneHandlerRegisters: FeaturesSceneHandlerRegisters,
-	     navigationRequestProvider: NavigationRequestProvider) {
+	public init(sceneMatcher: SceneMatcher, sceneRenderer: SceneRenderer, featuresSceneHandlerRegisters: FeaturesSceneHandlerRegisters, navigationRequestProvider: NavigationRequestProvider) {
 		self.sceneMatcher = sceneMatcher
 		self.sceneRenderer = sceneRenderer
 		self.navigationRequestProvider = navigationRequestProvider
@@ -24,25 +22,9 @@ class Navigator {
 	}
 }
 
-// MARK: - SceneHandler Registrar
-
-extension Navigator {
-	func registerSceneHandlerRegisters(_ sceneHandlersRegisters: [SceneHandlerRegistrable]) {
-		for sceneHandlerRegistrar in sceneHandlersRegisters {
-			registerSceneHandlers(from: sceneHandlerRegistrar.sceneHandlersToRegister())
-		}
-	}
-
-	func registerSceneHandlers(from sceneHandlers: [SceneHandler]) {
-		for sceneHandler in sceneHandlers {
-			sceneMatcher.registerScene(for: sceneHandler)
-		}
-	}
-}
-
 // MARK: - Navigating with URLs
 
-extension Navigator {
+public extension Navigator {
 	func navigateToScene(withAbsoluteURL url: URL, parameters: Parameters, completion: CompletionBlock? = nil) -> Bool {
 		var urlHandled = false
 		let scenesInURL = matchScenes(from: url, parameters: parameters)
@@ -70,7 +52,7 @@ extension Navigator {
 
 // MARK: - Navigating with Scene names
 
-extension Navigator {
+public extension Navigator {
 	func pushSceneNamed(_ name: String) -> Bool {
 		return pushSceneNamed(name, parameters: [:], animated: true)
 	}
@@ -110,7 +92,7 @@ extension Navigator {
 
 // MARK: - Poping and Dismissing Scenes
 
-extension Navigator {
+public extension Navigator {
 	func popScene(animated: Bool, completion: CompletionBlock? = nil) -> UIViewController? {
 		return sceneRenderer.popScene(animated: animated, completion: completion)
 	}
@@ -133,8 +115,24 @@ extension Navigator {
 }
 // MARK: - Private
 
-extension Navigator {
+private extension Navigator {
 	func matchScenes(from url: URL, parameters: Parameters) -> [Scene] {
 		return sceneMatcher.matches(from: url, externalParameters: parameters)
+	}
+}
+
+// MARK: - SceneHandler Registrar
+
+private extension Navigator {
+	func registerSceneHandlerRegisters(_ sceneHandlersRegisters: [SceneHandlerRegistrable]) {
+		for sceneHandlerRegistrar in sceneHandlersRegisters {
+			registerSceneHandlers(from: sceneHandlerRegistrar.sceneHandlersToRegister())
+		}
+	}
+
+	func registerSceneHandlers(from sceneHandlers: [SceneHandler]) {
+		for sceneHandler in sceneHandlers {
+			sceneMatcher.registerScene(for: sceneHandler)
+		}
 	}
 }

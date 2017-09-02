@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol SceneHandler: class {
+public protocol SceneHandler: class {
 	var name: String { get }
 	var viewControllerClass: AnyClass { get }
 	var isViewControllerRecyclable: Bool { get }

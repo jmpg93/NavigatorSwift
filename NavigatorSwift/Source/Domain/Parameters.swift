@@ -8,4 +8,4 @@
 
 import Foundation
 
-typealias Parameters = [String: Any]
+public typealias Parameters = [String: Any]

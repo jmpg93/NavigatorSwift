@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol NavigationRequestProvider {
+public protocol NavigationRequestProvider {
 	func navigationRequest(using builderBlock: NavigationRequestBuilderBlock) -> NavigationRequest
 }

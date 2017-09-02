@@ -7,17 +7,18 @@
 //
 
 import Foundation
-class Scene {
-	unowned let sceneHandler: SceneHandler
-	
-	let parameters: Parameters
-	let type: ScenePresentationType
-	let isAnimated: Bool
 
-	init(sceneHandler: SceneHandler,
-	     parameters: Parameters,
-	     type typePresentation: ScenePresentationType,
-	     animated isAnimated: Bool) {
+public class Scene {
+	public unowned let sceneHandler: SceneHandler
+	
+	public let parameters: Parameters
+	public let type: ScenePresentationType
+	public let isAnimated: Bool
+	
+	public init(sceneHandler: SceneHandler,
+	            parameters: Parameters,
+	            type typePresentation: ScenePresentationType,
+	            animated isAnimated: Bool) {
 		self.parameters = parameters
 		self.isAnimated = isAnimated
 		self.sceneHandler = sceneHandler

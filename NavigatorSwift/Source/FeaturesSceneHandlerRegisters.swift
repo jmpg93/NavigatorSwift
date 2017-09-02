@@ -8,7 +8,6 @@
 
 import Foundation
 
-class FeaturesSceneHandlerRegisters {
-	let featuresSceneHandlerRegisters: [SceneHandlerRegistrable] = [
-	]
+public class FeaturesSceneHandlerRegisters {
+	public let featuresSceneHandlerRegisters: [SceneHandlerRegistrable] = [ ]
 }

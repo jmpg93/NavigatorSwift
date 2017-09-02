@@ -24,10 +24,9 @@ extension UIViewController {
 class SceneRenderer {
 	// dependencies
 	fileprivate let window: UIWindow
+	fileprivate weak var viewControllerContainer: ViewControllerContainer?
 
-	weak var viewControllerContainer: ViewControllerContainer?
-
-	init(window: UIWindow) {
+	public init(window: UIWindow) {
 		self.window = window
 	}
 

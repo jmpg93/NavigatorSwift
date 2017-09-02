@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SceneMatcher {
+public class SceneMatcher {
 	enum Delimiters {
 		static let rightMetaDataDelimiter: Character = "}"
 		static let leftMetaDataDelimiter: Character = "{"
@@ -30,12 +30,15 @@ class SceneMatcher {
 	}
 
 	/** Contains all the scenes registered in the system by their name. */
-	var sceneHandlersByName: [String: SceneHandler] = [:]
-	var scenePresentationTypeMapper: [String: ScenePresentationType] = [Delimiters.presentAsPushValue: .push,
-	                                                                    Delimiters.presenteAsModalValue: .modal,
-	                                                                    Delimiters.presentAsModalWithNavigationControllerValue: .modalInsideNavigationBar]
+	fileprivate var sceneHandlersByName: [String: SceneHandler] = [:]
+	fileprivate var scenePresentationTypeMapper: [String: ScenePresentationType] = [Delimiters.presentAsPushValue: .push,
+	                                                                                Delimiters.presenteAsModalValue: .modal,
+	                                                                                Delimiters.presentAsModalWithNavigationControllerValue: .modalInsideNavigationBar]
+}
 
-	// MARK: - Public Methods
+// MARK: - Public Methods
+
+public extension SceneMatcher {
 	func registerScene(for sceneHandler: SceneHandler) {
 		assert(sceneHandlersByName[sceneHandler.name] == nil, "Already registered scene named \(sceneHandler.name)")
 		sceneHandlersByName[sceneHandler.name] = sceneHandler
@@ -106,7 +109,7 @@ class SceneMatcher {
 
 // MARK: - Private
 
-extension SceneMatcher {
+private extension SceneMatcher {
 	func sceneName(from pathComponent: String) -> String {
 		let sceneName: String
 

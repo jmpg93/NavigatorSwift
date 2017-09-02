@@ -8,14 +8,17 @@
 
 import Foundation
 
-class NavigationRequest: NavigationRequestBuilder {
-	var components: [NavigationRequestComponent] = []
+public class NavigationRequest: NavigationRequestBuilder {
+	fileprivate var components: [NavigationRequestComponent] = []
 
-	init(using builderBlock: NavigationRequestBuilderBlock) {
+	public init(using builderBlock: NavigationRequestBuilderBlock) {
 		builderBlock(self)
 	}
+}
 
-	// MARK: - Public implementation
+// MARK: - Public implementation
+
+public extension NavigationRequest {
 	var url: URL {
 		let urlString = components.reduce("/") { (result, requestCompoenent) -> String in
 			return result + requestCompoenent.pathComponent
@@ -35,8 +38,11 @@ class NavigationRequest: NavigationRequestBuilder {
 
 		return allParameters
 	}
+}
 
-	// MARK: - TMNavigationRequestBuilder Protocol
+// MARK: - NavigationRequestBuilder Protocol
+
+public extension NavigationRequest {
 	func appendPushScene(withName name: String) {
 		appendPushScene(withName: name,
 		                parameters: [:],

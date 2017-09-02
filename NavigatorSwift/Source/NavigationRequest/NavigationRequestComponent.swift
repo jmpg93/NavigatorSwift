@@ -8,20 +8,20 @@
 
 import Foundation
 
-class NavigationRequestComponent {
-	let name: String
-	let presentMode: ScenePresentationType
-	let parameters: Parameters
-	let animated: Bool
+public class NavigationRequestComponent {
+	public let name: String
+	public let presentMode: ScenePresentationType
+	public let parameters: Parameters
+	public let animated: Bool
 
-	init(name: String, presentMode: ScenePresentationType, parameters: Parameters, animated: Bool) {
+	public init(name: String, presentMode: ScenePresentationType, parameters: Parameters, animated: Bool) {
 		self.name = name
 		self.presentMode = presentMode
 		self.parameters = parameters
 		self.animated = animated
 	}
 
-	var pathComponent: String {
+	public var pathComponent: String {
 		//TODO: Do
 		return ""
 	}

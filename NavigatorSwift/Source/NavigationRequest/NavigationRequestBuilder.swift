@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol NavigationRequestBuilder {
+public protocol NavigationRequestBuilder {
 
 	/// Append a scene with a push animation.
 	///

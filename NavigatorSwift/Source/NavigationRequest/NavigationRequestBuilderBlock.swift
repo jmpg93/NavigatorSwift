@@ -8,5 +8,5 @@
 
 import Foundation
 
-typealias NavigationRequestBuilderBlock = (_ builder: NavigationRequestBuilder) -> Void
+public typealias NavigationRequestBuilderBlock = (_ builder: NavigationRequestBuilder) -> Void
 
