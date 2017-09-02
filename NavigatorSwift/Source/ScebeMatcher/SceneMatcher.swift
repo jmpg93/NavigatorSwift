@@ -9,31 +9,18 @@
 import Foundation
 
 public class SceneMatcher {
-	enum Delimiters {
-		static let rightMetaDataDelimiter: Character = "}"
-		static let leftMetaDataDelimiter: Character = "{"
-		static let metadataSeparator = ";"
-		static let keyValuePairSeparator = "="
-		static let presentAsKey = "presentAs"
-		static let animatedKey = "animated"
-		static let animatedTrueValue = "true"
-		static let animatedFalseValue = "false"
-		static let presentAsPushValue = "push"
-		static let presenteAsModalValue = "modal"
-
-		static let presentAsModalWithNavigationControllerValue = "modalInNav"
-	}
-
 	enum Constants {
 		static let sceneAnimatedDefaultValue = true
 		static let scenePresentationTypeDefaultValue: ScenePresentationType = .push
 	}
 
-	/** Contains all the scenes registered in the system by their name. */
+	/// Contains all the scenes registered in the system by their name.
 	fileprivate var sceneHandlersByName: [String: SceneHandler] = [:]
 	fileprivate var scenePresentationTypeMapper: [String: ScenePresentationType] = [Delimiters.presentAsPushValue: .push,
 	                                                                                Delimiters.presenteAsModalValue: .modal,
 	                                                                                Delimiters.presentAsModalWithNavigationControllerValue: .modalInsideNavigationBar]
+
+	public init() { }
 }
 
 // MARK: - Public Methods

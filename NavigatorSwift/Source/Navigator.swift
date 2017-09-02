@@ -13,12 +13,12 @@ public class Navigator {
 	fileprivate let sceneRenderer: SceneRenderer
 	fileprivate let navigationRequestProvider: NavigationRequestProvider
 
-	public init(sceneMatcher: SceneMatcher, sceneRenderer: SceneRenderer, featuresSceneHandlerRegisters: FeaturesSceneHandlerRegisters, navigationRequestProvider: NavigationRequestProvider) {
+	public init(sceneMatcher: SceneMatcher, sceneRenderer: SceneRenderer, sceneHandlerRegisters: SceneHandlerRegisters, navigationRequestProvider: NavigationRequestProvider) {
 		self.sceneMatcher = sceneMatcher
 		self.sceneRenderer = sceneRenderer
 		self.navigationRequestProvider = navigationRequestProvider
 
-		registerSceneHandlerRegisters(featuresSceneHandlerRegisters.featuresSceneHandlerRegisters)
+		registerSceneHandlerRegisters(sceneHandlerRegisters.sceneHandlerRegisters)
 	}
 }
 

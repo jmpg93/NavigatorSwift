@@ -8,6 +8,14 @@
 
 import Foundation
 
-public class FeaturesSceneHandlerRegisters {
-	public let featuresSceneHandlerRegisters: [SceneHandlerRegistrable] = [ ]
+public protocol SceneHandlerRegisters {
+	var sceneHandlerRegisters: [SceneHandlerRegistrable] { get }
+}
+
+public class FeaturesSceneHandlerRegisters: SceneHandlerRegisters {
+	public let sceneHandlerRegisters: [SceneHandlerRegistrable]
+
+	public init(sceneHandlerRegisters: [SceneHandlerRegistrable]) {
+		self.sceneHandlerRegisters = sceneHandlerRegisters
+	}
 }

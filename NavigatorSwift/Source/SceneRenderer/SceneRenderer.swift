@@ -9,26 +9,21 @@
 import Foundation
 import UIKit
 
-typealias CompletionBlock = () -> Void
+public typealias CompletionBlock = () -> Void
 
-extension UIView {
-	static let defaultAnimationDuration: TimeInterval = 0.35
-}
-
-extension UIViewController {
-	var isBeingDisplayedModally: Bool {
-		return true
-	}
-}
-
-class SceneRenderer {
+public class SceneRenderer {
 	// dependencies
 	fileprivate let window: UIWindow
-	fileprivate weak var viewControllerContainer: ViewControllerContainer?
+	fileprivate var viewControllerContainer: ViewControllerContainer?
 
 	public init(window: UIWindow) {
 		self.window = window
 	}
+}
+
+// MARK: Private methods
+
+public extension SceneRenderer {
 
 	/// Changes the current navigation stack to conform an array of Scenes, in the process of build the new navigation stack
 	/// SceneRenderer will try to recycle the view controllers that are currently in the stack.
@@ -56,7 +51,6 @@ class SceneRenderer {
 	/// - parameter: completion The block to execute after the last scene is presented.
 	func addScenesOntoStack(_ scenes: [Scene], completion: CompletionBlock? = nil) {
 		guard let rootViewController = viewControllerContainer?.rootViewController else {
-			//TODO: Call completion?
 			return
 		}
 
@@ -107,11 +101,13 @@ class SceneRenderer {
 
 		let visibleViewController = self.visibleViewController(from: rootViewController)
 
-		if visibleViewController.isBeingDisplayedModally && scene.sceneHandler.viewControllerClass == visibleViewController.classForCoder {
+		if visibleViewController.isBeingDisplayedModally && scene.sceneHandler.name == visibleViewController.sceneName {
 			visibleViewController.dismiss(animated: animated, completion: completion)
 		}
 	}
 }
+
+// MARK: Private methods
 
 private extension SceneRenderer {
 	func recycleNavigationStack(with scenes: [Scene], completion: CompletionBlock? = nil) {
@@ -131,7 +127,7 @@ private extension SceneRenderer {
 		}
 
 		for navigationController in viewControllerContainer.firstLevelNavigationControllers {
-			if let rootViewController = navigationController.viewControllers.first, scenesNotInStackYet.first?.sceneHandler.viewControllerClass == rootViewController.classForCoder {
+			if let rootViewController = navigationController.viewControllers.first, scenesNotInStackYet.first?.sceneHandler.name == rootViewController.sceneName {
 				optionalNavigationControllerToRecycle = navigationController
 			}
 		}
@@ -162,7 +158,7 @@ private extension SceneRenderer {
 				scene.sceneHandler.reload(viewControllerToRecycle, parameters: scene.parameters)
 				scenesNotInStackYet.remove(at: 0)
 			} else if index == 0 {
-				let finalViewControllers = [scene.sceneHandler.buildViewController(with: scene.parameters)]
+				let finalViewControllers = [scene.sceneHandler._buildViewController(with: scene.parameters)]
 				navigationControllerToRecycle.setViewControllers(finalViewControllers, animated: true)
 				scenesNotInStackYet.remove(at: 0)
 			} else {
@@ -208,19 +204,18 @@ private extension SceneRenderer {
 	}
 
 	func installScene(asRootViewController scene: Scene) {
-		guard let viewControllerContainer = viewControllerContainer else { return }
 
-		let rootViewController = scene.sceneHandler.buildViewController(with: scene.parameters)
+		let rootViewController = scene.sceneHandler._buildViewController(with: scene.parameters)
 
 		if let rootViewController = rootViewController as? ViewControllerContainer {
 			self.viewControllerContainer = rootViewController
 		} else {
 			self.viewControllerContainer = NavigationBarContainer()
-			let navigationController = viewControllerContainer.visibleNavigationController
+			let navigationController = viewControllerContainer!.visibleNavigationController
 			navigationController.pushViewController(rootViewController, animated: false)
 		}
 
-		window.rootViewController = viewControllerContainer.rootViewController
+		window.rootViewController = viewControllerContainer!.rootViewController
 		window.makeKeyAndVisible()
 	}
 
@@ -234,27 +229,23 @@ private extension SceneRenderer {
 		viewControllerContainer?.rootViewController?.dismiss(animated: true, completion: nil)
 	}
 
-	/**
-	Returns Yes if the viewController is handled by the scene and also is presented as require the scene, NO otherwise.
-	*/
+	///Returns Yes if the viewController is handled by the scene and also is presented as require the scene, NO otherwise.
 	func isViewController(_ viewController: UIViewController, recyclableBy scene: Scene) -> Bool {
-		let isManagedByScene = false//scene.sceneHandler?.viewControllerClass() == viewController.self
+		let isManagedByScene = scene.sceneHandler.name == viewController.sceneName
 		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene)
 		let isViewControllerRecyclable = scene.sceneHandler.isViewControllerRecyclable
 
 		return isManagedByScene && isPresentedAsRequireScene && isViewControllerRecyclable
 	}
 
-	/**
-	Returns YES if the rootViewController in Window is handled by the scene
-	*/
+	/// Returns YES if the rootViewController in Window is handled by the scene
 	func isRootViewController(matching scene: Scene) -> Bool {
 		guard let viewControllerContainer = viewControllerContainer else { return false }
 
 		var isEqual: Bool = false
 
 		if let rootViewController = viewControllerContainer.rootViewController as? UINavigationController {
-			isEqual = rootViewController.viewControllers.first?.classForCoder == scene.sceneHandler.viewControllerClass
+			isEqual = rootViewController.viewControllers.first?.sceneName == scene.sceneHandler.name
 		}
 
 		return isEqual
@@ -274,7 +265,7 @@ private extension SceneRenderer {
 		var navigationController: UINavigationController? = currentVisibleViewController?.navigationController
 
 		for scene in scenes {
-			let newViewController = scene.sceneHandler.buildViewController(with: scene.parameters)
+			let newViewController = scene.sceneHandler._buildViewController(with: scene.parameters)
 			let animated = scene.isAnimated
 			let wrapperCompletion: (CompletionBlock)? = completion //scene == scenes ? completion : nil
 

@@ -11,3 +11,11 @@ import Foundation
 public protocol NavigationRequestProvider {
 	func navigationRequest(using builderBlock: NavigationRequestBuilderBlock) -> NavigationRequest
 }
+
+public class DefaultNavigationRequestProvider: NavigationRequestProvider {
+	public init() { }
+	
+	public func navigationRequest(using builderBlock: (NavigationRequestBuilder) -> Void) -> NavigationRequest {
+		return NavigationRequest(using: builderBlock)
+	}
+}

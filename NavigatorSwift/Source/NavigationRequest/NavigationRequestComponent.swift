@@ -22,7 +22,21 @@ public class NavigationRequestComponent {
 	}
 
 	public var pathComponent: String {
-		//TODO: Do
-		return ""
+		var string = ""
+		
+		// add the scene name
+		string += name
+		// add meta data for the scene
+		string += "\(Delimiters.leftMetaDataDelimiter)"
+		// presentation Mode
+		string += "\(Delimiters.presentAsKey)\(Delimiters.keyValuePairSeparator)\(presentMode)"
+		string += Delimiters.metadataSeparator
+		// aniation
+		string += Delimiters.animatedKey
+		string += "=\(animated ? Delimiters.animatedTrueValue : Delimiters.animatedFalseValue)"
+		// end meta data for the scene
+		string += "\(Delimiters.rightMetaDataDelimiter)"
+
+		return string
 	}
 }
