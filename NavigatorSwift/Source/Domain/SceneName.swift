@@ -27,9 +27,15 @@ extension SceneName: Hashable {
 }
 
 extension SceneName: ExpressibleByStringLiteral {
-	public typealias StringLiteralType = String
-
 	public init(stringLiteral value: String) {
-		self = SceneName(value)
+		self.value = value
+	}
+
+	public init(unicodeScalarLiteral value: String) {
+		self.init(stringLiteral: value)
+	}
+
+	public init(extendedGraphemeClusterLiteral value: String) {
+		self.init(stringLiteral: value)
 	}
 }

@@ -8,16 +8,21 @@
 
 import NavigatorSwift
 import XCTest
-
+import Cuckoo
 
 class NavigatorSwiftTests: XCTestCase {
 	var sut: SceneRenderer!
 
-	let windowMock = UIWindow()
+	let mockWindow = MockWindow()
+	let mockScene = MockScene(sceneHandler: MockSceneHandler(),
+	                          parameters: [:],
+	                          type: .modal,
+	                          animated: false)
 
     override func setUp() {
         super.setUp()
-		sut = SceneRenderer(window: windowMock)
+
+		sut = SceneRenderer(window: mockWindow)
     }
     
     override func tearDown() {
@@ -25,6 +30,8 @@ class NavigatorSwiftTests: XCTestCase {
     }
     
     func testExample() {
-		
+		sut.changeStack(toScenes: [mockScene])
+
+		verify(mockWindow).makeKeyAndVisible()
     }
 }
