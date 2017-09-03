@@ -13,8 +13,8 @@ public typealias CompletionBlock = () -> Void
 
 public class SceneRenderer {
 	// dependencies
-	fileprivate let window: UIWindow
-	fileprivate var viewControllerContainer: ViewControllerContainer?
+	let window: UIWindow
+	var viewControllerContainer: ViewControllerContainer?
 
 	public init(window: UIWindow) {
 		self.window = window

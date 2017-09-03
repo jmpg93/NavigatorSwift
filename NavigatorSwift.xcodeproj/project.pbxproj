@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1827747C1F5C3B8400CD935F /* NavigatorSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827747B1F5C3B8400CD935F /* NavigatorSwiftTests.swift */; };
+		1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */; };
 		1827747E1F5C3B8400CD935F /* NavigatorSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; };
 		6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */; };
 		6C1322D51F5ADB4B00A7D3E9 /* Delimiters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1322D41F5ADB4B00A7D3E9 /* Delimiters.swift */; };
@@ -32,6 +32,8 @@
 		6C27A9731F5A096400311918 /* SceneRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9721F5A096400311918 /* SceneRenderer.swift */; };
 		6C2967AD1F5C54E200F3C3A0 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2967AC1F5C54E200F3C3A0 /* GeneratedMocks.swift */; };
 		6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2967AF1F5C565400F3C3A0 /* ViewController.swift */; };
+		6C2967B61F5C5FFB00F3C3A0 /* NavigatorSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6C2967B81F5C5FFB00F3C3A0 /* Cuckoo.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6C85F1BA1F5C44FF009FB1CA /* Cuckoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */; };
 		6C85F1BC1F5C44FF009FB1CA /* Cuckoo.framework.dSYM in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C85F1BB1F5C44FF009FB1CA /* Cuckoo.framework.dSYM */; };
 		6CB38DCE1F5AE03C003C5E9C /* NavigatorSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; };
@@ -67,9 +69,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6C2967B51F5C5FE300F3C3A0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6C2967B61F5C5FFB00F3C3A0 /* NavigatorSwift.framework in CopyFiles */,
+				6C2967B81F5C5FFB00F3C3A0 /* Cuckoo.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		182774791F5C3B8400CD935F /* NavigatorSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigatorSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1827747B1F5C3B8400CD935F /* NavigatorSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSwiftTests.swift; sourceTree = "<group>"; };
+		1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRendererTests.swift; sourceTree = "<group>"; };
 		1827747D1F5C3B8400CD935F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		6C1322D41F5ADB4B00A7D3E9 /* Delimiters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delimiters.swift; sourceTree = "<group>"; };
@@ -152,7 +168,7 @@
 			children = (
 				6C2967AE1F5C564000F3C3A0 /* Utils */,
 				6C2967AB1F5C54D500F3C3A0 /* Generated */,
-				1827747B1F5C3B8400CD935F /* NavigatorSwiftTests.swift */,
+				1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -353,6 +369,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 182774831F5C3B8400CD935F /* Build configuration list for PBXNativeTarget "NavigatorSwiftTests" */;
 			buildPhases = (
+				6C2967B51F5C5FE300F3C3A0 /* CopyFiles */,
 				182774751F5C3B8400CD935F /* Sources */,
 				182774761F5C3B8400CD935F /* Frameworks */,
 				182774771F5C3B8400CD935F /* Resources */,
@@ -417,7 +434,6 @@
 				TargetAttributes = {
 					182774781F5C3B8400CD935F = {
 						CreatedOnToolsVersion = 9.0;
-						TestTargetID = 6C1322D91F5ADC4100A7D3E9;
 					};
 					6C1322D91F5ADC4100A7D3E9 = {
 						CreatedOnToolsVersion = 9.0;
@@ -497,7 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */,
-				1827747C1F5C3B8400CD935F /* NavigatorSwiftTests.swift in Sources */,
+				1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */,
 				6C2967AD1F5C54E200F3C3A0 /* GeneratedMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,7 +598,6 @@
 		182774811F5C3B8400CD935F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = L8YSUA92XX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -594,14 +609,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NavigationSwiftDemo.app/NavigationSwiftDemo";
 			};
 			name = Debug;
 		};
 		182774821F5C3B8400CD935F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = L8YSUA92XX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -613,7 +626,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NavigationSwiftDemo.app/NavigationSwiftDemo";
 			};
 			name = Release;
 		};

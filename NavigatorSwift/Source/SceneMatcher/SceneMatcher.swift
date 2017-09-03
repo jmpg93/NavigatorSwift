@@ -15,7 +15,7 @@ public class SceneMatcher {
 	}
 
 	/// Contains all the scenes registered in the system by their name.
-	fileprivate var sceneHandlersByName: [String: SceneHandler] = [:]
+	fileprivate var sceneHandlersByName: [SceneName: SceneHandler] = [:]
 	fileprivate var scenePresentationTypeMapper: [String: ScenePresentationType] = [Delimiters.presentAsPushValue: .push,
 	                                                                                Delimiters.presenteAsModalValue: .modal,
 	                                                                                Delimiters.presentAsModalWithNavigationControllerValue: .modalInsideNavigationBar]
@@ -27,12 +27,12 @@ public class SceneMatcher {
 
 public extension SceneMatcher {
 	func registerScene(for sceneHandler: SceneHandler) {
-//		assert(sceneHandlersByName[sceneHandler.name.value] == nil, "Already registered scene named \(sceneHandler.name)")
-//		sceneHandlersByName[sceneHandler.name.value] = sceneHandler
+		assert(sceneHandlersByName[sceneHandler.name] == nil, "Already registered scene named \(sceneHandler.name)")
+		sceneHandlersByName[sceneHandler.name] = sceneHandler
 	}
 
 	func scene(withName name: SceneName, typePresentation: ScenePresentationType, animated: Bool) -> Scene? {
-		guard let sceneHandler = sceneHandlersByName[name.value] else { return nil }
+		guard let sceneHandler = sceneHandlersByName[name] else { return nil }
 
 		return Scene(sceneHandler: sceneHandler,
 		             parameters: [:],
@@ -57,7 +57,7 @@ public extension SceneMatcher {
 			let sceneName = SceneName(self.sceneName(from: pathComponent))
 			let metaData = metadata(from: pathComponent)
 
-			guard let sceneHandlerCandidate = sceneHandlersByName[sceneName.value] else {
+			guard let sceneHandlerCandidate = sceneHandlersByName[sceneName] else {
 				assertionFailure("Not found scene with name \(sceneName) from URL \(url.absoluteString)")
 				matchedScenes.removeAll()
 				return []
@@ -98,25 +98,33 @@ public extension SceneMatcher {
 
 private extension SceneMatcher {
 	func sceneName(from pathComponent: String) -> String {
-		return ""
+		let sceneName: String
+
+		if let location = pathComponent.characters.index(of: Delimiters.leftMetaDataDelimiter) {
+			sceneName = pathComponent.substring(to: location)
+		} else {
+			sceneName = pathComponent
+		}
+
+		return sceneName
 	}
 
 	func metadata(from pathComponent: String) -> [String: String] {
-//		guard let metaDataStart = pathComponent.index(of: Delimiters.leftMetaDataDelimiter) else { return [:] }
-//		guard let metaDataEndIndex = pathComponent.index(of: Delimiters.rightMetaDataDelimiter) else { return [:] }
-//		let metaDataStartIndex = metaDataStart //+ 1
-//
-//		var metadata: [String: String] = [:]
-//
-//		let metadataString = pathComponent.substring(with: metaDataStartIndex..<metaDataEndIndex)
-//		let keyValuePairStrings = metadataString.components(separatedBy: Delimiters.metadataSeparator)
-//
-//		for keyValuePairString in keyValuePairStrings {
-//			let keyValuePairArray = keyValuePairString.components(separatedBy: Delimiters.keyValuePairSeparator)
-//			let key = keyValuePairArray.first!
-//			let valueString = keyValuePairArray.last!
-//			metadata[key] = valueString
-//		}
+		guard let metaDataStart = pathComponent.characters.index(of: Delimiters.leftMetaDataDelimiter) else { return [:] }
+		guard let metaDataEndIndex = pathComponent.characters.index(of: Delimiters.rightMetaDataDelimiter) else { return [:] }
+		let metaDataStartIndex = metaDataStart //+ 1
+
+		var metadata: [String: String] = [:]
+
+		let metadataString = pathComponent.substring(with: metaDataStartIndex..<metaDataEndIndex)
+		let keyValuePairStrings = metadataString.components(separatedBy: Delimiters.metadataSeparator)
+
+		for keyValuePairString in keyValuePairStrings {
+			let keyValuePairArray = keyValuePairString.components(separatedBy: Delimiters.keyValuePairSeparator)
+			let key = keyValuePairArray.first!
+			let valueString = keyValuePairArray.last!
+			metadata[key] = valueString
+		}
 
 		return [:]
 	}
