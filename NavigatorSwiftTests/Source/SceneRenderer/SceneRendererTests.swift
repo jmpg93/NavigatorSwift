@@ -36,21 +36,13 @@ class SceneRendererTests: XCTestCase {
 // MARK: Tests 
 
 extension SceneRendererTests {
-	func testGivenAnyScene_changeStack_windowMakeKeyAndVisible() {
+	func testGivenAnySceneNoRootViewController_changeStack_windowMakeKeyAndVisible() {
 		// given
 		let mockScene = givenMockScene()
-		stub(mockSceneHandler) { stub in
-			when(stub.buildViewController(with: any())).thenReturn(Constants.anyView)
-			when(stub.name.get).thenReturn(Constants.anyScene)
-		}
-
-		stub(mockWindow) { stub in
-			when(stub.makeKeyAndVisible()).then(Constants.anyBlock)
-		}
+		givenStubbedWindow()
 
 		// when
 		sut.changeStack(toScenes: [mockScene])
-
 
 		XCTAssertNotNil(sut.viewControllerContainer)
 		verify(mockWindow).makeKeyAndVisible()
@@ -60,7 +52,18 @@ extension SceneRendererTests {
 // MARK: Helpers 
 
 extension SceneRendererTests {
+	func givenStubbedWindow() {
+		stub(mockWindow) { stub in
+			when(stub.makeKeyAndVisible()).then(Constants.anyBlock)
+		}
+	}
+
 	func givenMockScene() -> MockScene {
+		stub(mockSceneHandler) { stub in
+			when(stub.buildViewController(with: any())).thenReturn(Constants.anyView)
+			when(stub.name.get).thenReturn(Constants.anyScene)
+		}
+
 		return MockScene(sceneHandler: mockSceneHandler,
 		                 parameters: [:],
 		                 type: .modal,
