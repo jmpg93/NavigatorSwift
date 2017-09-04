@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="NavigationSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ViewController" storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="NavigationSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fqy-gI-RqO"/>
                         <viewControllerLayoutGuide type="bottom" id="FIf-4S-gUt"/>
@@ -22,26 +21,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKj-Ej-gxO">
-                                <rect key="frame" x="147" y="293" width="80" height="80"/>
-                                <color key="backgroundColor" red="0.86847770209999997" green="0.0" blue="0.084524481070000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Fqs-5J-MgZ"/>
-                                    <constraint firstAttribute="width" secondItem="dKj-Ej-gxO" secondAttribute="height" multiplier="1:1" id="zui-ea-5Uu"/>
-                                </constraints>
-                                <color key="tintColor" red="0.99779770290000003" green="0.99612335539999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Push"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2jS-tk-zhp">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ueV-eR-sXT" customClass="Layout" customModule="NavigationSwiftDemo" customModuleProvider="target">
+                                    <size key="itemSize" width="160" height="160"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
                                 <connections>
-                                    <action selector="push:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6aB-bK-qia"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Cya-Ho-Quh"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="etA-bH-fbg"/>
                                 </connections>
-                            </button>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dKj-Ej-gxO" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mS7-zq-7ny"/>
-                            <constraint firstItem="dKj-Ej-gxO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n1e-CS-BRi"/>
+                            <constraint firstItem="2jS-tk-zhp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DFk-Mr-yov"/>
+                            <constraint firstItem="FIf-4S-gUt" firstAttribute="top" secondItem="2jS-tk-zhp" secondAttribute="bottom" id="XDm-Nh-0ZJ"/>
+                            <constraint firstAttribute="trailing" secondItem="2jS-tk-zhp" secondAttribute="trailing" id="pIP-b2-GiN"/>
+                            <constraint firstItem="2jS-tk-zhp" firstAttribute="top" secondItem="Fqy-gI-RqO" secondAttribute="bottom" id="zpx-ql-MGz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="2jS-tk-zhp" id="l6c-WK-eJ2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

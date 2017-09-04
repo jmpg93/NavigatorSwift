@@ -12,4 +12,15 @@ public enum ScenePresentationType: Int {
 	case push = 0
 	case modal
 	case modalInsideNavigationBar
+
+	public var value: String {
+		switch self {
+		case .modal:
+			return "Modal"
+		case .push:
+			return "Push"
+		case .modalInsideNavigationBar:
+			return "Modal with Nav"
+		}
+	}
 }

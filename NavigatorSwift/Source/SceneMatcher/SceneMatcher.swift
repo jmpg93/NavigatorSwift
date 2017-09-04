@@ -16,9 +16,11 @@ public class SceneMatcher {
 
 	/// Contains all the scenes registered in the system by their name.
 	fileprivate var sceneHandlersByName: [SceneName: SceneHandler] = [:]
-	fileprivate var scenePresentationTypeMapper: [String: ScenePresentationType] = [Delimiters.presentAsPushValue: .push,
-	                                                                                Delimiters.presenteAsModalValue: .modal,
-	                                                                                Delimiters.presentAsModalWithNavigationControllerValue: .modalInsideNavigationBar]
+	fileprivate var scenePresentationTypeMapper: [String: ScenePresentationType] = [
+		Delimiters.presentAsPushValue: .push,
+		Delimiters.presenteAsModalValue: .modal,
+		Delimiters.presentAsModalWithNavigationControllerValue: .modalInsideNavigationBar
+	]
 
 	public init() { }
 }
@@ -44,9 +46,9 @@ public extension SceneMatcher {
 
 		var matchedScenes: [Scene] = []
 
-		// Split the URL in path components, each path components represents a TMScene.
+		// Split the URL in path components	, each path components represents a TMScene.
 		var pathComponents = url.pathComponents
-
+		
 		// Remove pathComponents that are slash.
 		pathComponents = pathComponents.filter { pathComponent in
 			return !(pathComponent == "/")
@@ -126,6 +128,6 @@ private extension SceneMatcher {
 			metadata[key] = valueString
 		}
 
-		return [:]
+		return metadata
 	}
 }

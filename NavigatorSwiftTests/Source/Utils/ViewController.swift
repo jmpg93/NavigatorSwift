@@ -11,6 +11,7 @@ import UIKit
 
 open class ViewController: UIViewController {
 
+    @IBOutlet weak var collectionView: UICollectionView!
 }
 
 open class Window: UIWindow {

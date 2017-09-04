@@ -50,7 +50,6 @@ public extension SceneRenderer {
 	/// - parameter: scenes An array of Scenes to add on to the navigation stack.
 	/// - parameter: completion The block to execute after the last scene is presented.
 	func addScenesOntoStack(_ scenes: [Scene], completion: CompletionBlock? = nil) {
-		//TODO: Check
 		if viewControllerContainer == nil {
 			installScene(asRootViewController: scenes.first!)
 		}
@@ -279,7 +278,7 @@ private extension SceneRenderer {
 				navigationController?.pushViewController(newViewController, animated: animated)
 
 			case .modalInsideNavigationBar:
-				let navigationController = UINavigationController(rootViewController: newViewController) //NavigationController(rootViewController: newViewController)
+				let navigationController = UINavigationController(rootViewController: newViewController)
 				navigationController.modalPresentationStyle = newViewController.modalPresentationStyle
 				navigationController.transitioningDelegate = newViewController.transitioningDelegate
 				newViewController.transitioningDelegate = nil
