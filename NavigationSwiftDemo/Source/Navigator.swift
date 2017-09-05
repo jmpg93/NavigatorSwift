@@ -10,15 +10,10 @@ import Foundation
 import NavigatorSwift
 import UIKit
 
-func newNavigator(for window: UIWindow) -> Navigator {
-	let requestProvider = DefaultNavigationRequestProvider()
-	let sceneMatcher = SceneMatcher()
-	let sceneRenderer = SceneRenderer(window: window)
-	let sceneHandlerRegisters = FeaturesSceneHandlerRegisters(sceneHandlerRegisters: [LoginSceneRegisterer(), CollectionSceneRegisterer()])
+let globalWindow = UIWindow()
 
-	return Navigator(sceneMatcher: sceneMatcher,
-	                 sceneRenderer: sceneRenderer,
-	                 sceneHandlerRegisters: sceneHandlerRegisters,
-	                 navigationRequestProvider: requestProvider)
-}
+let globalNavigator = Navigator(sceneMatcher: SceneMatcher(),
+                                sceneRenderer: SceneRenderer(window: globalWindow),
+                                sceneHandlerRegisters: FeaturesSceneHandlerRegisters(sceneHandlerRegisters: [LoginSceneRegisterer(), CollectionSceneRegisterer()]),
+                                navigationRequestProvider: DefaultNavigationRequestProvider())
 

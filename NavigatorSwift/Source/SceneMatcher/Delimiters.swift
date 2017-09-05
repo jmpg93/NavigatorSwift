@@ -19,6 +19,5 @@ enum Delimiters {
 	static let animatedFalseValue = "false"
 	static let presentAsPushValue = "push"
 	static let presenteAsModalValue = "modal"
-
 	static let presentAsModalWithNavigationControllerValue = "modalInNav"
 }

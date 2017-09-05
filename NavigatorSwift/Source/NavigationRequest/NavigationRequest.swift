@@ -14,16 +14,18 @@ public class NavigationRequest: NavigationRequestBuilder {
 	public init(using builderBlock: NavigationRequestBuilderBlock) {
 		builderBlock(self)
 	}
+
+	public init(components: [NavigationRequestComponent]) {
+		self.components = components
+	}
 }
 
 // MARK: - Public implementation
 
 public extension NavigationRequest {
 	var url: URL {
-		let urlString = components.reduce("/") { (result, requestCompoenent) -> String in
-			return result + requestCompoenent.pathComponent
-		}
 
+		let urlString = components.map { "/" + $0.pathComponent }.reduce("") { $0 + $1 } + "/"
 		let urlStringScaped = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 
 		return URL(string: urlStringScaped)!

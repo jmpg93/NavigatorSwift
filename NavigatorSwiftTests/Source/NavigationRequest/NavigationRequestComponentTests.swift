@@ -37,7 +37,35 @@ extension NavigationRequestComponentTests {
 	func testGivenModalNonAnimatedPath_pathComponent_isBuildRight() {
 		//given
 		let path = "anyScene{presentAs=modal;animated=false}"
+		let sut = request(name: Constants.anyScene,
+		                  mode: .modal,
+		                  animated: false)
+		// when
+		let pathComponent = sut.pathComponent
 
+		//then
+		XCTAssertEqual(pathComponent, path)
+	}
+
+	func testGivenPushAnimatedPath_pathComponent_isBuildRight() {
+		//given
+		let path = "anyScene{presentAs=push;animated=true}"
+		let sut = request(name: Constants.anyScene,
+		                  mode: .push,
+		                  animated: true)
+		// when
+		let pathComponent = sut.pathComponent
+
+		//then
+		XCTAssertEqual(pathComponent, path)
+	}
+
+	func testGivenModalInsideNavigationAnimatedPath_pathComponent_isBuildRight() {
+		//given
+		let path = "anyScene{presentAs=modalInNav;animated=true}"
+		let sut = request(name: Constants.anyScene,
+		                  mode: .modalInsideNavigationBar,
+		                  animated: true)
 		// when
 		let pathComponent = sut.pathComponent
 
@@ -49,5 +77,12 @@ extension NavigationRequestComponentTests {
 // MARK: Helpers
 
 extension NavigationRequestComponentTests {
-	func path()
+	func request(name: SceneName,
+	             mode: ScenePresentationType,
+	             animated: Bool) -> NavigationRequestComponent {
+		return NavigationRequestComponent(name: name,
+		                                  presentMode: mode,
+		                                  parameters: [:],
+		                                  animated: animated)
+	}
 }

@@ -46,12 +46,13 @@ public extension SceneMatcher {
 
 		var matchedScenes: [Scene] = []
 
-		// Split the URL in path components	, each path components represents a TMScene.
-		var pathComponents = url.pathComponents
-		
 		// Remove pathComponents that are slash.
-		pathComponents = pathComponents.filter { pathComponent in
-			return !(pathComponent == "/")
+		guard let pathComponents = url
+			.absoluteString
+			.removingPercentEncoding?
+			.components(separatedBy: "/")
+			.filter({ !$0.isEmpty }) else {
+				return []
 		}
 
 		for pathComponent in pathComponents {
@@ -114,7 +115,7 @@ private extension SceneMatcher {
 	func metadata(from pathComponent: String) -> [String: String] {
 		guard let metaDataStart = pathComponent.characters.index(of: Delimiters.leftMetaDataDelimiter) else { return [:] }
 		guard let metaDataEndIndex = pathComponent.characters.index(of: Delimiters.rightMetaDataDelimiter) else { return [:] }
-		let metaDataStartIndex = metaDataStart //+ 1
+		let metaDataStartIndex = pathComponent.index(after: metaDataStart)
 
 		var metadata: [String: String] = [:]
 

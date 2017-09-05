@@ -50,6 +50,8 @@ public extension SceneRenderer {
 	/// - parameter: scenes An array of Scenes to add on to the navigation stack.
 	/// - parameter: completion The block to execute after the last scene is presented.
 	func addScenesOntoStack(_ scenes: [Scene], completion: CompletionBlock? = nil) {
+		guard !scenes.isEmpty else { return }
+
 		if viewControllerContainer == nil {
 			installScene(asRootViewController: scenes.first!)
 		}
@@ -113,9 +115,10 @@ public extension SceneRenderer {
 
 // MARK: Private methods
 
-private extension SceneRenderer {
+extension SceneRenderer {
 	func recycleNavigationStack(with scenes: [Scene], completion: CompletionBlock? = nil) {
 		guard let viewControllerContainer = viewControllerContainer else { return }
+		guard !scenes.isEmpty else { return }
 
 		var scenesNotInStackYet = scenes
 		var optionalNavigationControllerToRecycle: UINavigationController? = nil
@@ -226,6 +229,7 @@ private extension SceneRenderer {
 	func recycleRootViewController(with scene: Scene) {
 		guard let rootViewController = viewControllerContainer?.rootViewController else { return }
 
+		//TODO: Check if scene correspond to rootViewController
 		scene.sceneHandler.reload(rootViewController, parameters: scene.parameters)
 	}
 
@@ -242,7 +246,7 @@ private extension SceneRenderer {
 		return isManagedByScene && isPresentedAsRequireScene && isViewControllerRecyclable
 	}
 
-	/// Returns YES if the rootViewController in Window is handled by the scene
+	/// Returns true if the rootViewController in Window is handled by the scene
 	func isRootViewController(matching scene: Scene) -> Bool {
 		guard let viewControllerContainer = viewControllerContainer else { return false }
 
@@ -300,7 +304,7 @@ private extension SceneRenderer {
 		case .push:
 			isPresentedAsRequiredScene = viewController.navigationController != nil
 
-		case .modal:
+		case .modal://TODO: ASK Victor
 			let hasNotAncestor = viewController.navigationController != nil && viewController.tabBarController != nil
 			let isPresentedModally = hasNotAncestor && viewController.presentingViewController != nil
 			isPresentedAsRequiredScene = isPresentedModally

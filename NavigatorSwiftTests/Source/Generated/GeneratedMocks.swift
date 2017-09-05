@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-03 21:26:10 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-05 20:30:24 +0000
 
 //
 //  Scene.swift
@@ -73,7 +73,7 @@ class MockScene: Scene, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-03 21:26:10 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-05 20:30:24 +0000
 
 //
 //  SceneHandler.swift
@@ -249,7 +249,7 @@ class MockSceneHandler: SceneHandler, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-03 21:26:10 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-05 20:30:24 +0000
 
 //
 //  SceneMatcher.swift
@@ -324,7 +324,7 @@ class MockSceneMatcher: SceneMatcher, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-03 21:26:10 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-05 20:30:24 +0000
 
 //
 //  NavigationRequestComponent.swift
@@ -422,7 +422,7 @@ class MockNavigationRequestComponent: NavigationRequestComponent, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-03 21:26:10 +0000
+// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-05 20:30:24 +0000
 
 //
 //  ViewController.swift

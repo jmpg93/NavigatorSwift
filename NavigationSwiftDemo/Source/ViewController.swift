@@ -43,13 +43,13 @@ class ViewController: UIViewController {
 
 	// Properties
 	fileprivate lazy var navigator: Navigator = {
-		return newNavigator(for: self.view.window!)
+		return globalNavigator
 	}()
 
-	var scenes: [(SceneName, ScenePresentationType)] = [
-		(.collection, .modal),
-		(.collection, .push),
-		(.collection, .modalInsideNavigationBar)
+	var scenes: [[(SceneName, ScenePresentationType)]] = [
+		[(.collection, .modal)],
+		[(.collection, .push), (.collection, .push)],
+		[(.collection, .modalInsideNavigationBar)]
 	]
 }
 
@@ -79,7 +79,7 @@ extension ViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView,
 	                    cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as! Cell
-		let (scene, presentationType) = scenes[indexPath.row]
+		let (scene, presentationType) = scenes[indexPath.row].first!
 
 		cell.sceneNameLabel.text = "\(scene.value) - \(presentationType.value)"
 
@@ -91,15 +91,21 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let (scene, presentationType) = scenes[indexPath.row]
+		let sceneStack = scenes[indexPath.row]
+		let provider = DefaultNavigationRequestProvider()
 
-		switch presentationType {
-		case .modal:
-			navigator.presentSceneNamed(scene)
-		case .push:
-			navigator.pushSceneNamed(scene)
-		case .modalInsideNavigationBar:
-			navigator.presentNavigationController(withSceneNamed: scene)
+		let request = provider.navigationRequest { builder in
+			for (scene, presentationType) in sceneStack {
+				switch presentationType {
+				case .modal:
+					builder.appendModalScene(withName: scene)
+				case .push:
+					builder.appendPushScene(withName: scene)
+				case .modalInsideNavigationBar:
+					builder.appendModalWithNavigationScene(withName: scene)
+				}
+			}
 		}
+		navigator.navigateToScene(withRelativeURL: request.url, parameters: [:])
 	}
 }

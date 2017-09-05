@@ -16,11 +16,11 @@ public enum ScenePresentationType: Int {
 	public var value: String {
 		switch self {
 		case .modal:
-			return "Modal"
+			return Delimiters.presenteAsModalValue
 		case .push:
-			return "Push"
+			return Delimiters.presentAsPushValue
 		case .modalInsideNavigationBar:
-			return "Modal with Nav"
+			return Delimiters.presentAsModalWithNavigationControllerValue
 		}
 	}
 }

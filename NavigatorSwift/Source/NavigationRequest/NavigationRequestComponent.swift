@@ -29,7 +29,7 @@ public class NavigationRequestComponent {
 		// add meta data for the scene
 		string += "\(Delimiters.leftMetaDataDelimiter)"
 		// presentation Mode
-		string += "\(Delimiters.presentAsKey)\(Delimiters.keyValuePairSeparator)\(presentMode)"
+		string += "\(Delimiters.presentAsKey)\(Delimiters.keyValuePairSeparator)\(presentMode.value)"
 		string += Delimiters.metadataSeparator
 		// aniation
 		string += Delimiters.animatedKey
