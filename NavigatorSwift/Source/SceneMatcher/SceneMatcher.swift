@@ -74,7 +74,7 @@ public extension SceneMatcher {
 				if animatedParameter == Delimiters.animatedTrueValue {
 					animated = true
 				} else if animatedParameter == Delimiters.animatedFalseValue {
-					animated = true
+					animated = false
 				}
 			}
 

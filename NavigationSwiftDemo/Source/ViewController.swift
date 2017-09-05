@@ -26,7 +26,7 @@ class Layout: UICollectionViewFlowLayout {
 	override func prepare() {
 		super.prepare()
 		guard let collectionView = collectionView else { return }
-		let width = (collectionView.bounds.width - 2) / 2.0
+		let width = (collectionView.bounds.width - 3) / 3.0
 		itemSize = CGSize(width: width, height: width)
 		minimumLineSpacing = 1
 		minimumInteritemSpacing = 1
@@ -46,10 +46,15 @@ class ViewController: UIViewController {
 		return globalNavigator
 	}()
 
-	var scenes: [[(SceneName, ScenePresentationType)]] = [
-		[(.collection, .modal)],
-		[(.collection, .push), (.collection, .push)],
-		[(.collection, .modalInsideNavigationBar)]
+	var scenes: [[(ScenePresentationType, Bool)]] = [
+		[(.modal, true)],
+		[(.push, true)],
+		[(.modalInsideNavigationBar, true)],
+		[(.modal, true), (.modal, true)],
+		[(.modal, true), (.modal, false)],
+		[(.push, true), (.push, true)],
+		[(.push, false), (.push, true)],
+		[(.modalInsideNavigationBar, true), (.push, true)]
 	]
 }
 
@@ -79,9 +84,12 @@ extension ViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView,
 	                    cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as! Cell
-		let (scene, presentationType) = scenes[indexPath.row].first!
 
-		cell.sceneNameLabel.text = "\(scene.value) - \(presentationType.value)"
+		let text = scenes[indexPath.row]
+			.map { "\($0.value) - \($1)" }
+			.reduce("") {  $0 + "\n" + $1 }
+
+		cell.sceneNameLabel.text = text
 
 		return cell
 	}
@@ -93,19 +101,21 @@ extension ViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let sceneStack = scenes[indexPath.row]
 		let provider = DefaultNavigationRequestProvider()
+		let scene = SceneName.collection
 
 		let request = provider.navigationRequest { builder in
-			for (scene, presentationType) in sceneStack {
+			for (presentationType, animated) in sceneStack {
 				switch presentationType {
 				case .modal:
-					builder.appendModalScene(withName: scene)
+					builder.appendModalScene(withName: scene, parameters: [:], animated: animated)
 				case .push:
-					builder.appendPushScene(withName: scene)
+					builder.appendPushScene(withName: scene, parameters: [:], animated: animated)
 				case .modalInsideNavigationBar:
-					builder.appendModalWithNavigationScene(withName: scene)
+					builder.appendModalWithNavigationScene(withName: scene, parameters: [:], animated: animated)
 				}
 			}
 		}
+
 		navigator.navigateToScene(withRelativeURL: request.url, parameters: [:])
 	}
 }
