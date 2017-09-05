@@ -260,6 +260,7 @@ extension SceneRenderer {
 	}
 
 	func renderScenes(_ scenes: [Scene], fromVisibleViewController visibleViewController: UIViewController, completion: (CompletionBlock)? = nil) {
+		//TODO: Ask Victor
 		var currentVisibleViewController: UIViewController? = visibleViewController
 
 		if let navigationController = visibleViewController as? UINavigationController {

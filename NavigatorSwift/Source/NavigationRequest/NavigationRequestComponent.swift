@@ -14,7 +14,10 @@ public class NavigationRequestComponent {
 	public let parameters: Parameters
 	public let animated: Bool
 
-	public init(name: SceneName, presentMode: ScenePresentationType, parameters: Parameters, animated: Bool) {
+	public init(name: SceneName,
+	            presentMode: ScenePresentationType, 
+	            parameters: Parameters,
+	            animated: Bool) {
 		self.name = name
 		self.presentMode = presentMode
 		self.parameters = parameters

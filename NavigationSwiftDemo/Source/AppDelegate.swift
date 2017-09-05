@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			builder.appendPushScene(withName: .collection)
 		}
 
-		globalNavigator.navigateToScene(withAbsoluteURL: request.url, parameters: [:])
+		globalNavigator.navigateToScene(withAbsoluteURL: request.url)
 		
 		return true
 	}

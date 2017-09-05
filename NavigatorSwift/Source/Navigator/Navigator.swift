@@ -13,7 +13,10 @@ public class Navigator {
 	fileprivate let sceneRenderer: SceneRenderer
 	fileprivate let navigationRequestProvider: NavigationRequestProvider
 
-	public init(sceneMatcher: SceneMatcher, sceneRenderer: SceneRenderer, sceneHandlerRegisters: SceneHandlerRegisters, navigationRequestProvider: NavigationRequestProvider) {
+	public init(sceneMatcher: SceneMatcher,
+	            sceneRenderer: SceneRenderer,
+	            sceneHandlerRegisters: SceneHandlerRegisters,
+	            navigationRequestProvider: NavigationRequestProvider) {
 		self.sceneMatcher = sceneMatcher
 		self.sceneRenderer = sceneRenderer
 		self.navigationRequestProvider = navigationRequestProvider
@@ -26,7 +29,7 @@ public class Navigator {
 
 public extension Navigator {
 	@discardableResult
-	func navigateToScene(withAbsoluteURL url: URL, parameters: Parameters, completion: CompletionBlock? = nil) -> Bool {
+	func navigateToScene(withAbsoluteURL url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
 		var urlHandled = false
 		let scenesInURL = matchScenes(from: url, parameters: parameters)
 
@@ -39,7 +42,7 @@ public extension Navigator {
 	}
 
 	@discardableResult
-	func navigateToScene(withRelativeURL url: URL, parameters: Parameters, completion: CompletionBlock? = nil) -> Bool {
+	func navigateToScene(withRelativeURL url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
 		var urlHandler = false
 		let scenesInURL = matchScenes(from: url, parameters: parameters)
 
@@ -56,45 +59,48 @@ public extension Navigator {
 
 public extension Navigator {
 	@discardableResult
-	func pushSceneNamed(_ name: SceneName) -> Bool {
-		return pushSceneNamed(name, parameters: [:], animated: true)
-	}
+	func pushSceneNamed(_ name: SceneName,
+	                    parameters: Parameters = [:],
+	                    animated: Bool = true,
+	                    completion: CompletionBlock? = nil) -> Bool {
 
-	@discardableResult
-	func pushSceneNamed(_ name: SceneName, parameters: Parameters, animated: Bool) -> Bool {
 		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
 			builder.appendPushScene(withName: name, parameters: parameters, animated: animated)
 		}
-
-		return navigateToScene(withRelativeURL: navigationRequest.url, parameters: navigationRequest.allParameters, completion: nil)
+		
+		return navigateToScene(withRelativeURL: navigationRequest.url,
+		                       parameters: navigationRequest.allParameters,
+		                       completion: completion)
 	}
 
 	@discardableResult
-	func presentSceneNamed(_ name: SceneName, completion: CompletionBlock? = nil) -> Bool {
-		return presentSceneNamed(name, parameters: [:], animated: true, completion: completion)
-	}
+	func presentSceneNamed(_ name: SceneName,
+	                       parameters: Parameters = [:],
+	                       animated: Bool = true,
+	                       completion: CompletionBlock? = nil) -> Bool {
 
-	@discardableResult
-	func presentSceneNamed(_ name: SceneName, parameters: Parameters, animated: Bool, completion: CompletionBlock? = nil) -> Bool {
 		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
 			builder.appendModalScene(withName: name, parameters: parameters, animated: animated)
 		}
 
-		return navigateToScene(withRelativeURL: navigationRequest.url, parameters: navigationRequest.allParameters, completion: completion)
+		return navigateToScene(withRelativeURL: navigationRequest.url,
+		                       parameters: navigationRequest.allParameters,
+		                       completion: completion)
 	}
 
 	@discardableResult
-	func presentNavigationController(withSceneNamed name: SceneName, completion: CompletionBlock? = nil) -> Bool {
-		return presentNavigationController(withSceneNamed: name, parameters: [:], animated: true, completion: completion)
-	}
+	func presentNavigationController(withSceneNamed name: SceneName,
+	                                 parameters: Parameters = [:],
+	                                 animated: Bool = true,
+	                                 completion: CompletionBlock? = nil) -> Bool {
 
-	@discardableResult
-	func presentNavigationController(withSceneNamed name: SceneName, parameters: Parameters, animated: Bool, completion: CompletionBlock? = nil) -> Bool {
 		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
 			builder.appendModalWithNavigationScene(withName: name, parameters: parameters, animated: animated)
 		}
 
-		return navigateToScene(withRelativeURL: navigationRequest.url, parameters: navigationRequest.allParameters, completion: completion)
+		return navigateToScene(withRelativeURL: navigationRequest.url,
+		                       parameters: navigationRequest.allParameters,
+		                       completion: completion)
 	}
 }
 
@@ -112,7 +118,8 @@ public extension Navigator {
 	}
 
 	func dismissScene(animated: Bool, completion: CompletionBlock? = nil) {
-		sceneRenderer.dismissScene(animated: animated, completion: completion)
+		sceneRenderer.dismissScene(animated: animated,
+		                           completion: completion)
 	}
 
 	func dismissSceneNamed(_ name: SceneName, animated: Bool, completion: CompletionBlock? = nil) {

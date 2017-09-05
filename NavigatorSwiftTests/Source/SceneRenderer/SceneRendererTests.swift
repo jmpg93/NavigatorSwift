@@ -153,6 +153,64 @@ extension SceneRendererTests {
 		XCTAssertEqual(view, viewController)
 		XCTAssertTrue(isPresentedAsRequire)
 	}
+
+	func testGivenEmptyNavigationController_visibleViewController_returnNavigationController() {
+		// given
+		let nav = UINavigationController()
+
+		// when
+		let visibleView = sut.visibleViewController(from: nav)
+
+		// then
+		XCTAssertEqual(nav, visibleView)
+	}
+
+	func testGivenNonEmptyNavigationController_visibleViewController_returnRootViewController() {
+		// given
+		let view = UIViewController()
+		let nav = UINavigationController(rootViewController: view)
+
+		// when
+		let visibleView = sut.visibleViewController(from: nav)
+
+		// then
+		XCTAssertEqual(view, visibleView)
+	}
+
+	func testGivenEmptyTabBarController_visibleViewController_returnTabBarController() {
+		// given
+		let tabBar = UITabBarController()
+
+		// when
+		let visibleView = sut.visibleViewController(from: tabBar)
+
+		// then
+		XCTAssertEqual(tabBar, visibleView)
+	}
+
+	func testGivenNonEmptyTabBarController_visibleViewController_returnRootViewController() {
+		// given
+		let view = UIViewController()
+		let tabBar = UITabBarController()
+		tabBar.setViewControllers([view], animated: false)
+
+		// when
+		let visibleView = sut.visibleViewController(from: tabBar)
+
+		// then
+		XCTAssertEqual(view, visibleView)
+	}
+
+	func testGivenViewController_visibleViewController_returnViewController() {
+		// given
+		let view = UIViewController()
+
+		// when
+		let visibleView = sut.visibleViewController(from: view)
+
+		// then
+		XCTAssertEqual(view, visibleView)
+	}
 }
 
 // MARK: Helpers general
