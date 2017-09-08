@@ -28,7 +28,6 @@ public class NavigationRequest: NavigationRequestBuilder {
 
 public extension NavigationRequest {
 	var url: URL {
-
 		let urlString = components.map { "/" + $0.pathComponent }.reduce("") { $0 + $1 } + "/"
 		let urlStringScaped = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
 

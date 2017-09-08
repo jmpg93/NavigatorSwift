@@ -9,12 +9,16 @@
 import Foundation
 import UIKit
 
-class NavigationBarContainer {
+public class NavigationBarContainer: ViewControllerContainer {
 	let navigationController = UINavigationController()
+
+	public init() {
+
+	}
 }
 
-extension NavigationBarContainer: ViewControllerContainer {
-	var rootViewController: UIViewController? {
+public  extension NavigationBarContainer {
+	var rootViewController: UIViewController {
 		return navigationController
 	}
 	

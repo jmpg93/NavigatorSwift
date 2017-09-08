@@ -11,9 +11,9 @@ import NavigatorSwift
 import UIKit
 
 let globalWindow = UIWindow()
-
+let globalRenderer = SceneRenderer(window: globalWindow, viewControllerContainer: NavigationBarContainer())
 let globalNavigator = Navigator(sceneMatcher: SceneMatcher(),
-                                sceneRenderer: SceneRenderer(window: globalWindow),
+                                sceneRenderer: globalRenderer,
                                 sceneHandlerRegisters: FeaturesSceneHandlerRegisters(sceneHandlerRegisters: [LoginSceneRegisterer(), CollectionSceneRegisterer()]),
                                 navigationRequestProvider: DefaultNavigationRequestProvider())
 

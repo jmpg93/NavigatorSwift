@@ -29,26 +29,26 @@ public class Navigator {
 
 public extension Navigator {
 	@discardableResult
-	func navigateToScene(withAbsoluteURL url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
+	func absoluteNavigation(to url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
 		var urlHandled = false
 		let scenesInURL = matchScenes(from: url, parameters: parameters)
 
 		if scenesInURL.count > 0 {
 			urlHandled = true
-			sceneRenderer.changeStack(toScenes: scenesInURL, completion: completion)
+			sceneRenderer.set(scenes: scenesInURL, completion: completion)
 		}
 
 		return urlHandled
 	}
 
 	@discardableResult
-	func navigateToScene(withRelativeURL url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
+	func relativeNavigation(to url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
 		var urlHandler = false
 		let scenesInURL = matchScenes(from: url, parameters: parameters)
 
 		if scenesInURL.count > 0 {
 			urlHandler = true
-			sceneRenderer.addScenesOntoStack(scenesInURL, completion: completion)
+			sceneRenderer.add(scenes: scenesInURL, completion: completion)
 		}
 
 		return urlHandler
@@ -67,10 +67,10 @@ public extension Navigator {
 		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
 			builder.appendPushScene(withName: name, parameters: parameters, animated: animated)
 		}
-		
-		return navigateToScene(withRelativeURL: navigationRequest.url,
-		                       parameters: navigationRequest.allParameters,
-		                       completion: completion)
+
+		return relativeNavigation(to: navigationRequest.url,
+		                          parameters: navigationRequest.allParameters,
+		                          completion: completion)
 	}
 
 	@discardableResult
@@ -83,9 +83,9 @@ public extension Navigator {
 			builder.appendModalScene(withName: name, parameters: parameters, animated: animated)
 		}
 
-		return navigateToScene(withRelativeURL: navigationRequest.url,
-		                       parameters: navigationRequest.allParameters,
-		                       completion: completion)
+		return relativeNavigation(to: navigationRequest.url,
+		                          parameters: navigationRequest.allParameters,
+		                          completion: completion)
 	}
 
 	@discardableResult
@@ -98,9 +98,9 @@ public extension Navigator {
 			builder.appendModalWithNavigationScene(withName: name, parameters: parameters, animated: animated)
 		}
 
-		return navigateToScene(withRelativeURL: navigationRequest.url,
-		                       parameters: navigationRequest.allParameters,
-		                       completion: completion)
+		return relativeNavigation(to: navigationRequest.url,
+		                          parameters: navigationRequest.allParameters,
+		                          completion: completion)
 	}
 }
 
@@ -109,27 +109,27 @@ public extension Navigator {
 public extension Navigator {
 	@discardableResult
 	func popScene(animated: Bool, completion: CompletionBlock? = nil) -> UIViewController? {
-		return sceneRenderer.popScene(animated: animated, completion: completion)
+		return sceneRenderer.pop(animated: animated, completion: completion)
 	}
 
 	@discardableResult
 	func popToRootScene(animated: Bool, completion: CompletionBlock? = nil) -> [UIViewController]? {
-		return sceneRenderer.popToRootScene(animated: animated, completion: completion)
+		return sceneRenderer.popToRoot(animated: animated, completion: completion)
 	}
 
 	func dismissScene(animated: Bool, completion: CompletionBlock? = nil) {
-		sceneRenderer.dismissScene(animated: animated,
-		                           completion: completion)
+		sceneRenderer.dismiss(animated: animated, completion: completion)
 	}
 
 	func dismissSceneNamed(_ name: SceneName, animated: Bool, completion: CompletionBlock? = nil) {
 		if let scene = sceneMatcher.scene(withName: name, typePresentation: .modal, animated: true) {
-			sceneRenderer.dismiss(scene, animated: animated, completion: completion)
+			sceneRenderer.dismiss(scene: scene, animated: animated, completion: completion)
 		} else {
 			assert(false, "Can not dismiss scene named \(name) becuase there is not a scene registered for this name.")
 		}
 	}
 }
+
 // MARK: - Private
 
 private extension Navigator {

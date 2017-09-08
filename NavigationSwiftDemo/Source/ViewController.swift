@@ -116,6 +116,6 @@ extension ViewController: UICollectionViewDelegate {
 			}
 		}
 
-		navigator.navigateToScene(withRelativeURL: request.url, parameters: [:])
+		navigator.relativeNavigation(to: request.url)
 	}
 }

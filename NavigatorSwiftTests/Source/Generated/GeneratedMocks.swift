@@ -1,79 +1,4 @@
-// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-05 21:23:40 +0000
-
-//
-//  Scene.swift
-//  NavigatorSwift
-//
-//  Created by Jose Maria Puerta on 1/9/17.
-//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
-//
-
-import Cuckoo
-@testable import NavigatorSwift
-
-import Foundation
-
-class MockScene: Scene, Cuckoo.Mock {
-    typealias MocksType = Scene
-    typealias Stubbing = __StubbingProxy_Scene
-    typealias Verification = __VerificationProxy_Scene
-    let cuckoo_manager = Cuckoo.MockManager()
-
-    private var observed: Scene?
-
-    func spy(on victim: Scene) -> Self {
-        observed = victim
-        return self
-    }
-
-    
-
-    
-
-    
-
-    struct __StubbingProxy_Scene: Cuckoo.StubbingProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-
-        init(manager: Cuckoo.MockManager) {
-            self.cuckoo_manager = manager
-        }
-        
-        
-    }
-
-
-    struct __VerificationProxy_Scene: Cuckoo.VerificationProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-        private let callMatcher: Cuckoo.CallMatcher
-        private let sourceLocation: Cuckoo.SourceLocation
-
-        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-            self.cuckoo_manager = manager
-            self.callMatcher = callMatcher
-            self.sourceLocation = sourceLocation
-        }
-
-        
-
-        
-    }
-
-
-}
-
- class SceneStub: Scene {
-    
-
-    
-
-    
-}
-
-
-
-
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-05 21:23:40 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-08 20:49:56 +0000
 
 //
 //  SceneHandler.swift
@@ -249,82 +174,7 @@ class MockSceneHandler: SceneHandler, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-05 21:23:40 +0000
-
-//
-//  SceneMatcher.swift
-//  NavigatorSwift
-//
-//  Created by Jose Maria Puerta on 2/9/17.
-//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
-//
-
-import Cuckoo
-@testable import NavigatorSwift
-
-import Foundation
-
-class MockSceneMatcher: SceneMatcher, Cuckoo.Mock {
-    typealias MocksType = SceneMatcher
-    typealias Stubbing = __StubbingProxy_SceneMatcher
-    typealias Verification = __VerificationProxy_SceneMatcher
-    let cuckoo_manager = Cuckoo.MockManager()
-
-    private var observed: SceneMatcher?
-
-    func spy(on victim: SceneMatcher) -> Self {
-        observed = victim
-        return self
-    }
-
-    
-
-    
-
-    
-
-    struct __StubbingProxy_SceneMatcher: Cuckoo.StubbingProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-
-        init(manager: Cuckoo.MockManager) {
-            self.cuckoo_manager = manager
-        }
-        
-        
-    }
-
-
-    struct __VerificationProxy_SceneMatcher: Cuckoo.VerificationProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-        private let callMatcher: Cuckoo.CallMatcher
-        private let sourceLocation: Cuckoo.SourceLocation
-
-        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-            self.cuckoo_manager = manager
-            self.callMatcher = callMatcher
-            self.sourceLocation = sourceLocation
-        }
-
-        
-
-        
-    }
-
-
-}
-
- class SceneMatcherStub: SceneMatcher {
-    
-
-    
-
-    
-}
-
-
-
-
-// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-05 21:23:40 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-08 20:49:56 +0000
 
 //
 //  NavigationRequestComponent.swift
@@ -422,7 +272,7 @@ class MockNavigationRequestComponent: NavigationRequestComponent, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-05 21:23:40 +0000
+// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-08 20:49:56 +0000
 
 //
 //  ViewController.swift
@@ -607,6 +457,156 @@ class MockWindow: Window, Cuckoo.Mock {
     public override func makeKeyAndVisible()  {
         return DefaultValueRegistry.defaultValue(for: Void.self)
     }
+    
+}
+
+
+
+
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-08 20:49:56 +0000
+
+//
+//  SceneMatcher.swift
+//  NavigatorSwift
+//
+//  Created by Jose Maria Puerta on 2/9/17.
+//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
+//
+
+import Cuckoo
+@testable import NavigatorSwift
+
+import Foundation
+
+class MockSceneMatcher: SceneMatcher, Cuckoo.Mock {
+    typealias MocksType = SceneMatcher
+    typealias Stubbing = __StubbingProxy_SceneMatcher
+    typealias Verification = __VerificationProxy_SceneMatcher
+    let cuckoo_manager = Cuckoo.MockManager()
+
+    private var observed: SceneMatcher?
+
+    func spy(on victim: SceneMatcher) -> Self {
+        observed = victim
+        return self
+    }
+
+    
+
+    
+
+    
+
+    struct __StubbingProxy_SceneMatcher: Cuckoo.StubbingProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+
+        init(manager: Cuckoo.MockManager) {
+            self.cuckoo_manager = manager
+        }
+        
+        
+    }
+
+
+    struct __VerificationProxy_SceneMatcher: Cuckoo.VerificationProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+        private let callMatcher: Cuckoo.CallMatcher
+        private let sourceLocation: Cuckoo.SourceLocation
+
+        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+            self.cuckoo_manager = manager
+            self.callMatcher = callMatcher
+            self.sourceLocation = sourceLocation
+        }
+
+        
+
+        
+    }
+
+
+}
+
+ class SceneMatcherStub: SceneMatcher {
+    
+
+    
+
+    
+}
+
+
+
+
+// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-08 20:49:56 +0000
+
+//
+//  Scene.swift
+//  NavigatorSwift
+//
+//  Created by Jose Maria Puerta on 1/9/17.
+//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
+//
+
+import Cuckoo
+@testable import NavigatorSwift
+
+import Foundation
+
+class MockScene: Scene, Cuckoo.Mock {
+    typealias MocksType = Scene
+    typealias Stubbing = __StubbingProxy_Scene
+    typealias Verification = __VerificationProxy_Scene
+    let cuckoo_manager = Cuckoo.MockManager()
+
+    private var observed: Scene?
+
+    func spy(on victim: Scene) -> Self {
+        observed = victim
+        return self
+    }
+
+    
+
+    
+
+    
+
+    struct __StubbingProxy_Scene: Cuckoo.StubbingProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+
+        init(manager: Cuckoo.MockManager) {
+            self.cuckoo_manager = manager
+        }
+        
+        
+    }
+
+
+    struct __VerificationProxy_Scene: Cuckoo.VerificationProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+        private let callMatcher: Cuckoo.CallMatcher
+        private let sourceLocation: Cuckoo.SourceLocation
+
+        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+            self.cuckoo_manager = manager
+            self.callMatcher = callMatcher
+            self.sourceLocation = sourceLocation
+        }
+
+        
+
+        
+    }
+
+
+}
+
+ class SceneStub: Scene {
+    
+
+    
+
     
 }
 

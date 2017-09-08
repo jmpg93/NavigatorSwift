@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-protocol ViewControllerContainer: class {
+public protocol ViewControllerContainer: class {
 
 	/// The root ViewController that will set as root of UIWindow.
-	var rootViewController: UIViewController? { get }
+	var rootViewController: UIViewController { get }
 
 	/// Returns the UINavigationController of each navigation stack managed. This is usfel for example by a UITabBarController.
 	var firstLevelNavigationControllers: [UINavigationController] { get }
@@ -31,6 +31,7 @@ extension ViewControllerContainer {
 	func firstLevelNavigationController(matching scene: Scene) -> UINavigationController? {
 		return firstLevelNavigationControllers
 			.flatMap { $0.viewControllers.first }
+			.flatMap { $0 as? UINavigationController }
 			.filter { scene.sceneHandler.name.value == $0.sceneName }
 			.first
 	}
