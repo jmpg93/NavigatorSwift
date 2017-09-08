@@ -15,7 +15,7 @@ public class NavigationRequestComponent {
 	public let animated: Bool
 
 	public init(name: SceneName,
-	            presentMode: ScenePresentationType, 
+	            presentMode: ScenePresentationType,
 	            parameters: Parameters,
 	            animated: Bool) {
 		self.name = name
@@ -41,5 +41,28 @@ public class NavigationRequestComponent {
 		string += "\(Delimiters.rightMetaDataDelimiter)"
 
 		return string
+	}
+}
+
+extension NavigationRequestComponent {
+	static func modal(name: SceneName, animated: Bool = true) -> NavigationRequestComponent {
+		return NavigationRequestComponent(name: name,
+		                                  presentMode: .modal,
+		                                  parameters: [:],
+		                                  animated: animated)
+	}
+
+	static func push(name: SceneName, animated: Bool = true) -> NavigationRequestComponent {
+		return NavigationRequestComponent(name: name,
+		                                  presentMode: .push,
+		                                  parameters: [:],
+		                                  animated: animated)
+	}
+
+	static func modalInsideNavigationBar(name: SceneName, animated: Bool = true) -> NavigationRequestComponent {
+		return NavigationRequestComponent(name: name,
+		                                  presentMode: .modalInsideNavigationBar,
+		                                  parameters: [:],
+		                                  animated: animated)
 	}
 }

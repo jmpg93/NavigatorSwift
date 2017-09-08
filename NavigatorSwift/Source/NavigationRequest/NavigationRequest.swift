@@ -15,8 +15,12 @@ public class NavigationRequest: NavigationRequestBuilder {
 		builderBlock(self)
 	}
 
-	public init(components: [NavigationRequestComponent]) {
+	public init(_ components: [NavigationRequestComponent]) {
 		self.components = components
+	}
+
+	public init(_ component: NavigationRequestComponent) {
+		self.components = [component]
 	}
 }
 
@@ -85,5 +89,19 @@ public extension NavigationRequest {
 		                                           parameters: parameters,
 		                                           animated: animated)
 		components.append(component)
+	}
+}
+
+extension NavigationRequest {
+	static func modal(name: SceneName, animated: Bool = true) -> NavigationRequest {
+		return NavigationRequest(.modal(name: name, animated: animated))
+	}
+
+	static func push(name: SceneName, animated: Bool = true) -> NavigationRequest {
+		return NavigationRequest(.push(name: name, animated: animated))
+	}
+
+	static func modalInsideNavigationBar(name: SceneName, animated: Bool = true) -> NavigationRequest {
+		return NavigationRequest(.modalInsideNavigationBar(name: name, animated: animated))
 	}
 }

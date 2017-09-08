@@ -264,9 +264,6 @@ extension SceneRendererTests {
 		let nav = givenNavigationController(with: scene.sceneHandler.name)
 		let vc = scene.sceneHandler._buildViewController(with: [:])
 
-		_ = vc.view.alpha
-		_ = vc.navigationController?.view.alpha
-
 		switch scene.type {
 		case .modal:
 			nav.present(vc, animated: false, completion: nil)
