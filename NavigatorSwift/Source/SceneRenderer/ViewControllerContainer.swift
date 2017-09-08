@@ -26,3 +26,12 @@ protocol ViewControllerContainer: class {
 	///  for a UITabBarController.
 	func setSelectedViewController(_ selectedViewController: UIViewController)
 }
+
+extension ViewControllerContainer {
+	func firstLevelNavigationController(matching scene: Scene) -> UINavigationController? {
+		return firstLevelNavigationControllers
+			.flatMap { $0.viewControllers.first }
+			.filter { scene.sceneHandler.name.value == $0.sceneName }
+			.first
+	}
+}

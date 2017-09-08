@@ -39,8 +39,7 @@ public extension SceneRenderer {
 			recycleNavigationStack(with: scenes, completion: completion)
 		} else {
 			installScene(asRootViewController: firstScene)
-			var scenesNotInStackYet = scenes
-			scenesNotInStackYet.remove(at: 0)
+			let scenesNotInStackYet = scenes.dropFirst()
 			recycleNavigationStack(with: scenesNotInStackYet, completion: completion)
 		}
 	}
@@ -125,52 +124,24 @@ extension SceneRenderer {
 
 		// If the root view controller is not a UINavigationController we must recycle it.
 		if let rootViewController = viewControllerContainer.rootViewController, !(rootViewController is UINavigationController) {
-			recycleRootViewController(with: scenesNotInStackYet.first!)
-			scenesNotInStackYet.remove(at: 0)
+			recycleRootViewController(with: scenesNotInStackYet.removeFirst())
 		}
 
-		if scenesNotInStackYet.isEmpty {
-			return
-		}
+		guard let firstSceneNotInStack = scenesNotInStackYet.first else { return }
+		guard let navigationControllerToRecycle = viewControllerContainer.firstLevelNavigationController(matching: firstSceneNotInStack) else { return }
 
-		for navigationController in viewControllerContainer.firstLevelNavigationControllers {
-			if let rootViewController = navigationController.viewControllers.first, scenesNotInStackYet.first?.sceneHandler.name.value == rootViewController.sceneName {
-				optionalNavigationControllerToRecycle = navigationController
-			}
-		}
+		viewControllerContainer.setSelectedViewController(navigationControllerToRecycle)
 
-		// Remove unnecesaries view controllers in the stack
-		guard let navigationControllerToRecycle = optionalNavigationControllerToRecycle else { return }
+		var finalViewControllers: [UIViewController] = []
+		for (index, viewControllerToRecycle) in navigationControllerToRecycle.viewControllers.enumerated() {
+			let searchingScene = scenesNotInStackYet.first!
 
-		if viewControllerContainer.visibleNavigationController != navigationControllerToRecycle {
-			viewControllerContainer.setSelectedViewController(navigationControllerToRecycle)
-		}
-		
-		let viewControllersToRecycle = navigationControllerToRecycle.viewControllers
-
-		if viewControllersToRecycle.indices.contains(scenesNotInStackYet.count - 1) {
-			let popToViewController = viewControllersToRecycle[scenesNotInStackYet.count - 1]
-			navigationControllerToRecycle.popToViewController(popToViewController, animated: true)
-		}
-
-		if viewControllersToRecycle.count > scenesNotInStackYet.count {
-			let popToViewController = viewControllersToRecycle[scenesNotInStackYet.count - 1]
-			navigationControllerToRecycle.popToViewController(popToViewController, animated: true)
-		}
-
-		for (index, viewControllerToRecycle) in viewControllersToRecycle.enumerated() {
-			let scene = scenesNotInStackYet.first!
-
-			if isViewController(viewControllerToRecycle, recyclableBy: scene) {
-				scene.sceneHandler.reload(viewControllerToRecycle, parameters: scene.parameters)
-				scenesNotInStackYet.remove(at: 0)
-			} else if index == 0 {
-				let finalViewControllers = [scene.sceneHandler._buildViewController(with: scene.parameters)]
-				navigationControllerToRecycle.setViewControllers(finalViewControllers, animated: true)
+			if isViewController(viewControllerToRecycle, recyclableBy: viewControllerToRecycle) {
+				finalViewControllers.append(viewControllerToRecycle)
+				searchingScene.sceneHandler.reload(viewControllerToRecycle, parameters: searchingScene.parameters)
 				scenesNotInStackYet.remove(at: 0)
 			} else {
-				let finalViewControllers = Array(viewControllersToRecycle[index..<index+viewControllersToRecycle.count])
-				navigationControllerToRecycle.setViewControllers(finalViewControllers, animated: true)
+
 			}
 		}
 
@@ -238,7 +209,8 @@ extension SceneRenderer {
 	}
 
 	///Returns Yes if the viewController is handled by the scene and also is presented as require the scene, NO otherwise.
-	func isViewController(_ viewController: UIViewController, recyclableBy scene: Scene) -> Bool {
+	func isViewController(_ viewController: UIViewController,
+	                      recyclableBy scene: Scene) -> Bool {
 		let isManagedByScene = scene.sceneHandler.name.value == viewController.sceneName
 		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene)
 		let isViewControllerRecyclable = scene.sceneHandler.isViewControllerRecyclable
@@ -259,8 +231,10 @@ extension SceneRenderer {
 		return isEqual
 	}
 
-	func renderScenes(_ scenes: [Scene], fromVisibleViewController visibleViewController: UIViewController, completion: (CompletionBlock)? = nil) {
-		//TODO: Ask Victor
+	func renderScenes(_ scenes: [Scene],
+	                  fromVisibleViewController visibleViewController: UIViewController,
+	                  completion: (CompletionBlock)? = nil) {
+
 		var currentVisibleViewController: UIViewController? = visibleViewController
 
 		if let navigationController = visibleViewController as? UINavigationController {
@@ -298,25 +272,20 @@ extension SceneRenderer {
 		}
 	}
 
-	func isViewController(_ viewController: UIViewController, presentedAsRequire scene: Scene) -> Bool {
-		var isPresentedAsRequiredScene = false
+	func isViewController(_ viewController: UIViewController,
+	                      presentedAsRequire scene: Scene) -> Bool {
 
 		switch scene.type {
 		case .push:
-			isPresentedAsRequiredScene = viewController.navigationController != nil
+			return viewController.navigationController != nil
 
-		case .modal://TODO: ASK Victor
-			let hasNotAncestor = viewController.navigationController != nil && viewController.tabBarController != nil
-			let isPresentedModally = hasNotAncestor && viewController.presentingViewController != nil
-			isPresentedAsRequiredScene = isPresentedModally
+		case .modal:
+			return viewController.presentingViewController != nil
 
 		case .modalInsideNavigationBar:
-			let hasNavigationController = viewController.navigationController != nil
-			let ancestorNavigationControllerPresentedModally = hasNavigationController && viewController.navigationController?.presentingViewController != nil
-			isPresentedAsRequiredScene = ancestorNavigationControllerPresentedModally
+			return viewController.navigationController != nil
+				&& viewController.navigationController?.presentingViewController != nil
 		}
-
-		return isPresentedAsRequiredScene
 	}
 
 	func visibleViewController(from fromViewController: UIViewController) -> UIViewController {
