@@ -36,8 +36,9 @@ extension RecycleSceneOperation {
 		guard let navigationControllerToRecycle = viewControllerContainer.firstLevelNavigationController(matching: firstSceneNotInStack) else { return }
 		renderer.setSelectedViewController(navigationControllerToRecycle)
 
+		//TODO: Fix this
 		var finalViewControllers: [UIViewController] = []
-		for (index, viewControllerToRecycle) in navigationControllerToRecycle.viewControllers.enumerated() {
+		for (_, viewControllerToRecycle) in navigationControllerToRecycle.viewControllers.enumerated() {
 			let searchingScene = scenesNotInStackYet.first!
 
 			if isViewController(viewControllerToRecycle, recyclableBy: searchingScene) {

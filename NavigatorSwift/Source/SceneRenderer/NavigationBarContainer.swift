@@ -17,7 +17,7 @@ public class NavigationBarContainer: ViewControllerContainer {
 	}
 }
 
-public  extension NavigationBarContainer {
+public extension NavigationBarContainer {
 	var rootViewController: UIViewController {
 		return navigationController
 	}
@@ -32,5 +32,23 @@ public  extension NavigationBarContainer {
 
 	func setSelectedViewController(_ rootViewController: UIViewController) {
 		navigationController.popToRootViewController(animated: true)
+	}
+}
+
+extension UINavigationController: ViewControllerContainer {
+	public var rootViewController: UIViewController {
+		return self
+	}
+
+	public var firstLevelNavigationControllers: [UINavigationController] {
+		return [self]
+	}
+
+	public var visibleNavigationController: UINavigationController {
+		return self
+	}
+
+	public func setSelectedViewController(_ rootViewController: UIViewController) {
+		popToRootViewController(animated: true)
 	}
 }

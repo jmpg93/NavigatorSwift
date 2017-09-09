@@ -19,10 +19,9 @@ class SceneOperationTests: XCTestCase {
 		static let anyOtherView = UIViewController()
 	}
 
-	lazy var sceneRenderer: SceneRenderer = SceneRenderer(window: self.mockWindow, viewControllerContainer: self.mockViewControllerContainer)
+	lazy var sceneRenderer: SceneRenderer = SceneRenderer(window: Window(), viewControllerContainer: self.mockViewControllerContainer)
 
 	lazy var mockViewController: MockViewController = MockViewController()
-	lazy var mockWindow: MockWindow = MockWindow()
 	lazy var mockViewControllerContainer: MockViewControllerContainer = MockViewControllerContainer()
 	lazy var mockSceneHandler: MockSceneHandler = MockSceneHandler()
 	lazy var mockSceneMatcher: MockSceneMatcher = MockSceneMatcher()
@@ -34,23 +33,15 @@ class SceneOperationTests: XCTestCase {
 }
 
 extension SceneOperationTests {
-	func givenStubbedWindow(root: UIViewController = Constants.anyView) {
-		stub(mockWindow) { stub in
-			when(stub.rootViewController.set(any())).thenDoNothing()
-			when(stub.rootViewController.get).thenReturn(root)
-			when(stub.makeKeyAndVisible()).then(Constants.anyBlock)
-		}
-	}
-
 	func givenStubbedViewControllerContainer(root: UIViewController = Constants.anyView) {
 		stub(mockViewControllerContainer) { stub in
 			when(stub.rootViewController.get).thenReturn(root)
 		}
 	}
 
-	func givenStubbedSceneHandler(builded: UIViewController = Constants.anyView) {
+	func givenStubbedSceneHandler(builded: UIViewController = Constants.anyView, sceneName: SceneName = Constants.anyScene) {
 		stub(mockSceneHandler) { stub in
-			when(stub.name.get).thenReturn(Constants.anyScene)
+			when(stub.name.get).thenReturn(sceneName)
 			when(stub.buildViewController(with: any())).thenReturn(builded)
 		}
 	}
@@ -74,6 +65,7 @@ extension SceneOperationTests {
 	@discardableResult
 	func givenRootScene() -> Scene {
 		let rootScene = givenMockScene()
+		givenStubbedViewControllerContainer()
 		InstallSceneOperation(scene: rootScene, renderer: sceneRenderer).execute(with: nil)
 		return rootScene
 	}

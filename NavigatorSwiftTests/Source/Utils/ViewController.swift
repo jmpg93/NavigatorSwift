@@ -26,6 +26,6 @@ open class Window: UIWindow {
 	}
 
 	override open func makeKeyAndVisible() {
-		//super.makeKeyAndVisible()
+
 	}
 }

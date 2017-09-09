@@ -20,31 +20,46 @@ class InstallSceneOperationTest: SceneOperationTests {
 extension InstallSceneOperationTest {
 	func testGivenNoRootScene_installScene_setRootViewController() {
 		//given
-		givenStubbedWindow()
 		givenStubbedSceneHandler()
 		givenStubbedViewControllerContainer()
-		
 		sut = givenSUT(with: mockScene)
 		
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertEqual(Constants.anyView, sceneRenderer.rootViewController)
+		XCTAssertEqual(Constants.anyView, sceneRenderer.visibleNavigationController.visibleViewController)
 	}
 
 	func testGivenRootScene_installScene_setRootViewController() {
-//		//given
-//		givenStubbedWindow()
-//		givenRootScene()
-//		let anotherScene = givenMockScene(name: Constants.anyOtherScene, view: Constants.anyOtherView)
-//
-//		// when
-//		sut.installScene(asRootViewController: anotherScene)
-//		let rootViewController = visibleViewController(for: sut)
-//
-//		// then
-//		XCTAssertEqual(Constants.anyOtherView, rootViewController)
+		//given
+		givenStubbedSceneHandler()
+		givenStubbedViewControllerContainer()
+		givenRootScene()
+		let anotherScene = givenMockScene(name: Constants.anyOtherScene, view: Constants.anyOtherView)
+
+		sut = givenSUT(with: anotherScene)
+
+		// when
+		sut.execute(with: nil)
+
+		// then
+		XCTAssertEqual(Constants.anyOtherView, sceneRenderer.visibleNavigationController.visibleViewController)
+	}
+
+	func testGivenNoRootSceneAndViewControllerContainer_installScene_setRootContainer() {
+		//given
+		let container = UINavigationController()
+		givenStubbedSceneHandler(builded: container)
+		givenStubbedViewControllerContainer()
+
+		sut = givenSUT(with: mockScene)
+
+		// when
+		sut.execute(with: nil)
+
+		// then
+		XCTAssertEqual(container, sceneRenderer.viewControllerContainer as! UINavigationController)
 	}
 }
 
