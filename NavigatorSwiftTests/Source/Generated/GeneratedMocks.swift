@@ -1,4 +1,252 @@
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-08 20:49:56 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-09 11:31:46 +0000
+
+//
+//  NavigationRequestComponent.swift
+//  NavigatorSwift
+//
+//  Created by Jose Maria Puerta on 1/9/17.
+//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
+//
+
+import Cuckoo
+@testable import NavigatorSwift
+
+import Foundation
+
+class MockNavigationRequestComponent: NavigationRequestComponent, Cuckoo.Mock {
+    typealias MocksType = NavigationRequestComponent
+    typealias Stubbing = __StubbingProxy_NavigationRequestComponent
+    typealias Verification = __VerificationProxy_NavigationRequestComponent
+    let cuckoo_manager = Cuckoo.MockManager()
+
+    private var observed: NavigationRequestComponent?
+
+    func spy(on victim: NavigationRequestComponent) -> Self {
+        observed = victim
+        return self
+    }
+
+    
+    // ["name": "pathComponent", "accesibility": "public", "@type": "InstanceVariable", "type": "String", "isReadOnly": true]
+     override var pathComponent: String {
+        get {
+            return cuckoo_manager.getter("pathComponent", original: observed.map { o in return { () -> String in o.pathComponent }})
+        }
+        
+    }
+    
+
+    
+
+    
+
+    struct __StubbingProxy_NavigationRequestComponent: Cuckoo.StubbingProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+
+        init(manager: Cuckoo.MockManager) {
+            self.cuckoo_manager = manager
+        }
+        
+        var pathComponent: Cuckoo.ToBeStubbedReadOnlyProperty<String> {
+            return .init(manager: cuckoo_manager, name: "pathComponent")
+        }
+        
+        
+    }
+
+
+    struct __VerificationProxy_NavigationRequestComponent: Cuckoo.VerificationProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+        private let callMatcher: Cuckoo.CallMatcher
+        private let sourceLocation: Cuckoo.SourceLocation
+
+        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+            self.cuckoo_manager = manager
+            self.callMatcher = callMatcher
+            self.sourceLocation = sourceLocation
+        }
+
+        
+        var pathComponent: Cuckoo.VerifyReadOnlyProperty<String> {
+            return .init(manager: cuckoo_manager, name: "pathComponent", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
+
+        
+    }
+
+
+}
+
+ class NavigationRequestComponentStub: NavigationRequestComponent {
+    
+     override var pathComponent: String {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (String).self)
+        }
+        
+    }
+    
+
+    
+
+    
+}
+
+
+
+
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-09 11:31:46 +0000
+
+//
+//  SceneMatcher.swift
+//  NavigatorSwift
+//
+//  Created by Jose Maria Puerta on 2/9/17.
+//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
+//
+
+import Cuckoo
+@testable import NavigatorSwift
+
+import Foundation
+
+class MockSceneMatcher: SceneMatcher, Cuckoo.Mock {
+    typealias MocksType = SceneMatcher
+    typealias Stubbing = __StubbingProxy_SceneMatcher
+    typealias Verification = __VerificationProxy_SceneMatcher
+    let cuckoo_manager = Cuckoo.MockManager()
+
+    private var observed: SceneMatcher?
+
+    func spy(on victim: SceneMatcher) -> Self {
+        observed = victim
+        return self
+    }
+
+    
+
+    
+
+    
+
+    struct __StubbingProxy_SceneMatcher: Cuckoo.StubbingProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+
+        init(manager: Cuckoo.MockManager) {
+            self.cuckoo_manager = manager
+        }
+        
+        
+    }
+
+
+    struct __VerificationProxy_SceneMatcher: Cuckoo.VerificationProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+        private let callMatcher: Cuckoo.CallMatcher
+        private let sourceLocation: Cuckoo.SourceLocation
+
+        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+            self.cuckoo_manager = manager
+            self.callMatcher = callMatcher
+            self.sourceLocation = sourceLocation
+        }
+
+        
+
+        
+    }
+
+
+}
+
+ class SceneMatcherStub: SceneMatcher {
+    
+
+    
+
+    
+}
+
+
+
+
+// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-09 11:31:46 +0000
+
+//
+//  Scene.swift
+//  NavigatorSwift
+//
+//  Created by Jose Maria Puerta on 1/9/17.
+//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
+//
+
+import Cuckoo
+@testable import NavigatorSwift
+
+import Foundation
+
+class MockScene: Scene, Cuckoo.Mock {
+    typealias MocksType = Scene
+    typealias Stubbing = __StubbingProxy_Scene
+    typealias Verification = __VerificationProxy_Scene
+    let cuckoo_manager = Cuckoo.MockManager()
+
+    private var observed: Scene?
+
+    func spy(on victim: Scene) -> Self {
+        observed = victim
+        return self
+    }
+
+    
+
+    
+
+    
+
+    struct __StubbingProxy_Scene: Cuckoo.StubbingProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+
+        init(manager: Cuckoo.MockManager) {
+            self.cuckoo_manager = manager
+        }
+        
+        
+    }
+
+
+    struct __VerificationProxy_Scene: Cuckoo.VerificationProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+        private let callMatcher: Cuckoo.CallMatcher
+        private let sourceLocation: Cuckoo.SourceLocation
+
+        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+            self.cuckoo_manager = manager
+            self.callMatcher = callMatcher
+            self.sourceLocation = sourceLocation
+        }
+
+        
+
+        
+    }
+
+
+}
+
+ class SceneStub: Scene {
+    
+
+    
+
+    
+}
+
+
+
+
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-09 11:31:46 +0000
 
 //
 //  SceneHandler.swift
@@ -174,105 +422,7 @@ class MockSceneHandler: SceneHandler, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-08 20:49:56 +0000
-
-//
-//  NavigationRequestComponent.swift
-//  NavigatorSwift
-//
-//  Created by Jose Maria Puerta on 1/9/17.
-//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
-//
-
-import Cuckoo
-@testable import NavigatorSwift
-
-import Foundation
-
-class MockNavigationRequestComponent: NavigationRequestComponent, Cuckoo.Mock {
-    typealias MocksType = NavigationRequestComponent
-    typealias Stubbing = __StubbingProxy_NavigationRequestComponent
-    typealias Verification = __VerificationProxy_NavigationRequestComponent
-    let cuckoo_manager = Cuckoo.MockManager()
-
-    private var observed: NavigationRequestComponent?
-
-    func spy(on victim: NavigationRequestComponent) -> Self {
-        observed = victim
-        return self
-    }
-
-    
-    // ["name": "pathComponent", "accesibility": "public", "@type": "InstanceVariable", "type": "String", "isReadOnly": true]
-     override var pathComponent: String {
-        get {
-            return cuckoo_manager.getter("pathComponent", original: observed.map { o in return { () -> String in o.pathComponent }})
-        }
-        
-    }
-    
-
-    
-
-    
-
-    struct __StubbingProxy_NavigationRequestComponent: Cuckoo.StubbingProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-
-        init(manager: Cuckoo.MockManager) {
-            self.cuckoo_manager = manager
-        }
-        
-        var pathComponent: Cuckoo.ToBeStubbedReadOnlyProperty<String> {
-            return .init(manager: cuckoo_manager, name: "pathComponent")
-        }
-        
-        
-    }
-
-
-    struct __VerificationProxy_NavigationRequestComponent: Cuckoo.VerificationProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-        private let callMatcher: Cuckoo.CallMatcher
-        private let sourceLocation: Cuckoo.SourceLocation
-
-        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-            self.cuckoo_manager = manager
-            self.callMatcher = callMatcher
-            self.sourceLocation = sourceLocation
-        }
-
-        
-        var pathComponent: Cuckoo.VerifyReadOnlyProperty<String> {
-            return .init(manager: cuckoo_manager, name: "pathComponent", callMatcher: callMatcher, sourceLocation: sourceLocation)
-        }
-        
-
-        
-    }
-
-
-}
-
- class NavigationRequestComponentStub: NavigationRequestComponent {
-    
-     override var pathComponent: String {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (String).self)
-        }
-        
-    }
-    
-
-    
-
-    
-}
-
-
-
-
-// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-08 20:49:56 +0000
+// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-09 11:31:46 +0000
 
 //
 //  ViewController.swift
@@ -390,6 +540,18 @@ class MockWindow: Window, Cuckoo.Mock {
     }
 
     
+    // ["name": "rootViewController", "accesibility": "public", "@type": "InstanceVariable", "type": "UIViewController?", "isReadOnly": false]
+     override var rootViewController: UIViewController? {
+        get {
+            return cuckoo_manager.getter("rootViewController", original: observed.map { o in return { () -> UIViewController? in o.rootViewController }})
+        }
+        
+        set {
+            cuckoo_manager.setter("rootViewController", value: newValue, original: observed != nil ? { self.observed?.rootViewController = $0 } : nil)
+        }
+        
+    }
+    
 
     
 
@@ -414,6 +576,10 @@ class MockWindow: Window, Cuckoo.Mock {
             self.cuckoo_manager = manager
         }
         
+        var rootViewController: Cuckoo.ToBeStubbedProperty<UIViewController?> {
+            return .init(manager: cuckoo_manager, name: "rootViewController")
+        }
+        
         
         func makeKeyAndVisible() -> Cuckoo.StubNoReturnFunction<()> {
             let matchers: [Cuckoo.ParameterMatcher<Void>] = []
@@ -435,6 +601,10 @@ class MockWindow: Window, Cuckoo.Mock {
         }
 
         
+        var rootViewController: Cuckoo.VerifyProperty<UIViewController?> {
+            return .init(manager: cuckoo_manager, name: "rootViewController", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
 
         
         @discardableResult
@@ -450,6 +620,15 @@ class MockWindow: Window, Cuckoo.Mock {
 
  class WindowStub: Window {
     
+     override var rootViewController: UIViewController? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (UIViewController?).self)
+        }
+        
+        set { }
+        
+    }
+    
 
     
 
@@ -463,85 +642,10 @@ class MockWindow: Window, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-08 20:49:56 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-09 11:31:46 +0000
 
 //
-//  SceneMatcher.swift
-//  NavigatorSwift
-//
-//  Created by Jose Maria Puerta on 2/9/17.
-//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
-//
-
-import Cuckoo
-@testable import NavigatorSwift
-
-import Foundation
-
-class MockSceneMatcher: SceneMatcher, Cuckoo.Mock {
-    typealias MocksType = SceneMatcher
-    typealias Stubbing = __StubbingProxy_SceneMatcher
-    typealias Verification = __VerificationProxy_SceneMatcher
-    let cuckoo_manager = Cuckoo.MockManager()
-
-    private var observed: SceneMatcher?
-
-    func spy(on victim: SceneMatcher) -> Self {
-        observed = victim
-        return self
-    }
-
-    
-
-    
-
-    
-
-    struct __StubbingProxy_SceneMatcher: Cuckoo.StubbingProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-
-        init(manager: Cuckoo.MockManager) {
-            self.cuckoo_manager = manager
-        }
-        
-        
-    }
-
-
-    struct __VerificationProxy_SceneMatcher: Cuckoo.VerificationProxy {
-        private let cuckoo_manager: Cuckoo.MockManager
-        private let callMatcher: Cuckoo.CallMatcher
-        private let sourceLocation: Cuckoo.SourceLocation
-
-        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
-            self.cuckoo_manager = manager
-            self.callMatcher = callMatcher
-            self.sourceLocation = sourceLocation
-        }
-
-        
-
-        
-    }
-
-
-}
-
- class SceneMatcherStub: SceneMatcher {
-    
-
-    
-
-    
-}
-
-
-
-
-// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-08 20:49:56 +0000
-
-//
-//  Scene.swift
+//  ViewControllerContainer.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 1/9/17.
@@ -552,38 +656,92 @@ import Cuckoo
 @testable import NavigatorSwift
 
 import Foundation
+import UIKit
 
-class MockScene: Scene, Cuckoo.Mock {
-    typealias MocksType = Scene
-    typealias Stubbing = __StubbingProxy_Scene
-    typealias Verification = __VerificationProxy_Scene
+class MockViewControllerContainer: ViewControllerContainer, Cuckoo.Mock {
+    typealias MocksType = ViewControllerContainer
+    typealias Stubbing = __StubbingProxy_ViewControllerContainer
+    typealias Verification = __VerificationProxy_ViewControllerContainer
     let cuckoo_manager = Cuckoo.MockManager()
 
-    private var observed: Scene?
+    private var observed: ViewControllerContainer?
 
-    func spy(on victim: Scene) -> Self {
+    func spy(on victim: ViewControllerContainer) -> Self {
         observed = victim
         return self
     }
 
     
-
+    // ["name": "rootViewController", "accesibility": "public", "@type": "InstanceVariable", "type": "UIViewController", "isReadOnly": true]
+     var rootViewController: UIViewController {
+        get {
+            return cuckoo_manager.getter("rootViewController", original: observed.map { o in return { () -> UIViewController in o.rootViewController }})
+        }
+        
+    }
+    
+    // ["name": "firstLevelNavigationControllers", "accesibility": "public", "@type": "InstanceVariable", "type": "[UINavigationController]", "isReadOnly": true]
+     var firstLevelNavigationControllers: [UINavigationController] {
+        get {
+            return cuckoo_manager.getter("firstLevelNavigationControllers", original: observed.map { o in return { () -> [UINavigationController] in o.firstLevelNavigationControllers }})
+        }
+        
+    }
+    
+    // ["name": "visibleNavigationController", "accesibility": "public", "@type": "InstanceVariable", "type": "UINavigationController", "isReadOnly": true]
+     var visibleNavigationController: UINavigationController {
+        get {
+            return cuckoo_manager.getter("visibleNavigationController", original: observed.map { o in return { () -> UINavigationController in o.visibleNavigationController }})
+        }
+        
+    }
     
 
     
 
-    struct __StubbingProxy_Scene: Cuckoo.StubbingProxy {
+    
+    public func setSelectedViewController(_ selectedViewController: UIViewController)  {
+        
+        return cuckoo_manager.call("setSelectedViewController(_: UIViewController)",
+            parameters: (selectedViewController),
+            original: observed.map { o in
+                return { (selectedViewController: UIViewController) in
+                    o.setSelectedViewController(selectedViewController)
+                }
+            })
+        
+    }
+    
+
+    struct __StubbingProxy_ViewControllerContainer: Cuckoo.StubbingProxy {
         private let cuckoo_manager: Cuckoo.MockManager
 
         init(manager: Cuckoo.MockManager) {
             self.cuckoo_manager = manager
         }
         
+        var rootViewController: Cuckoo.ToBeStubbedReadOnlyProperty<UIViewController> {
+            return .init(manager: cuckoo_manager, name: "rootViewController")
+        }
+        
+        var firstLevelNavigationControllers: Cuckoo.ToBeStubbedReadOnlyProperty<[UINavigationController]> {
+            return .init(manager: cuckoo_manager, name: "firstLevelNavigationControllers")
+        }
+        
+        var visibleNavigationController: Cuckoo.ToBeStubbedReadOnlyProperty<UINavigationController> {
+            return .init(manager: cuckoo_manager, name: "visibleNavigationController")
+        }
+        
+        
+        func setSelectedViewController<M1: Cuckoo.Matchable>(_ selectedViewController: M1) -> Cuckoo.StubNoReturnFunction<(UIViewController)> where M1.MatchedType == UIViewController {
+            let matchers: [Cuckoo.ParameterMatcher<(UIViewController)>] = [wrap(matchable: selectedViewController) { $0 }]
+            return .init(stub: cuckoo_manager.createStub("setSelectedViewController(_: UIViewController)", parameterMatchers: matchers))
+        }
         
     }
 
 
-    struct __VerificationProxy_Scene: Cuckoo.VerificationProxy {
+    struct __VerificationProxy_ViewControllerContainer: Cuckoo.VerificationProxy {
         private let cuckoo_manager: Cuckoo.MockManager
         private let callMatcher: Cuckoo.CallMatcher
         private let sourceLocation: Cuckoo.SourceLocation
@@ -595,18 +753,239 @@ class MockScene: Scene, Cuckoo.Mock {
         }
 
         
+        var rootViewController: Cuckoo.VerifyReadOnlyProperty<UIViewController> {
+            return .init(manager: cuckoo_manager, name: "rootViewController", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
+        var firstLevelNavigationControllers: Cuckoo.VerifyReadOnlyProperty<[UINavigationController]> {
+            return .init(manager: cuckoo_manager, name: "firstLevelNavigationControllers", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
+        var visibleNavigationController: Cuckoo.VerifyReadOnlyProperty<UINavigationController> {
+            return .init(manager: cuckoo_manager, name: "visibleNavigationController", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
 
+        
+        @discardableResult
+        func setSelectedViewController<M1: Cuckoo.Matchable>(_ selectedViewController: M1) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == UIViewController {
+            let matchers: [Cuckoo.ParameterMatcher<(UIViewController)>] = [wrap(matchable: selectedViewController) { $0 }]
+            return cuckoo_manager.verify("setSelectedViewController(_: UIViewController)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
         
     }
 
 
 }
 
- class SceneStub: Scene {
+ class ViewControllerContainerStub: ViewControllerContainer {
+    
+     var rootViewController: UIViewController {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (UIViewController).self)
+        }
+        
+    }
+    
+     var firstLevelNavigationControllers: [UINavigationController] {
+        get {
+            return DefaultValueRegistry.defaultValue(for: ([UINavigationController]).self)
+        }
+        
+    }
+    
+     var visibleNavigationController: UINavigationController {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (UINavigationController).self)
+        }
+        
+    }
     
 
     
 
+    
+    public func setSelectedViewController(_ selectedViewController: UIViewController)  {
+        return DefaultValueRegistry.defaultValue(for: Void.self)
+    }
+    
+}
+
+
+
+
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-09 11:31:46 +0000
+
+//
+//  SceneRenderer.swift
+//  NavigatorSwift
+//
+//  Created by Jose Maria Puerta on 1/9/17.
+//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
+//
+
+import Cuckoo
+@testable import NavigatorSwift
+
+import Foundation
+import UIKit
+
+class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
+    typealias MocksType = SceneRenderer
+    typealias Stubbing = __StubbingProxy_SceneRenderer
+    typealias Verification = __VerificationProxy_SceneRenderer
+    let cuckoo_manager = Cuckoo.MockManager()
+
+    private var observed: SceneRenderer?
+
+    func spy(on victim: SceneRenderer) -> Self {
+        observed = victim
+        return self
+    }
+
+    
+    // ["name": "viewControllerContainer", "accesibility": "", "@type": "InstanceVariable", "type": "ViewControllerContainer", "isReadOnly": false]
+     override var viewControllerContainer: ViewControllerContainer {
+        get {
+            return cuckoo_manager.getter("viewControllerContainer", original: observed.map { o in return { () -> ViewControllerContainer in o.viewControllerContainer }})
+        }
+        
+        set {
+            cuckoo_manager.setter("viewControllerContainer", value: newValue, original: observed != nil ? { self.observed?.viewControllerContainer = $0 } : nil)
+        }
+        
+    }
+    
+    // ["name": "rootViewController", "accesibility": "", "@type": "InstanceVariable", "type": "UIViewController", "isReadOnly": true]
+     override var rootViewController: UIViewController {
+        get {
+            return cuckoo_manager.getter("rootViewController", original: observed.map { o in return { () -> UIViewController in o.rootViewController }})
+        }
+        
+    }
+    
+    // ["name": "visibleNavigationController", "accesibility": "", "@type": "InstanceVariable", "type": "UINavigationController", "isReadOnly": true]
+     override var visibleNavigationController: UINavigationController {
+        get {
+            return cuckoo_manager.getter("visibleNavigationController", original: observed.map { o in return { () -> UINavigationController in o.visibleNavigationController }})
+        }
+        
+    }
+    
+
+    
+
+    
+     override func setSelectedViewController(_ selectedViewController: UIViewController)  {
+        
+        return cuckoo_manager.call("setSelectedViewController(_: UIViewController)",
+            parameters: (selectedViewController),
+            original: observed.map { o in
+                return { (selectedViewController: UIViewController) in
+                    o.setSelectedViewController(selectedViewController)
+                }
+            })
+        
+    }
+    
+
+    struct __StubbingProxy_SceneRenderer: Cuckoo.StubbingProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+
+        init(manager: Cuckoo.MockManager) {
+            self.cuckoo_manager = manager
+        }
+        
+        var viewControllerContainer: Cuckoo.ToBeStubbedProperty<ViewControllerContainer> {
+            return .init(manager: cuckoo_manager, name: "viewControllerContainer")
+        }
+        
+        var rootViewController: Cuckoo.ToBeStubbedReadOnlyProperty<UIViewController> {
+            return .init(manager: cuckoo_manager, name: "rootViewController")
+        }
+        
+        var visibleNavigationController: Cuckoo.ToBeStubbedReadOnlyProperty<UINavigationController> {
+            return .init(manager: cuckoo_manager, name: "visibleNavigationController")
+        }
+        
+        
+        func setSelectedViewController<M1: Cuckoo.Matchable>(_ selectedViewController: M1) -> Cuckoo.StubNoReturnFunction<(UIViewController)> where M1.MatchedType == UIViewController {
+            let matchers: [Cuckoo.ParameterMatcher<(UIViewController)>] = [wrap(matchable: selectedViewController) { $0 }]
+            return .init(stub: cuckoo_manager.createStub("setSelectedViewController(_: UIViewController)", parameterMatchers: matchers))
+        }
+        
+    }
+
+
+    struct __VerificationProxy_SceneRenderer: Cuckoo.VerificationProxy {
+        private let cuckoo_manager: Cuckoo.MockManager
+        private let callMatcher: Cuckoo.CallMatcher
+        private let sourceLocation: Cuckoo.SourceLocation
+
+        init(manager: Cuckoo.MockManager, callMatcher: Cuckoo.CallMatcher, sourceLocation: Cuckoo.SourceLocation) {
+            self.cuckoo_manager = manager
+            self.callMatcher = callMatcher
+            self.sourceLocation = sourceLocation
+        }
+
+        
+        var viewControllerContainer: Cuckoo.VerifyProperty<ViewControllerContainer> {
+            return .init(manager: cuckoo_manager, name: "viewControllerContainer", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
+        var rootViewController: Cuckoo.VerifyReadOnlyProperty<UIViewController> {
+            return .init(manager: cuckoo_manager, name: "rootViewController", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
+        var visibleNavigationController: Cuckoo.VerifyReadOnlyProperty<UINavigationController> {
+            return .init(manager: cuckoo_manager, name: "visibleNavigationController", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
+
+        
+        @discardableResult
+        func setSelectedViewController<M1: Cuckoo.Matchable>(_ selectedViewController: M1) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == UIViewController {
+            let matchers: [Cuckoo.ParameterMatcher<(UIViewController)>] = [wrap(matchable: selectedViewController) { $0 }]
+            return cuckoo_manager.verify("setSelectedViewController(_: UIViewController)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
+        
+    }
+
+
+}
+
+ class SceneRendererStub: SceneRenderer {
+    
+     override var viewControllerContainer: ViewControllerContainer {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (ViewControllerContainer).self)
+        }
+        
+        set { }
+        
+    }
+    
+     override var rootViewController: UIViewController {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (UIViewController).self)
+        }
+        
+    }
+    
+     override var visibleNavigationController: UINavigationController {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (UINavigationController).self)
+        }
+        
+    }
+    
+
+    
+
+    
+     override func setSelectedViewController(_ selectedViewController: UIViewController)  {
+        return DefaultValueRegistry.defaultValue(for: Void.self)
+    }
     
 }
 

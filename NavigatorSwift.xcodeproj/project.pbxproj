@@ -37,6 +37,11 @@
 		6C2967B61F5C5FFB00F3C3A0 /* NavigatorSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6C2967B81F5C5FFB00F3C3A0 /* Cuckoo.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6C2967BE1F5C695000F3C3A0 /* NavigationRequestComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2967BD1F5C695000F3C3A0 /* NavigationRequestComponentTests.swift */; };
+		6C2C20EB1F633E8E004AE759 /* SceneOperationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EA1F633E8E004AE759 /* SceneOperationDataSource.swift */; };
+		6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */; };
+		6C2C20EF1F63519D004AE759 /* ChangeScenesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EE1F63519D004AE759 /* ChangeScenesOperation.swift */; };
+		6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */; };
+		6C41E2731F633A6F002D9FA1 /* AddScenesOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C41E2721F633A6F002D9FA1 /* AddScenesOperationTests.swift */; };
 		6C85F1BA1F5C44FF009FB1CA /* Cuckoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */; };
 		6C85F1BC1F5C44FF009FB1CA /* Cuckoo.framework.dSYM in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C85F1BB1F5C44FF009FB1CA /* Cuckoo.framework.dSYM */; };
 		6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */; };
@@ -133,6 +138,11 @@
 		6C2967AC1F5C54E200F3C3A0 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		6C2967AF1F5C565400F3C3A0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6C2967BD1F5C695000F3C3A0 /* NavigationRequestComponentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationRequestComponentTests.swift; sourceTree = "<group>"; };
+		6C2C20EA1F633E8E004AE759 /* SceneOperationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneOperationDataSource.swift; sourceTree = "<group>"; };
+		6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallSceneOperationTest.swift; sourceTree = "<group>"; };
+		6C2C20EE1F63519D004AE759 /* ChangeScenesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeScenesOperation.swift; sourceTree = "<group>"; };
+		6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneOperationTests.swift; sourceTree = "<group>"; };
+		6C41E2721F633A6F002D9FA1 /* AddScenesOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddScenesOperationTests.swift; sourceTree = "<group>"; };
 		6C85F1BB1F5C44FF009FB1CA /* Cuckoo.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Cuckoo.framework.dSYM; path = Carthage/Build/iOS/Cuckoo.framework.dSYM; sourceTree = "<group>"; };
 		6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		6CA5947F1F631A0F00CF37AB /* SceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneOperation.swift; path = NavigatorSwift/Source/SceneOperation/SceneOperation.swift; sourceTree = SOURCE_ROOT; };
@@ -378,7 +388,11 @@
 		6C2967BB1F5C68CA00F3C3A0 /* SceneRenderer */ = {
 			isa = PBXGroup;
 			children = (
+				6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */,
 				1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */,
+				6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */,
+				6C2C20EE1F63519D004AE759 /* ChangeScenesOperation.swift */,
+				6C41E2721F633A6F002D9FA1 /* AddScenesOperationTests.swift */,
 			);
 			path = SceneRenderer;
 			sourceTree = "<group>";
@@ -395,6 +409,7 @@
 		6CA5947E1F6319FA00CF37AB /* SceneOperation */ = {
 			isa = PBXGroup;
 			children = (
+				6C2C20EA1F633E8E004AE759 /* SceneOperationDataSource.swift */,
 				6CA5947F1F631A0F00CF37AB /* SceneOperation.swift */,
 				6CA5948E1F63268300CF37AB /* AddScenesOperation.swift */,
 				6CA594901F63286000CF37AB /* ChangeScenesOperation.swift */,
@@ -489,7 +504,7 @@
 				6C27A9471F59E1ED00311918 /* Frameworks */,
 				6C27A9481F59E1ED00311918 /* Headers */,
 				6C27A9491F59E1ED00311918 /* Resources */,
-				6C2967B41F5C59B200F3C3A0 /* ShellScript */,
+				6C2967B41F5C59B200F3C3A0 /* Mock */,
 			);
 			buildRules = (
 			);
@@ -570,18 +585,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6C2967B41F5C59B200F3C3A0 /* ShellScript */ = {
+		6C2967B41F5C59B200F3C3A0 /* Mock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Mock;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Define output file. Change \"$PROJECT_DIR/Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"$PROJECT_DIR/NavigatorSwiftTests/Source/Generated/GeneratedMocks.swift\"\necho \"Generated Mocks File = $OUTPUT_FILE\"\n\n# Define input directory. Change \"$PROJECT_DIR\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"$PROJECT_DIR\"\necho \"Mocks Input Directory = $INPUT_DIR\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\nCarthage/Checkouts/Cuckoo/run generate --testable \"$PROJECT_NAME\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift\" \\\n\"$INPUT_DIR/NavigatorSwiftTests/Source/Utils/ViewController.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/Domain/Scene.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneHandler/SceneHandler.swift\"\n\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.";
+			shellScript = "# Define output file. Change \"$PROJECT_DIR/Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"$PROJECT_DIR/NavigatorSwiftTests/Source/Generated/GeneratedMocks.swift\"\necho \"Generated Mocks File = $OUTPUT_FILE\"\n\n# Define input directory. Change \"$PROJECT_DIR\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"$PROJECT_DIR\"\necho \"Mocks Input Directory = $INPUT_DIR\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\nCarthage/Checkouts/Cuckoo/run generate --testable \"$PROJECT_NAME\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift\" \\\n\"$INPUT_DIR/NavigatorSwiftTests/Source/Utils/ViewController.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/Domain/Scene.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneHandler/SceneHandler.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift\"\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -592,8 +608,12 @@
 			files = (
 				6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */,
 				18FFC3391F5DF00F0016FCDF /* NavigationRequestTests.swift in Sources */,
+				6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */,
+				6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */,
 				1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */,
 				6C2967AD1F5C54E200F3C3A0 /* GeneratedMocks.swift in Sources */,
+				6C41E2731F633A6F002D9FA1 /* AddScenesOperationTests.swift in Sources */,
+				6C2C20EF1F63519D004AE759 /* ChangeScenesOperation.swift in Sources */,
 				6C2967BE1F5C695000F3C3A0 /* NavigationRequestComponentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +637,7 @@
 				6C27A96A1F59E36400311918 /* NavigationRequestBuilder.swift in Sources */,
 				6CA594881F63227400CF37AB /* DismissAllViewControllerOperation.swift in Sources */,
 				6C27A9641F59E32000311918 /* SceneHandlerRegistrable.swift in Sources */,
+				6C2C20EB1F633E8E004AE759 /* SceneOperationDataSource.swift in Sources */,
 				6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */,
 				6C27A9601F59E2E900311918 /* Scene.swift in Sources */,
 				6CA5948D1F63248900CF37AB /* VisibleViewControllerFinder.swift in Sources */,
