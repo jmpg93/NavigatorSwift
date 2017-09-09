@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180FBA9B1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FBA9A1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift */; };
 		1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */; };
 		1827747E1F5C3B8400CD935F /* NavigatorSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; };
 		18F9408C1F5C9C980064D320 /* CollectionScenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */; };
@@ -104,6 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		180FBA9A1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyTransitionSceneOperation.swift; sourceTree = "<group>"; };
 		182774791F5C3B8400CD935F /* NavigatorSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigatorSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRendererTests.swift; sourceTree = "<group>"; };
 		1827747D1F5C3B8400CD935F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				6CA594831F631A8600CF37AB /* RecycleSceneOperation.swift */,
 				6CA594891F63239600CF37AB /* PopSceneOperation.swift */,
 				6CA594851F631A9E00CF37AB /* RenderSceneOperation.swift */,
+				180FBA9A1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift */,
 				6CA5948C1F63248900CF37AB /* VisibleViewControllerFinder.swift */,
 			);
 			name = SceneOperation;
@@ -643,6 +646,7 @@
 				6CA5948D1F63248900CF37AB /* VisibleViewControllerFinder.swift in Sources */,
 				6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */,
 				6CB38DD01F5AF01C003C5E9C /* SceneName.swift in Sources */,
+				180FBA9B1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift in Sources */,
 				6CC4FA971F5AC9A1003B748A /* SceneMatcher.swift in Sources */,
 				6C1322D51F5ADB4B00A7D3E9 /* Delimiters.swift in Sources */,
 				6C27A9621F59E2FD00311918 /* SceneHandler.swift in Sources */,
