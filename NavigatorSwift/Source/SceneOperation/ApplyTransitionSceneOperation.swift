@@ -8,18 +8,20 @@
 
 import Foundation
 
-class ApplyTransitionSceneOperation: VisibleViewControllerFindable {
-	fileprivate let transitionDelegate: UIViewControllerTransitioningDelegate
+class ApplyTransitionSceneOperation: SceneOperation, VisibleViewControllerFindable {
+	fileprivate let delegate: UIViewControllerTransitioningDelegate
 	fileprivate let toViewController: UIViewController
+	fileprivate let renderer: SceneRenderer
 
-	init(transitionDelegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) {
-		self.transitionDelegate = transitionDelegate
+	init(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController, renderer: SceneRenderer) {
+		self.delegate = delegate
 		self.toViewController = toViewController
+		self.renderer = renderer
 	}
 }
 
 extension ApplyTransitionSceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		toViewController.transitioningDelegate = transitionDelegate
+		toViewController.transitioningDelegate = delegate
 	}
 }

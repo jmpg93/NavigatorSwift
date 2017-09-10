@@ -1,5 +1,5 @@
 //
-//  ChangeScenesOperation.swift
+//  SetScenesOperation.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 8/9/17.
@@ -8,26 +8,26 @@
 
 import Foundation
 
-class ChangeScenesOperation: SceneOperation {
+class SetScenesOperation: SceneOperation {
 	fileprivate var scenes: [Scene]
-	fileprivate let sceneRendeded: SceneRenderer
+	fileprivate let renderer: SceneRenderer
 
-	init(scenes: [Scene], sceneRendeded: SceneRenderer) {
+	init(scenes: [Scene], renderer: SceneRenderer) {
 		self.scenes = scenes
-		self.sceneRendeded = sceneRendeded
+		self.renderer = renderer
 	}
 }
 
 // MARK: SceneOperation methods
 
-extension ChangeScenesOperation {
+extension SetScenesOperation {
 	func execute(with completion: CompletionBlock?) {
 		guard !scenes.isEmpty else { return }
 		let firstScene = scenes.removeFirst()
 
-		let dismissOperation = DismisAllViewControllerOperation(rootViewController: sceneRendeded.rootViewController, animated: false)
-		let installOperation = InstallSceneOperation(scene: firstScene, renderer: sceneRendeded)
-		let recycleOperation = RecycleSceneOperation(scenes: scenes, renderer: sceneRendeded)
+		let dismissOperation = renderer.dismissAll(animated: false)
+		let installOperation = renderer.install(scene: firstScene)
+		let recycleOperation = renderer.recycle(scenes: scenes)
 
 		if isRootViewController(matching: firstScene) {
 			dismissOperation
@@ -44,12 +44,12 @@ extension ChangeScenesOperation {
 
 // MARK: Private methods
 
-extension ChangeScenesOperation {
+extension SetScenesOperation {
 	/// Returns true if the rootViewController in Window is handled by the scene
 	func isRootViewController(matching scene: Scene) -> Bool {
 		var isEqual: Bool = false
 
-		if let rootViewController = sceneRendeded.rootViewController as? UINavigationController {
+		if let rootViewController = renderer.rootViewController as? UINavigationController {
 			isEqual = rootViewController.viewControllers.first?.sceneName == scene.sceneHandler.name.value
 		}
 

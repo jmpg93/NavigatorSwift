@@ -9,12 +9,12 @@
 import Foundation
 
 class DismisAllViewControllerOperation: SceneOperation {
-	fileprivate let rootViewController: UIViewController
 	fileprivate let animated: Bool
+	fileprivate let renderer: SceneRenderer
 
-	init(rootViewController: UIViewController, animated: Bool) {
-		self.rootViewController = rootViewController
+	init(animated: Bool, renderer: SceneRenderer) {
 		self.animated = animated
+		self.renderer = renderer
 	}
 }
 
@@ -22,7 +22,7 @@ class DismisAllViewControllerOperation: SceneOperation {
 
 extension DismisAllViewControllerOperation  {
 	func execute(with completion: CompletionBlock?) {
-		rootViewController.dismiss(animated: animated, completion: completion)
+		renderer.rootViewController.dismiss(animated: animated, completion: completion)
 
 		if !animated {
 			completion?()

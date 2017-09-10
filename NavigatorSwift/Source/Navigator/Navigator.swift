@@ -23,35 +23,43 @@ public class Navigator {
 
 		registerSceneHandlerRegisters(sceneHandlerRegisters.sceneHandlerRegisters)
 	}
+
+	public init(window: UIWindow, sceneHandlerRegisters: SceneHandlerRegisters) {
+		self.sceneRenderer = SceneRenderer(window: window, viewControllerContainer: NavigationBarContainer())
+		self.sceneMatcher = SceneMatcher()
+		self.navigationRequestProvider = DefaultNavigationRequestProvider()
+
+		registerSceneHandlerRegisters(sceneHandlerRegisters.sceneHandlerRegisters)
+	}
 }
 
 // MARK: - Navigating with URLs
 
 public extension Navigator {
 	@discardableResult
-	func absoluteNavigation(to url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
-		var urlHandled = false
-		let scenesInURL = matchScenes(from: url, parameters: parameters)
+	func absoluteNavigation(using request: NavigationRequest, completion: CompletionBlock? = nil) -> Bool {
+		var handled = false
+		let scenes = matchScenes(from: request, externalParameters: request.allParameters)
 
-		if scenesInURL.count > 0 {
-			urlHandled = true
-			sceneRenderer.set(scenes: scenesInURL, completion: completion)
+		if scenes.count > 0 {
+			handled = true
+			sceneRenderer.set(scenes: scenes, completion: completion)
 		}
 
-		return urlHandled
+		return handled
 	}
 
 	@discardableResult
-	func relativeNavigation(to url: URL, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> Bool {
-		var urlHandler = false
-		let scenesInURL = matchScenes(from: url, parameters: parameters)
+	func relativeNavigation(using request: NavigationRequest, completion: CompletionBlock? = nil) -> Bool {
+		var handled = false
+		let scenes = matchScenes(from: request, externalParameters: request.allParameters)
 
-		if scenesInURL.count > 0 {
-			urlHandler = true
-			sceneRenderer.add(scenes: scenesInURL, completion: completion)
+		if scenes.count > 0 {
+			handled = true
+			sceneRenderer.add(scenes: scenes, completion: completion)
 		}
 
-		return urlHandler
+		return handled
 	}
 }
 
@@ -59,62 +67,54 @@ public extension Navigator {
 
 public extension Navigator {
 	@discardableResult
-	func pushSceneNamed(_ name: SceneName,
-	                    parameters: Parameters = [:],
-	                    animated: Bool = true,
-	                    completion: CompletionBlock? = nil) -> Bool {
+	func pushScene(_ name: SceneName,
+	               parameters: Parameters = [:],
+	               animated: Bool = true,
+	               completion: CompletionBlock? = nil) -> Bool {
 
-		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
+		let request = navigationRequestProvider.navigationRequest { builder in
 			builder.appendPushScene(withName: name, parameters: parameters, animated: animated)
 		}
 
-		return relativeNavigation(to: navigationRequest.url,
-		                          parameters: navigationRequest.allParameters,
-		                          completion: completion)
+		return relativeNavigation(using: request, completion: completion)
 	}
 
 	@discardableResult
-	func presentSceneNamed(_ name: SceneName,
-	                       parameters: Parameters = [:],
-	                       animated: Bool = true,
-	                       completion: CompletionBlock? = nil) -> Bool {
+	func presentScene(_ name: SceneName,
+	                  parameters: Parameters = [:],
+	                  animated: Bool = true,
+	                  completion: CompletionBlock? = nil) -> Bool {
 
-		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
+		let request = navigationRequestProvider.navigationRequest { builder in
 			builder.appendModalScene(withName: name, parameters: parameters, animated: animated)
 		}
 
-		return relativeNavigation(to: navigationRequest.url,
-		                          parameters: navigationRequest.allParameters,
-		                          completion: completion)
+		return relativeNavigation(using: request, completion: completion)
 	}
 
 	@discardableResult
-	func presentNavigationController(withSceneNamed name: SceneName,
+	func presentNavigationController(using name: SceneName,
 	                                 parameters: Parameters = [:],
 	                                 animated: Bool = true,
 	                                 completion: CompletionBlock? = nil) -> Bool {
 
-		let navigationRequest = navigationRequestProvider.navigationRequest { builder in
+		let request = navigationRequestProvider.navigationRequest { builder in
 			builder.appendModalWithNavigationScene(withName: name, parameters: parameters, animated: animated)
 		}
 
-		return relativeNavigation(to: navigationRequest.url,
-		                          parameters: navigationRequest.allParameters,
-		                          completion: completion)
+		return relativeNavigation(using: request, completion: completion)
 	}
 }
 
 // MARK: - Poping and Dismissing Scenes
 
 public extension Navigator {
-	@discardableResult
-	func popScene(animated: Bool, completion: CompletionBlock? = nil) -> UIViewController? {
-		return sceneRenderer.pop(animated: animated, completion: completion)
+	func popScene(animated: Bool, completion: CompletionBlock? = nil) {
+		sceneRenderer.pop(animated: animated, completion: completion)
 	}
 
-	@discardableResult
-	func popToRootScene(animated: Bool, completion: CompletionBlock? = nil) -> [UIViewController]? {
-		return sceneRenderer.popToRoot(animated: animated, completion: completion)
+	func popToRootScene(animated: Bool, completion: CompletionBlock? = nil) {
+		sceneRenderer.popToRoot(animated: animated, completion: completion)
 	}
 
 	func dismissScene(animated: Bool, completion: CompletionBlock? = nil) {
@@ -133,8 +133,8 @@ public extension Navigator {
 // MARK: - Private
 
 private extension Navigator {
-	func matchScenes(from url: URL, parameters: Parameters) -> [Scene] {
-		return sceneMatcher.matches(from: url, externalParameters: parameters)
+	func matchScenes(from request: NavigationRequest, externalParameters: Parameters) -> [Scene] {
+		return sceneMatcher.matches(from: request, externalParameters: externalParameters)
 	}
 }
 

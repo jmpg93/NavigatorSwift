@@ -42,7 +42,8 @@ public extension SceneMatcher {
 		             animated: animated)
 	}
 
-	func matches(from url: URL, externalParameters: Parameters) -> [Scene] {
+	func matches(from request: NavigationRequest, externalParameters: Parameters) -> [Scene] {
+		let url = request.url
 
 		var matchedScenes: [Scene] = []
 

@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			builder.appendPushScene(withName: .collection)
 		}
 
-		globalNavigator.absoluteNavigation(to: request.url)
+		globalNavigator.absoluteNavigation(using: request)
 		
 		return true
 	}

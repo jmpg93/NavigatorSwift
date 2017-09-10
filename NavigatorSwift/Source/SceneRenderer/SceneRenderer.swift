@@ -33,19 +33,72 @@ public class SceneRenderer: VisibleViewControllerFindable {
 	func setSelectedViewController(_ selectedViewController: UIViewController) {
 		viewControllerContainer.setSelectedViewController(selectedViewController)
 	}
+
+	func install(scene: Scene) -> SceneOperation {
+		return InstallSceneOperation(scene: scene,
+		                             renderer: self)
+	}
+
+	func add(scenes: [Scene]) -> SceneOperation {
+		return AddSceneOperation(scenes: scenes,
+		                         renderer: self)
+	}
+
+	func set(scenes: [Scene]) -> SceneOperation {
+		return SetScenesOperation(scenes: scenes,
+		                          renderer: self)
+	}
+
+	func dismiss(scene: Scene, animated: Bool) -> SceneOperation {
+		return DismissSceneOperation(scene: scene,
+		                             animated: animated,
+		                             renderer: self)
+	}
+
+	func dismissFirst(animated: Bool) -> SceneOperation {
+		return DismissFirstSceneOperation(animated: animated,
+		                                  renderer: self)
+	}
+
+	func dismissAll(animated: Bool) -> SceneOperation {
+		return DismisAllViewControllerOperation(animated: animated,
+		                                        renderer: self)
+	}
+
+	func popToRoot(animated: Bool) -> SceneOperation {
+		return PopSceneOperation(toRoot: true,
+		                         animated: animated,
+		                         renderer: self)
+	}
+
+	func pop(animated: Bool) -> SceneOperation {
+		return PopSceneOperation(toRoot: false,
+		                         animated: animated,
+		                         renderer: self)
+	}
+
+	func recycle(scenes: [Scene]) -> SceneOperation {
+		return RecycleSceneOperation(scenes: scenes,
+		                             renderer: self)
+	}
+
+	func transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation {
+		return ApplyTransitionSceneOperation(delegate: delegate,
+		                                     toViewController: toViewController,
+		                                     renderer: self)
+	}
 }
 
 // MARK: Private methods
 
 public extension SceneRenderer {
-
 	/// Changes the current navigation stack to conform an array of Scenes, in the process of build the new navigation stack
 	/// SceneRenderer will try to recycle the view controllers that are currently in the stack.
 	///
 	/// - parameter:  scenes An array of Scenes that represents how should be the new navigation stack.
 	/// - parameter:  completion The block to execute after the last scene is presented.
 	func set(scenes: [Scene], completion: CompletionBlock? = nil) {
-		ChangeScenesOperation(scenes: scenes, sceneRendeded: self).execute(with: completion)
+		set(scenes: scenes).execute(with: completion)
 	}
 
 	/// Adds an array of Scenes on to the current navigation stack.
@@ -53,15 +106,15 @@ public extension SceneRenderer {
 	/// - parameter: scenes An array of Scenes to add on to the navigation stack.
 	/// - parameter: completion The block to execute after the last scene is presented.
 	func add(scenes: [Scene], completion: CompletionBlock? = nil) {
-		AddScenesOperation(scenes: scenes, rootViewController: rootViewController).execute(with: completion)
+		add(scenes: scenes).execute(with: completion)
 	}
 
 	/// Pops the visible scene if he has a navigation controller.
 	///
 	/// - parameter: animated Pass YES to animate the transition.
 	/// - parameter: completion The block to execute after the relevant scene is dismissed.
-	func pop(animated: Bool, completion: CompletionBlock? = nil) -> UIViewController? {
-		return PopSceneOperation(toRoot: false, rootViewController: rootViewController, animated: animated).execute(with: completion)?.first
+	func pop(animated: Bool, completion: CompletionBlock? = nil) {
+		pop(animated: animated).execute(with: completion)
 	}
 
 
@@ -69,8 +122,8 @@ public extension SceneRenderer {
 	///
 	/// - parameter:  animated Pass YES to animate the transition.
 	/// - parameter:  completion The block to execute after all scenes are dismissed.
-	func popToRoot(animated: Bool, completion: CompletionBlock? = nil) -> [UIViewController]? {
-		return PopSceneOperation(toRoot: true, rootViewController: rootViewController, animated: animated).execute(with: completion)
+	func popToRoot(animated: Bool, completion: CompletionBlock? = nil) {
+		popToRoot(animated: animated).execute(with: completion)
 	}
 
 	///Dismisses the visible scene if he was presented modally.
@@ -78,7 +131,7 @@ public extension SceneRenderer {
 	///- parameter:  animated Pass YES to animate the transition.
 	///- parameter:  completion The block to execute after the scene is dismissed, if the scene has not been dismissed the completion block is not called.
 	func dismiss(animated: Bool, completion: CompletionBlock? = nil) {
-		DismissFirstSceneOperation(visibleNavigationController: visibleNavigationController, animated: animated).execute(with: completion)
+		dismissFirst(animated: animated).execute(with: completion)
 	}
 
 	///Dismisses the visible scene if he matches the scene passed as parameter and also is presented modally.
@@ -87,7 +140,6 @@ public extension SceneRenderer {
 	/// - parameter: animated Pass YES to animate the transition.
 	/// - parameter: completion The block to execute after the scene is dismissed, if the scene has not been dismissed the completion block is not called.
 	func dismiss(scene: Scene, animated: Bool, completion: CompletionBlock? = nil) {
-		DismissSceneOperation(scene: scene, visibleNavigationController: visibleNavigationController, animated: animated).execute(with: completion)
+		dismiss(scene: scene, animated: animated).execute(with: completion)
 	}
 }
-

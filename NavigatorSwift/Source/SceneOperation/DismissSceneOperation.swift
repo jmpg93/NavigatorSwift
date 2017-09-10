@@ -10,13 +10,13 @@ import Foundation
 
 class DismissSceneOperation: SceneOperation, VisibleViewControllerFindable {
 	fileprivate let scene: Scene
-	fileprivate let visibleNavigationController: UINavigationController
 	fileprivate let animated: Bool
+	fileprivate let renderer: SceneRenderer
 
-	init(scene: Scene, visibleNavigationController: UINavigationController, animated: Bool) {
+	init(scene: Scene, animated: Bool, renderer: SceneRenderer) {
 		self.scene = scene
-		self.visibleNavigationController = visibleNavigationController
 		self.animated = animated
+		self.renderer = renderer
 	}
 }
 
@@ -24,7 +24,7 @@ class DismissSceneOperation: SceneOperation, VisibleViewControllerFindable {
 
 extension DismissSceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		let visibleViewController = self.visibleViewController(from: visibleNavigationController)
+		let visibleViewController = self.visibleViewController(from: renderer.visibleNavigationController)
 
 		if visibleViewController.isBeingDisplayedModally && scene.sceneHandler.name.value == visibleViewController.sceneName {
 			visibleViewController.dismiss(animated: animated, completion: completion)

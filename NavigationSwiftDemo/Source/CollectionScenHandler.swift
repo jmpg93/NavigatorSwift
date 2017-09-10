@@ -11,7 +11,7 @@ import NavigatorSwift
 import UIKit
 
 extension SceneName {
-	static let collection: SceneName = SceneName("Collection")
+	static let collection: SceneName = "Collection"
 }
 
 class CollectionScenHandler: SceneHandler {

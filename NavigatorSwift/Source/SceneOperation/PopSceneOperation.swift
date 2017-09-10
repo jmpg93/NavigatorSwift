@@ -11,30 +11,28 @@ import UIKit
 
 class PopSceneOperation: VisibleViewControllerFindable {
 	fileprivate let popToRoot: Bool
-	fileprivate let rootViewController: UIViewController
 	fileprivate let animated: Bool
+	fileprivate let renderer: SceneRenderer
 
-	init(toRoot popToRoot: Bool, rootViewController: UIViewController, animated: Bool) {
+	init(toRoot popToRoot: Bool, animated: Bool, renderer: SceneRenderer) {
 		self.popToRoot = popToRoot
-		self.rootViewController = rootViewController
 		self.animated = animated
+		self.renderer = renderer
 	}
 }
 
-extension PopSceneOperation {
-	func execute(with completion: CompletionBlock?) -> [UIViewController]? {
-		var poppedViewControllers: [UIViewController]? = []
-
-		let visibleViewController = self.visibleViewController(from: rootViewController)
+extension PopSceneOperation: SceneOperation {
+	func execute(with completion: CompletionBlock?) {
+		let visibleViewController = self.visibleViewController(from: renderer.rootViewController)
 
 		guard let navigationController = visibleViewController.navigationController else {
-			return poppedViewControllers
+			return
 		}
 
 		if popToRoot {
-			poppedViewControllers = navigationController.popToRootViewController(animated: animated)
-		} else if let poppedViewController = navigationController.popViewController(animated: animated) {
-			poppedViewControllers = [poppedViewController]
+			navigationController.popToRootViewController(animated: animated)
+		} else {
+			navigationController.popViewController(animated: animated)
 		}
 
 		let animationTime: TimeInterval = animated ? UIView.defaultAnimationDuration : 0.0
@@ -42,7 +40,5 @@ extension PopSceneOperation {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationTime) {
 			completion?()
 		}
-
-		return poppedViewControllers
 	}
 }

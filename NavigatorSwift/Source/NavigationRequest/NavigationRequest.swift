@@ -22,6 +22,10 @@ public class NavigationRequest: NavigationRequestBuilder {
 	public init(_ component: NavigationRequestComponent) {
 		self.components = [component]
 	}
+
+	func parameters(at index: Int) -> Parameters {
+		return components[index].parameters
+	}
 }
 
 // MARK: - Public implementation

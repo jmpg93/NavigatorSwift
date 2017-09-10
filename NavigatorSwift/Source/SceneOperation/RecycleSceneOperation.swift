@@ -50,10 +50,7 @@ extension RecycleSceneOperation {
 			}
 		}
 
-		// Finaly add scenes not in stack yet.
-		if let visibleViewController = navigationControllerToRecycle.visibleViewController {
-			RenderSceneOperation(scenes: scenesNotInStackYet, visibleViewController: visibleViewController).execute(with: completion)
-		}
+		renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
 	}
 }
 

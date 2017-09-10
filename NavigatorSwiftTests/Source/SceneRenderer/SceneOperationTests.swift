@@ -33,10 +33,12 @@ class SceneOperationTests: XCTestCase {
 }
 
 extension SceneOperationTests {
-	func givenStubbedViewControllerContainer(root: UIViewController = Constants.anyView) {
+	@discardableResult
+	func givenStubbedViewControllerContainer(root: UIViewController = Constants.anyView) -> ViewControllerContainer {
 		stub(mockViewControllerContainer) { stub in
 			when(stub.rootViewController.get).thenReturn(root)
 		}
+		return mockViewControllerContainer
 	}
 
 	func givenStubbedSceneHandler(builded: UIViewController = Constants.anyView, sceneName: SceneName = Constants.anyScene) {
@@ -50,6 +52,7 @@ extension SceneOperationTests {
 	                    view: UIViewController = Constants.anyView,
 	                    type: ScenePresentationType = .modal,
 	                    isViewControllerRecyclable: Bool = false) -> MockScene {
+		view.sceneName = name.value
 		stub(mockSceneHandler) { stub in
 			when(stub.buildViewController(with: any())).thenReturn(view)
 			when(stub.name.get).thenReturn(name)
@@ -64,8 +67,9 @@ extension SceneOperationTests {
 
 	@discardableResult
 	func givenRootScene() -> Scene {
-		let rootScene = givenMockScene()
-		givenStubbedViewControllerContainer()
+		let view = UINavigationController()
+		let rootScene = givenMockScene(view: view)
+		givenStubbedViewControllerContainer(root: view)
 		InstallSceneOperation(scene: rootScene, renderer: sceneRenderer).execute(with: nil)
 		return rootScene
 	}

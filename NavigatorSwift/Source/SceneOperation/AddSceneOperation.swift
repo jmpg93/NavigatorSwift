@@ -1,5 +1,5 @@
 //
-//  RenderSceneOperation.swift
+//  AddSceneOperation.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 8/9/17.
@@ -8,20 +8,23 @@
 
 import Foundation
 
-class RenderSceneOperation: SceneOperation {
+class AddSceneOperation: SceneOperation {
 	fileprivate let scenes: [Scene]
-	fileprivate let visibleViewController: UIViewController
+	fileprivate let renderer: SceneRenderer
 
-	init(scenes: [Scene], visibleViewController: UIViewController) {
+	init(scenes: [Scene], renderer: SceneRenderer) {
 		self.scenes = scenes
-		self.visibleViewController = visibleViewController
+		self.renderer = renderer
 	}
 }
 
 // MARK: SceneOperation methods
 
-extension RenderSceneOperation {
+extension AddSceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		guard !scenes.isEmpty else { return }
+		
+		let visibleViewController = renderer.visibleViewController(from: renderer.rootViewController)
 		var currentVisibleViewController: UIViewController? = visibleViewController
 
 		if let navigationController = visibleViewController as? UINavigationController {
