@@ -50,7 +50,7 @@ extension RecycleSceneOperation {
 			}
 		}
 
-		renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
+		renderer.addOperation(scenes: scenesNotInStackYet).execute(with: completion)
 	}
 }
 

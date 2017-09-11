@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  Scene.swift
@@ -73,7 +73,7 @@ class MockScene: Scene, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  SceneHandler.swift
@@ -249,7 +249,7 @@ class MockSceneHandler: SceneHandler, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  ViewController.swift
@@ -469,7 +469,7 @@ class MockWindow: Window, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/NavigationRequest/NavigationRequestComponent.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  NavigationRequestComponent.swift
@@ -567,7 +567,7 @@ class MockNavigationRequestComponent: NavigationRequestComponent, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  ViewControllerContainer.swift
@@ -739,7 +739,7 @@ class MockViewControllerContainer: ViewControllerContainer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  SceneRenderer.swift
@@ -813,121 +813,121 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
         
     }
     
-     override func install(scene: Scene)  -> SceneOperation {
+     override func installOperation(scene: Scene)  -> SceneOperation {
         
-        return cuckoo_manager.call("install(scene: Scene) -> SceneOperation",
+        return cuckoo_manager.call("installOperation(scene: Scene) -> SceneOperation",
             parameters: (scene),
             original: observed.map { o in
                 return { (scene: Scene) -> SceneOperation in
-                    o.install(scene: scene)
+                    o.installOperation(scene: scene)
                 }
             })
         
     }
     
-     override func add(scenes: [Scene])  -> SceneOperation {
+     override func addOperation(scenes: [Scene])  -> SceneOperation {
         
-        return cuckoo_manager.call("add(scenes: [Scene]) -> SceneOperation",
+        return cuckoo_manager.call("addOperation(scenes: [Scene]) -> SceneOperation",
             parameters: (scenes),
             original: observed.map { o in
                 return { (scenes: [Scene]) -> SceneOperation in
-                    o.add(scenes: scenes)
+                    o.addOperation(scenes: scenes)
                 }
             })
         
     }
     
-     override func set(scenes: [Scene])  -> SceneOperation {
+     override func setOperation(scenes: [Scene])  -> SceneOperation {
         
-        return cuckoo_manager.call("set(scenes: [Scene]) -> SceneOperation",
+        return cuckoo_manager.call("setOperation(scenes: [Scene]) -> SceneOperation",
             parameters: (scenes),
             original: observed.map { o in
                 return { (scenes: [Scene]) -> SceneOperation in
-                    o.set(scenes: scenes)
+                    o.setOperation(scenes: scenes)
                 }
             })
         
     }
     
-     override func dismiss(scene: Scene, animated: Bool)  -> SceneOperation {
+     override func dismissOperation(scene: Scene, animated: Bool)  -> SceneOperation {
         
-        return cuckoo_manager.call("dismiss(scene: Scene, animated: Bool) -> SceneOperation",
+        return cuckoo_manager.call("dismissOperation(scene: Scene, animated: Bool) -> SceneOperation",
             parameters: (scene, animated),
             original: observed.map { o in
                 return { (scene: Scene, animated: Bool) -> SceneOperation in
-                    o.dismiss(scene: scene, animated: animated)
+                    o.dismissOperation(scene: scene, animated: animated)
                 }
             })
         
     }
     
-     override func dismissFirst(animated: Bool)  -> SceneOperation {
+     override func dismissFirstOperation(animated: Bool)  -> SceneOperation {
         
-        return cuckoo_manager.call("dismissFirst(animated: Bool) -> SceneOperation",
+        return cuckoo_manager.call("dismissFirstOperation(animated: Bool) -> SceneOperation",
             parameters: (animated),
             original: observed.map { o in
                 return { (animated: Bool) -> SceneOperation in
-                    o.dismissFirst(animated: animated)
+                    o.dismissFirstOperation(animated: animated)
                 }
             })
         
     }
     
-     override func dismissAll(animated: Bool)  -> SceneOperation {
+     override func dismissAllOperation(animated: Bool)  -> SceneOperation {
         
-        return cuckoo_manager.call("dismissAll(animated: Bool) -> SceneOperation",
+        return cuckoo_manager.call("dismissAllOperation(animated: Bool) -> SceneOperation",
             parameters: (animated),
             original: observed.map { o in
                 return { (animated: Bool) -> SceneOperation in
-                    o.dismissAll(animated: animated)
+                    o.dismissAllOperation(animated: animated)
                 }
             })
         
     }
     
-     override func popToRoot(animated: Bool)  -> SceneOperation {
+     override func popToRootOperation(animated: Bool)  -> SceneOperation {
         
-        return cuckoo_manager.call("popToRoot(animated: Bool) -> SceneOperation",
+        return cuckoo_manager.call("popToRootOperation(animated: Bool) -> SceneOperation",
             parameters: (animated),
             original: observed.map { o in
                 return { (animated: Bool) -> SceneOperation in
-                    o.popToRoot(animated: animated)
+                    o.popToRootOperation(animated: animated)
                 }
             })
         
     }
     
-     override func pop(animated: Bool)  -> SceneOperation {
+     override func popOperation(animated: Bool)  -> SceneOperation {
         
-        return cuckoo_manager.call("pop(animated: Bool) -> SceneOperation",
+        return cuckoo_manager.call("popOperation(animated: Bool) -> SceneOperation",
             parameters: (animated),
             original: observed.map { o in
                 return { (animated: Bool) -> SceneOperation in
-                    o.pop(animated: animated)
+                    o.popOperation(animated: animated)
                 }
             })
         
     }
     
-     override func recycle(scenes: [Scene])  -> SceneOperation {
+     override func recycleOperation(scenes: [Scene])  -> SceneOperation {
         
-        return cuckoo_manager.call("recycle(scenes: [Scene]) -> SceneOperation",
+        return cuckoo_manager.call("recycleOperation(scenes: [Scene]) -> SceneOperation",
             parameters: (scenes),
             original: observed.map { o in
                 return { (scenes: [Scene]) -> SceneOperation in
-                    o.recycle(scenes: scenes)
+                    o.recycleOperation(scenes: scenes)
                 }
             })
         
     }
     
-     override func transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController)  -> SceneOperation {
+     override func transitionOperation(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController)  -> SceneOperation {
         
-        return cuckoo_manager.call("transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation",
+        return cuckoo_manager.call("transitionOperation(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation",
             parameters: (delegate, toViewController),
             original: observed.map { o in
                 return { (delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation in
-                    o.transition(delegate: delegate, toViewController: toViewController)
+                    o.transitionOperation(delegate: delegate, toViewController: toViewController)
                 }
             })
         
@@ -959,54 +959,54 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
             return .init(stub: cuckoo_manager.createStub("setSelectedViewController(_: UIViewController)", parameterMatchers: matchers))
         }
         
-        func install<M1: Cuckoo.Matchable>(scene: M1) -> Cuckoo.StubFunction<(Scene), SceneOperation> where M1.MatchedType == Scene {
+        func installOperation<M1: Cuckoo.Matchable>(scene: M1) -> Cuckoo.StubFunction<(Scene), SceneOperation> where M1.MatchedType == Scene {
             let matchers: [Cuckoo.ParameterMatcher<(Scene)>] = [wrap(matchable: scene) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("install(scene: Scene) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("installOperation(scene: Scene) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func add<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.StubFunction<([Scene]), SceneOperation> where M1.MatchedType == [Scene] {
+        func addOperation<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.StubFunction<([Scene]), SceneOperation> where M1.MatchedType == [Scene] {
             let matchers: [Cuckoo.ParameterMatcher<([Scene])>] = [wrap(matchable: scenes) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("add(scenes: [Scene]) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("addOperation(scenes: [Scene]) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func set<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.StubFunction<([Scene]), SceneOperation> where M1.MatchedType == [Scene] {
+        func setOperation<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.StubFunction<([Scene]), SceneOperation> where M1.MatchedType == [Scene] {
             let matchers: [Cuckoo.ParameterMatcher<([Scene])>] = [wrap(matchable: scenes) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("set(scenes: [Scene]) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("setOperation(scenes: [Scene]) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func dismiss<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(scene: M1, animated: M2) -> Cuckoo.StubFunction<(Scene, Bool), SceneOperation> where M1.MatchedType == Scene, M2.MatchedType == Bool {
+        func dismissOperation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(scene: M1, animated: M2) -> Cuckoo.StubFunction<(Scene, Bool), SceneOperation> where M1.MatchedType == Scene, M2.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Scene, Bool)>] = [wrap(matchable: scene) { $0.0 }, wrap(matchable: animated) { $0.1 }]
-            return .init(stub: cuckoo_manager.createStub("dismiss(scene: Scene, animated: Bool) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("dismissOperation(scene: Scene, animated: Bool) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func dismissFirst<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
+        func dismissFirstOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("dismissFirst(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("dismissFirstOperation(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func dismissAll<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
+        func dismissAllOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("dismissAll(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("dismissAllOperation(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func popToRoot<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
+        func popToRootOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("popToRoot(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("popToRootOperation(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func pop<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
+        func popOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.StubFunction<(Bool), SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("pop(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("popOperation(animated: Bool) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func recycle<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.StubFunction<([Scene]), SceneOperation> where M1.MatchedType == [Scene] {
+        func recycleOperation<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.StubFunction<([Scene]), SceneOperation> where M1.MatchedType == [Scene] {
             let matchers: [Cuckoo.ParameterMatcher<([Scene])>] = [wrap(matchable: scenes) { $0 }]
-            return .init(stub: cuckoo_manager.createStub("recycle(scenes: [Scene]) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("recycleOperation(scenes: [Scene]) -> SceneOperation", parameterMatchers: matchers))
         }
         
-        func transition<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(delegate: M1, toViewController: M2) -> Cuckoo.StubFunction<(UIViewControllerTransitioningDelegate, UIViewController), SceneOperation> where M1.MatchedType == UIViewControllerTransitioningDelegate, M2.MatchedType == UIViewController {
+        func transitionOperation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(delegate: M1, toViewController: M2) -> Cuckoo.StubFunction<(UIViewControllerTransitioningDelegate, UIViewController), SceneOperation> where M1.MatchedType == UIViewControllerTransitioningDelegate, M2.MatchedType == UIViewController {
             let matchers: [Cuckoo.ParameterMatcher<(UIViewControllerTransitioningDelegate, UIViewController)>] = [wrap(matchable: delegate) { $0.0 }, wrap(matchable: toViewController) { $0.1 }]
-            return .init(stub: cuckoo_manager.createStub("transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation", parameterMatchers: matchers))
+            return .init(stub: cuckoo_manager.createStub("transitionOperation(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation", parameterMatchers: matchers))
         }
         
     }
@@ -1045,63 +1045,63 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
         }
         
         @discardableResult
-        func install<M1: Cuckoo.Matchable>(scene: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Scene {
+        func installOperation<M1: Cuckoo.Matchable>(scene: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Scene {
             let matchers: [Cuckoo.ParameterMatcher<(Scene)>] = [wrap(matchable: scene) { $0 }]
-            return cuckoo_manager.verify("install(scene: Scene) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("installOperation(scene: Scene) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func add<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == [Scene] {
+        func addOperation<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == [Scene] {
             let matchers: [Cuckoo.ParameterMatcher<([Scene])>] = [wrap(matchable: scenes) { $0 }]
-            return cuckoo_manager.verify("add(scenes: [Scene]) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("addOperation(scenes: [Scene]) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func set<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == [Scene] {
+        func setOperation<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == [Scene] {
             let matchers: [Cuckoo.ParameterMatcher<([Scene])>] = [wrap(matchable: scenes) { $0 }]
-            return cuckoo_manager.verify("set(scenes: [Scene]) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("setOperation(scenes: [Scene]) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func dismiss<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(scene: M1, animated: M2) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Scene, M2.MatchedType == Bool {
+        func dismissOperation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(scene: M1, animated: M2) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Scene, M2.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Scene, Bool)>] = [wrap(matchable: scene) { $0.0 }, wrap(matchable: animated) { $0.1 }]
-            return cuckoo_manager.verify("dismiss(scene: Scene, animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("dismissOperation(scene: Scene, animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func dismissFirst<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
+        func dismissFirstOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return cuckoo_manager.verify("dismissFirst(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("dismissFirstOperation(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func dismissAll<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
+        func dismissAllOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return cuckoo_manager.verify("dismissAll(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("dismissAllOperation(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func popToRoot<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
+        func popToRootOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return cuckoo_manager.verify("popToRoot(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("popToRootOperation(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func pop<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
+        func popOperation<M1: Cuckoo.Matchable>(animated: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == Bool {
             let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return cuckoo_manager.verify("pop(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("popOperation(animated: Bool) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func recycle<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == [Scene] {
+        func recycleOperation<M1: Cuckoo.Matchable>(scenes: M1) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == [Scene] {
             let matchers: [Cuckoo.ParameterMatcher<([Scene])>] = [wrap(matchable: scenes) { $0 }]
-            return cuckoo_manager.verify("recycle(scenes: [Scene]) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("recycleOperation(scenes: [Scene]) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func transition<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(delegate: M1, toViewController: M2) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == UIViewControllerTransitioningDelegate, M2.MatchedType == UIViewController {
+        func transitionOperation<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(delegate: M1, toViewController: M2) -> Cuckoo.__DoNotUse<SceneOperation> where M1.MatchedType == UIViewControllerTransitioningDelegate, M2.MatchedType == UIViewController {
             let matchers: [Cuckoo.ParameterMatcher<(UIViewControllerTransitioningDelegate, UIViewController)>] = [wrap(matchable: delegate) { $0.0 }, wrap(matchable: toViewController) { $0.1 }]
-            return cuckoo_manager.verify("transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+            return cuckoo_manager.verify("transitionOperation(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
         
     }
@@ -1142,43 +1142,43 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
         return DefaultValueRegistry.defaultValue(for: Void.self)
     }
     
-     override func install(scene: Scene)  -> SceneOperation {
+     override func installOperation(scene: Scene)  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func add(scenes: [Scene])  -> SceneOperation {
+     override func addOperation(scenes: [Scene])  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func set(scenes: [Scene])  -> SceneOperation {
+     override func setOperation(scenes: [Scene])  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func dismiss(scene: Scene, animated: Bool)  -> SceneOperation {
+     override func dismissOperation(scene: Scene, animated: Bool)  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func dismissFirst(animated: Bool)  -> SceneOperation {
+     override func dismissFirstOperation(animated: Bool)  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func dismissAll(animated: Bool)  -> SceneOperation {
+     override func dismissAllOperation(animated: Bool)  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func popToRoot(animated: Bool)  -> SceneOperation {
+     override func popToRootOperation(animated: Bool)  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func pop(animated: Bool)  -> SceneOperation {
+     override func popOperation(animated: Bool)  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func recycle(scenes: [Scene])  -> SceneOperation {
+     override func recycleOperation(scenes: [Scene])  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
-     override func transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController)  -> SceneOperation {
+     override func transitionOperation(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController)  -> SceneOperation {
         return DefaultValueRegistry.defaultValue(for: SceneOperation.self)
     }
     
@@ -1187,7 +1187,7 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  SceneMatcher.swift
@@ -1262,7 +1262,7 @@ class MockSceneMatcher: SceneMatcher, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-10 18:50:25 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-11 20:42:30 +0000
 
 //
 //  SceneOperation.swift
