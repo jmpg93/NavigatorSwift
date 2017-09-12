@@ -8,19 +8,8 @@
 
 import Foundation
 
-public enum ScenePresentationType: Int {
-	case push = 0
-	case modal
-	case modalInsideNavigationBar
-
-	public var value: String {
-		switch self {
-		case .modal:
-			return Delimiters.presenteAsModalValue
-		case .push:
-			return Delimiters.presentAsPushValue
-		case .modalInsideNavigationBar:
-			return Delimiters.presentAsModalWithNavigationControllerValue
-		}
-	}
+public enum ScenePresentationType: String {
+	case push = "push"
+	case modal = "modal"
+	case modalNavigation = "modalNavigation"
 }

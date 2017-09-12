@@ -23,11 +23,3 @@ class CollectionScenHandler: SceneHandler {
 		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")
 	}
 }
-
-class CollectionSceneRegisterer: SceneHandlerRegistrable {
-	let sceneHandler = CollectionScenHandler()
-
-	func sceneHandlersToRegister() -> [SceneHandler] {
-		return [sceneHandler]
-	}
-}

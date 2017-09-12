@@ -19,12 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = globalWindow
 		window?.makeKeyAndVisible()
 
-		let requestProvider = DefaultNavigationRequestProvider()
-		let request = requestProvider.navigationRequest { builder in
-			builder.appendPushScene(withName: .collection)
-		}
-
-		globalNavigator.absoluteNavigation(using: request)
+		let collection = CollectionScenHandler()
+		globalNavigator.register(collection)
+		globalNavigator.present(.collection)
 		
 		return true
 	}

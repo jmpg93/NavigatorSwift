@@ -64,7 +64,7 @@ extension NavigationRequestComponentTests {
 		//given
 		let path = "anyScene{presentAs=modalInNav;animated=true}"
 		let sut = request(name: Constants.anyScene,
-		                  mode: .modalInsideNavigationBar,
+		                  mode: .modalNavigation,
 		                  animated: true)
 		// when
 		let pathComponent = sut.pathComponent

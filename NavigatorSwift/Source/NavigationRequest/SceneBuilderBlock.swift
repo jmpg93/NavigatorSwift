@@ -1,5 +1,5 @@
 //
-//  SceneHandlerRegistrable.swift
+//  NavigationRequestBuilderBlock.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 1/9/17.
@@ -8,7 +8,5 @@
 
 import Foundation
 
-public protocol SceneHandlerRegistrable {
-	func sceneHandlersToRegister() -> [SceneHandler]
-}
+public typealias SceneBuilderBlock = (_ builder: SceneBuilder) -> Void
 

@@ -24,11 +24,3 @@ class LoginSceneHandler: SceneHandler {
 		return vc
 	}
 }
-
-class LoginSceneRegisterer: SceneHandlerRegistrable {
-	let sceneHandler = LoginSceneHandler()
-	
-	func sceneHandlersToRegister() -> [SceneHandler] {
-		return [sceneHandler]
-	}
-}

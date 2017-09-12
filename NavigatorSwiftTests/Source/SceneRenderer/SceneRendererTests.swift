@@ -67,7 +67,7 @@
 //	func testGivenSceneWithModalInsideNavigationPresentation_isViewControllerPresentedAsRequired_returnTrue() {
 //		// given
 //		let view = UIViewController()
-//		let scene = givenMockScene(view: view, type: .modalInsideNavigationBar, isViewControllerRecyclable: true)
+//		let scene = givenMockScene(view: view, type: .modalNavigation, isViewControllerRecyclable: true)
 //		let viewController = givenViewController(for: scene)
 //
 //		// when
@@ -193,7 +193,7 @@
 //			nav.present(vc, animated: false, completion: nil)
 //		case .push:
 //			nav.pushViewController(vc, animated: false)
-//		case .modalInsideNavigationBar:
+//		case .modalNavigation:
 //			nav.present(UINavigationController(rootViewController: vc), animated: false, completion: nil)
 //		}
 //

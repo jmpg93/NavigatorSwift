@@ -45,7 +45,7 @@ extension AddSceneOperation {
 			case .push:
 				navigationController?.pushViewController(newViewController, animated: animated)
 
-			case .modalInsideNavigationBar:
+			case .modalNavigation:
 				let navigationController = UINavigationController(rootViewController: newViewController)
 				navigationController.modalPresentationStyle = newViewController.modalPresentationStyle
 				navigationController.transitioningDelegate = newViewController.transitioningDelegate

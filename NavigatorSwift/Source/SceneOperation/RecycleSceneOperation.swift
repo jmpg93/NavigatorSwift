@@ -50,7 +50,7 @@ extension RecycleSceneOperation {
 			}
 		}
 
-		renderer.addOperation(scenes: scenesNotInStackYet).execute(with: completion)
+		renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
 	}
 }
 
@@ -76,7 +76,7 @@ private extension RecycleSceneOperation {
 		case .modal:
 			return viewController.presentingViewController != nil
 
-		case .modalInsideNavigationBar:
+		case .modalNavigation:
 			return viewController.navigationController != nil
 				&& viewController.navigationController?.presentingViewController != nil
 		}

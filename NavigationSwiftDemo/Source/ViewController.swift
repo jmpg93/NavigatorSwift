@@ -49,12 +49,12 @@ class ViewController: UIViewController {
 	var scenes: [[(ScenePresentationType, Bool)]] = [
 		[(.modal, true)],
 		[(.push, true)],
-		[(.modalInsideNavigationBar, true)],
+		[(.modalNavigation, true)],
 		[(.modal, true), (.modal, true)],
 		[(.modal, true), (.modal, false)],
 		[(.push, true), (.push, true)],
 		[(.push, false), (.push, true)],
-		[(.modalInsideNavigationBar, true), (.push, true)]
+		[(.modalNavigation, true), (.push, true)]
 	]
 }
 
@@ -86,7 +86,7 @@ extension ViewController: UICollectionViewDataSource {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as! Cell
 
 		let text = scenes[indexPath.row]
-			.map { "\($0.value) - \($1)" }
+			.map { "\($0) - \($1)" }
 			.reduce("") {  $0 + "\n" + $1 }
 
 		cell.sceneNameLabel.text = text
@@ -99,23 +99,19 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let sceneStack = scenes[indexPath.row]
-		let provider = DefaultNavigationRequestProvider()
-		let scene = SceneName.collection
+		let scenes = self.scenes[indexPath.item]
 
-		let request = provider.navigationRequest { builder in
-			for (presentationType, animated) in sceneStack {
+		navigator.navigateBuilding(using: { builder in
+			for (presentationType, animated) in scenes {
 				switch presentationType {
 				case .modal:
-					builder.appendModalScene(withName: scene, parameters: [:], animated: animated)
+					builder.appendModal(name: .collection, animated: animated)
 				case .push:
-					builder.appendPushScene(withName: scene, parameters: [:], animated: animated)
-				case .modalInsideNavigationBar:
-					builder.appendModalWithNavigationScene(withName: scene, parameters: [:], animated: animated)
+					builder.appendPush(name: .collection, animated: animated)
+				case .modalNavigation:
+					builder.appendModalWithNavigation(name: .collection, animated: animated)
 				}
 			}
-		}
-
-		navigator.relativeNavigation(using: request)
+		})
 	}
 }
