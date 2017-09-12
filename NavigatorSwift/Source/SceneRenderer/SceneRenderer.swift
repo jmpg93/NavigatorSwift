@@ -83,19 +83,19 @@ extension SceneRenderer {
 		return  DismissSceneOperation(scene: scene, animated: animated, renderer: self)
 	}
 
-	func installOperation(scene: Scene) -> SceneOperation {
+	func install(scene: Scene) -> SceneOperation {
 		return InstallSceneOperation(scene: scene, renderer: self)
 	}
 	
-	func dismissAllOperation(animated: Bool) -> SceneOperation {
+	func dismissAll(animated: Bool) -> SceneOperation {
 		return DismisAllViewControllerOperation(animated: animated, renderer: self)
 	}
 
-	func recycleOperation(scenes: [Scene]) -> SceneOperation {
+	func recycle(scenes: [Scene]) -> SceneOperation {
 		return RecycleSceneOperation(scenes: scenes, renderer: self)
 	}
 
-	func transitionOperation(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation {
+	func transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation {
 		return ApplyTransitionSceneOperation(delegate: delegate, toViewController: toViewController, renderer: self)
 	}
 }

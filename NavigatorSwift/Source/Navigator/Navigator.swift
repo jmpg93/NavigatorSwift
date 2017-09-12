@@ -11,29 +11,6 @@ import Foundation
 public protocol Navigator {
 	var sceneProvider: SceneProvider { get }
 	var sceneRenderer: SceneRenderer { get }
-
-	func navigate(to scene: Scene, completion: CompletionBlock?)
-	func navigate(to scenes: [Scene], completion: CompletionBlock?)
-}
-
-// MARK: - Navigating with Scenes
-
-public extension Navigator {
-	func replace(with scene: Scene, completion: CompletionBlock? = nil) {
-		replace(with: [scene], completion: completion)
-	}
-
-	func replace(with scenes: [Scene], completion: CompletionBlock? = nil) {
-		sceneRenderer.set(scenes: scenes).execute(with: completion)
-	}
-
-	func navigate(to scene: Scene, completion: CompletionBlock? = nil) {
-		navigate(to: [scene], completion: completion)
-	}
-
-	func navigate(to scenes: [Scene], completion: CompletionBlock? = nil) {
-		sceneRenderer.add(scenes: scenes).execute(with: completion)
-	}
 }
 
 // MARK: - Navigating with Scene names
@@ -74,12 +51,16 @@ public extension Navigator {
 		guard let scene = sceneProvider.scene(with: name, type: .modal, animated: animated) else { return }
 		sceneRenderer.dismiss(scene: scene, animated: animated).execute(with: completion)
 	}
+
+	func dismissAll(animated: Bool, completion: CompletionBlock? = nil) {
+		sceneRenderer.dismissAll(animated: animated).execute(with: completion)
+	}
 }
 
 // MARK: - Navigate with builder
 
 public extension Navigator {
-	func navigateBuilding(using builder: (SceneBuilder) -> Void, completion: CompletionBlock? = nil) {
+	func navigate(using builder: (SceneBuilder) -> Void, completion: CompletionBlock? = nil) {
 		let scenes = sceneProvider.scenes(with: builder)
 		navigate(to: scenes, completion: completion)
 	}
@@ -102,5 +83,36 @@ public extension Navigator {
 		for sceneHandler in sceneHandlers {
 			register(sceneHandler)
 		}
+	}
+}
+
+// MARK: - Preview Registrar
+
+public extension Navigator {
+	func preview(scene: SceneName, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> UIViewControllerPreviewingDelegate? {
+		guard let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal, animated: true)
+			else { return nil }
+
+		return Preview(handler: scene.sceneHandler, parametes: parameters, completion: completion)
+	}
+}
+
+// MARK: - Navigating with Scenes
+
+extension Navigator {
+	func replace(with scene: Scene, completion: CompletionBlock? = nil) {
+		replace(with: [scene], completion: completion)
+	}
+	
+	func replace(with scenes: [Scene], completion: CompletionBlock? = nil) {
+		sceneRenderer.set(scenes: scenes).execute(with: completion)
+	}
+	
+	func navigate(to scene: Scene, completion: CompletionBlock? = nil) {
+		navigate(to: [scene], completion: completion)
+	}
+	
+	func navigate(to scenes: [Scene], completion: CompletionBlock? = nil) {
+		sceneRenderer.add(scenes: scenes).execute(with: completion)
 	}
 }

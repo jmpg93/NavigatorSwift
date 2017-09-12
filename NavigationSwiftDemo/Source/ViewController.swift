@@ -22,6 +22,38 @@ class Cell: UICollectionViewCell {
 	}()
 }
 
+enum Presentation {
+	case presentation(ScenePresentationType)
+	case dismissFirst
+	case dismissScene
+	case dismissAll
+	case pop
+	case popToRoot
+	case deeplink
+	case preview
+
+	var value: String {
+		switch self {
+		case .pop:
+			return "pop"
+		case .popToRoot:
+			return "popToRoot"
+		case .dismissScene:
+			return "dismissScene"
+		case .dismissFirst:
+			return "dismissFirst"
+		case .dismissAll:
+			return "dismissAll"
+		case .deeplink:
+			return "deeplink"
+		case .preview:
+			return "preview"
+		case .presentation(let type):
+			return "\(type)"
+		}
+	}
+}
+
 class Layout: UICollectionViewFlowLayout {
 	override func prepare() {
 		super.prepare()
@@ -38,6 +70,8 @@ class ViewController: UIViewController {
 		static let cellIdentifier = "Cell"
 	}
 
+	var peek: UIViewControllerPreviewingDelegate?
+
 	// @IBOutlet
 	@IBOutlet weak var collectionView: UICollectionView!
 
@@ -46,15 +80,26 @@ class ViewController: UIViewController {
 		return globalNavigator
 	}()
 
-	var scenes: [[(ScenePresentationType, Bool)]] = [
-		[(.modal, true)],
-		[(.push, true)],
-		[(.modalNavigation, true)],
-		[(.modal, true), (.modal, true)],
-		[(.modal, true), (.modal, false)],
-		[(.push, true), (.push, true)],
-		[(.push, false), (.push, true)],
-		[(.modalNavigation, true), (.push, true)]
+	var scenes: [[(Presentation, Bool)]] = [
+		[(.presentation(.modal), true)],
+		[(.presentation(.push), true)],
+		[(.presentation(.modalNavigation), true)],
+		[(.presentation(.modal), true), (.presentation(.modal), true)],
+		[(.presentation(.modal), true), (.presentation(.modal), false)],
+		[(.presentation(.push), true), (.presentation(.push), true)],
+		[(.presentation(.push), false), (.presentation(.push), true)],
+		[(.presentation(.modalNavigation), true), (.presentation(.push), true)],
+		[(.pop, true)],
+		[(.pop, false)],
+		[(.popToRoot, true)],
+		[(.popToRoot, false)],
+		[(.dismissFirst, true)],
+		[(.dismissFirst, false)],
+		[(.dismissAll, true)],
+		[(.dismissAll, false)],
+		[(.dismissScene, true)],
+		[(.dismissScene, false)],
+		[(.preview, false)]
 	]
 }
 
@@ -66,6 +111,12 @@ extension ViewController {
 
 		automaticallyAdjustsScrollViewInsets = false
 		collectionView.register(Cell.self, forCellWithReuseIdentifier: Constants.cellIdentifier)
+
+		peek = navigator.preview(scene: .collection)
+
+		if( traitCollection.forceTouchCapability == .available){
+			registerForPreviewing(with: peek!, sourceView: view)
+		}
 	}
 }
 
@@ -86,7 +137,7 @@ extension ViewController: UICollectionViewDataSource {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as! Cell
 
 		let text = scenes[indexPath.row]
-			.map { "\($0) - \($1)" }
+			.map { "\($0.value) - \($1)" }
 			.reduce("") {  $0 + "\n" + $1 }
 
 		cell.sceneNameLabel.text = text
@@ -100,10 +151,28 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let scenes = self.scenes[indexPath.item]
+		let animated = scenes.first!.1
+		switch scenes.first!.0 {
+		case .pop:
+			navigator.pop(animated: animated)
+		case .popToRoot:
+			navigator.popToRoot(animated: animated)
+		case .dismissScene:
+			navigator.dismiss(.collection, animated: animated)
+		case .dismissFirst:
+			navigator.dismiss(animated: animated)
+		case .dismissAll:
+			navigator.dismissAll(animated: animated)
+		default:
+			break
+		}
 
-		navigator.navigateBuilding(using: { builder in
+		navigator.navigate(using: { builder in
 			for (presentationType, animated) in scenes {
-				switch presentationType {
+				guard case .presentation(let type) = presentationType else {
+					return
+				}
+				switch type {
 				case .modal:
 					builder.appendModal(name: .collection, animated: animated)
 				case .push:

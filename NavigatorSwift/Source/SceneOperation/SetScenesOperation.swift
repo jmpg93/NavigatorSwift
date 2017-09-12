@@ -25,9 +25,9 @@ extension SetScenesOperation {
 		guard !scenes.isEmpty else { return }
 		let firstScene = scenes.removeFirst()
 
-		let dismissOperation = renderer.dismissAllOperation(animated: false)
-		let installOperation = renderer.installOperation(scene: firstScene)
-		let recycleOperation = renderer.recycleOperation(scenes: scenes)
+		let dismissOperation = renderer.dismissAll(animated: false)
+		let installOperation = renderer.install(scene: firstScene)
+		let recycleOperation = renderer.recycle(scenes: scenes)
 
 		if isRootViewController(matching: firstScene) {
 			dismissOperation
