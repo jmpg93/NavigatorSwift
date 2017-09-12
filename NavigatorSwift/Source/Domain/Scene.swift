@@ -10,7 +10,6 @@ import Foundation
 
 public class Scene {
 	public unowned let sceneHandler: SceneHandler
-	
 	public let parameters: Parameters
 	public let type: ScenePresentationType
 	public let isAnimated: Bool

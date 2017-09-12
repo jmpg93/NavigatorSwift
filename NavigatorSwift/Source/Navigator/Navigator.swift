@@ -9,23 +9,12 @@
 import Foundation
 
 public class Navigator {
-	fileprivate let sceneMatcher: SceneMatcher
+	fileprivate let sceneMatcher = SceneMatcher()
+	fileprivate let navigationRequestProvider = NavigationRequestProvider()
 	fileprivate let sceneRenderer: SceneRenderer
-	fileprivate let navigationRequestProvider: NavigationRequestProvider
-
-	public init(sceneMatcher: SceneMatcher,
-	            sceneRenderer: SceneRenderer,
-	            sceneHandlerRegisters: SceneHandlerRegisters,
-	            navigationRequestProvider: NavigationRequestProvider) {
-		self.sceneMatcher = sceneMatcher
-		self.sceneRenderer = sceneRenderer
-		self.navigationRequestProvider = navigationRequestProvider
-
-		registerSceneHandlerRegisters(sceneHandlerRegisters.sceneHandlerRegisters)
-	}
 
 	public init(window: UIWindow, sceneHandlerRegisters: SceneHandlerRegisters) {
-		self.sceneRenderer = SceneRenderer(window: window, viewControllerContainer: NavigationBarContainer())
+		self.sceneRenderer = SceneRenderer(window: window, viewControllerContainer: )
 		self.sceneMatcher = SceneMatcher()
 		self.navigationRequestProvider = DefaultNavigationRequestProvider()
 

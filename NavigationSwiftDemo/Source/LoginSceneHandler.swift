@@ -10,7 +10,7 @@ import Foundation
 import NavigatorSwift
 
 extension SceneName {
-	static let login: SceneName = SceneName("Login")
+	static let login: SceneName = "Login"
 }
 
 class LoginSceneHandler: SceneHandler {
