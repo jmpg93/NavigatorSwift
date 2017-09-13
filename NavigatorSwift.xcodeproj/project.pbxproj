@@ -17,6 +17,7 @@
 		188DB1821F6466CF00E9024E /* OrderedSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188DB1811F6466CF00E9024E /* OrderedSceneOperation.swift */; };
 		18A4FE1E1F672D82007D8D50 /* Nav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A4FE1D1F672D82007D8D50 /* Nav.swift */; };
 		18C872071F69B81300701144 /* NavigatorPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C872061F69B81300701144 /* NavigatorPreviewing.swift */; };
+		18C8720C1F69B9ED00701144 /* SceneLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */; };
 		18F9408C1F5C9C980064D320 /* CollectionScenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */; };
 		18FFC3391F5DF00F0016FCDF /* NavigationRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFC3381F5DF00F0016FCDF /* NavigationRequestTests.swift */; };
 		6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */; };
@@ -114,6 +115,7 @@
 		188DB1811F6466CF00E9024E /* OrderedSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSceneOperation.swift; sourceTree = "<group>"; };
 		18A4FE1D1F672D82007D8D50 /* Nav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Nav.swift; path = Extensions/Nav.swift; sourceTree = "<group>"; };
 		18C872061F69B81300701144 /* NavigatorPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorPreviewing.swift; sourceTree = "<group>"; };
+		18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLinkHandler.swift; sourceTree = "<group>"; };
 		18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionScenHandler.swift; sourceTree = "<group>"; };
 		18FFC3381F5DF00F0016FCDF /* NavigationRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRequestTests.swift; sourceTree = "<group>"; };
 		6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
@@ -228,15 +230,39 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		18C872081F69B9B500701144 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				183A1F831F688223005550C1 /* Preview.swift */,
+				18C872061F69B81300701144 /* NavigatorPreviewing.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		18C872091F69B9C200701144 /* Navigators */ = {
+			isa = PBXGroup;
+			children = (
+				1810B16F1F685423003B9CA0 /* NavNavigator.swift */,
+				1810B1711F685E9B003B9CA0 /* TabNavigator.swift */,
+			);
+			path = Navigators;
+			sourceTree = "<group>";
+		};
+		18C8720A1F69B9E000701144 /* SceneLink */ = {
+			isa = PBXGroup;
+			children = (
+				18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */,
+			);
+			path = SceneLink;
+			sourceTree = "<group>";
+		};
 		18FB82EB1F5D563E00E08E0E /* Navigator */ = {
 			isa = PBXGroup;
 			children = (
-				18A4FE1C1F672D72007D8D50 /* Extensions */,
 				6CC4FA981F5AD190003B748A /* Navigator.swift */,
-				18C872061F69B81300701144 /* NavigatorPreviewing.swift */,
-				183A1F831F688223005550C1 /* Preview.swift */,
-				1810B16F1F685423003B9CA0 /* NavNavigator.swift */,
-				1810B1711F685E9B003B9CA0 /* TabNavigator.swift */,
+				18A4FE1C1F672D72007D8D50 /* Extensions */,
+				18C872081F69B9B500701144 /* Preview */,
+				18C872091F69B9C200701144 /* Navigators */,
 			);
 			path = Navigator;
 			sourceTree = "<group>";
@@ -330,18 +356,19 @@
 				6CC4FA951F5AC995003B748A /* SceneMatcher */,
 				6C27A9701F5A093000311918 /* SceneHandler */,
 				6C27A9711F5A094500311918 /* SceneRenderer */,
-				6C27A96D1F59E3A500311918 /* NavigationRequest */,
+				18C8720A1F69B9E000701144 /* SceneLink */,
+				6C27A96D1F59E3A500311918 /* SceneBuilder */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		6C27A96D1F59E3A500311918 /* NavigationRequest */ = {
+		6C27A96D1F59E3A500311918 /* SceneBuilder */ = {
 			isa = PBXGroup;
 			children = (
 				6C27A95B1F59E2C100311918 /* SceneBuilderBlock.swift */,
 				6C27A9651F59E33200311918 /* SceneBuilder.swift */,
 			);
-			path = NavigationRequest;
+			path = SceneBuilder;
 			sourceTree = "<group>";
 		};
 		6C27A96F1F5A090600311918 /* Domain */ = {
@@ -668,6 +695,7 @@
 				6CA594861F631A9E00CF37AB /* AddSceneOperation.swift in Sources */,
 				6CA594931F6331AA00CF37AB /* DismissSceneOperation.swift in Sources */,
 				6CA594821F631A7600CF37AB /* InstallSceneOperation.swift in Sources */,
+				18C8720C1F69B9ED00701144 /* SceneLinkHandler.swift in Sources */,
 				6CA5948A1F63239600CF37AB /* PopSceneOperation.swift in Sources */,
 				6C27A95C1F59E2C100311918 /* SceneBuilderBlock.swift in Sources */,
 			);

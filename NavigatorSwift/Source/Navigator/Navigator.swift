@@ -66,9 +66,12 @@ public extension Navigator {
 	}
 }
 
+// MARK: - SceneHandler Registrar
+
 public extension Navigator {
 	func deepLink(url: URL, completion: CompletionBlock? = nil) {
-
+		let builder = deepLinkBuilder(for: url)
+		navigate(using: builder, completion: completion)
 	}
 }
 
@@ -102,6 +105,17 @@ public extension Navigator {
 // MARK: - Navigating with Scenes
 
 extension Navigator {
+	var sceneLinkHandler: SceneLinkHandler {
+		return SceneLinkHandler()
+	}
+
+	func deepLinkBuilder(for url: URL) -> (SceneBuilder) -> Void {
+		return { builder in
+			let scenes = self.sceneLinkHandler.scenes(from: url)
+			scenes.forEach { builder.appendModal(name: $0) }
+		}
+	}
+
 	func replace(with scene: Scene, completion: CompletionBlock? = nil) {
 		replace(with: [scene], completion: completion)
 	}

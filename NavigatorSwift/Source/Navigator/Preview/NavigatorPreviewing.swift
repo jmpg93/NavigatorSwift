@@ -14,7 +14,7 @@ public protocol NavigatorPreviewing: class {
 
 public extension NavigatorPreviewing where Self: Navigator {
 	func preview(from fromViewController: UIViewController, for scene: SceneName, at sourceView: UIView, parameters: Parameters = [:]) {
-		guard let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal) else { return }
+		guard let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .push) else { return }
 		let preview = Preview(handler: scene.sceneHandler, fromViewController: fromViewController)
 		let viewControllerPreviewing = fromViewController.registerForPreviewing(with: preview, sourceView: sourceView)
 		previews[sourceView] = (preview, viewControllerPreviewing)
