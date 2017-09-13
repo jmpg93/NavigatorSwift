@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Navigator {
+public protocol Navigator: class {
 	var sceneProvider: SceneProvider { get }
 	var sceneRenderer: SceneRenderer { get }
 }
@@ -67,7 +67,7 @@ public extension Navigator {
 }
 
 public extension Navigator {
-	func deepLink(url: URL, completion: CompletionBlock?) {
+	func deepLink(url: URL, completion: CompletionBlock? = nil) {
 
 	}
 }
@@ -86,14 +86,16 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Preview Registrar
+// MARK: - Preview
 
 public extension Navigator {
-	func preview(scene: SceneName, parameters: Parameters = [:], completion: CompletionBlock? = nil) -> UIViewControllerPreviewingDelegate? {
-		guard let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal, animated: true)
-			else { return nil }
+	func view(for scene: SceneName, parameters: Parameters = [:]) -> UIViewController? {
+		guard let scene = sceneProvider.scene(with: scene,
+		                                      parameters: parameters,
+		                                      type: .modal,
+		                                      animated: true) else { return nil }
 
-		return Preview(handler: scene.sceneHandler, parametes: parameters, completion: completion)
+		return scene.sceneHandler._buildViewController(with: parameters)
 	}
 }
 

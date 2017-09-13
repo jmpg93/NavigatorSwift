@@ -8,4 +8,4 @@
 
 import Foundation
 
-public typealias Parameters = [SceneName: Any]
+public typealias Parameters = [String: Any]

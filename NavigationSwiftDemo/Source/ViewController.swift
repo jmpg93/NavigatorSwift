@@ -76,7 +76,7 @@ class ViewController: UIViewController {
 	@IBOutlet weak var collectionView: UICollectionView!
 
 	// Properties
-	fileprivate lazy var navigator: Navigator = {
+	fileprivate lazy var navigator: NavNavigator = {
 		return globalNavigator
 	}()
 
@@ -111,12 +111,6 @@ extension ViewController {
 
 		automaticallyAdjustsScrollViewInsets = false
 		collectionView.register(Cell.self, forCellWithReuseIdentifier: Constants.cellIdentifier)
-
-		peek = navigator.preview(scene: .collection)
-
-		if( traitCollection.forceTouchCapability == .available){
-			registerForPreviewing(with: peek!, sourceView: view)
-		}
 	}
 }
 
@@ -139,8 +133,14 @@ extension ViewController: UICollectionViewDataSource {
 		let text = scenes[indexPath.row]
 			.map { "\($0.value) - \($1)" }
 			.reduce("") {  $0 + "\n" + $1 }
-
+		
 		cell.sceneNameLabel.text = text
+
+		if text.contains("preview") {
+			navigator.preview(from: self, for: .collection, at: cell)
+		} else {
+			navigator.removePreview(at: cell)
+		}
 
 		return cell
 	}

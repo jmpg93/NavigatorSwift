@@ -8,26 +8,31 @@
 
 import Foundation
 
-class Preview: NSObject {
+public class Preview: NSObject {
 	fileprivate let handler: SceneHandler
 	fileprivate let parametes: Parameters
 	fileprivate let completion: CompletionBlock?
+	let fromViewController: UIViewController
 
-	init(handler: SceneHandler, parametes: Parameters = [:], completion: CompletionBlock? = nil) {
+	init(handler: SceneHandler,
+	     parametes: Parameters = [:],
+	     fromViewController: UIViewController,
+	     completion: CompletionBlock? = nil) {
 		self.handler = handler
 		self.parametes = parametes
 		self.completion = completion
+		self.fromViewController = fromViewController
 	}
 }
 
 extension Preview: UIViewControllerPreviewingDelegate {
-	func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+	public func previewingContext(_ previewingContext: UIViewControllerPreviewing,
 	                       viewControllerForLocation location: CGPoint) -> UIViewController? {
 		return handler._buildViewController(with: parametes)
 	}
 
-	func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+	public func previewingContext(_ previewingContext: UIViewControllerPreviewing,
 	                       commit viewControllerToCommit: UIViewController) {
-		completion?()
+		fromViewController.show(viewControllerToCommit, sender: nil)
 	}
 }

@@ -8,9 +8,11 @@
 
 import Foundation
 
-public class TabNavigator: Navigator {
+public class TabNavigator: Navigator, NavigatorPreviewing {
 	public let sceneProvider = SceneProvider()
 	public let sceneRenderer: SceneRenderer
+
+	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
 
 	public init(window: UIWindow) {
 		sceneRenderer = SceneRenderer(window: window, viewControllerContainer: TabBarContainer())

@@ -8,10 +8,12 @@
 
 import Foundation
 
-public class NavNavigator: Navigator {
+public class NavNavigator: Navigator, NavigatorPreviewing {
 	public let sceneProvider = SceneProvider()
 	public let sceneRenderer: SceneRenderer
 
+	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
+	
 	public init(window: UIWindow) {
 		sceneRenderer = SceneRenderer(window: window, viewControllerContainer: NavigationBarContainer())
 	}
