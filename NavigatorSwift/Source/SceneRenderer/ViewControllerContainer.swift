@@ -31,8 +31,8 @@ extension ViewControllerContainer {
 	func firstLevelNavigationController(matching scene: Scene) -> UINavigationController? {
 		return firstLevelNavigationControllers
 			.flatMap { $0.viewControllers.first }
-			.flatMap { $0 as? UINavigationController }
 			.filter { scene.sceneHandler.name.value == $0.sceneName }
+			.flatMap { $0.navigationController }
 			.first
 	}
 }

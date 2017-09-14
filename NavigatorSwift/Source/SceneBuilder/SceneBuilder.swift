@@ -11,6 +11,7 @@ import Foundation
 public class SceneBuilder {
 	fileprivate(set) var scenes: [Scene] = []
 	fileprivate let sceneProvider: SceneProvider
+	fileprivate(set) var absolutely = false
 
 	public init(using builderBlock: SceneBuilderBlock, sceneProvider: SceneProvider) {
 		self.sceneProvider = sceneProvider
@@ -35,6 +36,14 @@ public extension SceneBuilder {
 
 	func appendModalWithNavigation(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
 		appendScene(name: name, type: .modalNavigation, parameters: parameters, animated: animated)
+	}
+
+	func navigateAbsolutely() {
+		absolutely = true
+	}
+
+	func navigateRelatively() {
+		absolutely = false
 	}
 }
 

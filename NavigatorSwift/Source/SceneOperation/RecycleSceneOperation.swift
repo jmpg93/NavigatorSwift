@@ -25,6 +25,7 @@ class RecycleSceneOperation: SceneOperation {
 // MARK: SceneOperation methods
 
 extension RecycleSceneOperation {
+	//FIXME: Not working
 	func execute(with completion: CompletionBlock?) {
 		guard !scenes.isEmpty else { return }
 
@@ -36,9 +37,12 @@ extension RecycleSceneOperation {
 		guard let navigationControllerToRecycle = viewControllerContainer.firstLevelNavigationController(matching: firstSceneNotInStack) else { return }
 		renderer.setSelectedViewController(navigationControllerToRecycle)
 
-		//TODO: Fix this
+		var shouldRecycle = true
+
 		var finalViewControllers: [UIViewController] = []
-		for (_, viewControllerToRecycle) in navigationControllerToRecycle.viewControllers.enumerated() {
+		for (index, viewControllerToRecycle) in navigationControllerToRecycle.viewControllers.enumerated() where shouldRecycle {
+			guard index + 1 < scenesNotInStackYet.count else { break }
+
 			let searchingScene = scenesNotInStackYet.first!
 
 			if isViewController(viewControllerToRecycle, recyclableBy: searchingScene) {
@@ -46,11 +50,15 @@ extension RecycleSceneOperation {
 				searchingScene.sceneHandler.reload(viewControllerToRecycle, parameters: searchingScene.parameters)
 				scenesNotInStackYet.remove(at: 0)
 			} else {
-
+				shouldRecycle = false
 			}
 		}
 
-		renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
+		if shouldRecycle {
+			renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
+		} else {
+			renderer.set(scenes: scenes).execute(with: completion)
+		}
 	}
 }
 

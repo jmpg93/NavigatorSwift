@@ -61,31 +61,22 @@ public extension Navigator {
 
 public extension Navigator {
 	func navigate(using builder: (SceneBuilder) -> Void, completion: CompletionBlock? = nil) {
-		let scenes = sceneProvider.scenes(with: builder)
-		navigate(to: scenes, completion: completion)
+		let (scenes, navigateAbsolutly) = sceneProvider.scenes(with: builder)
+		
+		if navigateAbsolutly {
+			replace(with: scenes, completion: completion)
+		} else {
+			navigate(to: scenes, completion: completion)
+		}
 	}
 }
 
-// MARK: - SceneHandler Registrar
+// MARK: - Deeplink
 
 public extension Navigator {
 	func deepLink(url: URL, completion: CompletionBlock? = nil) {
 		let builder = deepLinkBuilder(for: url)
 		navigate(using: builder, completion: completion)
-	}
-}
-
-// MARK: - SceneHandler Registrar
-
-public extension Navigator {
-	func register(_ sceneHandler: SceneHandler) {
-		sceneProvider.registerScene(for: sceneHandler)
-	}
-
-	func register(_ sceneHandlers: [SceneHandler]) {
-		for sceneHandler in sceneHandlers {
-			register(sceneHandler)
-		}
 	}
 }
 
@@ -99,6 +90,21 @@ public extension Navigator {
 		                                      animated: true) else { return nil }
 
 		return scene.sceneHandler._buildViewController(with: parameters)
+	}
+}
+
+
+// MARK: - SceneHandler Registrar
+
+public extension Navigator {
+	func register(_ sceneHandler: SceneHandler) {
+		sceneProvider.registerScene(for: sceneHandler)
+	}
+
+	func register(_ sceneHandlers: [SceneHandler]) {
+		for sceneHandler in sceneHandlers {
+			register(sceneHandler)
+		}
 	}
 }
 

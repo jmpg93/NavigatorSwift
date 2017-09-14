@@ -24,6 +24,7 @@ class Cell: UICollectionViewCell {
 
 enum Presentation {
 	case presentation(ScenePresentationType)
+	case set([SceneName])
 	case dismissFirst
 	case dismissScene
 	case dismissAll
@@ -50,6 +51,8 @@ enum Presentation {
 			return "preview"
 		case .presentation(let type):
 			return "\(type)"
+		case .set(let scenes):
+			return "set [\(scenes.reduce("", { $1.value + ", " + $0 }))]"
 		}
 	}
 }
@@ -99,7 +102,8 @@ class ViewController: UIViewController {
 		[(.dismissAll, false)],
 		[(.dismissScene, true)],
 		[(.dismissScene, false)],
-		[(.preview, false)]
+		[(.preview, false)],
+		[(.set([.collection, .collection]), true)]
 	]
 }
 
@@ -169,17 +173,26 @@ extension ViewController: UICollectionViewDelegate {
 
 		navigator.navigate(using: { builder in
 			for (presentationType, animated) in scenes {
-				guard case .presentation(let type) = presentationType else {
-					return
+
+				switch presentationType {
+				case .presentation(let type):
+					switch type {
+					case .modal:
+						builder.appendModal(name: .collection, animated: animated)
+					case .push:
+						builder.appendPush(name: .collection, animated: animated)
+					case .modalNavigation:
+						builder.appendModalWithNavigation(name: .collection, animated: animated)
+					}
+				case .set(let scenes):
+					for setScene in scenes {
+						builder.appendModal(name: setScene, animated: animated)
+					}
+					builder.navigateAbsolutely()
+				default:
+					break
 				}
-				switch type {
-				case .modal:
-					builder.appendModal(name: .collection, animated: animated)
-				case .push:
-					builder.appendPush(name: .collection, animated: animated)
-				case .modalNavigation:
-					builder.appendModalWithNavigation(name: .collection, animated: animated)
-				}
+
 			}
 		})
 	}

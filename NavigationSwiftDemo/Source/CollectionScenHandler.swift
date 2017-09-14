@@ -22,4 +22,8 @@ class CollectionScenHandler: SceneHandler {
 	func buildViewController(with parameters: Parameters) -> UIViewController {
 		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController")
 	}
+
+	var isViewControllerRecyclable: Bool {
+		return true
+	}
 }

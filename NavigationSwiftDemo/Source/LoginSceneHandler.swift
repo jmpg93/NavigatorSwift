@@ -23,4 +23,8 @@ class LoginSceneHandler: SceneHandler {
 		vc.view.backgroundColor = .red
 		return vc
 	}
+
+	var isViewControllerRecyclable: Bool {
+		return true
+	}
 }

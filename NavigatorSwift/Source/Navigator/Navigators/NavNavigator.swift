@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class NavNavigator: Navigator, NavigatorPreviewing {
+final public class NavNavigator: Navigator, NavigatorPreviewing {
 	public let sceneProvider = SceneProvider()
 	public let sceneRenderer: SceneRenderer
 
