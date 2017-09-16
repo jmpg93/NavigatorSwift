@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 open class ViewController: UIViewController {
-
-    @IBOutlet weak var collectionView: UICollectionView!
+	open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+		super.dismiss(animated: flag, completion: completion)
+	}
 }
 
 open class Window: UIWindow {

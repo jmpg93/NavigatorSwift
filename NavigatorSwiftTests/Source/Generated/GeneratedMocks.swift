@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-16 21:39:41 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-16 22:02:51 +0000
 
 //
 //  Scene.swift
@@ -73,7 +73,7 @@ class MockScene: Scene, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-16 21:39:41 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-16 22:02:51 +0000
 
 //
 //  SceneHandler.swift
@@ -249,7 +249,7 @@ class MockSceneHandler: SceneHandler, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-16 21:39:41 +0000
+// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-16 22:02:51 +0000
 
 //
 //  ViewController.swift
@@ -279,21 +279,21 @@ class MockViewController: ViewController, Cuckoo.Mock {
     }
 
     
-    // ["name": "collectionView", "accesibility": "", "@type": "InstanceVariable", "type": "UICollectionView!", "isReadOnly": false]
-     override var collectionView: UICollectionView! {
-        get {
-            return cuckoo_manager.getter("collectionView", original: observed.map { o in return { () -> UICollectionView! in o.collectionView }})
-        }
+
+    
+
+    
+    public override func dismiss(animated flag: Bool, completion: (() -> Void)?)  {
         
-        set {
-            cuckoo_manager.setter("collectionView", value: newValue, original: observed != nil ? { self.observed?.collectionView = $0 } : nil)
-        }
+        return cuckoo_manager.call("dismiss(animated: Bool, completion: (() -> Void)?)",
+            parameters: (flag, completion),
+            original: observed.map { o in
+                return { (flag: Bool, completion: (() -> Void)?) in
+                    o.dismiss(animated: flag, completion: completion)
+                }
+            })
         
     }
-    
-
-    
-
     
 
     struct __StubbingProxy_ViewController: Cuckoo.StubbingProxy {
@@ -303,10 +303,11 @@ class MockViewController: ViewController, Cuckoo.Mock {
             self.cuckoo_manager = manager
         }
         
-        var collectionView: Cuckoo.ToBeStubbedProperty<UICollectionView?> {
-            return .init(manager: cuckoo_manager, name: "collectionView")
-        }
         
+        func dismiss<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(animated flag: M1, completion: M2) -> Cuckoo.StubNoReturnFunction<(Bool, (() -> Void)?)> where M1.MatchedType == Bool, M2.MatchedType == (() -> Void)? {
+            let matchers: [Cuckoo.ParameterMatcher<(Bool, (() -> Void)?)>] = [wrap(matchable: flag) { $0.0 }, wrap(matchable: completion) { $0.1 }]
+            return .init(stub: cuckoo_manager.createStub("dismiss(animated: Bool, completion: (() -> Void)?)", parameterMatchers: matchers))
+        }
         
     }
 
@@ -323,11 +324,13 @@ class MockViewController: ViewController, Cuckoo.Mock {
         }
 
         
-        var collectionView: Cuckoo.VerifyProperty<UICollectionView?> {
-            return .init(manager: cuckoo_manager, name: "collectionView", callMatcher: callMatcher, sourceLocation: sourceLocation)
-        }
-        
 
+        
+        @discardableResult
+        func dismiss<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(animated flag: M1, completion: M2) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == Bool, M2.MatchedType == (() -> Void)? {
+            let matchers: [Cuckoo.ParameterMatcher<(Bool, (() -> Void)?)>] = [wrap(matchable: flag) { $0.0 }, wrap(matchable: completion) { $0.1 }]
+            return cuckoo_manager.verify("dismiss(animated: Bool, completion: (() -> Void)?)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
         
     }
 
@@ -336,18 +339,13 @@ class MockViewController: ViewController, Cuckoo.Mock {
 
  class ViewControllerStub: ViewController {
     
-     override var collectionView: UICollectionView! {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (UICollectionView!).self)
-        }
-        
-        set { }
-        
+
+    
+
+    
+    public override func dismiss(animated flag: Bool, completion: (() -> Void)?)  {
+        return DefaultValueRegistry.defaultValue(for: Void.self)
     }
-    
-
-    
-
     
 }
 
@@ -469,7 +467,7 @@ class MockWindow: Window, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-16 21:39:41 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-16 22:02:51 +0000
 
 //
 //  ViewControllerContainer.swift
@@ -641,7 +639,7 @@ class MockViewControllerContainer: ViewControllerContainer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-16 21:39:41 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-16 22:02:51 +0000
 
 //
 //  SceneRenderer.swift
@@ -1089,7 +1087,7 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-16 21:39:41 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-16 22:02:51 +0000
 
 //
 //  SceneMatcher.swift
@@ -1164,7 +1162,7 @@ class MockSceneProvider: SceneProvider, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-16 21:39:41 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-16 22:02:51 +0000
 
 //
 //  SceneOperation.swift

@@ -86,7 +86,7 @@ public class SceneRenderer: VisibleViewControllerFindable {
 	}
 
 	func dismissAll(animated: Bool) -> SceneOperation {
-		return DismisAllOperation(animated: animated, renderer: self)
+		return DismissAllOperation(animated: animated, renderer: self)
 	}
 
 	func recycle(scenes: [Scene]) -> SceneOperation {
