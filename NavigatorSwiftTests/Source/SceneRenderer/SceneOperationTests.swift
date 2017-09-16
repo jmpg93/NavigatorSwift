@@ -37,12 +37,12 @@ extension SceneOperationTests {
 		return mockViewControllerContainer
 	}
 
-	func givenMockSceneRenderer(window: UIWindow, root: UIViewController, scene: SceneName? = nil) -> MockSceneRenderer {
+	func givenMockSceneRenderer(window: UIWindow, root: UINavigationController, scene: SceneName? = nil) -> MockSceneRenderer {
 		if let scene = scene {
-			root.sceneName = scene.value
+			root.visibleViewController!.sceneName = scene.value
 		}
-		let nav = UINavigationController(rootViewController: root)
-		let mockContainer = givenMockViewControllerContainer(root: nav)
+
+		let mockContainer = givenMockViewControllerContainer(root: root)
 
 		let mockSceneRenderer = MockSceneRenderer(window: window, viewControllerContainer: mockContainer)
 
@@ -51,7 +51,7 @@ extension SceneOperationTests {
 			when(stubRenderer.install(scene: any())).thenReturn(mockInstallOperation)
 			when(stubRenderer.recycle(scenes: any())).thenReturn(mockRecycleOperation)
 
-			when(stubRenderer.rootViewController.get).thenReturn(nav)
+			when(stubRenderer.rootViewController.get).thenReturn(root)
 			when(stubRenderer.visibleNavigationController.get).thenReturn(mockContainer.visibleNavigationController)
 			when(stubRenderer.viewControllerContainer.get).thenReturn(mockContainer)
 			when(stubRenderer.viewControllerContainer.set(any())).then { container in

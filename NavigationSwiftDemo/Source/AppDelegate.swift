@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let collection = CollectionScenHandler()
 		
 		globalNavigator.register(collection)
-		globalNavigator.present(.collection)
+		globalNavigator.root(scene: .collection)
 		
 		return true
 	}

@@ -18,7 +18,7 @@ protocol SceneOperationsFactory {
 	func popToRootOperation(with renderer: SceneRenderer, animated: Bool) -> SceneOperation
 	func popOperation(with renderer: SceneRenderer, animated: Bool) -> SceneOperation
 	func recycleOperation(with renderer: SceneRenderer, scenes: [Scene]) -> SceneOperation
-	func transitionOperation(with renderer: SceneRenderer, delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation
+	func transitionOperation(with renderer: SceneRenderer, scene: Scene, transition: Transition) -> SceneOperation
 }
 
 struct DefaultSceneOperationFactory: SceneOperationsFactory {
@@ -58,7 +58,7 @@ struct DefaultSceneOperationFactory: SceneOperationsFactory {
 		return RecycleSceneOperation(scenes: scenes, renderer: renderer)
 	}
 
-	func transitionOperation(with renderer: SceneRenderer, delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation {
-		return ApplyTransitionSceneOperation(delegate: delegate, toViewController: toViewController, renderer: renderer)
+	func transitionOperation(with renderer: SceneRenderer, scene: Scene, transition: Transition) -> SceneOperation {
+		return ApplyTransitionSceneOperation(transition: transition, to: scene, renderer: renderer)
 	}
 }

@@ -21,9 +21,10 @@ extension InstallSceneOperationTest {
 	func testGivenNoRootScene_installScene_setRootViewController() {
 		//given
 		let view = UIViewController()
+		let nav = UINavigationController(rootViewController: view)
 		let name = Constants.anyScene
 		let window = Window()
-		let mockRenderer = givenMockSceneRenderer(window: window, root: view)
+		let mockRenderer = givenMockSceneRenderer(window: window, root: nav)
 		let mockScene = givenMockScene(name: name, view: view, type: .push)
 		// when
 		sut = InstallSceneOperation(scene: mockScene, renderer: mockRenderer)

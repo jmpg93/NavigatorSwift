@@ -14,6 +14,8 @@ class Scene {
 	let type: ScenePresentationType
 	let isAnimated: Bool
 
+	var transition: Transition? = nil
+	
 	init(sceneHandler: SceneHandler,
 	     parameters: Parameters,
 	     type typePresentation: ScenePresentationType,

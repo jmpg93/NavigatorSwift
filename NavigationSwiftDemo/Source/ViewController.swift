@@ -25,6 +25,7 @@ class Cell: UICollectionViewCell {
 enum Presentation {
 	case presentation(ScenePresentationType)
 	case set([SceneName])
+	case transition
 	case dismissFirst
 	case dismissScene
 	case dismissAll
@@ -51,6 +52,8 @@ enum Presentation {
 			return "preview"
 		case .presentation(let type):
 			return "\(type)"
+		case .transition:
+			return "transition"
 		case .set(let scenes):
 			return "set [\(scenes.reduce("", { $1.value + ", " + $0 }))]"
 		}
@@ -73,7 +76,7 @@ class ViewController: UIViewController {
 		static let cellIdentifier = "Cell"
 	}
 
-	var peek: UIViewControllerPreviewingDelegate?
+	let transition = CircularTransitionAnimation()
 
 	// @IBOutlet
 	@IBOutlet weak var collectionView: UICollectionView!
@@ -103,7 +106,8 @@ class ViewController: UIViewController {
 		[(.dismissScene, true)],
 		[(.dismissScene, false)],
 		[(.preview, false)],
-		[(.set([.collection, .collection]), true)]
+		[(.set([.collection, .collection]), true)],
+		[(.transition, true)]
 	]
 }
 
@@ -167,6 +171,8 @@ extension ViewController: UICollectionViewDelegate {
 			navigator.dismiss(animated: animated)
 		case .dismissAll:
 			navigator.dismissAll(animated: animated)
+		case .transition:
+			navigator.transition(to: .collection, with: transition)
 		default:
 			break
 		}

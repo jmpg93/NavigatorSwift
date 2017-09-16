@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+open class NavigationController: UINavigationController {
+	open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+		super.dismiss(animated: flag, completion: completion)
+	}
+}
+
 open class ViewController: UIViewController {
 	open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 		super.dismiss(animated: flag, completion: completion)

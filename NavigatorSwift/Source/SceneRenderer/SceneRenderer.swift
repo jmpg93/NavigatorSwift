@@ -93,7 +93,7 @@ public class SceneRenderer: VisibleViewControllerFindable {
 		return RecycleSceneOperation(scenes: scenes, renderer: self)
 	}
 
-	func transition(delegate: UIViewControllerTransitioningDelegate, toViewController: UIViewController) -> SceneOperation {
-		return ApplyTransitionSceneOperation(delegate: delegate, toViewController: toViewController, renderer: self)
+	func transition(_ transition: Transition, to scene: Scene) -> SceneOperation {
+		return ApplyTransitionSceneOperation(transition: transition, to: scene, renderer: self)
 	}
 }

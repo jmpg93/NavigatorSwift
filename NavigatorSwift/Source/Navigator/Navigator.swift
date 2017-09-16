@@ -13,6 +13,15 @@ public protocol Navigator: class {
 	var sceneRenderer: SceneRenderer { get }
 }
 
+// MARK: - Set root with Scene names
+
+public extension Navigator {
+	func root(scene: SceneName, parameters: Parameters = [:]) {
+		guard let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal) else { return }
+		sceneRenderer.set(scenes: [scene]).execute(with: nil)
+	}
+}
+
 // MARK: - Navigating with Scene names
 
 public extension Navigator {
@@ -80,6 +89,21 @@ public extension Navigator {
 	}
 }
 
+// MARK: - Transition
+
+public extension Navigator {
+	func transition(to scene: SceneName, parameters: Parameters = [:], with transition: Transition, completion: CompletionBlock? = nil) {
+		guard let scene = sceneProvider.scene(with: scene,
+		                                      parameters: parameters,
+		                                      type: .push,
+		                                      animated: true) else { return }
+
+
+		sceneRenderer.transition(transition, to: scene).execute(with: completion)
+	}
+}
+
+
 // MARK: - Preview
 
 public extension Navigator {
@@ -92,7 +116,6 @@ public extension Navigator {
 		return scene.sceneHandler._buildViewController(with: parameters)
 	}
 }
-
 
 // MARK: - SceneHandler Registrar
 
