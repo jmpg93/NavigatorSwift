@@ -20,54 +20,19 @@ class InstallSceneOperationTest: SceneOperationTests {
 extension InstallSceneOperationTest {
 	func testGivenNoRootScene_installScene_setRootViewController() {
 		//given
-		givenStubbedSceneHandler()
-		givenStubbedViewControllerContainer()
-		sut = givenSUT(with: mockScene)
-		
+		let view = UIViewController()
+		let name = Constants.anyScene
+		let window = Window()
+		let mockRenderer = givenMockSceneRenderer(window: window, root: view)
+		let mockScene = givenMockScene(name: name, view: view, type: .push)
 		// when
+		sut = InstallSceneOperation(scene: mockScene, renderer: mockRenderer)
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertEqual(Constants.anyView, sceneRenderer.visibleNavigationController.visibleViewController)
-	}
-
-	func testGivenRootScene_installScene_setRootViewController() {
-		//given
-		givenStubbedSceneHandler()
-		givenStubbedViewControllerContainer()
-		givenRootScene()
-		let anotherScene = givenMockScene(name: Constants.anyOtherScene, view: Constants.anyOtherView)
-
-		sut = givenSUT(with: anotherScene)
-
-		// when
-		sut.execute(with: nil)
-
-		// then
-		XCTAssertEqual(Constants.anyOtherView, sceneRenderer.visibleNavigationController.visibleViewController)
-	}
-
-	func testGivenNoRootSceneAndViewControllerContainer_installScene_setRootContainer() {
-		//given
-		let container = UINavigationController()
-		givenStubbedSceneHandler(builded: container)
-		givenStubbedViewControllerContainer()
-
-		sut = givenSUT(with: mockScene)
-
-		// when
-		sut.execute(with: nil)
-
-		// then
-		XCTAssertEqual(container, sceneRenderer.viewControllerContainer as! UINavigationController)
-	}
-}
-
-// MARK: Helpers
-
-extension InstallSceneOperationTest {
-	func givenSUT(with scenes: Scene) -> InstallSceneOperation {
-		return InstallSceneOperation(scene: scenes, renderer: sceneRenderer)
+		XCTAssertEqual(mockRenderer.visibleNavigationController, view.navigationController!)
+		XCTAssertTrue(window.didCallMakeKeyAndVisible)
+		XCTAssertNotNil(window.rootViewController)
 	}
 }
 

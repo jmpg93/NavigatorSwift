@@ -15,17 +15,9 @@ open class ViewController: UIViewController {
 }
 
 open class Window: UIWindow {
-	override open var rootViewController: UIViewController? {
-		get {
-			return super.rootViewController
-		}
-
-		set {
-			super.rootViewController = newValue
-		}
-	}
+	var didCallMakeKeyAndVisible: Bool = false
 
 	override open func makeKeyAndVisible() {
-
+		didCallMakeKeyAndVisible = true
 	}
 }

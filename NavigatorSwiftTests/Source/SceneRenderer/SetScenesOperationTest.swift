@@ -13,75 +13,85 @@ import Cuckoo
 class SetScenesOperationTest: SceneOperationTests {
 	// Class under test
 	fileprivate var sut: SetScenesOperation!
-
-	lazy var mockInstallOperation: MockSceneOperation = self.givenMockOperation()
-	lazy var mockDismissOperation: MockSceneOperation = self.givenMockOperation()
-	lazy var mockRecycleOperation: MockSceneOperation = self.givenMockOperation()
 }
 
 extension SetScenesOperationTest {
 	func testGivenNoScenes_changeStackOneScene_DoNothing() {
 		// given
-		sut = givenSUT()
+		sut = givenSUT(with: [], root: UIViewController(), window: Window())
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		verifyNoMoreInteractions(mockDismissOperation)
+		verifyNoMoreInteractions(mockDismissAllOperation)
 		verifyNoMoreInteractions(mockRecycleOperation)
 		verifyNoMoreInteractions(mockInstallOperation)
 	}
 
 	func testGivenAnySceneNoRootViewController_changeStackOneScene_installStack() {
 		// given
-		sut = givenSUT(with: [mockScene])
+		let mockScenes = givenMockScenes()
+		let	window = Window()
+		let view = UIViewController()
+		sut = givenSUT(with: mockScenes, root: view, window: window)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		verify(mockDismissOperation).execute(with: any())
+		verify(mockDismissAllOperation).execute(with: any())
 		verify(mockInstallOperation).execute(with: any())
 		verify(mockRecycleOperation).execute(with: any())
 	}
 
+
 	func testGivenAnySceneRootViewController_changeStackOneScene_installStack() {
 		// given
-		let root = UINavigationController(rootViewController: Constants.anyView)
-		let scene = givenMockScene(view: root)
-		sut = givenSUT(with: [scene], rootViewController: root)
+		let root = UIViewController()
+		let view = UIViewController()
+		let scene = Constants.anyScene
+		let mockScene = givenMockScene(name: scene, view: view, type: .modal)
+		sut = givenSUT(with: [mockScene], root: root, scene: scene, window: Window())
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		verify(mockDismissOperation).execute(with: any())
+		verify(mockDismissAllOperation).execute(with: any())
 		verify(mockRecycleOperation).execute(with: any())
 		verifyNoMoreInteractions(mockInstallOperation)
 	}
 
+
 	func testGivenRootScene_isRootViewController_returnTrue() {
-		//given
-		let rootScene = givenRootScene()
-		sut = givenSUT()
+		// given
+		let root = UIViewController()
+		let view = UIViewController()
+		let rootScene = Constants.anyScene
+		let mockScene = givenMockScene(name: rootScene, view: view, type: .modal)
+		sut = givenSUT(with: [mockScene], root: root, scene: rootScene, window: Window())
 		
 		// when
-		let isRoot = sut.isRootViewController(matching: rootScene)
+		let isRoot = sut.isRootViewController(matching: mockScene)
 
 		// then
 		XCTAssertTrue(isRoot)
 	}
 
-	func testGivenRootScene_isRootViewControllerWithAnotherScene_returnFalse() {
-		//given
-		givenRootScene()
-		let anotherScene = givenMockScene(name: Constants.anyOtherScene, view: Constants.anyOtherView)
 
-		sut = givenSUT(with: [anotherScene])
+	func testGivenRootScene_isRootViewControllerWithAnotherScene_returnFalse() {
+		// given
+		let root = UIViewController()
+		let view = UIViewController()
+		let rootScene = Constants.anyScene
+		let noRootScene = Constants.anyOtherScene
+		let mockScene = givenMockScene(name: noRootScene, view: view, type: .modal)
+
+		sut = givenSUT(with: [mockScene], root: root, scene: rootScene, window: Window())
 
 		// when
-		let isRoot = sut.isRootViewController(matching: anotherScene)
+		let isRoot = sut.isRootViewController(matching: mockScene)
 
 		// then
 		XCTAssertFalse(isRoot)
@@ -89,12 +99,14 @@ extension SetScenesOperationTest {
 
 	func testGivenNoRootScene_isRootViewController_returnFalse() {
 		//given
-		let scene = givenMockScene()
+		let scene = Constants.anyScene
+		let view = Constants.anyView
+		let mockScene = givenMockScene(name: scene, view: view, type: .modal)
 
-		sut = givenSUT(with: [scene])
+		sut = givenSUT(with: [], root: view, scene: SceneName("NoRoot"), window: Window())
 
 		// when
-		let isRoot = sut.isRootViewController(matching: scene)
+		let isRoot = sut.isRootViewController(matching: mockScene)
 
 		// then
 		XCTAssertFalse(isRoot)
@@ -102,34 +114,12 @@ extension SetScenesOperationTest {
 }
 
 extension SetScenesOperationTest {
-	func givenMockOperation() -> MockSceneOperation {
-		let mockOperation = MockSceneOperation()
-
-		stub(mockOperation) { stub in
-			when(stub.execute(with: any())).then { completion in
-				completion?()
-			}
-			when(stub.then(any())).then { op in
-				return OrderedSceneOperation(first: mockOperation, last: op)
-			}
-		}
-		
-		return mockOperation
-	}
-
-	func givenSUT(with scenes: [Scene] = [], rootViewController: UIViewController? = nil) -> SetScenesOperation {
-		let root = rootViewController ?? Constants.anyView
-
-		let container = givenStubbedViewControllerContainer(root: root)
-		let sceneRenderer = MockSceneRenderer(window: UIWindow(), viewControllerContainer: container)
-
-		stub(sceneRenderer) { stub in
-			when(stub.rootViewController.get).thenReturn(root)
-			when(stub.dismissAll(animated: any())).thenReturn(mockDismissOperation)
-			when(stub.install(scene: any())).thenReturn(mockInstallOperation)
-			when(stub.recycle(scenes: any())).thenReturn(mockRecycleOperation)
-		}
-		
-		return SetScenesOperation(scenes: scenes, renderer: sceneRenderer)
+	func givenSUT(with scenes: [Scene],
+	              root: UIViewController,
+	              scene: SceneName? = nil,
+	              window: UIWindow) -> SetScenesOperation {
+		let mockRenderer = givenMockSceneRenderer(window: window, root: root, scene: scene)
+		return SetScenesOperation(scenes: scenes, renderer: mockRenderer)
 	}
 }
+

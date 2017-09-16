@@ -1,4 +1,4 @@
-	//
+//
 //  SceneOperationTests.swift
 //  NavigatorSwift
 //
@@ -19,58 +19,96 @@ class SceneOperationTests: XCTestCase {
 		static let anyOtherView = UIViewController()
 	}
 
-	lazy var sceneRenderer: SceneRenderer = SceneRenderer(window: Window(), viewControllerContainer: self.mockViewControllerContainer)
-
-	lazy var mockViewController: MockViewController = MockViewController()
-	lazy var mockViewControllerContainer: MockViewControllerContainer = MockViewControllerContainer()
-	lazy var mockSceneHandler: MockSceneHandler = MockSceneHandler()
-	lazy var mockSceneMatcher: MockSceneMatcher = MockSceneMatcher()
-	lazy var mockScene: MockScene = MockScene(sceneHandler: self.mockSceneHandler, parameters: [:], type: .modal, animated: false)
-
-	lazy var mockScenes: [MockScene] = [
-		MockScene(sceneHandler: self.mockSceneHandler, parameters: [:], type: .modal, animated: false)
-	]
+	lazy var mockInstallOperation: MockSceneOperation = self.givenMockOperation()
+	lazy var mockDismissAllOperation: MockSceneOperation = self.givenMockOperation()
+	lazy var mockRecycleOperation: MockSceneOperation = self.givenMockOperation()
 }
 
 extension SceneOperationTests {
-	@discardableResult
-	func givenStubbedViewControllerContainer(root: UIViewController = Constants.anyView) -> ViewControllerContainer {
+	func givenMockViewControllerContainer(root: UINavigationController) -> MockViewControllerContainer {
+		let mockViewControllerContainer = MockViewControllerContainer()
+
 		stub(mockViewControllerContainer) { stub in
 			when(stub.rootViewController.get).thenReturn(root)
+			when(stub.firstLevelNavigationControllers.get).thenReturn([root])
+			when(stub.visibleNavigationController.get).thenReturn(root)
 		}
+
 		return mockViewControllerContainer
 	}
 
-	func givenStubbedSceneHandler(builded: UIViewController = Constants.anyView, sceneName: SceneName = Constants.anyScene) {
-		stub(mockSceneHandler) { stub in
-			when(stub.name.get).thenReturn(sceneName)
-			when(stub.buildViewController(with: any())).thenReturn(builded)
+	func givenMockSceneRenderer(window: UIWindow, root: UIViewController, scene: SceneName? = nil) -> MockSceneRenderer {
+		if let scene = scene {
+			root.sceneName = scene.value
 		}
+		let nav = UINavigationController(rootViewController: root)
+		let mockContainer = givenMockViewControllerContainer(root: nav)
+
+		let mockSceneRenderer = MockSceneRenderer(window: window, viewControllerContainer: mockContainer)
+
+		stub(mockSceneRenderer) { stubRenderer in
+			when(stubRenderer.dismissAll(animated: any())).thenReturn(mockDismissAllOperation)
+			when(stubRenderer.install(scene: any())).thenReturn(mockInstallOperation)
+			when(stubRenderer.recycle(scenes: any())).thenReturn(mockRecycleOperation)
+
+			when(stubRenderer.rootViewController.get).thenReturn(nav)
+			when(stubRenderer.visibleNavigationController.get).thenReturn(mockContainer.visibleNavigationController)
+			when(stubRenderer.viewControllerContainer.get).thenReturn(mockContainer)
+			when(stubRenderer.viewControllerContainer.set(any())).then { container in
+				when(stubRenderer.visibleNavigationController.get).thenReturn(container.visibleNavigationController)
+			}
+		}
+
+		return mockSceneRenderer
 	}
 
-	func givenMockScene(name: SceneName = Constants.anyScene,
-	                    view: UIViewController = Constants.anyView,
-	                    type: ScenePresentationType = .modal,
-	                    isViewControllerRecyclable: Bool = false) -> MockScene {
-		view.sceneName = name.value
+	func givenMockSceneHandler(name: SceneName,
+	                           view: UIViewController,
+	                           isViewControllerRecyclable: Bool = false) -> MockSceneHandler {
+		let mockSceneHandler = MockSceneHandler()
+
 		stub(mockSceneHandler) { stub in
-			when(stub.buildViewController(with: any())).thenReturn(view)
 			when(stub.name.get).thenReturn(name)
 			when(stub.isViewControllerRecyclable.get).thenReturn(isViewControllerRecyclable)
+			when(stub.buildViewController(with: any())).thenReturn(view)
 		}
 
-		return MockScene(sceneHandler: mockSceneHandler,
-		                 parameters: [:],
-		                 type: type,
-		                 animated: false)
+		return mockSceneHandler
 	}
 
-	@discardableResult
-	func givenRootScene() -> Scene {
-		let view = UINavigationController()
-		let rootScene = givenMockScene(view: view)
-		givenStubbedViewControllerContainer(root: view)
-		InstallSceneOperation(scene: rootScene, renderer: sceneRenderer).execute(with: nil)
-		return rootScene
+	func givenMockScene(name: SceneName,
+	                    view: UIViewController,
+	                    type: ScenePresentationType,
+	                    isViewControllerRecyclable: Bool = false) -> MockScene {
+		view.sceneName = name.value
+		let mockSceneHandler = givenMockSceneHandler(name: name,
+		                                             view: view,
+		                                             isViewControllerRecyclable: isViewControllerRecyclable)
+
+		let mockScene = MockScene(sceneHandler: mockSceneHandler, parameters: [:], type: type, animated: false)
+		
+		return mockScene
+	}
+
+	func givenMockScenes() -> [Scene] {
+		return [
+			givenMockScene(name: Constants.anyScene, view: Constants.anyView, type: .push),
+			givenMockScene(name: Constants.anyOtherScene, view: Constants.anyOtherView, type: .push)
+		]
+	}
+
+	func givenMockOperation() -> MockSceneOperation {
+		let mockOperation = MockSceneOperation()
+
+		stub(mockOperation) { stub in
+			when(stub.execute(with: any())).then { completion in
+				completion?()
+			}
+			when(stub.then(any())).then { op in
+				return OrderedSceneOperation(first: mockOperation, last: op)
+			}
+		}
+
+		return mockOperation
 	}
 }

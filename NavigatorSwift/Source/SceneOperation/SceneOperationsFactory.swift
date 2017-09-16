@@ -43,7 +43,7 @@ struct DefaultSceneOperationFactory: SceneOperationsFactory {
 	}
 
 	func dismissAllOperation(with renderer: SceneRenderer, animated: Bool) -> SceneOperation {
-		return DismisAllViewControllerOperation(animated: animated, renderer: renderer)
+		return DismisAllOperation(animated: animated, renderer: renderer)
 	}
 
 	func popToRootOperation(with renderer: SceneRenderer, animated: Bool) -> SceneOperation {

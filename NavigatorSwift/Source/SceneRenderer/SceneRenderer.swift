@@ -15,7 +15,7 @@ public class SceneRenderer: VisibleViewControllerFindable {
 	let window: UIWindow
 	var viewControllerContainer: ViewControllerContainer
 
-	public init(window: UIWindow, viewControllerContainer: ViewControllerContainer) {
+	init(window: UIWindow, viewControllerContainer: ViewControllerContainer) {
 		self.window = window
 		self.viewControllerContainer = viewControllerContainer
 
@@ -33,11 +33,9 @@ public class SceneRenderer: VisibleViewControllerFindable {
 	func setSelectedViewController(_ selectedViewController: UIViewController) {
 		viewControllerContainer.setSelectedViewController(selectedViewController)
 	}
-}
 
-// MARK: Private methods
-
-extension SceneRenderer {
+	// MARK: Main methods
+	
 	/// Changes the current navigation stack to conform an array of Scenes, in the process of build the new navigation stack
 	/// SceneRenderer will try to recycle the view controllers that are currently in the stack.
 	///
@@ -86,9 +84,9 @@ extension SceneRenderer {
 	func install(scene: Scene) -> SceneOperation {
 		return InstallSceneOperation(scene: scene, renderer: self)
 	}
-	
+
 	func dismissAll(animated: Bool) -> SceneOperation {
-		return DismisAllViewControllerOperation(animated: animated, renderer: self)
+		return DismisAllOperation(animated: animated, renderer: self)
 	}
 
 	func recycle(scenes: [Scene]) -> SceneOperation {

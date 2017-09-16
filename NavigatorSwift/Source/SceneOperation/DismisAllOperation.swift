@@ -1,5 +1,5 @@
 //
-//  DismissAllViewControllerOperation.swift
+//  DismisAllOperation.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 8/9/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DismisAllViewControllerOperation: SceneOperation {
+class DismisAllOperation: SceneOperation {
 	fileprivate let animated: Bool
 	fileprivate let renderer: SceneRenderer
 
@@ -20,7 +20,7 @@ class DismisAllViewControllerOperation: SceneOperation {
 
 // MARK: SceneOperation methods
 
-extension DismisAllViewControllerOperation  {
+extension DismisAllOperation  {
 	func execute(with completion: CompletionBlock?) {
 		renderer.rootViewController.dismiss(animated: animated, completion: completion)
 
