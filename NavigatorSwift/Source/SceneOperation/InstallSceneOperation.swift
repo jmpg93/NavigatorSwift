@@ -20,7 +20,7 @@ class InstallSceneOperation: SceneOperation {
 
 extension InstallSceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		let buildedViewController = scene.sceneHandler._buildViewController(with: scene.parameters)
+		let buildedViewController = scene.buildViewController()
 
 		if let buildedViewController = buildedViewController as? ViewControllerContainer {
 			renderer.viewControllerContainer = buildedViewController

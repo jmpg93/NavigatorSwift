@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-16 23:52:51 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-17 00:43:34 +0000
 
 //
 //  Scene.swift
@@ -27,9 +27,33 @@ class MockScene: Scene, Cuckoo.Mock {
     }
 
     
+    // ["name": "transition", "accesibility": "", "@type": "InstanceVariable", "type": "Transition?", "isReadOnly": false]
+     override var transition: Transition? {
+        get {
+            return cuckoo_manager.getter("transition", original: observed.map { o in return { () -> Transition? in o.transition }})
+        }
+        
+        set {
+            cuckoo_manager.setter("transition", value: newValue, original: observed != nil ? { self.observed?.transition = $0 } : nil)
+        }
+        
+    }
+    
 
     
 
+    
+     override func buildViewController()  -> UIViewController {
+        
+        return cuckoo_manager.call("buildViewController() -> UIViewController",
+            parameters: (),
+            original: observed.map { o in
+                return { () -> UIViewController in
+                    o.buildViewController()
+                }
+            })
+        
+    }
     
 
     struct __StubbingProxy_Scene: Cuckoo.StubbingProxy {
@@ -39,6 +63,15 @@ class MockScene: Scene, Cuckoo.Mock {
             self.cuckoo_manager = manager
         }
         
+        var transition: Cuckoo.ToBeStubbedProperty<Transition?> {
+            return .init(manager: cuckoo_manager, name: "transition")
+        }
+        
+        
+        func buildViewController() -> Cuckoo.StubFunction<(), UIViewController> {
+            let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+            return .init(stub: cuckoo_manager.createStub("buildViewController() -> UIViewController", parameterMatchers: matchers))
+        }
         
     }
 
@@ -55,7 +88,17 @@ class MockScene: Scene, Cuckoo.Mock {
         }
 
         
+        var transition: Cuckoo.VerifyProperty<Transition?> {
+            return .init(manager: cuckoo_manager, name: "transition", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
 
+        
+        @discardableResult
+        func buildViewController() -> Cuckoo.__DoNotUse<UIViewController> {
+            let matchers: [Cuckoo.ParameterMatcher<Void>] = []
+            return cuckoo_manager.verify("buildViewController() -> UIViewController", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        }
         
     }
 
@@ -64,16 +107,29 @@ class MockScene: Scene, Cuckoo.Mock {
 
  class SceneStub: Scene {
     
+     override var transition: Transition? {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Transition?).self)
+        }
+        
+        set { }
+        
+    }
+    
 
     
 
+    
+     override func buildViewController()  -> UIViewController {
+        return DefaultValueRegistry.defaultValue(for: UIViewController.self)
+    }
     
 }
 
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-16 23:52:51 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-17 00:43:34 +0000
 
 //
 //  SceneHandler.swift
@@ -249,7 +305,7 @@ class MockSceneHandler: SceneHandler, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-16 23:52:51 +0000
+// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-17 00:43:34 +0000
 
 //
 //  ViewController.swift
@@ -553,7 +609,7 @@ class MockWindow: Window, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-16 23:52:51 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-17 00:43:34 +0000
 
 //
 //  ViewControllerContainer.swift
@@ -725,7 +781,7 @@ class MockViewControllerContainer: ViewControllerContainer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-16 23:52:51 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-17 00:43:34 +0000
 
 //
 //  SceneRenderer.swift
@@ -1173,7 +1229,7 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-16 23:52:51 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-17 00:43:34 +0000
 
 //
 //  SceneMatcher.swift
@@ -1248,7 +1304,7 @@ class MockSceneProvider: SceneProvider, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-16 23:52:51 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-17 00:43:34 +0000
 
 //
 //  SceneOperation.swift

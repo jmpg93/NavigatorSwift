@@ -92,12 +92,16 @@ public extension Navigator {
 // MARK: - Transition
 
 public extension Navigator {
-	func transition(to scene: SceneName, parameters: Parameters = [:], with transition: Transition, completion: CompletionBlock? = nil) {
+	func transition(to scene: SceneName, parameters: Parameters = [:],
+	                with transition: Transition,
+	                completion: CompletionBlock? = nil) {
+
+		let type: ScenePresentationType = transition.insideNavigationBar ? .modalNavigation : .modal
+		
 		guard let scene = sceneProvider.scene(with: scene,
 		                                      parameters: parameters,
-		                                      type: .push,
+		                                      type: type,
 		                                      animated: true) else { return }
-
 
 		sceneRenderer.transition(transition, to: scene).execute(with: completion)
 	}
@@ -113,7 +117,7 @@ public extension Navigator {
 		                                      type: .modal,
 		                                      animated: true) else { return nil }
 
-		return scene.sceneHandler._buildViewController(with: parameters)
+		return scene.buildViewController()
 	}
 }
 

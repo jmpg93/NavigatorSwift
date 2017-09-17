@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "182774781F5C3B8400CD935F"
+               BuildableName = "NavigatorSwiftTests.xctest"
+               BlueprintName = "NavigatorSwiftTests"
+               ReferencedContainer = "container:NavigatorSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6C1322D91F5ADC4100A7D3E9"
+            BuildableName = "NavigationSwiftDemo.app"
+            BlueprintName = "NavigationSwiftDemo"
+            ReferencedContainer = "container:NavigatorSwift.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -43,15 +62,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6C27A94A1F59E1ED00311918"
-            BuildableName = "NavigatorSwift.framework"
-            BlueprintName = "NavigatorSwift"
-            ReferencedContainer = "container:NavigatorSwift.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

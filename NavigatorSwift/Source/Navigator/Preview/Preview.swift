@@ -9,17 +9,14 @@
 import Foundation
 
 public class Preview: NSObject {
-	fileprivate let handler: SceneHandler
-	fileprivate let parametes: Parameters
+	fileprivate let scene: Scene
 	fileprivate let completion: CompletionBlock?
 	let fromViewController: UIViewController
 
-	init(handler: SceneHandler,
-	     parametes: Parameters = [:],
+	init(scene: Scene,
 	     fromViewController: UIViewController,
 	     completion: CompletionBlock? = nil) {
-		self.handler = handler
-		self.parametes = parametes
+		self.scene = scene
 		self.completion = completion
 		self.fromViewController = fromViewController
 	}
@@ -28,7 +25,7 @@ public class Preview: NSObject {
 extension Preview: UIViewControllerPreviewingDelegate {
 	public func previewingContext(_ previewingContext: UIViewControllerPreviewing,
 	                       viewControllerForLocation location: CGPoint) -> UIViewController? {
-		return handler._buildViewController(with: parametes)
+		return scene.buildViewController()
 	}
 
 	public func previewingContext(_ previewingContext: UIViewControllerPreviewing,

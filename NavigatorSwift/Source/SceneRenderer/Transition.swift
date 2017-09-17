@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 
-public protocol Transition: UIViewControllerAnimatedTransitioning {
+public protocol Transition: UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate {
+	var insideNavigationBar: Bool { get }
 	var modalPresentationStyle: UIModalPresentationStyle { get }
 }

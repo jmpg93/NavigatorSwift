@@ -147,7 +147,7 @@ extension SceneRendererTests {
 extension SceneRendererTests {
 	func givenViewController(for scene: Scene) -> UIViewController {
 		let nav = givenNavigationController(with: scene.sceneHandler.name)
-		let vc = scene.sceneHandler._buildViewController(with: [:])
+		let vc = scene.buildViewController()
 
 		switch scene.type {
 		case .modal:

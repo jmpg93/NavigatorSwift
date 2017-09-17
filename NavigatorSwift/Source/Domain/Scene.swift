@@ -9,7 +9,7 @@
 import Foundation
 
 class Scene {
-	let sceneHandler: SceneHandler //TODO: Set this unwnowed
+	let sceneHandler: SceneHandler //TODO: Unowned
 	let parameters: Parameters
 	let type: ScenePresentationType
 	let isAnimated: Bool
@@ -24,5 +24,17 @@ class Scene {
 		self.isAnimated = isAnimated
 		self.sceneHandler = sceneHandler
 		self.type = typePresentation
+	}
+
+	func buildViewController() -> UIViewController {
+		let viewController = sceneHandler.buildViewController(with: parameters)
+		viewController.sceneName = sceneHandler.name.value
+
+		if let transition = transition {
+			viewController.modalPresentationStyle = transition.modalPresentationStyle
+			viewController.transitioningDelegate = transition
+		}
+
+		return viewController
 	}
 }

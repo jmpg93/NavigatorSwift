@@ -76,15 +76,15 @@ class ViewController: UIViewController {
 		static let cellIdentifier = "Cell"
 	}
 
-	let transition = CircularTransitionAnimation()
+	let transition = LeftTransition()
 
 	// @IBOutlet
 	@IBOutlet weak var collectionView: UICollectionView!
 
 	// Properties
-	fileprivate lazy var navigator: NavNavigator = {
+	fileprivate var navigator: NavNavigator {
 		return globalNavigator
-	}()
+	}
 
 	var scenes: [[(Presentation, Bool)]] = [
 		[(.presentation(.modal), true)],
@@ -109,6 +109,10 @@ class ViewController: UIViewController {
 		[(.set([.collection, .collection]), true)],
 		[(.transition, true)]
 	]
+
+	deinit {
+		print("DEINIT")
+	}
 }
 
 // MARK: View life cycle
@@ -160,6 +164,7 @@ extension ViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let scenes = self.scenes[indexPath.item]
 		let animated = scenes.first!.1
+
 		switch scenes.first!.0 {
 		case .pop:
 			navigator.pop(animated: animated)

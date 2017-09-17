@@ -24,11 +24,3 @@ public extension SceneHandler {
 
 	func reload(_ viewController: UIViewController, parameters: Parameters) { }
 }
-
-extension SceneHandler {
-	func _buildViewController(with parameters: Parameters) -> UIViewController {
-		let viewController = buildViewController(with: parameters)
-		viewController.sceneName = name.value
-		return viewController
-	}
-}

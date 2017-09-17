@@ -22,26 +22,8 @@ class ApplyTransitionSceneOperation: NSObject, SceneOperation, VisibleViewContro
 
 extension ApplyTransitionSceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		let view = scene.sceneHandler._buildViewController(with: scene.parameters)
-		view.transitioningDelegate = self
-		view.modalPresentationStyle = transition.modalPresentationStyle
-
-		renderer
-			.visibleNavigationController
-			.topViewController?
-			.present(view, animated: true) { completion?() }
-	}
-}
-
-extension ApplyTransitionSceneOperation: UIViewControllerTransitioningDelegate {
-	func animationController(forPresented presented: UIViewController,
-	                         presenting: UIViewController,
-	                         source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-		return transition
-	}
-
-	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-		return transition
+		scene.transition = transition
+		renderer.add(scenes: [scene]).execute(with: completion)
 	}
 }
 

@@ -38,7 +38,7 @@ extension AddSceneOperation {
 		var navigationController: UINavigationController? = currentVisibleViewController?.navigationController
 
 		for scene in scenes {
-			let newViewController = scene.sceneHandler._buildViewController(with: scene.parameters)
+			let newViewController = scene.buildViewController()
 			let animated = scene.isAnimated
 
 			switch scene.type {

@@ -86,7 +86,11 @@ extension SceneOperationTests {
 		                                             isViewControllerRecyclable: isViewControllerRecyclable)
 
 		let mockScene = MockScene(sceneHandler: mockSceneHandler, parameters: [:], type: type, animated: false)
-		
+
+		stub(mockScene) { stub in
+			when(stub.buildViewController()).thenReturn(view)
+		}
+
 		return mockScene
 	}
 
