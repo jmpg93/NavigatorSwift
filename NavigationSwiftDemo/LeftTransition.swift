@@ -2,8 +2,8 @@
 //  LeftTransition.swift
 //  Tuenti
 //
-//  Created by jmpuerta on 27/8/17.
-//  Copyright © 2017 Tuenti Technologies S.L. All rights reserved.
+//  Created by Jose Maria Puerta on 1/9/17.
+//  Copyright © 2017 Jose Maria Puerta. All rights reserved.
 //
 
 import NavigatorSwift
