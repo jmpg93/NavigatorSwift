@@ -16,7 +16,7 @@ public protocol Navigator: class {
 // MARK: - Set root with Scene names
 
 public extension Navigator {
-	func root(scene: SceneName, parameters: Parameters = [:]) {
+	func root(_ scene: SceneName, parameters: Parameters = [:]) {
 		guard let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal) else { return }
 		sceneRenderer.set(scenes: [scene]).execute(with: nil)
 	}
@@ -35,7 +35,7 @@ public extension Navigator {
 		navigate(to: scene, completion: completion)
 	}
 
-	func presentNavigationController(using name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
+	func presentNavigationController(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
 		guard let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modalNavigation, animated: animated) else { return }
 		navigate(to: scene, completion: completion)
 	}
