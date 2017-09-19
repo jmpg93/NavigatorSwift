@@ -91,7 +91,7 @@ navigator.transition(to: .login, with: someInteractiveTransition)
 ```
 - View creation:
 ```swift
-navigator.transition(to: .login, with: someInteractiveTransition)
+let loginView = navigator.view(for: .login)
 ```
 - Stack navigation using builder:
 ```swift
@@ -107,4 +107,5 @@ navigator.navigate(using: { builder in
 })
 ```
 - ~~Popover presentation~~:
-NOT YET
+
+**NOT YET**
