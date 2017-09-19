@@ -95,7 +95,9 @@ let loginView = navigator.view(for: .login)
 ```
 - Stack navigation using builder:
 ```swift
-navigator.view(for: .login)
+navigator.navigate(using: { builder in
+	builder.appendModal(name: .login)
+})
 ```
 - Absolute navigation using builder (the current stack will be recycled):
 ```swift
