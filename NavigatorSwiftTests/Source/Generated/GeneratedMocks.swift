@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-17 00:43:34 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/Domain/Scene.swift at 2017-09-19 20:51:25 +0000
 
 //
 //  Scene.swift
@@ -129,7 +129,7 @@ class MockScene: Scene, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-17 00:43:34 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneHandler/SceneHandler.swift at 2017-09-19 20:51:25 +0000
 
 //
 //  SceneHandler.swift
@@ -305,7 +305,7 @@ class MockSceneHandler: SceneHandler, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-17 00:43:34 +0000
+// MARK: - Mocks generated from file: NavigatorSwiftTests/Source/Utils/ViewController.swift at 2017-09-19 20:51:25 +0000
 
 //
 //  ViewController.swift
@@ -421,6 +421,14 @@ class MockViewController: ViewController, Cuckoo.Mock {
     }
 
     
+    // ["name": "isBeingDisplayedModally", "accesibility": "", "@type": "InstanceVariable", "type": "Bool", "isReadOnly": true]
+     override var isBeingDisplayedModally: Bool {
+        get {
+            return cuckoo_manager.getter("isBeingDisplayedModally", original: observed.map { o in return { () -> Bool in o.isBeingDisplayedModally }})
+        }
+        
+    }
+    
 
     
 
@@ -445,6 +453,10 @@ class MockViewController: ViewController, Cuckoo.Mock {
             self.cuckoo_manager = manager
         }
         
+        var isBeingDisplayedModally: Cuckoo.ToBeStubbedReadOnlyProperty<Bool> {
+            return .init(manager: cuckoo_manager, name: "isBeingDisplayedModally")
+        }
+        
         
         func dismiss<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(animated flag: M1, completion: M2) -> Cuckoo.StubNoReturnFunction<(Bool, (() -> Void)?)> where M1.MatchedType == Bool, M2.MatchedType == (() -> Void)? {
             let matchers: [Cuckoo.ParameterMatcher<(Bool, (() -> Void)?)>] = [wrap(matchable: flag) { $0.0 }, wrap(matchable: completion) { $0.1 }]
@@ -466,6 +478,10 @@ class MockViewController: ViewController, Cuckoo.Mock {
         }
 
         
+        var isBeingDisplayedModally: Cuckoo.VerifyReadOnlyProperty<Bool> {
+            return .init(manager: cuckoo_manager, name: "isBeingDisplayedModally", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        }
+        
 
         
         @discardableResult
@@ -480,6 +496,13 @@ class MockViewController: ViewController, Cuckoo.Mock {
 }
 
  class ViewControllerStub: ViewController {
+    
+     override var isBeingDisplayedModally: Bool {
+        get {
+            return DefaultValueRegistry.defaultValue(for: (Bool).self)
+        }
+        
+    }
     
 
     
@@ -609,7 +632,7 @@ class MockWindow: Window, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-17 00:43:34 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift at 2017-09-19 20:51:25 +0000
 
 //
 //  ViewControllerContainer.swift
@@ -781,7 +804,7 @@ class MockViewControllerContainer: ViewControllerContainer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-17 00:43:34 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift at 2017-09-19 20:51:25 +0000
 
 //
 //  SceneRenderer.swift
@@ -1229,7 +1252,7 @@ class MockSceneRenderer: SceneRenderer, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-17 00:43:34 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift at 2017-09-19 20:51:25 +0000
 
 //
 //  SceneMatcher.swift
@@ -1304,7 +1327,7 @@ class MockSceneProvider: SceneProvider, Cuckoo.Mock {
 
 
 
-// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-17 00:43:34 +0000
+// MARK: - Mocks generated from file: NavigatorSwift/Source/SceneOperation/SceneOperation.swift at 2017-09-19 20:51:25 +0000
 
 //
 //  SceneOperation.swift

@@ -19,6 +19,9 @@
 		189212311F6DD21E0047E2FD /* DismissAllOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189212301F6DD21E0047E2FD /* DismissAllOperationTests.swift */; };
 		189212331F6DE1B20047E2FD /* LeftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189212321F6DE1B20047E2FD /* LeftTransition.swift */; };
 		189212351F6DE3E80047E2FD /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189212341F6DE3E80047E2FD /* Transition.swift */; };
+		1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */; };
+		1895BF3D1F71B65F005E34A0 /* Cuckoo+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */; };
+		1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */; };
 		18C872071F69B81300701144 /* NavigatorPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C872061F69B81300701144 /* NavigatorPreviewing.swift */; };
 		18C8720C1F69B9ED00701144 /* SceneLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */; };
 		18F9408C1F5C9C980064D320 /* CollectionScenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */; };
@@ -127,6 +130,9 @@
 		189212301F6DD21E0047E2FD /* DismissAllOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAllOperationTests.swift; sourceTree = "<group>"; };
 		189212321F6DE1B20047E2FD /* LeftTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftTransition.swift; path = ../LeftTransition.swift; sourceTree = "<group>"; };
 		189212341F6DE3E80047E2FD /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
+		1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSceneOperationTests.swift; sourceTree = "<group>"; };
+		1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cuckoo+Utils.swift"; sourceTree = "<group>"; };
+		1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissFirstSceneOperationTests.swift; sourceTree = "<group>"; };
 		18C872061F69B81300701144 /* NavigatorPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorPreviewing.swift; sourceTree = "<group>"; };
 		18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLinkHandler.swift; sourceTree = "<group>"; };
 		18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionScenHandler.swift; sourceTree = "<group>"; };
@@ -418,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				6C2967AF1F5C565400F3C3A0 /* ViewController.swift */,
+				1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -430,6 +437,8 @@
 				6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */,
 				6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */,
 				189212301F6DD21E0047E2FD /* DismissAllOperationTests.swift */,
+				1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */,
+				1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */,
 			);
 			path = SceneRenderer;
 			sourceTree = "<group>";
@@ -634,8 +643,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1895BF3D1F71B65F005E34A0 /* Cuckoo+Utils.swift in Sources */,
 				6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */,
+				1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */,
 				6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */,
+				1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */,
 				6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */,
 				189212311F6DD21E0047E2FD /* DismissAllOperationTests.swift in Sources */,
 				1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */,

@@ -92,7 +92,8 @@ public extension Navigator {
 // MARK: - Transition
 
 public extension Navigator {
-	func transition(to scene: SceneName, parameters: Parameters = [:],
+	func transition(to scene: SceneName,
+	                parameters: Parameters = [:],
 	                with transition: Transition,
 	                completion: CompletionBlock? = nil) {
 

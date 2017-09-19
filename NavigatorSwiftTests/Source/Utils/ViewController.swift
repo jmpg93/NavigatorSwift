@@ -19,6 +19,14 @@ open class ViewController: UIViewController {
 	open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 		super.dismiss(animated: flag, completion: completion)
 	}
+
+	var isBeingDisplayedModally: Bool {
+		let presentedModally = presentingViewController?.presentedViewController == self
+		let ancestorNavigationControllerPresentedModally = navigationController != nil && navigationController?.presentingViewController?.presentedViewController == navigationController
+		let ancestorTabBarControllerPresentedModally = tabBarController?.presentingViewController is UITabBarController
+
+		return presentedModally || ancestorNavigationControllerPresentedModally || ancestorTabBarControllerPresentedModally
+	}
 }
 
 open class Window: UIWindow {

@@ -12,7 +12,7 @@ import UIKit
 
 class LeftTransition: UIPercentDrivenInteractiveTransition, Transition {
 	var insideNavigationBar: Bool {
-		return false
+		return true
 	}
 
 	var modalPresentationStyle: UIModalPresentationStyle {
@@ -30,15 +30,17 @@ extension LeftTransition: UIViewControllerAnimatedTransitioning {
 
 		view.transform = CGAffineTransform(translationX: -600, y: 0)
 
-		UIView.animate(withDuration: 0.4,
+		UIView.animate(withDuration: 0.6,
 		               delay: 0.0,
+		               usingSpringWithDamping: 0.8,
+		               initialSpringVelocity: 0.3,
 		               options: [],
 		               animations: { view.transform = .identity },
 		               completion: { completed in transitionContext.completeTransition(completed) })
 	}
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-		return 0.4
+		return 0.6
 	}
 }
 
