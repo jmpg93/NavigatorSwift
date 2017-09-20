@@ -108,6 +108,7 @@ navigator.navigate(using: { builder in
 	builder.navigateAbsolutely()
 })
 ```
-- ~~Popover presentation~~:
-
-**NOT YET**
+- Popover presentation:
+```swift
+navigator.popover(.collection, from: somView)
+```
