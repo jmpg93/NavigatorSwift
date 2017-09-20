@@ -22,6 +22,8 @@
 		1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */; };
 		1895BF3D1F71B65F005E34A0 /* Cuckoo+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */; };
 		1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */; };
+		18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */; };
+		18A101C21F72D956009F39A1 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101C11F72D956009F39A1 /* Popover.swift */; };
 		18C872071F69B81300701144 /* NavigatorPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C872061F69B81300701144 /* NavigatorPreviewing.swift */; };
 		18C8720C1F69B9ED00701144 /* SceneLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */; };
 		18F9408C1F5C9C980064D320 /* CollectionScenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */; };
@@ -133,6 +135,8 @@
 		1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSceneOperationTests.swift; sourceTree = "<group>"; };
 		1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cuckoo+Utils.swift"; sourceTree = "<group>"; };
 		1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissFirstSceneOperationTests.swift; sourceTree = "<group>"; };
+		18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSceneOperation.swift; sourceTree = "<group>"; };
+		18A101C11F72D956009F39A1 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		18C872061F69B81300701144 /* NavigatorPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorPreviewing.swift; sourceTree = "<group>"; };
 		18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLinkHandler.swift; sourceTree = "<group>"; };
 		18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionScenHandler.swift; sourceTree = "<group>"; };
@@ -402,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				189212341F6DE3E80047E2FD /* Transition.swift */,
+				18A101C11F72D956009F39A1 /* Popover.swift */,
 				6CA5947E1F6319FA00CF37AB /* SceneOperation */,
 				188DB17F1F64644300E9024E /* SceneOperationsFactory.swift */,
 				6C27A9721F5A096400311918 /* SceneRenderer.swift */,
@@ -457,6 +462,7 @@
 				6CA594891F63239600CF37AB /* PopSceneOperation.swift */,
 				6CA594851F631A9E00CF37AB /* AddSceneOperation.swift */,
 				180FBA9A1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift */,
+				18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */,
 				6CA5948C1F63248900CF37AB /* VisibleViewControllerFinder.swift */,
 			);
 			name = SceneOperation;
@@ -693,12 +699,14 @@
 				6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */,
 				6CA594911F63286000CF37AB /* SetScenesOperation.swift in Sources */,
 				6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */,
+				18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */,
 				1810B1701F685423003B9CA0 /* NavNavigator.swift in Sources */,
 				6C27A9661F59E33200311918 /* SceneBuilder.swift in Sources */,
 				6C27A95A1F59E2A000311918 /* Parameters.swift in Sources */,
 				6CA594841F631A8600CF37AB /* RecycleSceneOperation.swift in Sources */,
 				6CC4FA991F5AD190003B748A /* Navigator.swift in Sources */,
 				6CA594951F6332A200CF37AB /* DismissFirstSceneOperation.swift in Sources */,
+				18A101C21F72D956009F39A1 /* Popover.swift in Sources */,
 				6CA594861F631A9E00CF37AB /* AddSceneOperation.swift in Sources */,
 				189212351F6DE3E80047E2FD /* Transition.swift in Sources */,
 				6CA594931F6331AA00CF37AB /* DismissSceneOperation.swift in Sources */,

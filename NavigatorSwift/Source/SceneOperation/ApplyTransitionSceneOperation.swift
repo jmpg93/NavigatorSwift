@@ -22,7 +22,7 @@ class ApplyTransitionSceneOperation: NSObject, SceneOperation, VisibleViewContro
 
 extension ApplyTransitionSceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		scene.transition = transition
+		scene.operationParameters[ParametersKeys.transition] = transition
 		renderer.add(scenes: [scene]).execute(with: completion)
 	}
 }

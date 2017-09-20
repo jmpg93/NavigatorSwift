@@ -108,6 +108,55 @@ public extension Navigator {
 	}
 }
 
+// MARK: - Popover
+
+public extension Navigator {
+	func popover(_ scene: SceneName,
+	             parameters: Parameters = [:],
+	             with popover: Popover,
+	             completion: CompletionBlock? = nil) {
+
+		let type: ScenePresentationType = popover.insideNavigationBar ? .modalNavigation : .modal
+
+		guard let scene = sceneProvider.scene(with: scene,
+		                                      parameters: parameters,
+		                                      type: type,
+		                                      animated: true) else { return }
+
+		sceneRenderer.popover(popover, to: scene).execute(with: completion)
+	}
+
+	func popover(_ scene: SceneName,
+	             parameters: Parameters = [:],
+	             from button: UIBarButtonItem,
+	             completion: CompletionBlock? = nil) {
+
+		guard let scene = sceneProvider.scene(with: scene,
+		                                      parameters: parameters,
+		                                      type: .modal,
+		                                      animated: true) else { return }
+
+		let popover = Popover()
+		popover.barButtonItem = button
+		sceneRenderer.popover(popover, to: scene).execute(with: completion)
+	}
+
+	func popover(_ scene: SceneName,
+	             parameters: Parameters = [:],
+	             from view: UIView,
+	             completion: CompletionBlock? = nil) {
+
+		guard let scene = sceneProvider.scene(with: scene,
+		                                      parameters: parameters,
+		                                      type: .modal,
+		                                      animated: true) else { return }
+
+		let popover = Popover()
+		popover.sourceView = view
+		popover.sourceRect = view.frame
+		sceneRenderer.popover(popover, to: scene).execute(with: completion)
+	}
+}
 
 // MARK: - Preview
 

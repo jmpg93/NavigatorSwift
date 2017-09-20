@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window?.makeKeyAndVisible()
 
 		let collection = CollectionScenHandler()
-		
 		globalNavigator.register(collection)
 		globalNavigator.root(.collection)
 		

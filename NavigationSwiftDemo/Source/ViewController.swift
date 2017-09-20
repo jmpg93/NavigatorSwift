@@ -33,6 +33,7 @@ enum Presentation {
 	case popToRoot
 	case deeplink
 	case preview
+	case popover
 
 	var value: String {
 		switch self {
@@ -54,6 +55,8 @@ enum Presentation {
 			return "\(type)"
 		case .transition:
 			return "transition"
+		case .popover:
+			return "popover"
 		case .set(let scenes):
 			return "set [\(scenes.reduce("", { $1.value + ", " + $0 }))]"
 		}
@@ -61,10 +64,16 @@ enum Presentation {
 }
 
 class Layout: UICollectionViewFlowLayout {
+	var items: CGFloat {
+		return collectionView!.traitCollection.horizontalSizeClass == .regular
+		? 5
+		: 3
+	}
+
 	override func prepare() {
 		super.prepare()
 		guard let collectionView = collectionView else { return }
-		let width = (collectionView.bounds.width - 3) / 3.0
+		let width = (collectionView.bounds.width - items) / items
 		itemSize = CGSize(width: width, height: width)
 		minimumLineSpacing = 1
 		minimumInteritemSpacing = 1
@@ -107,7 +116,8 @@ class ViewController: UIViewController {
 		[(.dismissScene, false)],
 		[(.preview, false)],
 		[(.set([.collection, .collection]), true)],
-		[(.transition, true)]
+		[(.transition, true)],
+		[(.popover, true)]
 	]
 
 	deinit {
@@ -178,13 +188,15 @@ extension ViewController: UICollectionViewDelegate {
 			navigator.dismissAll(animated: animated)
 		case .transition:
 			navigator.transition(to: .collection, with: transition)
+		case .popover:
+			let cell = collectionView.cellForItem(at: indexPath)!
+			navigator.popover(.collection, from: cell)
 		default:
 			break
 		}
 
 		navigator.navigate(using: { builder in
 			for (presentationType, animated) in scenes {
-
 				switch presentationType {
 				case .presentation(let type):
 					switch type {

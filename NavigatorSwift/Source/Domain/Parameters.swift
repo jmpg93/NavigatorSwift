@@ -9,3 +9,8 @@
 import Foundation
 
 public typealias Parameters = [String: Any]
+
+struct ParametersKeys {
+	static let transition = "NavigatorSwift.ParametersKey.Transition"
+	static let popover = "NavigatorSwift.ParametersKey.PopoverController"
+}
