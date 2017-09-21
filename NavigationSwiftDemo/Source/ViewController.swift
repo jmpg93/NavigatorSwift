@@ -159,7 +159,7 @@ extension ViewController: UICollectionViewDataSource {
 		cell.sceneNameLabel.text = text
 
 		if text.contains("preview") {
-			navigator.preview(from: self, for: .collection, at: cell)
+			navigator.preview(.collection, from: self, at: cell)
 		} else {
 			navigator.removePreview(at: cell)
 		}

@@ -22,7 +22,7 @@ public class SceneBuilder {
 // MARK: - Public methods
 
 public extension SceneBuilder {
-	func append(name: SceneName, type: ScenePresentationType, parameters: Parameters = [:], animated: Bool = true) {
+	func append(scene name: SceneName, type: ScenePresentationType, parameters: Parameters = [:], animated: Bool = true) {
 		appendScene(name: name, type: type, parameters: parameters, animated: animated)
 	}
 

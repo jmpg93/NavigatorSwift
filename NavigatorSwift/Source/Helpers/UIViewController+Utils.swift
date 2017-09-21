@@ -20,14 +20,7 @@ extension UIViewController {
 		}
 
 		set {
-			if let newValue = newValue {
-				objc_setAssociatedObject(
-					self,
-					&AssociatedKeys.sceneNameKey,
-					newValue as NSString?,
-					.OBJC_ASSOCIATION_RETAIN_NONATOMIC
-				)
-			}
+			objc_setAssociatedObject(self, &AssociatedKeys.sceneNameKey, newValue as NSString?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		}
 	}
 }

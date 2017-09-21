@@ -324,8 +324,8 @@
 			children = (
 				6C27A9581F59E25C00311918 /* NavigatorPlayground.playground */,
 				6C27A94D1F59E1ED00311918 /* NavigatorSwift */,
-				6C1322DB1F5ADC4100A7D3E9 /* NavigationSwiftDemo */,
 				1827747A1F5C3B8400CD935F /* NavigatorSwiftTests */,
+				6C1322DB1F5ADC4100A7D3E9 /* NavigationSwiftDemo */,
 				6C27A94C1F59E1ED00311918 /* Products */,
 				6CFCDC2C1F5C3F68003C41E6 /* Frameworks */,
 			);

@@ -44,19 +44,19 @@ public extension Navigator {
 // MARK: - Poping and Dismissing Scenes
 
 public extension Navigator {
-	func pop(animated: Bool, completion: CompletionBlock? = nil) {
+	func pop(animated: Bool = true, completion: CompletionBlock? = nil) {
 		sceneRenderer.pop(animated: animated).execute(with: completion)
 	}
 
-	func popToRoot(animated: Bool, completion: CompletionBlock? = nil) {
+	func popToRoot(animated: Bool = true, completion: CompletionBlock? = nil) {
 		sceneRenderer.popToRoot(animated: animated).execute(with: completion)
 	}
 
-	func dismiss(animated: Bool, completion: CompletionBlock? = nil) {
+	func dismiss(animated: Bool = true, completion: CompletionBlock? = nil) {
 		sceneRenderer.dismiss(animated: animated).execute(with: completion)
 	}
 
-	func dismiss(_ name: SceneName, animated: Bool, completion: CompletionBlock? = nil) {
+	func dismiss(_ name: SceneName, animated: Bool = true, completion: CompletionBlock? = nil) {
 		guard let scene = sceneProvider.scene(with: name, type: .modal, animated: animated) else { return }
 		sceneRenderer.dismiss(scene: scene, animated: animated).execute(with: completion)
 	}
