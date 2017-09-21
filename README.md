@@ -26,10 +26,6 @@ class LoginScene: SceneHandler {
 		vc.view.backgroundColor = .red
 		return vc
 	}
-
-	var isViewControllerRecyclable: Bool {
-		return true
-	}
 }
 ```
 
@@ -55,15 +51,15 @@ navigator.presentNavigationController(.login)
 ```
 - Dismiss all views:
 ```swift
-navigator.dismissAll(animated: true)
+navigator.dismissAll()
 ```
 - Dismiss first view:
 ```swift
-navigator.dismiss(animated: true)
+navigator.dismiss()
 ```
 - Dismiss by scene:
 ```swift
-navigator.dismiss(.login, animated: true)
+navigator.dismiss(.login)
 ```
 - Push:
 ```swift
@@ -71,7 +67,7 @@ navigator.push(.login)
 ```
 - Pop to root view:
 ```swift
-navigator.popToRoot(animated: true)
+navigator.popToRoot()
 ```
 - Pop first view:
 ```swift
@@ -83,7 +79,7 @@ navigator.deepLink(url: someDeepLinkURL)
 ```
 - Force touch preview.
 ```swift
-navigator.preview(from: someViewController, for: .login, at: someSourceView)
+navigator.preview(.loginm, from: someViewController, at: someSourceView)
 ```
 - Transition:
 ```swift
