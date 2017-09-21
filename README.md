@@ -73,13 +73,17 @@ navigator.popToRoot()
 ```swift
 navigator.pop(animated: true)
 ```
-- Deep link (some configuration may be needed):
+- Deep link:
 ```swift
 navigator.deepLink(url: someDeepLinkURL)
 ```
 - Force touch preview.
 ```swift
 navigator.preview(.loginm, from: someViewController, at: someSourceView)
+```
+- Popover presentation:
+```swift
+navigator.popover(.collection, from: somView)
 ```
 - Transition:
 ```swift
@@ -103,8 +107,4 @@ navigator.navigate(using: { builder in
 	builder.appendPush(name: .login)
 	builder.navigateAbsolutely()
 })
-```
-- Popover presentation:
-```swift
-navigator.popover(.collection, from: somView)
 ```
