@@ -215,7 +215,7 @@ extension ViewController: UICollectionViewDelegate {
 				default:
 					break
 				}
-
+				
 			}
 		})
 	}

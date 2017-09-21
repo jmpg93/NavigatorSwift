@@ -158,7 +158,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Preview
+// MARK: - View
 
 public extension Navigator {
 	func view(for scene: SceneName, parameters: Parameters = [:]) -> UIViewController? {

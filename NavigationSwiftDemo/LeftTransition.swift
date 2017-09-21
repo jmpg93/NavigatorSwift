@@ -36,7 +36,7 @@ extension LeftTransition: UIViewControllerAnimatedTransitioning {
 		               initialSpringVelocity: 0.3,
 		               options: [],
 		               animations: { view.transform = .identity },
-		               completion: { completed in transitionContext.completeTransition(completed) })
+		               completion: { _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled) })
 	}
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
