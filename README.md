@@ -71,7 +71,7 @@ navigator.popToRoot()
 ```
 - Pop first view:
 ```swift
-navigator.pop(animated: true)
+navigator.pop()
 ```
 - Deep link:
 ```swift
@@ -79,11 +79,11 @@ navigator.deepLink(url: someDeepLinkURL)
 ```
 - Force touch preview.
 ```swift
-navigator.preview(.loginm, from: someViewController, at: someSourceView)
+navigator.preview(.login, from: someViewController, at: someSourceView)
 ```
 - Popover presentation:
 ```swift
-navigator.popover(.collection, from: somView)
+navigator.popover(.login, from: somView)
 ```
 - Transition:
 ```swift
