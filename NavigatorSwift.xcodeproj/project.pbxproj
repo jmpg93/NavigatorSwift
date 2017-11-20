@@ -246,24 +246,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		18C872081F69B9B500701144 /* Preview */ = {
-			isa = PBXGroup;
-			children = (
-				183A1F831F688223005550C1 /* Preview.swift */,
-				18C872061F69B81300701144 /* NavigatorPreviewing.swift */,
-			);
-			path = Preview;
-			sourceTree = "<group>";
-		};
-		18C872091F69B9C200701144 /* Navigators */ = {
-			isa = PBXGroup;
-			children = (
-				1810B16F1F685423003B9CA0 /* NavNavigator.swift */,
-				1810B1711F685E9B003B9CA0 /* TabNavigator.swift */,
-			);
-			path = Navigators;
-			sourceTree = "<group>";
-		};
 		18C8720A1F69B9E000701144 /* SceneLink */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,8 +258,10 @@
 			isa = PBXGroup;
 			children = (
 				6CC4FA981F5AD190003B748A /* Navigator.swift */,
-				18C872081F69B9B500701144 /* Preview */,
-				18C872091F69B9C200701144 /* Navigators */,
+				1810B16F1F685423003B9CA0 /* NavNavigator.swift */,
+				1810B1711F685E9B003B9CA0 /* TabNavigator.swift */,
+				183A1F831F688223005550C1 /* Preview.swift */,
+				18C872061F69B81300701144 /* NavigatorPreviewing.swift */,
 			);
 			path = Navigator;
 			sourceTree = "<group>";
