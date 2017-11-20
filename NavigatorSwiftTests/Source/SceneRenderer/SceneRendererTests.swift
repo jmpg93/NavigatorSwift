@@ -7,7 +7,7 @@
 
 @testable import NavigatorSwift
 import XCTest
-import Cuckoo
+
 
 class SceneRendererTests: SceneOperationTests {
 	fileprivate enum Constants {
@@ -23,7 +23,7 @@ class SceneRendererTests: SceneOperationTests {
 
 	override func setUp() {
 		super.setUp()
-		let window = Window()
+		let window = MockWindow()
 		let view = UINavigationController()
 		let mockViewControllerContainer = givenMockViewControllerContainer(root: view)
 		sut = SceneRenderer(window: window, viewControllerContainer: mockViewControllerContainer)

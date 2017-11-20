@@ -8,7 +8,6 @@
 
 @testable import NavigatorSwift
 import XCTest
-import Cuckoo
 
 class DismissFirstSceneOperationTests: SceneOperationTests {
 	// Class under test
@@ -27,7 +26,7 @@ extension DismissFirstSceneOperationTests {
 		sut.execute(with: nil)
 
 		// then
-		verify(rootViewMock).dismiss(animated: true, completion: any())
+		XCTAssertTrue(rootViewMock.dismissed)
 	}
 
 	func testRootSceneNotDisplayedModally_dismissRootSceneAnimated_dismissScene() {
@@ -39,7 +38,7 @@ extension DismissFirstSceneOperationTests {
 		sut.execute(with: nil)
 
 		// then
-		verifyNever(rootViewMock).dismiss(animated: true, completion: any())
+		XCTAssertFalse(rootViewMock.dismissed)
 	}
 
 	func testRootSceneDisplayedModally_dismissOtherSceneAnimated_doNotDismissScene() {
@@ -52,8 +51,8 @@ extension DismissFirstSceneOperationTests {
 		sut.execute(with: nil)
 
 		// then
-		verify(rootViewMock).dismiss(animated: true, completion: any())
-		verifyNever(otherViewMock).dismiss(animated: true, completion: any())
+		XCTAssertTrue(rootViewMock.dismissed)
+		XCTAssertFalse(otherViewMock.dismissed)
 	}
 }
 
@@ -62,25 +61,20 @@ extension DismissFirstSceneOperationTests {
 extension DismissFirstSceneOperationTests {
 	func givenMockViewController(isDisplayedModally: Bool) -> MockViewController {
 		let viewMock = MockViewController()
-
-		stub(viewMock) { stub in
-			when(stub.isBeingDisplayedModally.get).thenReturn(isDisplayedModally)
-			when(stub.dismiss(animated: any(), completion: any())).thenDoNothing()
-		}
-
+		viewMock._isBeingDisplayedModally = isDisplayedModally
 		return viewMock
 	}
 
 	func givenSUT(animated: Bool, modalView: UIViewController) -> DismissFirstSceneOperation {
 		let nav = UINavigationController(rootViewController: modalView)
-		let sceneRendererMock = givenMockSceneRenderer(window: Window(), root: nav)
+		let sceneRendererMock = givenMockSceneRenderer(window: MockWindow(), root: nav)
 		return DismissFirstSceneOperation(animated: animated, renderer: sceneRendererMock)
 	}
 
 	func givenSUT(animated: Bool, modalViews: [UIViewController]) -> DismissFirstSceneOperation {
 		let nav = UINavigationController(rootViewController: modalViews.first!)
 		nav.present(modalViews.last!, animated: false, completion: nil)
-		let sceneRendererMock = givenMockSceneRenderer(window: Window(), root: nav)
+		let sceneRendererMock = givenMockSceneRenderer(window: MockWindow(), root: nav)
 		return DismissFirstSceneOperation(animated: animated, renderer: sceneRendererMock)
 	}
 }

@@ -8,7 +8,7 @@
 
 @testable import NavigatorSwift
 import XCTest
-import Cuckoo
+
 
 class SceneOperationTests: XCTestCase {
 	public enum Constants {
@@ -18,22 +18,14 @@ class SceneOperationTests: XCTestCase {
 		static let anyView = UIViewController()
 		static let anyOtherView = UIViewController()
 	}
-
-	lazy var mockInstallOperation: MockSceneOperation = self.givenMockOperation()
-	lazy var mockDismissAllOperation: MockSceneOperation = self.givenMockOperation()
-	lazy var mockRecycleOperation: MockSceneOperation = self.givenMockOperation()
 }
 
 extension SceneOperationTests {
 	func givenMockViewControllerContainer(root: UINavigationController) -> MockViewControllerContainer {
 		let mockViewControllerContainer = MockViewControllerContainer()
-
-		stub(mockViewControllerContainer) { stub in
-			when(stub.rootViewController.get).thenReturn(root)
-			when(stub.firstLevelNavigationControllers.get).thenReturn([root])
-			when(stub.visibleNavigationController.get).thenReturn(root)
-		}
-
+		mockViewControllerContainer._rootViewController = root
+		mockViewControllerContainer._firstLevelNavigationControllers = [root]
+		mockViewControllerContainer._visibleNavigationController = root
 		return mockViewControllerContainer
 	}
 
@@ -43,36 +35,16 @@ extension SceneOperationTests {
 		}
 
 		let mockContainer = givenMockViewControllerContainer(root: root)
-
-		let mockSceneRenderer = MockSceneRenderer(window: window, viewControllerContainer: mockContainer)
-
-		stub(mockSceneRenderer) { stubRenderer in
-			when(stubRenderer.dismissAll(animated: any())).thenReturn(mockDismissAllOperation)
-			when(stubRenderer.install(scene: any())).thenReturn(mockInstallOperation)
-			when(stubRenderer.recycle(scenes: any())).thenReturn(mockRecycleOperation)
-
-			when(stubRenderer.rootViewController.get).thenReturn(root)
-			when(stubRenderer.visibleNavigationController.get).thenReturn(mockContainer.visibleNavigationController)
-			when(stubRenderer.viewControllerContainer.get).thenReturn(mockContainer)
-			when(stubRenderer.viewControllerContainer.set(any())).then { container in
-				when(stubRenderer.visibleNavigationController.get).thenReturn(container.visibleNavigationController)
-			}
-		}
-
-		return mockSceneRenderer
+		return MockSceneRenderer(window: window, viewControllerContainer: mockContainer)
 	}
 
 	func givenMockSceneHandler(name: SceneName,
 	                           view: UIViewController,
 	                           isViewControllerRecyclable: Bool = false) -> MockSceneHandler {
 		let mockSceneHandler = MockSceneHandler()
-
-		stub(mockSceneHandler) { stub in
-			when(stub.name.get).thenReturn(name)
-			when(stub.isViewControllerRecyclable.get).thenReturn(isViewControllerRecyclable)
-			when(stub.buildViewController(with: any())).thenReturn(view)
-		}
-
+		mockSceneHandler._name = name
+		mockSceneHandler._isViewControllerRecyclable = isViewControllerRecyclable
+		mockSceneHandler._buildViewController = view
 		return mockSceneHandler
 	}
 
@@ -85,11 +57,8 @@ extension SceneOperationTests {
 		                                             view: view,
 		                                             isViewControllerRecyclable: isViewControllerRecyclable)
 
-		let mockScene = MockScene(sceneHandler: mockSceneHandler, parameters: [:], type: type, animated: false)
-
-		stub(mockScene) { stub in
-			when(stub.buildViewController()).thenReturn(view)
-		}
+		let mockScene = MockScene(sceneHandler: mockSceneHandler, type: type)
+		mockScene._buildViewController = view
 
 		return mockScene
 	}
@@ -102,17 +71,6 @@ extension SceneOperationTests {
 	}
 
 	func givenMockOperation() -> MockSceneOperation {
-		let mockOperation = MockSceneOperation()
-
-		stub(mockOperation) { stub in
-			when(stub.execute(with: any())).then { completion in
-				completion?()
-			}
-			when(stub.then(any())).then { op in
-				return OrderedSceneOperation(first: mockOperation, last: op)
-			}
-		}
-
-		return mockOperation
+		return MockSceneOperation()
 	}
 }

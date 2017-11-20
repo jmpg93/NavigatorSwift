@@ -8,7 +8,7 @@
 
 @testable import NavigatorSwift
 import XCTest
-import Cuckoo
+
 
 class DismissAllOperationTests: SceneOperationTests {
 	// Class under test
@@ -31,23 +31,17 @@ extension DismissAllOperationTests {
 
 		// then
 		XCTAssertTrue(didExecute)
-		verify(mockRootNavigationController).dismiss(animated: any(), completion: any())
+		XCTAssertTrue(mockRootNavigationController.dismissed)
 	}
 }
 
 extension DismissAllOperationTests {
 	func givenMockNavigationController() -> MockNavigationController {
-		let mockNavigationController = MockNavigationController()
-
-		stub(mockNavigationController) { stub in
-			when(stub.dismiss(animated: any(), completion: any())).thenDoNothing()
-		}
-
-		return mockNavigationController
+		return MockNavigationController()
 	}
 
 	func givenSUT(animated: Bool, root: UINavigationController) -> DismissAllOperation {
-		let mockRenderer = givenMockSceneRenderer(window: Window(), root: root)
+		let mockRenderer = givenMockSceneRenderer(window: MockWindow(), root: root)
 		return DismissAllOperation(animated: animated,
 		                           renderer: mockRenderer)
 	}

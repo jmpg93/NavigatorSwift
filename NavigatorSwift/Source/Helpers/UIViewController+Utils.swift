@@ -35,6 +35,8 @@ extension UIViewController {
 		let ancestorNavigationControllerPresentedModally = navigationController != nil && navigationController?.presentingViewController?.presentedViewController == navigationController
 		let ancestorTabBarControllerPresentedModally = tabBarController?.presentingViewController is UITabBarController
 
-		return presentedModally || ancestorNavigationControllerPresentedModally || ancestorTabBarControllerPresentedModally
+		return presentedModally
+			|| ancestorNavigationControllerPresentedModally
+			|| ancestorTabBarControllerPresentedModally
 	}
 }

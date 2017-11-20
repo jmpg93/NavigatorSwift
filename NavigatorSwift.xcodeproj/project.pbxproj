@@ -12,6 +12,13 @@
 		1810B1721F685E9B003B9CA0 /* TabNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810B1711F685E9B003B9CA0 /* TabNavigator.swift */; };
 		1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */; };
 		1827747E1F5C3B8400CD935F /* NavigatorSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; };
+		182FF49A1FC37A3F00117406 /* MockSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF4991FC37A3F00117406 /* MockSceneOperation.swift */; };
+		182FF49C1FC37B2A00117406 /* MockScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF49B1FC37B2A00117406 /* MockScene.swift */; };
+		182FF49E1FC37BCB00117406 /* MockSceneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF49D1FC37BCB00117406 /* MockSceneHandler.swift */; };
+		182FF4A21FC37E6300117406 /* MockSceneRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF4A11FC37E6300117406 /* MockSceneRenderer.swift */; };
+		182FF4A41FC37F2B00117406 /* MockViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF4A31FC37F2B00117406 /* MockViewControllerContainer.swift */; };
+		182FF4A61FC3827900117406 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF4A51FC3827900117406 /* MockViewController.swift */; };
+		182FF4A81FC383EA00117406 /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF4A71FC383EA00117406 /* MockNavigationController.swift */; };
 		183A1F841F688223005550C1 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A1F831F688223005550C1 /* Preview.swift */; };
 		1889CD011F6B0186002318DD /* NavigatorSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		188DB1801F64644300E9024E /* SceneOperationsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188DB17F1F64644300E9024E /* SceneOperationsFactory.swift */; };
@@ -20,7 +27,6 @@
 		189212331F6DE1B20047E2FD /* LeftTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189212321F6DE1B20047E2FD /* LeftTransition.swift */; };
 		189212351F6DE3E80047E2FD /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189212341F6DE3E80047E2FD /* Transition.swift */; };
 		1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */; };
-		1895BF3D1F71B65F005E34A0 /* Cuckoo+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */; };
 		1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */; };
 		18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */; };
 		18A101C21F72D956009F39A1 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101C11F72D956009F39A1 /* Popover.swift */; };
@@ -43,15 +49,11 @@
 		6C27A9621F59E2FD00311918 /* SceneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9611F59E2FD00311918 /* SceneHandler.swift */; };
 		6C27A9661F59E33200311918 /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9651F59E33200311918 /* SceneBuilder.swift */; };
 		6C27A9731F5A096400311918 /* SceneRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9721F5A096400311918 /* SceneRenderer.swift */; };
-		6C2967AD1F5C54E200F3C3A0 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2967AC1F5C54E200F3C3A0 /* GeneratedMocks.swift */; };
 		6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2967AF1F5C565400F3C3A0 /* ViewController.swift */; };
 		6C2967B61F5C5FFB00F3C3A0 /* NavigatorSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6C2967B81F5C5FFB00F3C3A0 /* Cuckoo.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */; };
 		6C2C20EF1F63519D004AE759 /* SetScenesOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */; };
 		6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */; };
-		6C85F1BA1F5C44FF009FB1CA /* Cuckoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */; };
-		6C85F1BC1F5C44FF009FB1CA /* Cuckoo.framework.dSYM in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C85F1BB1F5C44FF009FB1CA /* Cuckoo.framework.dSYM */; };
 		6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */; };
 		6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947F1F631A0F00CF37AB /* SceneOperation.swift */; };
 		6CA594821F631A7600CF37AB /* InstallSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594811F631A7600CF37AB /* InstallSceneOperation.swift */; };
@@ -113,7 +115,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6C2967B61F5C5FFB00F3C3A0 /* NavigatorSwift.framework in CopyFiles */,
-				6C2967B81F5C5FFB00F3C3A0 /* Cuckoo.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +127,13 @@
 		182774791F5C3B8400CD935F /* NavigatorSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigatorSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRendererTests.swift; sourceTree = "<group>"; };
 		1827747D1F5C3B8400CD935F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		182FF4991FC37A3F00117406 /* MockSceneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSceneOperation.swift; sourceTree = "<group>"; };
+		182FF49B1FC37B2A00117406 /* MockScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockScene.swift; sourceTree = "<group>"; };
+		182FF49D1FC37BCB00117406 /* MockSceneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSceneHandler.swift; sourceTree = "<group>"; };
+		182FF4A11FC37E6300117406 /* MockSceneRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSceneRenderer.swift; sourceTree = "<group>"; };
+		182FF4A31FC37F2B00117406 /* MockViewControllerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewControllerContainer.swift; sourceTree = "<group>"; };
+		182FF4A51FC3827900117406 /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
+		182FF4A71FC383EA00117406 /* MockNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationController.swift; sourceTree = "<group>"; };
 		183A1F831F688223005550C1 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		188DB17F1F64644300E9024E /* SceneOperationsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneOperationsFactory.swift; path = ../SceneOperation/SceneOperationsFactory.swift; sourceTree = "<group>"; };
 		188DB1811F6466CF00E9024E /* OrderedSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSceneOperation.swift; sourceTree = "<group>"; };
@@ -133,7 +141,6 @@
 		189212321F6DE1B20047E2FD /* LeftTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftTransition.swift; path = ../LeftTransition.swift; sourceTree = "<group>"; };
 		189212341F6DE3E80047E2FD /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSceneOperationTests.swift; sourceTree = "<group>"; };
-		1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cuckoo+Utils.swift"; sourceTree = "<group>"; };
 		1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissFirstSceneOperationTests.swift; sourceTree = "<group>"; };
 		18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSceneOperation.swift; sourceTree = "<group>"; };
 		18A101C11F72D956009F39A1 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
@@ -161,7 +168,6 @@
 		6C27A9611F59E2FD00311918 /* SceneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneHandler.swift; sourceTree = "<group>"; };
 		6C27A9651F59E33200311918 /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
 		6C27A9721F5A096400311918 /* SceneRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRenderer.swift; sourceTree = "<group>"; };
-		6C2967AC1F5C54E200F3C3A0 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		6C2967AF1F5C565400F3C3A0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallSceneOperationTest.swift; sourceTree = "<group>"; };
 		6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetScenesOperationTest.swift; sourceTree = "<group>"; };
@@ -191,8 +197,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C85F1BC1F5C44FF009FB1CA /* Cuckoo.framework.dSYM in Frameworks */,
-				6C85F1BA1F5C44FF009FB1CA /* Cuckoo.framework in Frameworks */,
 				1827747E1F5C3B8400CD935F /* NavigatorSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				6C2967AE1F5C564000F3C3A0 /* Utils */,
-				6C2967AB1F5C54D500F3C3A0 /* Generated */,
+				6C2967AB1F5C54D500F3C3A0 /* Mocks */,
 				6C2967BB1F5C68CA00F3C3A0 /* SceneRenderer */,
 			);
 			path = Source;
@@ -417,19 +421,24 @@
 			path = SceneRenderer;
 			sourceTree = "<group>";
 		};
-		6C2967AB1F5C54D500F3C3A0 /* Generated */ = {
+		6C2967AB1F5C54D500F3C3A0 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				6C2967AC1F5C54E200F3C3A0 /* GeneratedMocks.swift */,
+				182FF4991FC37A3F00117406 /* MockSceneOperation.swift */,
+				182FF49B1FC37B2A00117406 /* MockScene.swift */,
+				182FF49D1FC37BCB00117406 /* MockSceneHandler.swift */,
+				182FF4A31FC37F2B00117406 /* MockViewControllerContainer.swift */,
+				182FF4A11FC37E6300117406 /* MockSceneRenderer.swift */,
+				182FF4A51FC3827900117406 /* MockViewController.swift */,
+				182FF4A71FC383EA00117406 /* MockNavigationController.swift */,
 			);
-			path = Generated;
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		6C2967AE1F5C564000F3C3A0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				6C2967AF1F5C565400F3C3A0 /* ViewController.swift */,
-				1895BF3C1F71B65F005E34A0 /* Cuckoo+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -547,7 +556,6 @@
 				6C27A9471F59E1ED00311918 /* Frameworks */,
 				6C27A9481F59E1ED00311918 /* Headers */,
 				6C27A9491F59E1ED00311918 /* Resources */,
-				6C2967B41F5C59B200F3C3A0 /* Mock */,
 			);
 			buildRules = (
 			);
@@ -627,38 +635,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		6C2967B41F5C59B200F3C3A0 /* Mock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Mock;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Define output file. Change \"$PROJECT_DIR/Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"$PROJECT_DIR/NavigatorSwiftTests/Source/Generated/GeneratedMocks.swift\"\necho \"Generated Mocks File = $OUTPUT_FILE\"\n\n# Define input directory. Change \"$PROJECT_DIR\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"$PROJECT_DIR\"\necho \"Mocks Input Directory = $INPUT_DIR\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\nCarthage/Checkouts/Cuckoo/run generate --testable \"$PROJECT_NAME\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneMatcher/SceneMatcher.swift\" \\\n\"$INPUT_DIR/NavigatorSwiftTests/Source/Utils/ViewController.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/Domain/Scene.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneHandler/SceneHandler.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneRenderer/SceneRenderer.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneRenderer/ViewControllerContainer.swift\" \\\n\"$INPUT_DIR/NavigatorSwift/Source/SceneOperation/SceneOperation.swift\"\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		182774751F5C3B8400CD935F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1895BF3D1F71B65F005E34A0 /* Cuckoo+Utils.swift in Sources */,
+				182FF49C1FC37B2A00117406 /* MockScene.swift in Sources */,
 				6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */,
 				1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */,
 				6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */,
 				1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */,
+				182FF4A41FC37F2B00117406 /* MockViewControllerContainer.swift in Sources */,
+				182FF4A21FC37E6300117406 /* MockSceneRenderer.swift in Sources */,
 				6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */,
 				189212311F6DD21E0047E2FD /* DismissAllOperationTests.swift in Sources */,
+				182FF49A1FC37A3F00117406 /* MockSceneOperation.swift in Sources */,
+				182FF4A61FC3827900117406 /* MockViewController.swift in Sources */,
+				182FF4A81FC383EA00117406 /* MockNavigationController.swift in Sources */,
 				1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */,
-				6C2967AD1F5C54E200F3C3A0 /* GeneratedMocks.swift in Sources */,
 				6C2C20EF1F63519D004AE759 /* SetScenesOperationTest.swift in Sources */,
+				182FF49E1FC37BCB00117406 /* MockSceneHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

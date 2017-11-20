@@ -8,7 +8,7 @@
 
 @testable import NavigatorSwift
 import XCTest
-import Cuckoo
+
 
 class InstallSceneOperationTest: SceneOperationTests {
 	// Class under test
@@ -23,7 +23,7 @@ extension InstallSceneOperationTest {
 		let view = UIViewController()
 		let nav = UINavigationController(rootViewController: view)
 		let name = Constants.anyScene
-		let window = Window()
+		let window = MockWindow()
 		let mockRenderer = givenMockSceneRenderer(window: window, root: nav)
 		let mockScene = givenMockScene(name: name, view: view, type: .push)
 		// when
@@ -32,7 +32,7 @@ extension InstallSceneOperationTest {
 
 		// then
 		XCTAssertEqual(mockRenderer.visibleNavigationController, view.navigationController!)
-		XCTAssertTrue(window.didCallMakeKeyAndVisible)
+		XCTAssertTrue(window.madeKeyAndVisible)
 		XCTAssertNotNil(window.rootViewController)
 	}
 }

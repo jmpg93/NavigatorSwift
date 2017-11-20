@@ -8,7 +8,7 @@
 
 @testable import NavigatorSwift
 import XCTest
-import Cuckoo
+
 
 class DismissSceneOperationTests: SceneOperationTests {
 	// Class under test
@@ -28,7 +28,7 @@ extension DismissSceneOperationTests {
 		sut.execute(with: nil)
 
 		// then
-		verify(rootViewMock).dismiss(animated: true, completion: any())
+		XCTAssertTrue(rootViewMock.dismissed)
 	}
 
 	func testRootSceneNotDisplayedModally_dismissRootSceneAnimated_dismissScene() {
@@ -41,7 +41,7 @@ extension DismissSceneOperationTests {
 		sut.execute(with: nil)
 
 		// then
-		verifyNever(rootViewMock).dismiss(animated: true, completion: any())
+		XCTAssertFalse(rootViewMock.dismissed)
 	}
 
 	func testRootSceneDisplayedModally_dismissOtherSceneAnimated_doNotDismissScene() {
@@ -55,8 +55,8 @@ extension DismissSceneOperationTests {
 		sut.execute(with: nil)
 
 		// then
-		verifyNever(rootViewMock).dismiss(animated: true, completion: any())
-		verifyNever(otherViewMock).dismiss(animated: true, completion: any())
+		XCTAssertFalse(rootViewMock.dismissed)
+		XCTAssertFalse(otherViewMock.dismissed)
 	}
 }
 
@@ -65,18 +65,13 @@ extension DismissSceneOperationTests {
 extension DismissSceneOperationTests {
 	func givenMockViewController(isDisplayedModally: Bool) -> MockViewController {
 		let viewMock = MockViewController()
-
-		stub(viewMock) { stub in
-			when(stub.isBeingDisplayedModally.get).thenReturn(isDisplayedModally)
-			when(stub.dismiss(animated: any(), completion: any())).thenDoNothing()
-		}
-
+		viewMock._isBeingDisplayedModally = isDisplayedModally
 		return viewMock
 	}
 
 	func givenSUT(scene: Scene, animated: Bool, modalView: UIViewController) -> DismissSceneOperation {
 		let nav = UINavigationController(rootViewController: modalView)
-		let sceneRendererMock = givenMockSceneRenderer(window: Window(), root: nav)
+		let sceneRendererMock = givenMockSceneRenderer(window: MockWindow(), root: nav)
 		return DismissSceneOperation(scene: scene, animated: animated, renderer: sceneRendererMock)
 	}
 }

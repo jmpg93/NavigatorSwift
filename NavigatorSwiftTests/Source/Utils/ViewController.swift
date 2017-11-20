@@ -29,10 +29,10 @@ open class ViewController: UIViewController {
 	}
 }
 
-open class Window: UIWindow {
-	var didCallMakeKeyAndVisible: Bool = false
+open class MockWindow: UIWindow {
+	var madeKeyAndVisible = false
 
 	override open func makeKeyAndVisible() {
-		didCallMakeKeyAndVisible = true
+		madeKeyAndVisible = true
 	}
 }
