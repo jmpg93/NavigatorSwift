@@ -13,12 +13,17 @@ class Collection: UIViewController {
 	fileprivate enum Constants {
 		static let cellIdentifier = "Cell"
 		static let headerIdentifier = "Header"
+		static let stateLabelIdentifier = "StateLabel"
+
+		static let defaultStateText = "root"
 	}
 
+	var stateText = Constants.defaultStateText
 	let transition = LeftTransition()
 	let sections = Section.all
 
 	// @IBOutlet
+	@IBOutlet weak var stateLabel: UILabel!
 	@IBOutlet weak var collectionView: UICollectionView!
 
 	// Properties
@@ -37,7 +42,8 @@ extension Collection {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Collection"
-
+		stateLabel.text = stateText
+		stateLabel.accessibilityIdentifier = Constants.stateLabelIdentifier
 		automaticallyAdjustsScrollViewInsets = false
 		collectionView.register(Cell.self, forCellWithReuseIdentifier: Constants.cellIdentifier)
 	}
@@ -86,22 +92,23 @@ extension Collection: UICollectionViewDataSource {
 extension Collection: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let sequence = sections[indexPath.section].sequences[indexPath.item]
+		let parameters = self.parameters(with: sequence)
 
 		for context in sequence.contexts {
 			switch context.presentation {
 			case .modal:
-				navigator.present(.collection, animated: context.animated)
+				navigator.present(.collection, parameters: parameters, animated: context.animated)
 			case .push:
-				navigator.push(.collection, animated: context.animated)
+				navigator.push(.collection, parameters: parameters, animated: context.animated)
 			case .set(let scenes):
 				navigator.navigate(using: { builder in
 					for scene in scenes {
-						builder.appendModal(name: scene, animated: context.animated)
+						builder.appendModal(name: scene, parameters: parameters, animated: context.animated)
 					}
 					builder.navigateAbsolutely()
 				})
 			case .modalNavigation:
-				navigator.presentNavigationController(.collection, animated: context.animated, completion: nil)
+				navigator.presentNavigationController(.collection, parameters: parameters, animated: context.animated, completion: nil)
 			case .pop:
 				navigator.pop(animated: context.animated)
 			case .popToRoot:
@@ -113,16 +120,22 @@ extension Collection: UICollectionViewDelegate {
 			case .dismissAll:
 				navigator.dismissAll(animated: context.animated)
 			case .transition:
-				navigator.transition(to: .collection, with: transition)
+				navigator.transition(to: .collection, parameters: parameters, with: transition)
 			case .popover:
 				let cell = collectionView.cellForItem(at: indexPath)!
-				navigator.popover(.collection, from: cell)
+				navigator.popover(.collection, parameters: parameters, from: cell)
 			case .deeplink:
 				assertionFailure("Not yet url")
 			case .preview:
 				let cell = collectionView.cellForItem(at: indexPath)!
-				navigator.preview(.collection, from: self, at: cell)
+				navigator.preview(.collection, from: self, at: cell, parameters: parameters)
 			}
 		}
+	}
+}
+
+extension Collection {
+	func parameters(with presentationSequence: PresentationSequence) -> Parameters {
+		return [CollectionScenHandler.Parameter.stateLabel:presentationSequence.name]
 	}
 }

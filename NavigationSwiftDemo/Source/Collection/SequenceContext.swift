@@ -32,6 +32,23 @@ struct PresentationSequence {
 }
 
 extension PresentationSequence {
+	static let testSequences: [PresentationSequence] = [
+		PresentationSequence(contexts: [.modal]),
+		PresentationSequence(contexts: [.push]),
+		PresentationSequence(contexts: [.modalNavigation]),
+		PresentationSequence(contexts: [.modal, .dismiss]),
+		PresentationSequence(contexts: [.modal, .dismissScene]),
+		PresentationSequence(contexts: [.modal, .dismissAll]),
+		PresentationSequence(contexts: [.popover]),
+		PresentationSequence(contexts: [.transition]),
+		PresentationSequence(contexts: [.preview]),
+		PresentationSequence(contexts: [.push, .pop]),
+		PresentationSequence(contexts: [.push, .popToRoot]),
+		PresentationSequence(contexts: [.set]),
+		PresentationSequence(contexts: [.dismissAll]),
+		PresentationSequence(contexts: [.popToRoot])
+	]
+
 	static let baseSequences: [PresentationSequence] = [
 		PresentationSequence(contexts: [.modal]),
 		PresentationSequence(contexts: [.push]),

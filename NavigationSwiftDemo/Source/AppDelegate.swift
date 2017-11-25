@@ -11,19 +11,39 @@ import NavigatorSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+	fileprivate enum Constants {
+		static let uiTesting = "UITests"
+	}
+
 	var window: UIWindow?
 
-	func application(_ application: UIApplication,
-	                 didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-		window = globalWindow
-		window?.makeKeyAndVisible()
+		setUpWindow()
+		setUpUITesting()
+		setUpNavigator()
 
-		let collection = CollectionScenHandler()
-		globalNavigator.register(collection)
-		globalNavigator.root(.collection)
-		
 		return true
 	}
 }
 
+// MARK: Set up
+
+private extension AppDelegate {
+	func setUpWindow() {
+		window = globalWindow
+		window?.makeKeyAndVisible()
+	}
+
+	func setUpUITesting() {
+		if ProcessInfo.processInfo.arguments.contains(Constants.uiTesting) {
+			UIApplication.shared.keyWindow?.layer.speed = 100
+		}
+	}
+
+	func setUpNavigator() {
+		let collection = CollectionScenHandler()
+		globalNavigator.register(collection)
+		globalNavigator.root(.collection)
+	}
+}

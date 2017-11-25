@@ -15,6 +15,7 @@ struct Section {
 
 extension Section {
 	static let all: [Section] = [
+		Section(name: "Test sequences", sequences: PresentationSequence.testSequences),
 		Section(name: "Base sequences", sequences: PresentationSequence.baseSequences),
 		Section(name: "Non animated sequences", sequences: PresentationSequence.nonAnimatedSequences),
 		Section(name: "Combined sequences", sequences: PresentationSequence.combinedSequences)

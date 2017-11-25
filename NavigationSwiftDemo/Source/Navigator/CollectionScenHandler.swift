@@ -15,12 +15,20 @@ extension SceneName {
 }
 
 class CollectionScenHandler: SceneHandler {
-	var name: SceneName {
-		return .collection
+	enum Parameter {
+		static let stateLabel = "stateLabel"
+	}
+	
+	func buildViewController(with parameters: Parameters) -> UIViewController {
+		let view = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection") as! Collection
+		if let state = parameters[Parameter.stateLabel] as? String {
+			view.stateText = state
+		}
+		return view
 	}
 
-	func buildViewController(with parameters: Parameters) -> UIViewController {
-		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection")
+	var name: SceneName {
+		return .collection
 	}
 
 	var isViewControllerRecyclable: Bool {
