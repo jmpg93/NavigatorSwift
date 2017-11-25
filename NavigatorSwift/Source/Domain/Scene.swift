@@ -54,12 +54,12 @@ extension Scene {
 
 	func apply(_ popover: Popover, to viewController: UIViewController) {
 		viewController.modalPresentationStyle = .popover
-		viewController.popoverPresentationController?.delegate = popover.delegate
+		viewController.popoverPresentationController!.delegate = popover.delegate
 		viewController.popoverPresentationController!.sourceRect = popover.sourceView!.bounds
 		viewController.popoverPresentationController!.sourceView = popover.sourceView
-		viewController.popoverPresentationController?.barButtonItem = popover.barButtonItem
-		viewController.popoverPresentationController?.canOverlapSourceViewRect = popover.canOverlapSourceViewRect
-		viewController.popoverPresentationController?.permittedArrowDirections = popover.permittedArrowDirections
+		viewController.popoverPresentationController!.barButtonItem = popover.barButtonItem
+		viewController.popoverPresentationController!.canOverlapSourceViewRect = popover.canOverlapSourceViewRect
+		viewController.popoverPresentationController!.permittedArrowDirections = popover.permittedArrowDirections
 		viewController.preferredContentSize = popover.preferredContentSize
 	}
 }

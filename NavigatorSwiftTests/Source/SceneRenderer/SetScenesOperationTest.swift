@@ -9,7 +9,6 @@
 @testable import NavigatorSwift
 import XCTest
 
-
 class SetScenesOperationTest: SceneOperationTests {
 	// Class under test
 	fileprivate var sut: SetScenesOperation!

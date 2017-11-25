@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 @testable import NavigatorSwift
 
-class MockViewControllerContainer: ViewControllerContainer {
+class MockViewControllerContainer: MockViewController, ViewControllerContainer {
 	var _rootViewController = UIViewController()
 	var _firstLevelNavigationControllers: [UINavigationController] = []
 	var _visibleNavigationController = UINavigationController()

@@ -60,24 +60,18 @@ extension RecycleSceneOperation {
 			renderer.set(scenes: scenes).execute(with: completion)
 		}
 	}
-}
 
-// MARK: Private methods
-
-private extension RecycleSceneOperation {
 	///Returns Yes if the viewController is handled by the scene and also is presented as require the scene, NO otherwise.
 	func isViewController(_ viewController: UIViewController, recyclableBy scene: Scene) -> Bool {
 		let isManagedByScene = scene.sceneHandler.name.value == viewController.sceneName
-		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene)
+		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene.type)
 		let isViewControllerRecyclable = scene.sceneHandler.isViewControllerRecyclable
 
 		return isManagedByScene && isPresentedAsRequireScene && isViewControllerRecyclable
 	}
 
-
-	func isViewController(_ viewController: UIViewController, presentedAsRequire scene: Scene) -> Bool {
-
-		switch scene.type {
+	func isViewController(_ viewController: UIViewController, presentedAsRequire type: ScenePresentationType) -> Bool {
+		switch type {
 		case .push:
 			return viewController.navigationController != nil
 

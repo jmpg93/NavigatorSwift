@@ -16,8 +16,4 @@ class MockSceneOperation: SceneOperation {
 		executed = true
 		completion?()
 	}
-
-	func then(_ operation: SceneOperation) -> SceneOperation {
-		return OrderedSceneOperation(first: self, last: operation)
-	}
 }

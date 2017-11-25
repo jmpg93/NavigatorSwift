@@ -9,7 +9,6 @@
 @testable import NavigatorSwift
 import XCTest
 
-
 class InstallSceneOperationTest: SceneOperationTests {
 	// Class under test
 	fileprivate var sut: InstallSceneOperation!
@@ -18,22 +17,49 @@ class InstallSceneOperationTest: SceneOperationTests {
 // MARK: Tests
 
 extension InstallSceneOperationTest {
-	func testGivenNoRootScene_installScene_setRootViewController() {
+	func testGivenScene_installScene_setRootViewController() {
 		//given
 		let view = UIViewController()
-		let nav = UINavigationController(rootViewController: view)
-		let name = Constants.anyScene
+		let scene = givenMockScene(name: Constants.anyScene, view: view, type: .push)
 		let window = MockWindow()
-		let mockRenderer = givenMockSceneRenderer(window: window, root: nav)
-		let mockScene = givenMockScene(name: name, view: view, type: .push)
+		sut = givenSUT(scene: scene, window: window)
+
 		// when
-		sut = InstallSceneOperation(scene: mockScene, renderer: mockRenderer)
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertEqual(mockRenderer.visibleNavigationController, view.navigationController!)
+		XCTAssertNotNil(view.navigationController)
+		XCTAssertEqual(window.rootViewController, view.navigationController)
 		XCTAssertTrue(window.madeKeyAndVisible)
-		XCTAssertNotNil(window.rootViewController)
+	}
+
+	func testGivenContainerScene_installScene_setRootViewController() {
+		//given
+		let container = MockViewControllerContainer()
+		let scene = givenMockScene(name: Constants.anyScene, view: container, type: .push)
+		let window = MockWindow()
+		sut = givenSUT(scene: scene, window: window)
+
+		// when
+		sut.execute(with: nil)
+
+		// then
+		XCTAssertNil(container.navigationController)
+		XCTAssertEqual(window.rootViewController, container.rootViewController)
+		XCTAssertTrue(window.madeKeyAndVisible)
+	}
+}
+
+extension InstallSceneOperationTest {
+	func givenNavigationController() -> MockNavigationController {
+		let view = MockViewController()
+		return MockNavigationController(viewControllers: [view])
+	}
+
+	func givenSUT(scene: Scene, window: UIWindow) -> InstallSceneOperation {
+		let rootNavigation = givenNavigationController()
+		let mockSceneRenderer = givenMockSceneRenderer(window: window, root: rootNavigation)
+		return InstallSceneOperation(scene: scene, renderer: mockSceneRenderer)
 	}
 }
 
