@@ -15,7 +15,7 @@ class OrderedSceneOperationTests: SceneOperationTests {
 }
 
 extension OrderedSceneOperationTests {
-	func testGivenNoScenes_execute_DoNothing() {
+	func testGivenNoScenes_execute_doNothing() {
 		// given
 		let op1 = givenMockOperation()
 		let op2 = givenMockOperation()

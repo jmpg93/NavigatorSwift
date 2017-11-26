@@ -22,6 +22,7 @@
 		1822ECB01FC9C5D800F3D597 /* XCUIApplication+Uitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECAF1FC9C5D800F3D597 /* XCUIApplication+Uitls.swift */; };
 		1822ECB61FCAE87E00F3D597 /* EmptySceneURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */; };
 		1822ECB81FCAE9BF00F3D597 /* ReloadSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */; };
+		1822ECBA1FCAECED00F3D597 /* ReloadOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECB91FCAECED00F3D597 /* ReloadOperationTests.swift */; };
 		1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */; };
 		1827747E1F5C3B8400CD935F /* NavigatorSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; };
 		182FF49A1FC37A3F00117406 /* MockSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF4991FC37A3F00117406 /* MockSceneOperation.swift */; };
@@ -160,6 +161,7 @@
 		1822ECAF1FC9C5D800F3D597 /* XCUIApplication+Uitls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Uitls.swift"; sourceTree = "<group>"; };
 		1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySceneURLHandler.swift; sourceTree = "<group>"; };
 		1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadSceneOperation.swift; sourceTree = "<group>"; };
+		1822ECB91FCAECED00F3D597 /* ReloadOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadOperationTests.swift; sourceTree = "<group>"; };
 		182774791F5C3B8400CD935F /* NavigatorSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigatorSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRendererTests.swift; sourceTree = "<group>"; };
 		1827747D1F5C3B8400CD935F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -343,13 +345,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		18C8720A1F69B9E000701144 /* SceneLink */ = {
+		18C8720A1F69B9E000701144 /* SceneURL */ = {
 			isa = PBXGroup;
 			children = (
 				18C8720B1F69B9ED00701144 /* SceneURLHandler.swift */,
 				1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */,
 			);
-			path = SceneLink;
+			path = SceneURL;
 			sourceTree = "<group>";
 		};
 		18FB82EB1F5D563E00E08E0E /* Navigator */ = {
@@ -454,7 +456,7 @@
 				6CC4FA951F5AC995003B748A /* SceneMatcher */,
 				6C27A9701F5A093000311918 /* SceneHandler */,
 				6C27A9711F5A094500311918 /* SceneRenderer */,
-				18C8720A1F69B9E000701144 /* SceneLink */,
+				18C8720A1F69B9E000701144 /* SceneURL */,
 				6C27A96D1F59E3A500311918 /* SceneBuilder */,
 			);
 			path = Source;
@@ -534,6 +536,7 @@
 				18BF68EF1FC73DA500374A33 /* AddSceneOperationTests.swift */,
 				18BF68ED1FC73C5400374A33 /* OrderedSceneOperationTests.swift */,
 				6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */,
+				1822ECB91FCAECED00F3D597 /* ReloadOperationTests.swift */,
 				6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */,
 				189212301F6DD21E0047E2FD /* DismissAllOperationTests.swift */,
 				1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */,
@@ -779,6 +782,7 @@
 				6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */,
 				1822EC8E1FC993EE00F3D597 /* RecycleSceneOperationTests.swift in Sources */,
 				189212311F6DD21E0047E2FD /* DismissAllOperationTests.swift in Sources */,
+				1822ECBA1FCAECED00F3D597 /* ReloadOperationTests.swift in Sources */,
 				18BF68EE1FC73C5400374A33 /* OrderedSceneOperationTests.swift in Sources */,
 				182FF49A1FC37A3F00117406 /* MockSceneOperation.swift in Sources */,
 				182FF4A61FC3827900117406 /* MockViewController.swift in Sources */,

@@ -14,7 +14,7 @@ class MockSceneHandler: SceneHandler {
 	var _name: SceneName = "MockScene"
 	var _isViewControllerRecyclable = false
 	var _buildViewController = UIViewController()
-	var reladed = false
+	var reloaded = false
 
 	var name: SceneName {
 		return _name
@@ -29,6 +29,6 @@ class MockSceneHandler: SceneHandler {
 	}
 
 	func reload(_ viewController: UIViewController, parameters: Parameters) {
-		reladed = true
+		reloaded = true
 	}
 }
