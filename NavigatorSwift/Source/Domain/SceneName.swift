@@ -17,7 +17,7 @@ public struct SceneName {
 }
 
 extension SceneName: Hashable {
-	public static func ==(lhs: SceneName, rhs: SceneName) -> Bool {
+	public static func == (lhs: SceneName, rhs: SceneName) -> Bool {
 		return lhs.value == rhs.value
 	}
 

@@ -29,7 +29,6 @@ class Scene {
 	func view() -> UIViewController {
 		let viewController = sceneHandler.view(with: parameters)
 		configure(viewController)
-
 		return viewController
 	}
 

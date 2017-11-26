@@ -32,7 +32,6 @@ class CollectionScenHandler: SceneHandler {
 	}
 
 	func reload(_ viewController: UIViewController, parameters: Parameters) {
-		print(viewController.value(forKey: "stateText"))
 	}
 
 	var isReloadable: Bool {
