@@ -26,8 +26,10 @@ extension SceneProvider {
 		return (sceneBuilder.scenes, sceneBuilder.isAbsolutely)
 	}
 
-	func scene(with name: SceneName, parameters: Parameters = [:], type: ScenePresentationType, animated: Bool = true) -> Scene? {
-		guard let sceneHandler = sceneHandlersByName[name] else { return nil }
+	func scene(with name: SceneName, parameters: Parameters = [:], type: ScenePresentationType, animated: Bool = true) -> Scene {
+		guard let sceneHandler = sceneHandlersByName[name] else {
+			fatalError("The scene \(name) was not registered.")
+		}
 		return Scene(sceneHandler: sceneHandler, parameters: parameters, type: type, animated: animated)
 	}
 }

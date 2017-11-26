@@ -23,36 +23,29 @@ public class SceneBuilder {
 // MARK: - Public methods
 
 public extension SceneBuilder {
-	func root(name: SceneName, parameters: Parameters = [:]) {
-		add(scene: name, type: .root, parameters: parameters, animated: false)
-	}
-
-	func push(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
-		add(scene: name, type: .push, parameters: parameters, animated: animated)
-	}
-
-	func present(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
-		add(scene: name, type: .modal, parameters: parameters, animated: animated)
-	}
-
-	func presentNavigation(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
-		add(scene: name, type: .modalNavigation, parameters: parameters, animated: animated)
-	}
-
-	func absolutely() {
+	func root(_ sceneName: SceneName, parameters: Parameters = [:]) {
 		isAbsolutely = true
+		add(sceneName, type: .root, parameters: parameters, animated: false)
 	}
 
-	func relatively() {
-		isAbsolutely = false
+	func push(_ sceneName: SceneName, parameters: Parameters = [:], animated: Bool = true) {
+		add(sceneName, type: .push, parameters: parameters, animated: animated)
+	}
+
+	func present(_ sceneName: SceneName, parameters: Parameters = [:], animated: Bool = true) {
+		add(sceneName, type: .modal, parameters: parameters, animated: animated)
+	}
+
+	func presentNavigation(_ sceneName: SceneName, parameters: Parameters = [:], animated: Bool = true) {
+		add(sceneName, type: .modalNavigation, parameters: parameters, animated: animated)
 	}
 }
 
 // MARK: - Public methods
 
 private extension SceneBuilder {
-	func add(scene name: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {
-		guard let scene = sceneProvider.scene(with: name, parameters: parameters, type: type, animated: animated) else { return }
+	func add(_ sceneName: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {
+		let scene = sceneProvider.scene(with: sceneName, parameters: parameters, type: type, animated: animated)
 		scenes.append(scene)
 	}
 }

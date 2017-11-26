@@ -103,12 +103,11 @@ extension Collection: UICollectionViewDelegate {
 			case .set(let scenes):
 				navigator.build { builder in
 					for scene in scenes {
-						builder.present(name: scene, parameters: parameters, animated: context.animated)
+						builder.present(scene, parameters: parameters, animated: context.animated)
 					}
-					builder.absolutely()
 				}
 			case .modalNavigation:
-				navigator.presentNavigationController(.collection, parameters: parameters, animated: context.animated, completion: nil)
+				navigator.presentNavigation(.collection, parameters: parameters, animated: context.animated, completion: nil)
 			case .pop:
 				navigator.pop(animated: context.animated)
 			case .popToRoot:
@@ -130,10 +129,9 @@ extension Collection: UICollectionViewDelegate {
 				navigator.present(.collection, parameters: parameters, animated: context.animated)
 			case .recycle:
 				navigator.build { builder in
-					builder.root(name: .collection)
-					builder.presentNavigation(name: .collection)
-					//builder.push(name: .collection)
-					builder.absolutely()
+					builder.root(.collection)
+					builder.presentNavigation(.collection)
+					//builder.push(.collection)
 				}
 			}
 		}
