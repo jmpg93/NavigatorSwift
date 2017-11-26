@@ -8,9 +8,7 @@
 
 import Foundation
 
-typealias CompletionFunction = (@escaping CompletionBlock) -> Void
-
-protocol SceneOperation {
+public protocol SceneOperation {
 	func execute(with completion: CompletionBlock?)
 	func then(_ operation: SceneOperation) -> SceneOperation
 }

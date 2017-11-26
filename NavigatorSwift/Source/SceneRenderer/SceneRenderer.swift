@@ -34,8 +34,6 @@ public class SceneRenderer: VisibleViewControllerFindable {
 		viewControllerContainer.setSelectedViewController(selectedViewController)
 	}
 
-	// MARK: Main methods
-	
 	/// Changes the current navigation stack to conform an array of Scenes, in the process of build the new navigation stack
 	/// SceneRenderer will try to recycle the view controllers that are currently in the stack.
 	///
@@ -57,8 +55,7 @@ public class SceneRenderer: VisibleViewControllerFindable {
 	func pop(animated: Bool) -> SceneOperation {
 		return PopSceneOperation(toRoot: false, animated: animated, renderer: self)
 	}
-
-
+	
 	/// Pops to root view controller the visible scene if he has a navigation controller.
 	///
 	/// - parameter animated: Pass true to animate the transition.
@@ -75,10 +72,10 @@ public class SceneRenderer: VisibleViewControllerFindable {
 
 	/// Dismisses the visible scene if he matches the scene passed as parameter and also is presented modally.
 	///
-	/// - parameter scene: The Scene to dismiss.
+	/// - parameter sceneName: The SceneName to dismiss.
 	/// - parameter animated: Pass true to animate the transition.
-	func dismiss(scene: Scene, animated: Bool) -> SceneOperation {
-		return  DismissSceneOperation(scene: scene, animated: animated, renderer: self)
+	func dismiss(sceneName: SceneName, animated: Bool) -> SceneOperation {
+		return DismissSceneOperation(sceneName: sceneName, animated: animated, renderer: self)
 	}
 
 	/// Set scene with a new viewControllerContainer.

@@ -17,7 +17,7 @@ class MockSceneRenderer: SceneRenderer {
 	var _dismissOperation: SceneOperation = MockSceneOperation()
 	var _dismissSceneOperation: SceneOperation = MockSceneOperation()
 	var _dismissAllOperation: SceneOperation = MockSceneOperation()
-	var _recycleScenes: SceneOperation = MockSceneOperation()
+	var _recycleOperation: SceneOperation = MockSceneOperation()
 	var _installOperation: SceneOperation = MockSceneOperation()
 	var _transitionOperation: SceneOperation = MockSceneOperation()
 	var _popoverOperation: SceneOperation = MockSceneOperation()
@@ -46,12 +46,12 @@ class MockSceneRenderer: SceneRenderer {
 		return _dismissOperation
 	}
 
-	override func dismiss(scene: Scene, animated: Bool) -> SceneOperation {
+	override func dismiss(sceneName: SceneName, animated: Bool) -> SceneOperation {
 		return _dismissSceneOperation
 	}
 
 	override func recycle(scenes: [Scene]) -> SceneOperation {
-		return _recycleScenes
+		return _recycleOperation
 	}
 
 	override func install(scene: Scene) -> SceneOperation {

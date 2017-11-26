@@ -8,8 +8,6 @@
 
 import Foundation
 
-import Foundation
-
 class ReloadSceneOperation: SceneOperation, VisibleViewControllerFindable {
 	fileprivate let scene: Scene
 	fileprivate let renderer: SceneRenderer

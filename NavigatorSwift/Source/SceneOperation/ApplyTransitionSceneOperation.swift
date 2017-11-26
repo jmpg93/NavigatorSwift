@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ApplyTransitionSceneOperation: NSObject, SceneOperation, VisibleViewControllerFindable {
+class ApplyTransitionSceneOperation: SceneOperation, VisibleViewControllerFindable {
 	fileprivate let transition: Transition
 	fileprivate let scene: Scene
 	fileprivate let renderer: SceneRenderer

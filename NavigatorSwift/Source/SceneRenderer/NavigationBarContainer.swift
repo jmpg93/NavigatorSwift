@@ -9,33 +9,11 @@
 import Foundation
 import UIKit
 
-public class NavigationBarContainer: ViewControllerContainer {
-	let navigationController = UINavigationController()
+public class NavigationBarContainer: UINavigationController, ViewControllerContainer {
 
-	public init() {
-
-	}
 }
 
 public extension NavigationBarContainer {
-	var rootViewController: UIViewController {
-		return navigationController
-	}
-	
-	var firstLevelNavigationControllers: [UINavigationController] {
-		return [navigationController]
-	}
-
-	var visibleNavigationController: UINavigationController {
-		return navigationController
-	}
-
-	func setSelectedViewController(_ rootViewController: UIViewController) {
-		navigationController.popToRootViewController(animated: true)
-	}
-}
-
-extension UINavigationController: ViewControllerContainer {
 	public var rootViewController: UIViewController {
 		return self
 	}
@@ -52,3 +30,4 @@ extension UINavigationController: ViewControllerContainer {
 		popToRootViewController(animated: true)
 	}
 }
+

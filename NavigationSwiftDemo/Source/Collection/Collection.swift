@@ -101,12 +101,12 @@ extension Collection: UICollectionViewDelegate {
 			case .push:
 				navigator.push(.collection, parameters: parameters, animated: context.animated)
 			case .set(let scenes):
-				navigator.navigate(using: { builder in
+				navigator.build { builder in
 					for scene in scenes {
 						builder.appendModal(name: scene, parameters: parameters, animated: context.animated)
 					}
 					builder.navigateAbsolutely()
-				})
+				}
 			case .modalNavigation:
 				navigator.presentNavigationController(.collection, parameters: parameters, animated: context.animated, completion: nil)
 			case .pop:
@@ -130,11 +130,11 @@ extension Collection: UICollectionViewDelegate {
 				let cell = collectionView.cellForItem(at: indexPath)!
 				navigator.preview(.collection, from: self, at: cell, parameters: parameters)
 			case .recycle:
-				navigator.navigate(using: { builder in
+				navigator.build { builder in
 					builder.appendModalWithNavigation(name: .collection)
 					builder.appendPush(name: .collection)
 					builder.navigateAbsolutely()
-				})
+				}
 			}
 		}
 	}

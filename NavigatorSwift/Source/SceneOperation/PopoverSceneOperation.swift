@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PopoverSceneOperation: NSObject, SceneOperation, VisibleViewControllerFindable {
+class PopoverSceneOperation: SceneOperation, VisibleViewControllerFindable {
 	fileprivate let popover: Popover
 	fileprivate let scene: Scene
 	fileprivate let renderer: SceneRenderer
