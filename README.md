@@ -47,7 +47,7 @@ navigator.present(.login)
 ```
 - Present inside navigation controller:
 ```swift
-navigator.presentNavigationController(.login)
+navigator.presentNavigation(.someScene)
 ```
 - Dismiss all views:
 ```swift
@@ -59,11 +59,11 @@ navigator.dismiss()
 ```
 - Dismiss by scene:
 ```swift
-navigator.dismiss(.login)
+navigator.dismiss(.someScene)
 ```
 - Push:
 ```swift
-navigator.push(.login)
+navigator.push(.someScene)
 ```
 - Pop to root view:
 ```swift
@@ -73,21 +73,25 @@ navigator.popToRoot()
 ```swift
 navigator.pop()
 ```
-- Deep link:
+- Reload:
 ```swift
-navigator.deepLink(url: someDeepLinkURL)
+navigator.reload(.someScene)
+```
+- URLs:
+```swift
+navigator.url(someURL)
 ```
 - Force touch preview.
 ```swift
-navigator.preview(.login, from: someViewController, at: someSourceView)
+navigator.preview(.someScene, from: someViewController, at: someSourceView)
 ```
 - Popover presentation:
 ```swift
-navigator.popover(.login, from: somView)
+navigator.popover(.someScene, from: somView)
 ```
 - Transition:
 ```swift
-navigator.transition(to: .login, with: someInteractiveTransition)
+navigator.transition(to: .someScene, with: someInteractiveTransition)
 ```
 - View creation:
 ```swift
@@ -95,16 +99,41 @@ let loginView = navigator.view(for: .login)
 ```
 - Stack navigation using builder:
 ```swift
-navigator.navigate(using: { builder in
-	builder.appendModal(name: .login)
-})
+navigator.build { builder in
+	builder.modal(.detail)
+}
 ```
 - Absolute navigation using builder (the current stack will be recycled):
 ```swift
 navigator.navigate(using: { builder in
-	builder.appendModal(name: .login)
-	builder.appendModalWithNavigation(name: .login)
-	builder.appendPush(name: .login)
-	builder.navigateAbsolutely()
+	builder.root(name: .login) // The root is set
+	builder.modalNavigation(.home)
+	builder.push(.detail)
 })
+```
+- Operation based. For more complex navigation you can create and concatenate operation that will be executed serially. You can easyly archive this by creating a new ```SceneOperation``` and exteding the ```Navigator``` protocol.
+
+```swift
+class SomeOperation {
+	fileprivate var scenes: [Scene]
+	fileprivate let renderer: SceneRenderer
+
+	init(scenes: [Scene], renderer: SceneRenderer) {
+		self.scenes = scenes
+		self.renderer = renderer
+	}
+}
+
+extension SomeOperation: SceneOperation {
+	func execute(with completion: CompletionBlock?) {
+		let dismissAllOperation = renderer.dismissAll(animated: true)
+		let addScenes = renderer.add(scenes: scenes)
+		let reloadLast = renderer.reload(scene: scenes.last!)
+
+		let complexOperation = dismissAllOperation
+			.then(addScenes)
+			.then(reloadLast)
+			.execute(with: completion)
+	}
+}
 ```
