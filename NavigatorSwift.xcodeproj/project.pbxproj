@@ -71,7 +71,7 @@
 		6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */; };
 		6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */; };
 		6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947F1F631A0F00CF37AB /* SceneOperation.swift */; };
-		6CA594821F631A7600CF37AB /* InstallSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594811F631A7600CF37AB /* InstallSceneOperation.swift */; };
+		6CA594821F631A7600CF37AB /* RootSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594811F631A7600CF37AB /* RootSceneOperation.swift */; };
 		6CA594841F631A8600CF37AB /* RecycleSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594831F631A8600CF37AB /* RecycleSceneOperation.swift */; };
 		6CA594861F631A9E00CF37AB /* AddSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594851F631A9E00CF37AB /* AddSceneOperation.swift */; };
 		6CA594881F63227400CF37AB /* DismissAllOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594871F63227400CF37AB /* DismissAllOperation.swift */; };
@@ -214,7 +214,7 @@
 		6C85F1BB1F5C44FF009FB1CA /* Cuckoo.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Cuckoo.framework.dSYM; path = Carthage/Build/iOS/Cuckoo.framework.dSYM; sourceTree = "<group>"; };
 		6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		6CA5947F1F631A0F00CF37AB /* SceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneOperation.swift; path = NavigatorSwift/Source/SceneOperation/SceneOperation.swift; sourceTree = SOURCE_ROOT; };
-		6CA594811F631A7600CF37AB /* InstallSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstallSceneOperation.swift; path = NavigatorSwift/Source/SceneOperation/InstallSceneOperation.swift; sourceTree = SOURCE_ROOT; };
+		6CA594811F631A7600CF37AB /* RootSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootSceneOperation.swift; path = NavigatorSwift/Source/SceneOperation/RootSceneOperation.swift; sourceTree = SOURCE_ROOT; };
 		6CA594831F631A8600CF37AB /* RecycleSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecycleSceneOperation.swift; sourceTree = "<group>"; };
 		6CA594851F631A9E00CF37AB /* AddSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSceneOperation.swift; sourceTree = "<group>"; };
 		6CA594871F63227400CF37AB /* DismissAllOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAllOperation.swift; sourceTree = "<group>"; };
@@ -552,13 +552,13 @@
 				6CA594871F63227400CF37AB /* DismissAllOperation.swift */,
 				6CA594941F6332A100CF37AB /* DismissFirstSceneOperation.swift */,
 				6CA594921F6331AA00CF37AB /* DismissSceneOperation.swift */,
-				6CA594811F631A7600CF37AB /* InstallSceneOperation.swift */,
 				188DB1811F6466CF00E9024E /* OrderedSceneOperation.swift */,
 				6CA594891F63239600CF37AB /* PopSceneOperation.swift */,
 				18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */,
 				6CA594831F631A8600CF37AB /* RecycleSceneOperation.swift */,
 				6CA594901F63286000CF37AB /* SetScenesOperation.swift */,
 				1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */,
+				6CA594811F631A7600CF37AB /* RootSceneOperation.swift */,
 				6CA5948C1F63248900CF37AB /* VisibleViewControllerFinder.swift */,
 			);
 			name = SceneOperation;
@@ -846,7 +846,7 @@
 				6CA594861F631A9E00CF37AB /* AddSceneOperation.swift in Sources */,
 				189212351F6DE3E80047E2FD /* Transition.swift in Sources */,
 				6CA594931F6331AA00CF37AB /* DismissSceneOperation.swift in Sources */,
-				6CA594821F631A7600CF37AB /* InstallSceneOperation.swift in Sources */,
+				6CA594821F631A7600CF37AB /* RootSceneOperation.swift in Sources */,
 				18C8720C1F69B9ED00701144 /* SceneURLHandler.swift in Sources */,
 				6CA5948A1F63239600CF37AB /* PopSceneOperation.swift in Sources */,
 				6C27A95C1F59E2C100311918 /* SceneBuilderBlock.swift in Sources */,

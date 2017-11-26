@@ -103,9 +103,9 @@ extension Collection: UICollectionViewDelegate {
 			case .set(let scenes):
 				navigator.build { builder in
 					for scene in scenes {
-						builder.appendModal(name: scene, parameters: parameters, animated: context.animated)
+						builder.present(name: scene, parameters: parameters, animated: context.animated)
 					}
-					builder.navigateAbsolutely()
+					builder.absolutely()
 				}
 			case .modalNavigation:
 				navigator.presentNavigationController(.collection, parameters: parameters, animated: context.animated, completion: nil)
@@ -127,13 +127,13 @@ extension Collection: UICollectionViewDelegate {
 			case .deeplink:
 				assertionFailure("Not yet url")
 			case .preview:
-				let cell = collectionView.cellForItem(at: indexPath)!
-				navigator.preview(.collection, from: self, at: cell, parameters: parameters)
+				navigator.present(.collection, parameters: parameters, animated: context.animated)
 			case .recycle:
 				navigator.build { builder in
-					builder.appendModalWithNavigation(name: .collection)
-					builder.appendPush(name: .collection)
-					builder.navigateAbsolutely()
+					builder.root(name: .collection)
+					builder.presentNavigation(name: .collection)
+					//builder.push(name: .collection)
+					builder.absolutely()
 				}
 			}
 		}

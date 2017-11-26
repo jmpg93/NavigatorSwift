@@ -13,4 +13,5 @@ public enum ScenePresentationType: String {
 	case modal
 	case modalNavigation
 	case reload
+	case root
 }

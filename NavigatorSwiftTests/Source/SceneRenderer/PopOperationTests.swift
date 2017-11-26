@@ -9,72 +9,68 @@
 @testable import NavigatorSwift
 import XCTest
 
-class DismissFirstSceneOperationTests: SceneOperationTests {
+class PopOperationTests: SceneOperationTests {
 	// Class under test
-	fileprivate var sut: DismissFirstSceneOperation!
+	fileprivate var sut: PopSceneOperation!
 }
 
 // MARK: Tests
 
-extension DismissFirstSceneOperationTests {
-	func testRootSceneDisplayedModally_dismissRootSceneAnimated_dismissScene() {
+extension PopOperationTests {
+	func testGivenRootNavigation_execute_rootNavigationPopped() {
 		//given
-		let rootViewMock = givenMockViewController(isDisplayedModally: true)
-		sut = givenSUT(animated: true, modalView: rootViewMock)
+		let rootNavigation = MockNavigationController(viewControllers: [MockViewController()])
+		sut = givenSUT(toRoot: false, root: rootNavigation)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(rootViewMock.dismissed)
+		XCTAssertTrue(rootNavigation.popped)
 	}
 
-	func testRootSceneNotDisplayedModally_dismissRootSceneAnimated_dismissScene() {
+	func testGivenRootNavigation_executeToRoot_rootNavigationPoppedToRoot() {
 		//given
-		let rootViewMock = givenMockViewController(isDisplayedModally: false)
-		sut = givenSUT(animated: true, modalView: rootViewMock)
+		let rootNavigation = MockNavigationController(viewControllers: [MockViewController()])
+		sut = givenSUT(toRoot: true, root: rootNavigation)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertFalse(rootViewMock.dismissed)
+		XCTAssertTrue(rootNavigation.poppedToRoot)
 	}
 
-	func testRootSceneDisplayedModally_dismissOtherSceneAnimated_doNotDismissScene() {
+	func testGivenRootNavigationWithNoViewController_execute_rootNavigationPoppedToRoot() {
 		//given
-		let rootViewMock = givenMockViewController(isDisplayedModally: true)
-		let otherViewMock = givenMockViewController(isDisplayedModally: true)
-		sut = givenSUT(animated: true, modalViews: [rootViewMock, otherViewMock])
+		let rootNavigation = MockNavigationController()
+		sut = givenSUT(toRoot: false, root: rootNavigation)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(rootViewMock.dismissed)
-		XCTAssertFalse(otherViewMock.dismissed)
+		XCTAssertFalse(rootNavigation.popped)
+	}
+
+	func testGivenRootNavigationWithNoViewController_executeToRoot_rootNavigationPoppedToRoot() {
+		//given
+		let rootNavigation = MockNavigationController()
+		sut = givenSUT(toRoot: true, root: rootNavigation)
+
+		// when
+		sut.execute(with: nil)
+
+		// then
+		XCTAssertFalse(rootNavigation.poppedToRoot)
 	}
 }
 
 // MARK: Helpers
 
-extension DismissFirstSceneOperationTests {
-	func givenMockViewController(isDisplayedModally: Bool) -> MockViewController {
-		let viewMock = MockViewController()
-		viewMock._isBeingDisplayedModally = isDisplayedModally
-		return viewMock
-	}
-
-	func givenSUT(animated: Bool, modalView: UIViewController) -> DismissFirstSceneOperation {
-		let nav = UINavigationController(rootViewController: modalView)
-		let sceneRendererMock = givenMockSceneRenderer(window: MockWindow(), root: nav)
-		return DismissFirstSceneOperation(animated: animated, renderer: sceneRendererMock)
-	}
-
-	func givenSUT(animated: Bool, modalViews: [UIViewController]) -> DismissFirstSceneOperation {
-		let nav = UINavigationController(rootViewController: modalViews.first!)
-		nav.present(modalViews.last!, animated: false, completion: nil)
-		let sceneRendererMock = givenMockSceneRenderer(window: MockWindow(), root: nav)
-		return DismissFirstSceneOperation(animated: animated, renderer: sceneRendererMock)
+extension PopOperationTests {
+	func givenSUT(toRoot: Bool, root: UINavigationController) -> PopSceneOperation {
+		let sceneRender = givenMockSceneRenderer(window: MockWindow(), root: root)
+		return PopSceneOperation(toRoot: toRoot, animated: false, renderer: sceneRender)
 	}
 }

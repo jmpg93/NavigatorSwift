@@ -9,9 +9,10 @@
 import Foundation
 
 public class SceneBuilder {
-	fileprivate(set) var scenes: [Scene] = []
 	fileprivate let sceneProvider: SceneProvider
-	fileprivate(set) var absolutely = false
+	
+	fileprivate(set) var scenes: [Scene] = []
+	fileprivate(set) var isAbsolutely = false
 
 	public init(using builderBlock: SceneBuilderBlock, sceneProvider: SceneProvider) {
 		self.sceneProvider = sceneProvider
@@ -22,38 +23,36 @@ public class SceneBuilder {
 // MARK: - Public methods
 
 public extension SceneBuilder {
-	func append(scene name: SceneName, type: ScenePresentationType, parameters: Parameters = [:], animated: Bool = true) {
-		appendScene(name: name, type: type, parameters: parameters, animated: animated)
+	func root(name: SceneName, parameters: Parameters = [:]) {
+		add(scene: name, type: .root, parameters: parameters, animated: false)
 	}
 
-	func appendPush(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
-		appendScene(name: name, type: .push, parameters: parameters, animated: animated)
+	func push(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
+		add(scene: name, type: .push, parameters: parameters, animated: animated)
 	}
 
-	func appendModal(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
-		appendScene(name: name, type: .modal, parameters: parameters, animated: animated)
+	func present(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
+		add(scene: name, type: .modal, parameters: parameters, animated: animated)
 	}
 
-	func appendModalWithNavigation(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
-		appendScene(name: name, type: .modalNavigation, parameters: parameters, animated: animated)
+	func presentNavigation(name: SceneName, parameters: Parameters = [:], animated: Bool = true) {
+		add(scene: name, type: .modalNavigation, parameters: parameters, animated: animated)
 	}
 
-	func navigateAbsolutely() {
-		absolutely = true
+	func absolutely() {
+		isAbsolutely = true
 	}
 
-	func navigateRelatively() {
-		absolutely = false
+	func relatively() {
+		isAbsolutely = false
 	}
 }
 
 // MARK: - Public methods
 
 private extension SceneBuilder {
-	func appendScene(name: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {
-		guard let scene = sceneProvider.scene(with: name, parameters: parameters, type: type, animated: animated) else {
-			return
-		}
+	func add(scene name: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {
+		guard let scene = sceneProvider.scene(with: name, parameters: parameters, type: type, animated: animated) else { return }
 		scenes.append(scene)
 	}
 }

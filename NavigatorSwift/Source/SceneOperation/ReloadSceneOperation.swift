@@ -26,7 +26,8 @@ extension ReloadSceneOperation {
 
 		if scene.sceneHandler.name.value == visibleViewController.sceneName {
 			scene.sceneHandler.reload(visibleViewController, parameters: scene.parameters)
-			completion?()
 		}
+
+		completion?()
 	}
 }

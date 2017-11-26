@@ -14,14 +14,14 @@ class SetScenesOperationTest: SceneOperationTests {
 	fileprivate var sut: SetScenesOperation!
 
 	fileprivate var mockDismissAllOperation: MockSceneOperation!
-	fileprivate var mockInstallOperation: MockSceneOperation!
+	fileprivate var mockAddOperation: MockSceneOperation!
 	fileprivate var mockRecycleOperation: MockSceneOperation!
 
 	override func setUp() {
 		super.setUp()
 
 		mockDismissAllOperation = givenMockOperation()
-		mockInstallOperation = givenMockOperation()
+		mockAddOperation = givenMockOperation()
 		mockRecycleOperation = givenMockOperation()
 	}
 }
@@ -37,7 +37,7 @@ extension SetScenesOperationTest {
 		// then
 		XCTAssertFalse(mockDismissAllOperation.executed)
 		XCTAssertFalse(mockRecycleOperation.executed)
-		XCTAssertFalse(mockInstallOperation.executed)
+		XCTAssertFalse(mockAddOperation.executed)
 	}
 
 	func testGivenAnySceneNoRootViewController_execute_installStack() {
@@ -49,8 +49,8 @@ extension SetScenesOperationTest {
 
 		// then
 		XCTAssertTrue(mockDismissAllOperation.executed)
-		XCTAssertTrue(mockRecycleOperation.executed)
-		XCTAssertTrue(mockInstallOperation.executed)
+		XCTAssertTrue(mockAddOperation.executed)
+		XCTAssertFalse(mockRecycleOperation.executed)
 	}
 
 	func testGivenAnySceneRootViewController_execute_installStack() {
@@ -62,9 +62,9 @@ extension SetScenesOperationTest {
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(mockDismissAllOperation.executed)
 		XCTAssertTrue(mockRecycleOperation.executed)
-		XCTAssertFalse(mockInstallOperation.executed)
+		XCTAssertFalse(mockDismissAllOperation.executed)
+		XCTAssertFalse(mockAddOperation.executed)
 	}
 
 	func testGivenRootScene_isRootViewController_returnTrue() {
@@ -113,7 +113,7 @@ extension SetScenesOperationTest {
 		let mockRenderer = givenMockSceneRenderer(window: MockWindow(), root: nav, scene: scene)
 		mockRenderer._dismissAllOperation = mockDismissAllOperation
 		mockRenderer._recycleOperation = mockRecycleOperation
-		mockRenderer._installOperation = mockInstallOperation
+		mockRenderer._addScenesOperation = mockAddOperation
 		return SetScenesOperation(scenes: scenes, renderer: mockRenderer)
 	}
 }

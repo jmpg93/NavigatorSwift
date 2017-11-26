@@ -21,9 +21,9 @@ extension SceneProvider {
 		sceneHandlersByName[sceneHandler.name] = sceneHandler
 	}
 
-	func scenes(with builder: (SceneBuilder) -> Void) -> (scenes: [Scene], absolutly: Bool) {
+	func scenes(with builder: (SceneBuilder) -> Void) -> (scenes: [Scene], isAbsolutely: Bool) {
 		let sceneBuilder = SceneBuilder(using: builder, sceneProvider: self)
-		return (sceneBuilder.scenes, sceneBuilder.absolutely)
+		return (sceneBuilder.scenes, sceneBuilder.isAbsolutely)
 	}
 
 	func scene(with name: SceneName, parameters: Parameters = [:], type: ScenePresentationType, animated: Bool = true) -> Scene? {

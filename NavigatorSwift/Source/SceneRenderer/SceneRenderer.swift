@@ -78,11 +78,11 @@ public class SceneRenderer: VisibleViewControllerFindable {
 		return DismissSceneOperation(sceneName: sceneName, animated: animated, renderer: self)
 	}
 
-	/// Set scene with a new viewControllerContainer.
+	/// Set the scene as root with a new viewControllerContainer.
 	///
 	/// - parameter scene: Scene to set as root.
-	func install(scene: Scene) -> SceneOperation {
-		return InstallSceneOperation(scene: scene, renderer: self)
+	func root(scene: Scene) -> SceneOperation {
+		return RootSceneOperation(scene: scene, renderer: self)
 	}
 
 	/// Dismisses all scenes if any.

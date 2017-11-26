@@ -19,7 +19,7 @@ public protocol Navigator: class {
 public extension Navigator {
 	func root(_ scene: SceneName, parameters: Parameters = [:]) {
 		guard let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal) else { return }
-		navigate(with: sceneRenderer.add(scenes: [scene]))
+		navigate(with: sceneRenderer.root(scene: scene))
 	}
 }
 
@@ -221,7 +221,7 @@ private extension Navigator {
 	func urlBuilder(for url: URL) -> (SceneBuilder) -> Void {
 		return { builder in
 			let scenes = self.sceneURLHandler.scenes(from: url)
-			scenes.forEach { builder.appendModal(name: $0) }
+			scenes.forEach { builder.present(name: $0) }
 		}
 	}
 }

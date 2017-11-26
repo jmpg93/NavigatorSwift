@@ -26,6 +26,8 @@ extension DismissFirstSceneOperation {
 
 		if visibleViewController.isBeingDisplayedModally {
 			visibleViewController.dismiss(animated: animated, completion: completion)
+		} else {
+			completion?()
 		}
 	}
 }

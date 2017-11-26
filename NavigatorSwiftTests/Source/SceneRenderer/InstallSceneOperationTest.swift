@@ -11,7 +11,7 @@ import XCTest
 
 class InstallSceneOperationTest: SceneOperationTests {
 	// Class under test
-	fileprivate var sut: InstallSceneOperation!
+	fileprivate var sut: RootSceneOperation!
 }
 
 // MARK: Tests
@@ -19,7 +19,7 @@ class InstallSceneOperationTest: SceneOperationTests {
 extension InstallSceneOperationTest {
 	func testGivenScene_installScene_setRootViewController() {
 		//given
-		let view = UIViewController()
+		let view = MockViewController()
 		let scene = givenMockScene(name: Constants.anyScene, view: view, type: .push)
 		let window = MockWindow()
 		sut = givenSUT(scene: scene, window: window)
@@ -56,10 +56,10 @@ extension InstallSceneOperationTest {
 		return MockNavigationController(viewControllers: [view])
 	}
 
-	func givenSUT(scene: Scene, window: UIWindow) -> InstallSceneOperation {
+	func givenSUT(scene: Scene, window: UIWindow) -> RootSceneOperation {
 		let rootNavigation = givenNavigationController()
 		let mockSceneRenderer = givenMockSceneRenderer(window: window, root: rootNavigation)
-		return InstallSceneOperation(scene: scene, renderer: mockSceneRenderer)
+		return RootSceneOperation(scene: scene, renderer: mockSceneRenderer)
 	}
 }
 

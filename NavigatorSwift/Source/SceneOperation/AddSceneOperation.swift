@@ -22,7 +22,10 @@ class AddSceneOperation: SceneOperation {
 
 extension AddSceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		guard !scenes.isEmpty else { return }
+		guard !scenes.isEmpty else {
+			completion?()
+			return
+		}
 		
 		let visibleViewController = renderer.visibleViewController(from: renderer.rootViewController)
 		var currentVisibleViewController: UIViewController? = visibleViewController
@@ -55,6 +58,9 @@ extension AddSceneOperation {
 			case .modal:
 				visibleViewController.present(newViewController, animated: animated, completion: completion)
 
+			case .root:
+				renderer.root(scene: scene).execute(with: completion)
+				
 			case .reload:
 				continue
 			}

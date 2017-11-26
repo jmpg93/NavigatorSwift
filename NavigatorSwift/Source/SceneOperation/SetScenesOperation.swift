@@ -22,21 +22,19 @@ class SetScenesOperation: SceneOperation {
 
 extension SetScenesOperation {
 	func execute(with completion: CompletionBlock?) {
-		guard !scenes.isEmpty else { return }
-		let firstScene = scenes.removeFirst()
-
-		let dismissOperation = renderer.dismissAll(animated: false)
-		let installOperation = renderer.install(scene: firstScene)
-		let recycleOperation = renderer.recycle(scenes: scenes)
-
-		if isRootViewController(matching: firstScene) {
-			dismissOperation
-				.then(recycleOperation)
+		guard let rootScene = scenes.first else {
+			completion?()
+			return
+		}
+		
+		if isRootViewController(matching: rootScene) {
+			renderer
+				.recycle(scenes: scenes)
 				.execute(with: completion)
 		} else {
-			dismissOperation
-				.then(installOperation)
-				.then(recycleOperation)
+			renderer
+				.dismissAll(animated: false)
+				.then(renderer.add(scenes: scenes))
 				.execute(with: completion)
 		}
 	}

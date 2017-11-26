@@ -1,5 +1,5 @@
 //
-//  InstallSceneOperation.swift
+//  RootSceneOperation.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 8/9/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InstallSceneOperation: SceneOperation {
+class RootSceneOperation: SceneOperation {
 	fileprivate let scene: Scene
 	fileprivate let renderer: SceneRenderer
 
@@ -18,7 +18,7 @@ class InstallSceneOperation: SceneOperation {
 	}
 }
 
-extension InstallSceneOperation {
+extension RootSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		let buildedViewController = scene.buildViewController()
 

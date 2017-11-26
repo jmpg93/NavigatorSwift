@@ -18,7 +18,19 @@ class DismissAllOperationTests: SceneOperationTests {
 // MARK: Tests
 
 extension DismissAllOperationTests {
-	func testGivenScenes_dismissAll_dismissRoot() {
+	func testGivenScenes_dismissAllAnimated_dismissRoot() {
+		// given
+		let mockRootNavigationController = givenMockNavigationController()
+		sut = givenSUT(animated: true, root: mockRootNavigationController)
+
+		// when
+		sut.execute(with: nil)
+
+		// then
+		XCTAssertTrue(mockRootNavigationController.dismissed)
+	}
+
+	func testGivenScenes_dismissAllNonAnimated_dismissRoot() {
 		// given
 		let mockRootNavigationController = givenMockNavigationController()
 		sut = givenSUT(animated: false, root: mockRootNavigationController)

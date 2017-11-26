@@ -33,12 +33,16 @@ extension DismissSceneOperationTests {
 	func testGivenRootSceneNotDisplayedModally_execute_doNotDismissScene() {
 		//given
 		let rootViewMock = givenMockViewController(isDisplayedModally: false, sceneName: Constants.anyScene)
+		var executed = false
 		sut = givenSUT(sceneName: Constants.anyScene, animated: true, modalView: rootViewMock)
 
 		// when
-		sut.execute(with: nil)
+		sut.execute {
+			executed = true
+		}
 
 		// then
+		XCTAssertTrue(executed)
 		XCTAssertFalse(rootViewMock.dismissed)
 	}
 

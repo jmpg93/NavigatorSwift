@@ -28,6 +28,8 @@ extension DismissSceneOperation {
 
 		if visibleViewController.isBeingDisplayedModally && sceneName.value == visibleViewController.sceneName {
 			visibleViewController.dismiss(animated: animated, completion: completion)
+		} else {
+			completion?()
 		}
 	}
 }

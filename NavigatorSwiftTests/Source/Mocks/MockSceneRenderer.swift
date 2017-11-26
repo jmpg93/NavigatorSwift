@@ -54,7 +54,7 @@ class MockSceneRenderer: SceneRenderer {
 		return _recycleOperation
 	}
 
-	override func install(scene: Scene) -> SceneOperation {
+	override func root(scene: Scene) -> SceneOperation {
 		return _installOperation
 	}
 

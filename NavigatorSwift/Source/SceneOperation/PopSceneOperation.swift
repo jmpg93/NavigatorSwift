@@ -26,6 +26,7 @@ extension PopSceneOperation: SceneOperation {
 		let visibleViewController = self.visibleViewController(from: renderer.rootViewController)
 
 		guard let navigationController = visibleViewController.navigationController else {
+			completion?()
 			return
 		}
 
