@@ -18,13 +18,13 @@ class LoginSceneHandler: SceneHandler {
 		return .login
 	}
 
-	func buildViewController(with parameters: Parameters) -> UIViewController {
+	func view(with parameters: Parameters) -> UIViewController {
 		let vc = UIViewController()
 		vc.view.backgroundColor = .red
 		return vc
 	}
 
-	var isViewControllerRecyclable: Bool {
+	var isReloadable: Bool {
 		return true
 	}
 }

@@ -19,7 +19,7 @@ class CollectionScenHandler: SceneHandler {
 		static let stateLabel = "stateLabel"
 	}
 	
-	func buildViewController(with parameters: Parameters) -> UIViewController {
+	func view(with parameters: Parameters) -> UIViewController {
 		let view = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection") as! Collection
 		if let state = parameters[Parameter.stateLabel] as? String {
 			view.stateText = state
@@ -35,7 +35,7 @@ class CollectionScenHandler: SceneHandler {
 		print(viewController.value(forKey: "stateText"))
 	}
 
-	var isViewControllerRecyclable: Bool {
+	var isReloadable: Bool {
 		return true
 	}
 }

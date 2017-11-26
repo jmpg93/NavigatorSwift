@@ -25,7 +25,7 @@ public class Preview: NSObject {
 extension Preview: UIViewControllerPreviewingDelegate {
 	public func previewingContext(_ previewingContext: UIViewControllerPreviewing,
 	                       viewControllerForLocation location: CGPoint) -> UIViewController? {
-		return scene.buildViewController()
+		return scene.view()
 	}
 
 	public func previewingContext(_ previewingContext: UIViewControllerPreviewing,

@@ -40,25 +40,25 @@ extension SceneOperationTests {
 
 	func givenMockSceneHandler(name: SceneName,
 	                           view: UIViewController,
-	                           isViewControllerRecyclable: Bool = false) -> MockSceneHandler {
+	                           isReloadable: Bool = false) -> MockSceneHandler {
 		let mockSceneHandler = MockSceneHandler()
 		mockSceneHandler._name = name
-		mockSceneHandler._isViewControllerRecyclable = isViewControllerRecyclable
-		mockSceneHandler._buildViewController = view
+		mockSceneHandler._isReloadable = isReloadable
+		mockSceneHandler._view = view
 		return mockSceneHandler
 	}
 
 	func givenMockScene(name: SceneName,
 	                    view: UIViewController,
 	                    type: ScenePresentationType,
-	                    isViewControllerRecyclable: Bool = false) -> MockScene {
+	                    isReloadable: Bool = false) -> MockScene {
 		view.sceneName = name.value
 		let mockSceneHandler = givenMockSceneHandler(name: name,
 		                                             view: view,
-		                                             isViewControllerRecyclable: isViewControllerRecyclable)
+		                                             isReloadable: isReloadable)
 
 		let mockScene = MockScene(sceneHandler: mockSceneHandler, type: type)
-		mockScene._buildViewController = view
+		mockScene._view = view
 
 		return mockScene
 	}

@@ -71,10 +71,10 @@ extension RecycleSceneOperation {
 	///Returns true if the viewController can be handled by the scene and also is presented as require the scene, false otherwise.
 	func isViewController(_ viewController: UIViewController, recyclableBy scene: Scene) -> Bool {
 		let isManagedByScene = scene.sceneHandler.name.value == viewController.sceneName
-		let isViewControllerRecyclable = scene.sceneHandler.isViewControllerRecyclable
+		let isReloadable = scene.sceneHandler.isReloadable
 		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene.type)
 
-		return isManagedByScene && isPresentedAsRequireScene && isViewControllerRecyclable
+		return isManagedByScene && isPresentedAsRequireScene && isReloadable
 	}
 
 	///Returns true if the viewController presented as require the ScenePresentationType (by checking the hierarchy of the viewController), false otherwise.

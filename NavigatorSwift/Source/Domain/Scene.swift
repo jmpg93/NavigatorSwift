@@ -26,8 +26,8 @@ class Scene {
 		self.type = typePresentation
 	}
 
-	func buildViewController() -> UIViewController {
-		let viewController = sceneHandler.buildViewController(with: parameters)
+	func view() -> UIViewController {
+		let viewController = sceneHandler.view(with: parameters)
 		configure(viewController)
 
 		return viewController

@@ -20,7 +20,7 @@ class RootSceneOperation: SceneOperation {
 
 extension RootSceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		let buildedViewController = scene.buildViewController()
+		let buildedViewController = scene.view()
 
 		if let buildedViewController = buildedViewController as? ViewControllerContainer {
 			renderer.viewControllerContainer = buildedViewController

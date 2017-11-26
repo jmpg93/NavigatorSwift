@@ -12,7 +12,7 @@ import UIKit
 
 class MockScene: Scene {
 	var _type = ScenePresentationType.push
-	var _buildViewController = UIViewController()
+	var _view = UIViewController()
 	var configured = false
 
 	init(sceneHandler: SceneHandler, type: ScenePresentationType) {
@@ -22,8 +22,8 @@ class MockScene: Scene {
 				   animated: false)
 	}
 
-	override func buildViewController() -> UIViewController {
-		return _buildViewController
+	override func view() -> UIViewController {
+		return _view
 	}
 
 	override func configure(_ viewController: UIViewController) {

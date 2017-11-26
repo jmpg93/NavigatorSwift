@@ -11,14 +11,14 @@ import UIKit
 
 public protocol SceneHandler: class {
 	var name: SceneName { get }
-	var isViewControllerRecyclable: Bool { get }
+	var isReloadable: Bool { get }
 
-	func buildViewController(with parameters: Parameters) -> UIViewController
+	func view(with parameters: Parameters) -> UIViewController
 	func reload(_ viewController: UIViewController, parameters: Parameters)
 }
 
 public extension SceneHandler {
-	var isViewControllerRecyclable: Bool {
+	var isReloadable: Bool {
 		return false
 	}
 

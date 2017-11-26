@@ -29,7 +29,7 @@ extension AddSceneOperationTests {
 
 		// then
 		XCTAssertTrue(viewController.didPresentViewController)
-		XCTAssertNil(scene._buildViewController.navigationController)
+		XCTAssertNil(scene._view.navigationController)
 	}
 
 	func testGivenPushScene_execute_pushScene() {
@@ -55,7 +55,7 @@ extension AddSceneOperationTests {
 
 		// then
 		XCTAssertTrue(viewController.didPresentViewController)
-		//XCTAssertNotNil(scene._buildViewController.navigationController)
+		//XCTAssertNotNil(scene._view.navigationController)
 	}
 }
 

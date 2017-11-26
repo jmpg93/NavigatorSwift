@@ -104,14 +104,14 @@ extension RecycleSceneOperationTests {
 extension RecycleSceneOperationTests {
 	func givenMockScene(type: ScenePresentationType, recyclable: Bool) -> MockScene {
 		let sceneHandler = MockSceneHandler()
-		sceneHandler._buildViewController = MockViewController()
-		sceneHandler._isViewControllerRecyclable = recyclable
+		sceneHandler._view = MockViewController()
+		sceneHandler._isReloadable = recyclable
 		return MockScene(sceneHandler: sceneHandler, type: type)
 	}
 
 	func givenViewController(for scene: Scene) -> UIViewController {
 		let nav = givenNavigationController(with: scene.sceneHandler.name)
-		let vc = scene.buildViewController()
+		let vc = scene.view()
 
 		switch scene.type {
 		case .modal:

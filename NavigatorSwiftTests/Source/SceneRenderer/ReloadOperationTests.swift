@@ -16,11 +16,11 @@ class ReloadSceneOperationTests: SceneOperationTests {
 }
 
 extension ReloadSceneOperationTests {
-	func testRootWithMatchingScene_execute_reloadViewController() {
+	func testReloadableRootWithMatchingScene_execute_reloadViewController() {
 		//given
 		let root = givenMockViewController(with: Constants.anyScene)
 		let mockSceneRenderer = givenSceenRenderer(root: root)
-		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload)
+		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload, isReloadable: true)
 		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneRenderer)
 
 		//when
@@ -29,6 +29,21 @@ extension ReloadSceneOperationTests {
 		//then
 		let sceneHandler = mockScene.sceneHandler as! MockSceneHandler
 		XCTAssertTrue(sceneHandler.reloaded)
+	}
+
+	func testNotReloadableRootWithMatchingScene_execute_reloadViewController() {
+		//given
+		let root = givenMockViewController(with: Constants.anyScene)
+		let mockSceneRenderer = givenSceenRenderer(root: root)
+		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload, isReloadable: false)
+		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneRenderer)
+
+		//when
+		sut.execute(with: nil)
+
+		//then
+		let sceneHandler = mockScene.sceneHandler as! MockSceneHandler
+		XCTAssertFalse(sceneHandler.reloaded)
 	}
 
 	func testRootWithNotMatchingScene_execute_doNotReloadViewController() {

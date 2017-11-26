@@ -12,20 +12,20 @@ import NavigatorSwift
 
 class MockSceneHandler: SceneHandler {
 	var _name: SceneName = "MockScene"
-	var _isViewControllerRecyclable = false
-	var _buildViewController = UIViewController()
+	var _isReloadable = false
+	var _view = UIViewController()
 	var reloaded = false
 
 	var name: SceneName {
 		return _name
 	}
 
-	var isViewControllerRecyclable: Bool {
-		return _isViewControllerRecyclable
+	var isReloadable: Bool {
+		return _isReloadable
 	}
 
-	func buildViewController(with parameters: Parameters) -> UIViewController {
-		return _buildViewController
+	func view(with parameters: Parameters) -> UIViewController {
+		return _view
 	}
 
 	func reload(_ viewController: UIViewController, parameters: Parameters) {
