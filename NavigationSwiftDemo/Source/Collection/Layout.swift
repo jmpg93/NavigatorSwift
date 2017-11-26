@@ -11,9 +11,7 @@ import UIKit
 
 class Layout: UICollectionViewFlowLayout {
 	var items: CGFloat {
-		return collectionView!.traitCollection.horizontalSizeClass == .regular
-			? 5
-			: 3
+		return collectionView!.traitCollection.horizontalSizeClass == .regular ? 5 : 3
 	}
 
 	override func prepare() {

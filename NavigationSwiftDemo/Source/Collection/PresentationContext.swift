@@ -41,4 +41,5 @@ extension PresentationContext {
 	static let transitionNotAnimated = PresentationContext(presentation: .transition, animated: false)
 	static let popover = PresentationContext(presentation: .popover, animated: true)
 	static let popoverNotAnimated = PresentationContext(presentation: .popover, animated: false)
+	static let recycle = PresentationContext(presentation: .recycle, animated: true)
 }

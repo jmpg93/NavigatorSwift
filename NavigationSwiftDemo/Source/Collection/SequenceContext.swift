@@ -61,7 +61,7 @@ extension PresentationSequence {
 		PresentationSequence(contexts: [.preview]),
 		PresentationSequence(contexts: [.pop]),
 		PresentationSequence(contexts: [.popToRoot]),
-		PresentationSequence(contexts: [.set]),
+		PresentationSequence(contexts: [.set])
 	]
 
 	static let nonAnimatedSequences: [PresentationSequence] = [
@@ -81,6 +81,7 @@ extension PresentationSequence {
 	static let combinedSequences: [PresentationSequence] = [
 		PresentationSequence(contexts: [.modal, .modal]),
 		PresentationSequence(contexts: [.push, .push]),
-		PresentationSequence(contexts: [.modalNavigation, .push])
+		PresentationSequence(contexts: [.modalNavigation, .push]),
+		PresentationSequence(contexts: [.recycle])
 	]
 }

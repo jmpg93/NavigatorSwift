@@ -25,47 +25,49 @@ class RecycleSceneOperation: SceneOperation {
 // MARK: SceneOperation methods
 
 extension RecycleSceneOperation {
-	//FIXME: Not working
 	func execute(with completion: CompletionBlock?) {
-		guard !scenes.isEmpty else { return }
+		guard !scenes.isEmpty else {
+			completion?()
+			return
+		}
 
-		var scenesNotInStackYet = scenes
-
-		guard let firstSceneNotInStack = scenesNotInStackYet.first else { return }
+		// Get the navigation controller the scene is refering to.
+		guard let navigationControllerToRecycle = firstLevelNavigationController(matching: scenes.first) else {
+			completion?()
+			return
+		}
 
 		// Move to the target root tab or navigation
-		guard let navigationControllerToRecycle = viewControllerContainer.firstLevelNavigationController(matching: firstSceneNotInStack) else { return }
 		renderer.setSelectedViewController(navigationControllerToRecycle)
 
-		var shouldRecycle = true
+		var _next = navigationControllerToRecycle.viewControllers.first
+		var scenesNotInStackYet = scenes
 
-		var finalViewControllers: [UIViewController] = []
-		for (index, viewControllerToRecycle) in navigationControllerToRecycle.viewControllers.enumerated() where shouldRecycle {
-			guard index + 1 < scenesNotInStackYet.count else { break }
+		for scene in scenes {
+			guard let next = _next else { break }
+			guard isViewController(next, recyclableBy: scene) else { break }
 
-			let searchingScene = scenesNotInStackYet.first!
+			scene.sceneHandler.reload(next, parameters: scene.parameters)
+			scenesNotInStackYet.removeFirst()
 
-			if isViewController(viewControllerToRecycle, recyclableBy: searchingScene) {
-				finalViewControllers.append(viewControllerToRecycle)
-				searchingScene.sceneHandler.reload(viewControllerToRecycle, parameters: searchingScene.parameters)
-				scenesNotInStackYet.remove(at: 0)
-			} else {
-				shouldRecycle = false
+			_next = self.next(from: next)
+		}
+
+		if let viewController = _next {
+			if navigationControllerToRecycle.viewControllers.contains(viewController) {
+				navigationControllerToRecycle.popToViewController(viewController, animated: true)
 			}
+			viewController.dismiss(animated: true, completion: nil)
 		}
 
-		if shouldRecycle {
-			renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
-		} else {
-			renderer.set(scenes: scenes).execute(with: completion)
-		}
+		renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
 	}
 
 	///Returns Yes if the viewController is handled by the scene and also is presented as require the scene, NO otherwise.
 	func isViewController(_ viewController: UIViewController, recyclableBy scene: Scene) -> Bool {
 		let isManagedByScene = scene.sceneHandler.name.value == viewController.sceneName
-		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene.type)
 		let isViewControllerRecyclable = scene.sceneHandler.isViewControllerRecyclable
+		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene.type)
 
 		return isManagedByScene && isPresentedAsRequireScene && isViewControllerRecyclable
 	}
@@ -81,6 +83,32 @@ extension RecycleSceneOperation {
 		case .modalNavigation:
 			return viewController.navigationController != nil
 				&& viewController.navigationController?.presentingViewController != nil
+			
+		case .reload:
+			return true
+		}
+	}
+}
+
+private extension RecycleSceneOperation {
+	func firstLevelNavigationController(matching scene: Scene?) -> UINavigationController? {
+		guard let scene = scene else { return nil }
+		return viewControllerContainer.firstLevelNavigationController(matching: scene)
+	}
+
+	func next(from viewcontroller: UIViewController) -> UIViewController? {
+		let viewControllers = viewcontroller.navigationController?.viewControllers
+		let nextNavigationIndex = viewControllers?.index(of: viewcontroller)?.advanced(by: 1)
+		let navigationIndices = viewControllers?.indices
+
+		if let nextNavigationIndex = nextNavigationIndex, navigationIndices?.contains(nextNavigationIndex) ?? false {
+			return viewControllers?[nextNavigationIndex]
+		} else if let modal = viewcontroller.navigationController?.presentedViewController {
+			return modal
+		} else if let modal = viewcontroller.presentedViewController {
+			return modal
+		} else {
+			return nil
 		}
 	}
 }

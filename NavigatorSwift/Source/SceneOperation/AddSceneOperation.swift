@@ -54,6 +54,9 @@ extension AddSceneOperation {
 
 			case .modal:
 				visibleViewController.present(newViewController, animated: animated, completion: completion)
+
+			case .reload:
+				continue
 			}
 
 			currentVisibleViewController = newViewController

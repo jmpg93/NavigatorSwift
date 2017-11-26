@@ -57,7 +57,7 @@ class NavigationSwiftDemoUITests: XCTestCase {
 
 			//then
 			assertState(state)
-			toRoot()
+			backToRoot()
 		}
     }
 
@@ -71,7 +71,7 @@ class NavigationSwiftDemoUITests: XCTestCase {
 
 			//then
 			assertState(Constants.root)
-			toRoot()
+			backToRoot()
 		}
 	}
 
@@ -85,7 +85,7 @@ class NavigationSwiftDemoUITests: XCTestCase {
 
 			//then
 			assertState(Constants.root)
-			toRoot()
+			backToRoot()
 		}
 	}
 
@@ -99,7 +99,7 @@ class NavigationSwiftDemoUITests: XCTestCase {
 
 			//then
 			assertState(state)
-			toRoot()
+			backToRoot()
 		}
 	}
 }
@@ -118,7 +118,7 @@ extension NavigationSwiftDemoUITests {
 		_ = app.stateLabel.staticTexts[state].waitForExistence(timeout: 0.3)
 	}
 
-	func toRoot() {
+	func backToRoot() {
 		tapCell(Constants.dismissAll)
 		wait(Constants.dismissAll)
 		tapCell(Constants.popToRoot)

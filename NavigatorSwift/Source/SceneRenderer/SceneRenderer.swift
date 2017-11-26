@@ -95,8 +95,18 @@ public class SceneRenderer: VisibleViewControllerFindable {
 		return DismissAllOperation(animated: animated, renderer: self)
 	}
 
+	/// Recycle the current stack, and install the scenes not in stack yet.
+	///
+	/// - parameter scenes: The scenes to be recycled.
 	func recycle(scenes: [Scene]) -> SceneOperation {
 		return RecycleSceneOperation(scenes: scenes, renderer: self)
+	}
+
+	/// Reload the visible viewController if the scenes matches.
+	///
+	/// - parameter scene: The scene to be reloaded.
+	func reload(scene: Scene) -> SceneOperation {
+		return ReloadSceneOperation(scene: scene, renderer: self)
 	}
 
 	/// Present the view controller using the transition passed as parameter.

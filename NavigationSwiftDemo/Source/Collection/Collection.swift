@@ -129,6 +129,12 @@ extension Collection: UICollectionViewDelegate {
 			case .preview:
 				let cell = collectionView.cellForItem(at: indexPath)!
 				navigator.preview(.collection, from: self, at: cell, parameters: parameters)
+			case .recycle:
+				navigator.navigate(using: { builder in
+					builder.appendModalWithNavigation(name: .collection)
+					builder.appendPush(name: .collection)
+					builder.navigateAbsolutely()
+				})
 			}
 		}
 	}

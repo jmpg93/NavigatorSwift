@@ -31,6 +31,10 @@ class CollectionScenHandler: SceneHandler {
 		return .collection
 	}
 
+	func reload(_ viewController: UIViewController, parameters: Parameters) {
+		print("Reloaded")
+	}
+
 	var isViewControllerRecyclable: Bool {
 		return true
 	}

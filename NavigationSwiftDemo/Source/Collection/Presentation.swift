@@ -23,7 +23,8 @@ enum Presentation {
 	case deeplink
 	case preview
 	case popover
-
+	case recycle
+	
 	var value: String {
 		switch self {
 		case .pop:
@@ -50,6 +51,8 @@ enum Presentation {
 			return "transition"
 		case .popover:
 			return "popover"
+		case .recycle:
+			return "recycle"
 		case .set(let scenes):
 			return "set \(scenes.count) scenes"
 		}

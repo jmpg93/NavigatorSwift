@@ -11,6 +11,7 @@ import Foundation
 public protocol Navigator: class {
 	var sceneProvider: SceneProvider { get }
 	var sceneRenderer: SceneRenderer { get }
+	var sceneURLHandler: SceneURLHandler { get set }
 }
 
 // MARK: - Set root with Scene names
@@ -38,6 +39,11 @@ public extension Navigator {
 	func presentNavigationController(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
 		guard let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modalNavigation, animated: animated) else { return }
 		navigate(to: scene, completion: completion)
+	}
+
+	func reload(_ name: SceneName,  parameters: Parameters = [:], completion: CompletionBlock? = nil) {
+		guard let scene = sceneProvider.scene(with: name, type: .reload) else { return }
+		sceneRenderer.reload(scene:scene).execute(with: completion)
 	}
 }
 
@@ -83,8 +89,8 @@ public extension Navigator {
 // MARK: - Deeplink
 
 public extension Navigator {
-	func deepLink(url: URL, completion: CompletionBlock? = nil) {
-		let builder = deepLinkBuilder(for: url)
+	func url(_ url: URL, completion: CompletionBlock? = nil) {
+		let builder = urlBuilder(for: url)
 		navigate(using: builder, completion: completion)
 	}
 }
@@ -188,13 +194,9 @@ public extension Navigator {
 // MARK: - Navigating with Scenes
 
 extension Navigator {
-	var sceneLinkHandler: SceneLinkHandler {
-		return SceneLinkHandler()
-	}
-
-	func deepLinkBuilder(for url: URL) -> (SceneBuilder) -> Void {
+	func urlBuilder(for url: URL) -> (SceneBuilder) -> Void {
 		return { builder in
-			let scenes = self.sceneLinkHandler.scenes(from: url)
+			let scenes = self.sceneURLHandler.scenes(from: url)
 			scenes.forEach { builder.appendModal(name: $0) }
 		}
 	}

@@ -20,6 +20,8 @@
 		1822EC9E1FC9B10D00F3D597 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822EC9D1FC9B10D00F3D597 /* Header.swift */; };
 		1822ECA61FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECA51FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift */; };
 		1822ECB01FC9C5D800F3D597 /* XCUIApplication+Uitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECAF1FC9C5D800F3D597 /* XCUIApplication+Uitls.swift */; };
+		1822ECB61FCAE87E00F3D597 /* EmptySceneURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */; };
+		1822ECB81FCAE9BF00F3D597 /* ReloadSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */; };
 		1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */; };
 		1827747E1F5C3B8400CD935F /* NavigatorSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; };
 		182FF49A1FC37A3F00117406 /* MockSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FF4991FC37A3F00117406 /* MockSceneOperation.swift */; };
@@ -44,7 +46,7 @@
 		18BF68EE1FC73C5400374A33 /* OrderedSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF68ED1FC73C5400374A33 /* OrderedSceneOperationTests.swift */; };
 		18BF68F01FC73DA500374A33 /* AddSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF68EF1FC73DA500374A33 /* AddSceneOperationTests.swift */; };
 		18C872071F69B81300701144 /* NavigatorPreviewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C872061F69B81300701144 /* NavigatorPreviewing.swift */; };
-		18C8720C1F69B9ED00701144 /* SceneLinkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */; };
+		18C8720C1F69B9ED00701144 /* SceneURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8720B1F69B9ED00701144 /* SceneURLHandler.swift */; };
 		18F9408C1F5C9C980064D320 /* CollectionScenHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */; };
 		6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */; };
 		6C1322DD1F5ADC4100A7D3E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1322DC1F5ADC4100A7D3E9 /* AppDelegate.swift */; };
@@ -156,6 +158,8 @@
 		1822ECA51FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSwiftDemoUITests.swift; sourceTree = "<group>"; };
 		1822ECA71FC9B92100F3D597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1822ECAF1FC9C5D800F3D597 /* XCUIApplication+Uitls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Uitls.swift"; sourceTree = "<group>"; };
+		1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySceneURLHandler.swift; sourceTree = "<group>"; };
+		1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadSceneOperation.swift; sourceTree = "<group>"; };
 		182774791F5C3B8400CD935F /* NavigatorSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigatorSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRendererTests.swift; sourceTree = "<group>"; };
 		1827747D1F5C3B8400CD935F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,7 +184,7 @@
 		18BF68ED1FC73C5400374A33 /* OrderedSceneOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSceneOperationTests.swift; sourceTree = "<group>"; };
 		18BF68EF1FC73DA500374A33 /* AddSceneOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSceneOperationTests.swift; sourceTree = "<group>"; };
 		18C872061F69B81300701144 /* NavigatorPreviewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorPreviewing.swift; sourceTree = "<group>"; };
-		18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneLinkHandler.swift; sourceTree = "<group>"; };
+		18C8720B1F69B9ED00701144 /* SceneURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneURLHandler.swift; sourceTree = "<group>"; };
 		18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionScenHandler.swift; sourceTree = "<group>"; };
 		6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		6C1322DA1F5ADC4100A7D3E9 /* NavigationSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -342,7 +346,8 @@
 		18C8720A1F69B9E000701144 /* SceneLink */ = {
 			isa = PBXGroup;
 			children = (
-				18C8720B1F69B9ED00701144 /* SceneLinkHandler.swift */,
+				18C8720B1F69B9ED00701144 /* SceneURLHandler.swift */,
+				1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */,
 			);
 			path = SceneLink;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				6CA594941F6332A100CF37AB /* DismissFirstSceneOperation.swift */,
 				6CA594811F631A7600CF37AB /* InstallSceneOperation.swift */,
 				6CA594831F631A8600CF37AB /* RecycleSceneOperation.swift */,
+				1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */,
 				6CA594891F63239600CF37AB /* PopSceneOperation.swift */,
 				6CA594851F631A9E00CF37AB /* AddSceneOperation.swift */,
 				180FBA9A1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift */,
@@ -825,11 +831,13 @@
 				6C27A95E1F59E2D500311918 /* ScenePresentationType.swift in Sources */,
 				6CC8BAD41F5A127200559655 /* NavigationBarContainer.swift in Sources */,
 				6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */,
+				1822ECB81FCAE9BF00F3D597 /* ReloadSceneOperation.swift in Sources */,
 				6CA594911F63286000CF37AB /* SetScenesOperation.swift in Sources */,
 				6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */,
 				18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */,
 				1810B1701F685423003B9CA0 /* NavNavigator.swift in Sources */,
 				6C27A9661F59E33200311918 /* SceneBuilder.swift in Sources */,
+				1822ECB61FCAE87E00F3D597 /* EmptySceneURLHandler.swift in Sources */,
 				6C27A95A1F59E2A000311918 /* Parameters.swift in Sources */,
 				6CA594841F631A8600CF37AB /* RecycleSceneOperation.swift in Sources */,
 				6CC4FA991F5AD190003B748A /* Navigator.swift in Sources */,
@@ -839,7 +847,7 @@
 				189212351F6DE3E80047E2FD /* Transition.swift in Sources */,
 				6CA594931F6331AA00CF37AB /* DismissSceneOperation.swift in Sources */,
 				6CA594821F631A7600CF37AB /* InstallSceneOperation.swift in Sources */,
-				18C8720C1F69B9ED00701144 /* SceneLinkHandler.swift in Sources */,
+				18C8720C1F69B9ED00701144 /* SceneURLHandler.swift in Sources */,
 				6CA5948A1F63239600CF37AB /* PopSceneOperation.swift in Sources */,
 				6C27A95C1F59E2C100311918 /* SceneBuilderBlock.swift in Sources */,
 			);

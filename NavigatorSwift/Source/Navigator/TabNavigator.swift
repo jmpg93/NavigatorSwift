@@ -9,10 +9,10 @@
 import Foundation
 
 public final class TabNavigator: Navigator, NavigatorPreviewing {
-	public let sceneProvider = SceneProvider()
-	public let sceneRenderer: SceneRenderer
-
 	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
+	public let sceneProvider = SceneProvider()
+	public var sceneURLHandler: SceneURLHandler = EmptySceneURLHandler()
+	public let sceneRenderer: SceneRenderer
 
 	public init(window: UIWindow) {
 		sceneRenderer = SceneRenderer(window: window, viewControllerContainer: TabBarContainer())

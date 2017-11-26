@@ -9,7 +9,8 @@
 import Foundation
 
 public enum ScenePresentationType: String {
-	case push = "push"
-	case modal = "modal"
-	case modalNavigation = "modalNavigation"
+	case push
+	case modal
+	case modalNavigation
+	case reload
 }

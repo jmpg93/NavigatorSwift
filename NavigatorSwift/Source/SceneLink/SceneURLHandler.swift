@@ -1,5 +1,5 @@
 //
-//  SceneLinkHandler.swift
+//  SceneURLHandler.swift
 //  NavigatorSwift
 //
 //  Created by jmpuerta on 13/9/17.
@@ -8,8 +8,6 @@
 
 import Foundation
 
-class SceneLinkHandler {
-	func scenes(from url: URL) -> [SceneName] {
-		return []
-	}
+public protocol SceneURLHandler {
+	func scenes(from url: URL) -> [SceneName]
 }
