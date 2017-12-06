@@ -97,16 +97,16 @@ navigator.transition(to: .someScene, with: someInteractiveTransition)
 ```swift
 let loginView = navigator.view(for: .login)
 ```
-- Stack navigation using builder:
+- Relative stack navigation using builder:
 ```swift
 navigator.build { builder in
 	builder.modal(.detail)
 }
 ```
-- Absolute navigation using builder (the current stack will be recycled):
+- Absolute stack navigation using builder (the current stack will be recycled):
 ```swift
 navigator.build { builder in
-	builder.root(name: .login) // The root is set
+	builder.root(name: .login) // Setting root will rebuild the stack.
 	builder.modalNavigation(.home)
 	builder.push(.detail)
 }
