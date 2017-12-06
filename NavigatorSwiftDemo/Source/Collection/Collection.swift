@@ -1,6 +1,6 @@
 //
 //  Collection.swift
-//  NavigationSwiftDemo
+//  NavigatorSwiftDemo
 //
 //  Created by Jose Maria Puerta on 2/9/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.
@@ -16,6 +16,13 @@ class Collection: UIViewController {
 		static let stateLabelIdentifier = "StateLabel"
 
 		static let defaultStateText = "root"
+
+		static let rootParameters = [CollectionScenHandler.Parameter.stateLabel: Constants.defaultStateText]
+		static let modalParameters = [CollectionScenHandler.Parameter.stateLabel: "modal"]
+		static let pushParameters = [CollectionScenHandler.Parameter.stateLabel: "push"]
+		static let modalNavParameters = [CollectionScenHandler.Parameter.stateLabel: "modalNav"]
+		static let transitionParameters = [CollectionScenHandler.Parameter.stateLabel: "transition"]
+		static let popoverParameters = [CollectionScenHandler.Parameter.stateLabel: "popover"]
 	}
 
 	var stateText = Constants.defaultStateText
@@ -25,8 +32,9 @@ class Collection: UIViewController {
 	// @IBOutlet
 	@IBOutlet weak var stateLabel: UILabel!
 	@IBOutlet weak var collectionView: UICollectionView!
-
+	
 	// Properties
+	fileprivate var color = UIColor.random
 	fileprivate var navigator: NavNavigator {
 		return globalNavigator
 	}
@@ -76,7 +84,8 @@ extension Collection: UICollectionViewDataSource {
 
 		let sequence = sections[indexPath.section].sequences[indexPath.item]
 		cell.sceneNameLabel.text = sequence.name
-
+		cell.sceneNameLabel.backgroundColor = color
+		
 		if sequence.hasPreview {
 			navigator.preview(.collection, from: self, at: cell)
 		} else {
@@ -92,22 +101,21 @@ extension Collection: UICollectionViewDataSource {
 extension Collection: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let sequence = sections[indexPath.section].sequences[indexPath.item]
-		let parameters = self.parameters(with: sequence)
 
 		for context in sequence.contexts {
 			switch context.presentation {
 			case .modal:
-				navigator.present(.collection, parameters: parameters, animated: context.animated)
+				navigator.present(.collection, parameters: Constants.modalParameters, animated: context.animated)
 			case .push:
-				navigator.push(.collection, parameters: parameters, animated: context.animated)
+				navigator.push(.collection, parameters: Constants.pushParameters, animated: context.animated)
 			case .set(let scenes):
 				navigator.build { builder in
 					for scene in scenes {
-						builder.present(scene, parameters: parameters, animated: context.animated)
+						builder.present(scene, parameters: Constants.modalParameters, animated: context.animated)
 					}
 				}
 			case .modalNavigation:
-				navigator.presentNavigation(.collection, parameters: parameters, animated: context.animated, completion: nil)
+				navigator.presentNavigation(.collection, parameters: Constants.modalNavParameters, animated: context.animated)
 			case .pop:
 				navigator.pop(animated: context.animated)
 			case .popToRoot:
@@ -119,27 +127,31 @@ extension Collection: UICollectionViewDelegate {
 			case .dismissAll:
 				navigator.dismissAll(animated: context.animated)
 			case .transition:
-				navigator.transition(to: .collection, parameters: parameters, with: transition)
+				navigator.transition(to: .collection, parameters: Constants.transitionParameters, with: transition)
 			case .popover:
 				let cell = collectionView.cellForItem(at: indexPath)!
-				navigator.popover(.collection, parameters: parameters, from: cell)
+				navigator.popover(.collection, parameters: Constants.popoverParameters, from: cell)
 			case .deeplink:
 				assertionFailure("Not yet url")
 			case .preview:
-				navigator.present(.collection, parameters: parameters, animated: context.animated)
-			case .recycle:
+				navigator.present(.collection, parameters: Constants.modalParameters, animated: context.animated)
+			case .rootModal:
 				navigator.build { builder in
-					builder.root(.collection)
-					builder.presentNavigation(.collection)
-					//builder.push(.collection)
+					builder.root(.collection, parameters: Constants.rootParameters)
+					builder.present(.collection, parameters: Constants.modalParameters)
+				}
+			case .rootModalNav:
+				navigator.build { builder in
+					builder.root(.collection, parameters: Constants.rootParameters)
+					builder.presentNavigation(.collection, parameters: Constants.modalNavParameters)
+				}
+			case .rootModalNavPush:
+				navigator.build { builder in
+					builder.root(.collection, parameters: Constants.rootParameters)
+					builder.presentNavigation(.collection, parameters: Constants.modalNavParameters)
+					builder.push(.collection, parameters: Constants.pushParameters)
 				}
 			}
 		}
-	}
-}
-
-extension Collection {
-	func parameters(with presentationSequence: PresentationSequence) -> Parameters {
-		return [CollectionScenHandler.Parameter.stateLabel:presentationSequence.name]
 	}
 }

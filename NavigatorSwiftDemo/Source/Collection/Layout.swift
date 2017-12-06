@@ -1,6 +1,6 @@
 //
 //  Layout.swift
-//  NavigationSwiftDemo
+//  NavigatorSwiftDemo
 //
 //  Created by jmpuerta on 25/11/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.
@@ -11,7 +11,7 @@ import UIKit
 
 class Layout: UICollectionViewFlowLayout {
 	var items: CGFloat {
-		return collectionView!.traitCollection.horizontalSizeClass == .regular ? 5 : 3
+		return 4
 	}
 
 	override func prepare() {

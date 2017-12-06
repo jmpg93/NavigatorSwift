@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol VisibleViewControllerFindable {
 	func visibleViewController(from fromViewController: UIViewController) -> UIViewController

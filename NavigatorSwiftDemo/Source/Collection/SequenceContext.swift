@@ -1,6 +1,6 @@
 //
 //  SequenceContext.swift
-//  NavigationSwiftDemo
+//  NavigatorSwiftDemo
 //
 //  Created by jmpuerta on 25/11/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.
@@ -46,7 +46,13 @@ extension PresentationSequence {
 		PresentationSequence(contexts: [.push, .popToRoot]),
 		PresentationSequence(contexts: [.set]),
 		PresentationSequence(contexts: [.dismissAll]),
-		PresentationSequence(contexts: [.popToRoot])
+		PresentationSequence(contexts: [.popToRoot]),
+		PresentationSequence(contexts: [.modal, .modal]),
+		PresentationSequence(contexts: [.push, .push]),
+		PresentationSequence(contexts: [.modalNavigation, .push]),
+		PresentationSequence(contexts: [.rootModal]),
+		PresentationSequence(contexts: [.rootModalNav]),
+		PresentationSequence(contexts: [.rootModalNavPush])
 	]
 
 	static let baseSequences: [PresentationSequence] = [
@@ -76,12 +82,5 @@ extension PresentationSequence {
 		PresentationSequence(contexts: [.setNotAnimated]),
 		PresentationSequence(contexts: [.popNotAnimated]),
 		PresentationSequence(contexts: [.popToRootNotAnimated])
-	]
-
-	static let combinedSequences: [PresentationSequence] = [
-		PresentationSequence(contexts: [.modal, .modal]),
-		PresentationSequence(contexts: [.push, .push]),
-		PresentationSequence(contexts: [.modalNavigation, .push]),
-		PresentationSequence(contexts: [.recycle])
 	]
 }

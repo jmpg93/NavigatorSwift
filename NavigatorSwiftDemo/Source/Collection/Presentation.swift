@@ -1,6 +1,6 @@
 //
 //  Presentation.swift
-//  NavigationSwiftDemo
+//  NavigatorSwiftDemo
 //
 //  Created by jmpuerta on 25/11/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.
@@ -23,8 +23,10 @@ enum Presentation {
 	case deeplink
 	case preview
 	case popover
-	case recycle
-	
+	case rootModal
+	case rootModalNav
+	case rootModalNavPush
+
 	var value: String {
 		switch self {
 		case .pop:
@@ -51,8 +53,12 @@ enum Presentation {
 			return "transition"
 		case .popover:
 			return "popover"
-		case .recycle:
-			return "recycle"
+		case .rootModal:
+			return "root modal"
+		case .rootModalNav:
+			return "root modalNav"
+		case .rootModalNavPush:
+			return "root modalNav push"
 		case .set(let scenes):
 			return "set \(scenes.count) scenes"
 		}

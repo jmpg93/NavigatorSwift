@@ -121,4 +121,11 @@ public class SceneRenderer: VisibleViewControllerFindable {
 	func popover(_ popover: Popover, to scene: Scene) -> SceneOperation {
 		return PopoverSceneOperation(popover: popover, to: scene, renderer: self)
 	}
+
+	/// Pop and dismiss every view controller above the given view controller.
+	///
+	/// - parameter viewController: The view controller to set as visible.
+	func setVisible(viewController: UIViewController) -> SceneOperation {
+		return SetVisibleSceneOperation(viewController: viewController, renderer: self)
+	}
 }

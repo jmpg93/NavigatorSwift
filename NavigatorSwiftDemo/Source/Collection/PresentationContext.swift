@@ -1,6 +1,6 @@
 //
 //  PresentationContext.swift
-//  NavigationSwiftDemo
+//  NavigatorSwiftDemo
 //
 //  Created by jmpuerta on 25/11/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.
@@ -41,5 +41,7 @@ extension PresentationContext {
 	static let transitionNotAnimated = PresentationContext(presentation: .transition, animated: false)
 	static let popover = PresentationContext(presentation: .popover, animated: true)
 	static let popoverNotAnimated = PresentationContext(presentation: .popover, animated: false)
-	static let recycle = PresentationContext(presentation: .recycle, animated: true)
+	static let rootModal = PresentationContext(presentation: .rootModal, animated: true)
+	static let rootModalNav = PresentationContext(presentation: .rootModalNav, animated: true)
+	static let rootModalNavPush = PresentationContext(presentation: .rootModalNavPush, animated: true)
 }

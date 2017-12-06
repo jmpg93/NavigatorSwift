@@ -1,6 +1,6 @@
 //
 //  Navigator.swift
-//  NavigationSwiftDemo
+//  NavigatorSwiftDemo
 //
 //  Created by Jose Maria Puerta on 2/9/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.

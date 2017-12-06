@@ -1,6 +1,6 @@
 //
 //  Section.swift
-//  NavigationSwiftDemo
+//  NavigatorSwiftDemo
 //
 //  Created by jmpuerta on 25/11/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.
@@ -18,6 +18,5 @@ extension Section {
 		Section(name: "Test sequences", sequences: PresentationSequence.testSequences),
 		Section(name: "Base sequences", sequences: PresentationSequence.baseSequences),
 		Section(name: "Non animated sequences", sequences: PresentationSequence.nonAnimatedSequences),
-		Section(name: "Combined sequences", sequences: PresentationSequence.combinedSequences)
 	]
 }

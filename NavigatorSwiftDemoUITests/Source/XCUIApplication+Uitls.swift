@@ -1,6 +1,6 @@
 //
 //  XCUIApplication+Uitls.swift
-//  NavigationSwiftDemoUITests
+//  NavigatorSwiftDemoUITests
 //
 //  Created by jmpuerta on 25/11/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.

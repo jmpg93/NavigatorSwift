@@ -18,8 +18,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1822ECA21FC9B92000F3D597"
-               BuildableName = "NavigationSwiftDemoUITests.xctest"
-               BlueprintName = "NavigationSwiftDemoUITests"
+               BuildableName = "NavigatorSwiftDemoUITests.xctest"
+               BlueprintName = "NavigatorSwiftDemoUITests"
                ReferencedContainer = "container:NavigatorSwift.xcodeproj">
             </BuildableReference>
          </TestableReference>

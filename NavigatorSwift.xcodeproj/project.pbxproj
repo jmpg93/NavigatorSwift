@@ -18,7 +18,7 @@
 		1822EC9A1FC9A24700F3D597 /* SequenceContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822EC991FC9A24700F3D597 /* SequenceContext.swift */; };
 		1822EC9C1FC9AF6200F3D597 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822EC9B1FC9AF6200F3D597 /* Section.swift */; };
 		1822EC9E1FC9B10D00F3D597 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822EC9D1FC9B10D00F3D597 /* Header.swift */; };
-		1822ECA61FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECA51FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift */; };
+		1822ECA61FC9B92000F3D597 /* NavigatorSwiftDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECA51FC9B92000F3D597 /* NavigatorSwiftDemoUITests.swift */; };
 		1822ECB01FC9C5D800F3D597 /* XCUIApplication+Uitls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECAF1FC9C5D800F3D597 /* XCUIApplication+Uitls.swift */; };
 		1822ECB61FCAE87E00F3D597 /* EmptySceneURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */; };
 		1822ECB81FCAE9BF00F3D597 /* ReloadSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */; };
@@ -40,6 +40,9 @@
 		189212351F6DE3E80047E2FD /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189212341F6DE3E80047E2FD /* Transition.swift */; };
 		1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */; };
 		1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */; };
+		189A94611FD71AD000D4DB32 /* NextViewControllerFindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A94601FD71AD000D4DB32 /* NextViewControllerFindable.swift */; };
+		189A94641FD7F1BC00D4DB32 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A94631FD7F1BC00D4DB32 /* UIColor+Utils.swift */; };
+		189A94661FD805E400D4DB32 /* SetVisibleSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A94651FD805E400D4DB32 /* SetVisibleSceneOperation.swift */; };
 		18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */; };
 		18A101C21F72D956009F39A1 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101C11F72D956009F39A1 /* Popover.swift */; };
 		18BF68EC1FC738DA00374A33 /* PopOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF68EB1FC738DA00374A33 /* PopOperationTests.swift */; };
@@ -76,7 +79,7 @@
 		6CA594861F631A9E00CF37AB /* AddSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594851F631A9E00CF37AB /* AddSceneOperation.swift */; };
 		6CA594881F63227400CF37AB /* DismissAllOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594871F63227400CF37AB /* DismissAllOperation.swift */; };
 		6CA5948A1F63239600CF37AB /* PopSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594891F63239600CF37AB /* PopSceneOperation.swift */; };
-		6CA5948D1F63248900CF37AB /* VisibleViewControllerFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5948C1F63248900CF37AB /* VisibleViewControllerFinder.swift */; };
+		6CA5948D1F63248900CF37AB /* VisibleViewControllerFindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5948C1F63248900CF37AB /* VisibleViewControllerFindable.swift */; };
 		6CA594911F63286000CF37AB /* SetScenesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594901F63286000CF37AB /* SetScenesOperation.swift */; };
 		6CA594931F6331AA00CF37AB /* DismissSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594921F6331AA00CF37AB /* DismissSceneOperation.swift */; };
 		6CA594951F6332A200CF37AB /* DismissFirstSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594941F6332A100CF37AB /* DismissFirstSceneOperation.swift */; };
@@ -94,7 +97,7 @@
 			containerPortal = 6C27A9421F59E1ED00311918 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6C1322D91F5ADC4100A7D3E9;
-			remoteInfo = NavigationSwiftDemo;
+			remoteInfo = NavigatorSwiftDemo;
 		};
 		1827747F1F5C3B8400CD935F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -115,7 +118,7 @@
 			containerPortal = 6C27A9421F59E1ED00311918 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6C1322D91F5ADC4100A7D3E9;
-			remoteInfo = NavigationSwiftDemo;
+			remoteInfo = NavigatorSwiftDemo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -154,8 +157,8 @@
 		1822EC991FC9A24700F3D597 /* SequenceContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceContext.swift; sourceTree = "<group>"; };
 		1822EC9B1FC9AF6200F3D597 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		1822EC9D1FC9B10D00F3D597 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		1822ECA31FC9B92000F3D597 /* NavigationSwiftDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationSwiftDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1822ECA51FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSwiftDemoUITests.swift; sourceTree = "<group>"; };
+		1822ECA31FC9B92000F3D597 /* NavigatorSwiftDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigatorSwiftDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1822ECA51FC9B92000F3D597 /* NavigatorSwiftDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorSwiftDemoUITests.swift; sourceTree = "<group>"; };
 		1822ECA71FC9B92100F3D597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1822ECAF1FC9C5D800F3D597 /* XCUIApplication+Uitls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Uitls.swift"; sourceTree = "<group>"; };
 		1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySceneURLHandler.swift; sourceTree = "<group>"; };
@@ -178,6 +181,9 @@
 		189212341F6DE3E80047E2FD /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		1895BF3A1F71AF21005E34A0 /* DismissSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSceneOperationTests.swift; sourceTree = "<group>"; };
 		1895BF3E1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissFirstSceneOperationTests.swift; sourceTree = "<group>"; };
+		189A94601FD71AD000D4DB32 /* NextViewControllerFindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewControllerFindable.swift; sourceTree = "<group>"; };
+		189A94631FD7F1BC00D4DB32 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		189A94651FD805E400D4DB32 /* SetVisibleSceneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVisibleSceneOperation.swift; sourceTree = "<group>"; };
 		18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSceneOperation.swift; sourceTree = "<group>"; };
 		18A101C11F72D956009F39A1 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		18BF68EB1FC738DA00374A33 /* PopOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOperationTests.swift; sourceTree = "<group>"; };
@@ -187,7 +193,7 @@
 		18C8720B1F69B9ED00701144 /* SceneURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneURLHandler.swift; sourceTree = "<group>"; };
 		18F9408B1F5C9C980064D320 /* CollectionScenHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionScenHandler.swift; sourceTree = "<group>"; };
 		6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
-		6C1322DA1F5ADC4100A7D3E9 /* NavigationSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C1322DA1F5ADC4100A7D3E9 /* NavigatorSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigatorSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C1322DC1F5ADC4100A7D3E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C1322DE1F5ADC4100A7D3E9 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		6C1322E11F5ADC4100A7D3E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -219,7 +225,7 @@
 		6CA594851F631A9E00CF37AB /* AddSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSceneOperation.swift; sourceTree = "<group>"; };
 		6CA594871F63227400CF37AB /* DismissAllOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAllOperation.swift; sourceTree = "<group>"; };
 		6CA594891F63239600CF37AB /* PopSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopSceneOperation.swift; path = NavigatorSwift/Source/SceneOperation/PopSceneOperation.swift; sourceTree = SOURCE_ROOT; };
-		6CA5948C1F63248900CF37AB /* VisibleViewControllerFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleViewControllerFinder.swift; sourceTree = "<group>"; };
+		6CA5948C1F63248900CF37AB /* VisibleViewControllerFindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleViewControllerFindable.swift; sourceTree = "<group>"; };
 		6CA594901F63286000CF37AB /* SetScenesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetScenesOperation.swift; sourceTree = "<group>"; };
 		6CA594921F6331AA00CF37AB /* DismissSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissSceneOperation.swift; sourceTree = "<group>"; };
 		6CA594941F6332A100CF37AB /* DismissFirstSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissFirstSceneOperation.swift; sourceTree = "<group>"; };
@@ -290,19 +296,19 @@
 			path = Navigator;
 			sourceTree = "<group>";
 		};
-		1822ECA41FC9B92000F3D597 /* NavigationSwiftDemoUITests */ = {
+		1822ECA41FC9B92000F3D597 /* NavigatorSwiftDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
 				1822ECAD1FC9B93100F3D597 /* Source */,
 				1822ECAE1FC9B93B00F3D597 /* Resources */,
 			);
-			path = NavigationSwiftDemoUITests;
+			path = NavigatorSwiftDemoUITests;
 			sourceTree = "<group>";
 		};
 		1822ECAD1FC9B93100F3D597 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1822ECA51FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift */,
+				1822ECA51FC9B92000F3D597 /* NavigatorSwiftDemoUITests.swift */,
 				1822ECAF1FC9C5D800F3D597 /* XCUIApplication+Uitls.swift */,
 			);
 			path = Source;
@@ -343,6 +349,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		189A94621FD7F1A600D4DB32 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				189A94631FD7F1BC00D4DB32 /* UIColor+Utils.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		18C8720A1F69B9E000701144 /* SceneURL */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,13 +385,13 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		6C1322DB1F5ADC4100A7D3E9 /* NavigationSwiftDemo */ = {
+		6C1322DB1F5ADC4100A7D3E9 /* NavigatorSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
 				6C1322EC1F5ADC5000A7D3E9 /* Source */,
 				6C1322ED1F5ADC5800A7D3E9 /* Resources */,
 			);
-			path = NavigationSwiftDemo;
+			path = NavigatorSwiftDemo;
 			sourceTree = "<group>";
 		};
 		6C1322EC1F5ADC5000A7D3E9 /* Source */ = {
@@ -387,6 +401,7 @@
 				6C1322DC1F5ADC4100A7D3E9 /* AppDelegate.swift */,
 				1822EC951FC99F1C00F3D597 /* Collection */,
 				1822EC961FC99F8E00F3D597 /* Navigator */,
+				189A94621FD7F1A600D4DB32 /* Helpers */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -408,8 +423,8 @@
 				6C27A9581F59E25C00311918 /* NavigatorPlayground.playground */,
 				6C27A94D1F59E1ED00311918 /* NavigatorSwift */,
 				1827747A1F5C3B8400CD935F /* NavigatorSwiftTests */,
-				6C1322DB1F5ADC4100A7D3E9 /* NavigationSwiftDemo */,
-				1822ECA41FC9B92000F3D597 /* NavigationSwiftDemoUITests */,
+				6C1322DB1F5ADC4100A7D3E9 /* NavigatorSwiftDemo */,
+				1822ECA41FC9B92000F3D597 /* NavigatorSwiftDemoUITests */,
 				6C27A94C1F59E1ED00311918 /* Products */,
 				6CFCDC2C1F5C3F68003C41E6 /* Frameworks */,
 			);
@@ -419,9 +434,9 @@
 			isa = PBXGroup;
 			children = (
 				6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */,
-				6C1322DA1F5ADC4100A7D3E9 /* NavigationSwiftDemo.app */,
+				6C1322DA1F5ADC4100A7D3E9 /* NavigatorSwiftDemo.app */,
 				182774791F5C3B8400CD935F /* NavigatorSwiftTests.xctest */,
-				1822ECA31FC9B92000F3D597 /* NavigationSwiftDemoUITests.xctest */,
+				1822ECA31FC9B92000F3D597 /* NavigatorSwiftDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -556,10 +571,12 @@
 				6CA594891F63239600CF37AB /* PopSceneOperation.swift */,
 				18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */,
 				6CA594831F631A8600CF37AB /* RecycleSceneOperation.swift */,
+				189A94651FD805E400D4DB32 /* SetVisibleSceneOperation.swift */,
 				6CA594901F63286000CF37AB /* SetScenesOperation.swift */,
 				1822ECB71FCAE9BF00F3D597 /* ReloadSceneOperation.swift */,
 				6CA594811F631A7600CF37AB /* RootSceneOperation.swift */,
-				6CA5948C1F63248900CF37AB /* VisibleViewControllerFinder.swift */,
+				6CA5948C1F63248900CF37AB /* VisibleViewControllerFindable.swift */,
+				189A94601FD71AD000D4DB32 /* NextViewControllerFindable.swift */,
 			);
 			name = SceneOperation;
 			path = ../SceneOperation;
@@ -596,9 +613,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1822ECA21FC9B92000F3D597 /* NavigationSwiftDemoUITests */ = {
+		1822ECA21FC9B92000F3D597 /* NavigatorSwiftDemoUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1822ECAA1FC9B92100F3D597 /* Build configuration list for PBXNativeTarget "NavigationSwiftDemoUITests" */;
+			buildConfigurationList = 1822ECAA1FC9B92100F3D597 /* Build configuration list for PBXNativeTarget "NavigatorSwiftDemoUITests" */;
 			buildPhases = (
 				1822EC9F1FC9B92000F3D597 /* Sources */,
 				1822ECA01FC9B92000F3D597 /* Frameworks */,
@@ -609,9 +626,9 @@
 			dependencies = (
 				1822ECA91FC9B92100F3D597 /* PBXTargetDependency */,
 			);
-			name = NavigationSwiftDemoUITests;
-			productName = NavigationSwiftDemoUITests;
-			productReference = 1822ECA31FC9B92000F3D597 /* NavigationSwiftDemoUITests.xctest */;
+			name = NavigatorSwiftDemoUITests;
+			productName = NavigatorSwiftDemoUITests;
+			productReference = 1822ECA31FC9B92000F3D597 /* NavigatorSwiftDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		182774781F5C3B8400CD935F /* NavigatorSwiftTests */ = {
@@ -634,9 +651,9 @@
 			productReference = 182774791F5C3B8400CD935F /* NavigatorSwiftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		6C1322D91F5ADC4100A7D3E9 /* NavigationSwiftDemo */ = {
+		6C1322D91F5ADC4100A7D3E9 /* NavigatorSwiftDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6C1322E91F5ADC4100A7D3E9 /* Build configuration list for PBXNativeTarget "NavigationSwiftDemo" */;
+			buildConfigurationList = 6C1322E91F5ADC4100A7D3E9 /* Build configuration list for PBXNativeTarget "NavigatorSwiftDemo" */;
 			buildPhases = (
 				6C1322D61F5ADC4100A7D3E9 /* Sources */,
 				6C1322D71F5ADC4100A7D3E9 /* Frameworks */,
@@ -648,9 +665,9 @@
 			dependencies = (
 				6C1322F31F5ADDA900A7D3E9 /* PBXTargetDependency */,
 			);
-			name = NavigationSwiftDemo;
-			productName = NavigationSwiftDemo;
-			productReference = 6C1322DA1F5ADC4100A7D3E9 /* NavigationSwiftDemo.app */;
+			name = NavigatorSwiftDemo;
+			productName = NavigatorSwiftDemo;
+			productReference = 6C1322DA1F5ADC4100A7D3E9 /* NavigatorSwiftDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		6C27A94A1F59E1ED00311918 /* NavigatorSwift */ = {
@@ -691,6 +708,7 @@
 					};
 					6C1322D91F5ADC4100A7D3E9 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Manual;
 					};
 					6C27A94A1F59E1ED00311918 = {
 						CreatedOnToolsVersion = 9.0;
@@ -713,8 +731,8 @@
 			targets = (
 				6C27A94A1F59E1ED00311918 /* NavigatorSwift */,
 				182774781F5C3B8400CD935F /* NavigatorSwiftTests */,
-				6C1322D91F5ADC4100A7D3E9 /* NavigationSwiftDemo */,
-				1822ECA21FC9B92000F3D597 /* NavigationSwiftDemoUITests */,
+				6C1322D91F5ADC4100A7D3E9 /* NavigatorSwiftDemo */,
+				1822ECA21FC9B92000F3D597 /* NavigatorSwiftDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -758,7 +776,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1822ECA61FC9B92000F3D597 /* NavigationSwiftDemoUITests.swift in Sources */,
+				1822ECA61FC9B92000F3D597 /* NavigatorSwiftDemoUITests.swift in Sources */,
 				1822ECB01FC9C5D800F3D597 /* XCUIApplication+Uitls.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,6 +825,7 @@
 				1822EC9C1FC9AF6200F3D597 /* Section.swift in Sources */,
 				6C1322DD1F5ADC4100A7D3E9 /* AppDelegate.swift in Sources */,
 				6C1322EF1F5ADC8500A7D3E9 /* LoginSceneHandler.swift in Sources */,
+				189A94641FD7F1BC00D4DB32 /* UIColor+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,7 +837,8 @@
 				183A1F841F688223005550C1 /* Preview.swift in Sources */,
 				6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */,
 				6C27A9601F59E2E900311918 /* Scene.swift in Sources */,
-				6CA5948D1F63248900CF37AB /* VisibleViewControllerFinder.swift in Sources */,
+				6CA5948D1F63248900CF37AB /* VisibleViewControllerFindable.swift in Sources */,
+				189A94611FD71AD000D4DB32 /* NextViewControllerFindable.swift in Sources */,
 				6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */,
 				6CB38DD01F5AF01C003C5E9C /* SceneName.swift in Sources */,
 				180FBA9B1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift in Sources */,
@@ -847,6 +867,7 @@
 				189212351F6DE3E80047E2FD /* Transition.swift in Sources */,
 				6CA594931F6331AA00CF37AB /* DismissSceneOperation.swift in Sources */,
 				6CA594821F631A7600CF37AB /* RootSceneOperation.swift in Sources */,
+				189A94661FD805E400D4DB32 /* SetVisibleSceneOperation.swift in Sources */,
 				18C8720C1F69B9ED00701144 /* SceneURLHandler.swift in Sources */,
 				6CA5948A1F63239600CF37AB /* PopSceneOperation.swift in Sources */,
 				6C27A95C1F59E2C100311918 /* SceneBuilderBlock.swift in Sources */,
@@ -858,7 +879,7 @@
 /* Begin PBXTargetDependency section */
 		1822ECA91FC9B92100F3D597 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6C1322D91F5ADC4100A7D3E9 /* NavigationSwiftDemo */;
+			target = 6C1322D91F5ADC4100A7D3E9 /* NavigatorSwiftDemo */;
 			targetProxy = 1822ECA81FC9B92100F3D597 /* PBXContainerItemProxy */;
 		};
 		182774801F5C3B8400CD935F /* PBXTargetDependency */ = {
@@ -873,7 +894,7 @@
 		};
 		6CC4D3E91F5C540E001BDD9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6C1322D91F5ADC4100A7D3E9 /* NavigationSwiftDemo */;
+			target = 6C1322D91F5ADC4100A7D3E9 /* NavigatorSwiftDemo */;
 			targetProxy = 6CC4D3E81F5C540E001BDD9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -903,15 +924,15 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = NavigationSwiftDemoUITests/Resources/Info.plist;
+				INFOPLIST_FILE = NavigatorSwiftDemoUITests/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tuenti.nativeiphone.NavigationSwiftDemoUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuenti.nativeiphone.NavigatorSwiftDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = NavigationSwiftDemo;
+				TEST_TARGET_NAME = NavigatorSwiftDemo;
 			};
 			name = Debug;
 		};
@@ -920,15 +941,15 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = NavigationSwiftDemoUITests/Resources/Info.plist;
+				INFOPLIST_FILE = NavigatorSwiftDemoUITests/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tuenti.nativeiphone.NavigationSwiftDemoUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuenti.nativeiphone.NavigatorSwiftDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = NavigationSwiftDemo;
+				TEST_TARGET_NAME = NavigatorSwiftDemo;
 			};
 			name = Release;
 		};
@@ -970,15 +991,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L8YSUA92XX;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/NavigationSwiftDemo/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NavigatorSwiftDemo/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = self.jmpg93.NavigationSwiftDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = self.jmpg93.NavigatorSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -988,15 +1011,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L8YSUA92XX;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/NavigationSwiftDemo/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NavigatorSwiftDemo/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = self.jmpg93.NavigationSwiftDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = self.jmpg93.NavigatorSwiftDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1163,7 +1188,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1822ECAA1FC9B92100F3D597 /* Build configuration list for PBXNativeTarget "NavigationSwiftDemoUITests" */ = {
+		1822ECAA1FC9B92100F3D597 /* Build configuration list for PBXNativeTarget "NavigatorSwiftDemoUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1822ECAB1FC9B92100F3D597 /* Debug */,
@@ -1181,7 +1206,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6C1322E91F5ADC4100A7D3E9 /* Build configuration list for PBXNativeTarget "NavigationSwiftDemo" */ = {
+		6C1322E91F5ADC4100A7D3E9 /* Build configuration list for PBXNativeTarget "NavigatorSwiftDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6C1322EA1F5ADC4100A7D3E9 /* Debug */,

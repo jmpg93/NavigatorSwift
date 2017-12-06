@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecycleSceneOperation: SceneOperation {
+class RecycleSceneOperation: SceneOperation, NextViewControllerFindable {
 	fileprivate let scenes: [Scene]
 	fileprivate let renderer: SceneRenderer
 
@@ -54,18 +54,17 @@ extension RecycleSceneOperation {
 			scenesNotInStackYet.removeFirst()
 
 			_last = next
-			_next = self.next(from: next)
+			_next = self.next(before: next)
 		}
 
-		if let last = _last, let navigationController = last.navigationController {
-			navigationController.popToViewController(last, animated: true)
-		}
+		guard let last = _last else { fatalError("No root view controller found") }
 
-		if let last = _last, let presentedViewController = last.presentedViewController {
-			presentedViewController.dismiss(animated: true, completion: nil)
-		}
+		let addSceneOperation = renderer.add(scenes: scenesNotInStackYet)
+		let setVisibleOperation = renderer.setVisible(viewController: last)
 
-		renderer.add(scenes: scenesNotInStackYet).execute(with: completion)
+		setVisibleOperation
+			.then(addSceneOperation)
+			.execute(with: completion)
 	}
 
 	///Returns true if the viewController can be handled by the scene and also is presented as require the scene, false otherwise.
@@ -100,41 +99,5 @@ private extension RecycleSceneOperation {
 	func firstLevelNavigationController(matching scene: Scene?) -> UINavigationController? {
 		guard let scene = scene else { return nil }
 		return viewControllerContainer.firstLevelNavigationController(matching: scene)
-	}
-
-	///Returns the next possible view controller that should be handle by the scene.
-	func next(from viewcontroller: UIViewController) -> UIViewController? {
-		// Search the view controllers of the navigation
-		let viewControllers = viewcontroller.navigationController?.viewControllers
-		// Get the next view controller after viewcontroller
-		let nextNavigationIndex = viewControllers?.index(of: viewcontroller)?.advanced(by: 1)
-		let navigationIndices = viewControllers?.indices
-
-		// If navigationIndices contains the nextNavigationIndex, no view was presented. We keep the navigation controller hierarchy.
-		if let nextNavigationIndex = nextNavigationIndex, navigationIndices?.contains(nextNavigationIndex) ?? false {
-			return viewControllers?[nextNavigationIndex]
-		}
-
-		// If some UINavigationController was presented above an UINavigationController, we keep the navigation hierarchy.
-		if let navigationController = viewcontroller.navigationController?.presentedViewController as? UINavigationController {
-			return navigationController.viewControllers.first
-		}
-
-		// Some UIViewController was presented above an UINavigationController, we keep the modal hierarchy.
-		if let presentedViewController = viewcontroller.navigationController?.presentedViewController {
-			return presentedViewController
-		}
-
-		// Some UINavigationController was presented above an UIViewController, we keep the navigation hierarchy.
-		if let navigationController = viewcontroller.presentedViewController as? UINavigationController {
-			return navigationController.viewControllers.first
-		}
-
-		// Some UIViewController was presented above an UIViewController, we keep the modal hierarchy.
-		if let presentedViewController = viewcontroller.presentedViewController {
-			return presentedViewController
-		}
-
-		return nil
 	}
 }
