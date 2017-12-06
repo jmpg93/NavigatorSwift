@@ -105,13 +105,13 @@ navigator.build { builder in
 ```
 - Absolute navigation using builder (the current stack will be recycled):
 ```swift
-navigator.navigate(using: { builder in
+navigator.build { builder in
 	builder.root(name: .login) // The root is set
 	builder.modalNavigation(.home)
 	builder.push(.detail)
-})
+}
 ```
-- Operation based navigation. For more complex navigation you can create and concatenate operation that will be executed serially. This can be easyly archived by creating a new ```SceneOperation``` and exteding the ```Navigator``` protocol.
+- Operation based navigation. For more complex navigation you can create and concatenate operations that will be executed serially. This can be easyly archived by creating a new ```SceneOperation``` and extending the ```Navigator``` protocol.
 
 ```swift
 class SomeOperation {
