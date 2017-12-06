@@ -8,11 +8,11 @@
 
 import Foundation
 
-class DismissAllOperation: SceneOperation {
+struct DismissAllOperation {
 	fileprivate let animated: Bool
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(animated: Bool, renderer: SceneRenderer) {
+	init(animated: Bool, renderer: SceneOperationManager) {
 		self.animated = animated
 		self.renderer = renderer
 	}
@@ -20,7 +20,7 @@ class DismissAllOperation: SceneOperation {
 
 // MARK: SceneOperation methods
 
-extension DismissAllOperation  {
+extension DismissAllOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		renderer.rootViewController.dismiss(animated: animated, completion: completion)
 

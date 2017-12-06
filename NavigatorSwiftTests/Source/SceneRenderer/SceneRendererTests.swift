@@ -10,7 +10,7 @@
 import XCTest
 
 
-class SceneRendererTests: SceneOperationTests {
+class SceneOperationManagerTests: SceneOperationTests {
 	fileprivate enum Constants {
 		static let anyScene: SceneName = "anyScene"
 		static let anyOtherScene: SceneName = "anyOtherScene"
@@ -20,20 +20,20 @@ class SceneRendererTests: SceneOperationTests {
 	}
 
 	// Class under test
-	var sut: SceneRenderer!
+	var sut: SceneOperationManager!
 
 	override func setUp() {
 		super.setUp()
 		let window = MockWindow()
 		let view = UINavigationController()
 		let mockViewControllerContainer = givenMockViewControllerContainer(root: view)
-		sut = SceneRenderer(window: window, viewControllerContainer: mockViewControllerContainer)
+		sut = SceneOperationManager(window: window, viewControllerContainer: mockViewControllerContainer)
 	}
 }
 
 // MARK: Tests
 
-extension SceneRendererTests {
+extension SceneOperationManagerTests {
 	func testGivenEmptyNavigationController_visibleViewController_returnNavigationController() {
 		// given
 		let nav = UINavigationController()
@@ -95,8 +95,8 @@ extension SceneRendererTests {
 
 // MARK: Helpers general
 
-extension SceneRendererTests {
-	func visibleViewController(for renderer: SceneRenderer) -> UIViewController {
+extension SceneOperationManagerTests {
+	func visibleViewController(for renderer: SceneOperationManager) -> UIViewController {
 		return renderer
 			.viewControllerContainer
 			.visibleNavigationController

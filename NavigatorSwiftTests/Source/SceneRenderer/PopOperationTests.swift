@@ -70,7 +70,7 @@ extension PopOperationTests {
 
 extension PopOperationTests {
 	func givenSUT(toRoot: Bool, root: UINavigationController) -> PopSceneOperation {
-		let sceneRender = givenMockSceneRenderer(window: MockWindow(), root: root)
+		let sceneRender = givenMockSceneOperationManager(window: MockWindow(), root: root)
 		return PopSceneOperation(toRoot: toRoot, animated: false, renderer: sceneRender)
 	}
 }

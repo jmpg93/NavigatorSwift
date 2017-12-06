@@ -72,14 +72,14 @@ extension DismissFirstSceneOperationTests {
 
 	func givenSUT(animated: Bool, modalView: UIViewController) -> DismissFirstSceneOperation {
 		let nav = UINavigationController(rootViewController: modalView)
-		let sceneRendererMock = givenMockSceneRenderer(window: MockWindow(), root: nav)
-		return DismissFirstSceneOperation(animated: animated, renderer: sceneRendererMock)
+		let sceneOperationManagerMock = givenMockSceneOperationManager(window: MockWindow(), root: nav)
+		return DismissFirstSceneOperation(animated: animated, renderer: sceneOperationManagerMock)
 	}
 
 	func givenSUT(animated: Bool, modalViews: [UIViewController]) -> DismissFirstSceneOperation {
 		let nav = UINavigationController(rootViewController: modalViews.first!)
 		nav.present(modalViews.last!, animated: false, completion: nil)
-		let sceneRendererMock = givenMockSceneRenderer(window: MockWindow(), root: nav)
-		return DismissFirstSceneOperation(animated: animated, renderer: sceneRendererMock)
+		let sceneOperationManagerMock = givenMockSceneOperationManager(window: MockWindow(), root: nav)
+		return DismissFirstSceneOperation(animated: animated, renderer: sceneOperationManagerMock)
 	}
 }

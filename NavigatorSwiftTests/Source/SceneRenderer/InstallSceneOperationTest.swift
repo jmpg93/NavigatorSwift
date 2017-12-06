@@ -58,8 +58,8 @@ extension InstallSceneOperationTest {
 
 	func givenSUT(scene: Scene, window: UIWindow) -> RootSceneOperation {
 		let rootNavigation = givenNavigationController()
-		let mockSceneRenderer = givenMockSceneRenderer(window: window, root: rootNavigation)
-		return RootSceneOperation(scene: scene, renderer: mockSceneRenderer)
+		let mockSceneOperationManager = givenMockSceneOperationManager(window: window, root: rootNavigation)
+		return RootSceneOperation(scene: scene, renderer: mockSceneOperationManager)
 	}
 }
 

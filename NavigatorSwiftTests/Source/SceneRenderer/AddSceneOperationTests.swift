@@ -75,8 +75,8 @@ extension AddSceneOperationTests {
 	}
 
 	func givenSUT(scenes: [Scene], root: UINavigationController) -> AddSceneOperation {
-		let mockSceneRenderer = givenMockSceneRenderer(window: MockWindow(), root: root)
-		return AddSceneOperation(scenes: scenes, renderer: mockSceneRenderer)
+		let mockSceneOperationManager = givenMockSceneOperationManager(window: MockWindow(), root: root)
+		return AddSceneOperation(scenes: scenes, renderer: mockSceneOperationManager)
 	}
 }
 

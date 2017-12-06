@@ -11,7 +11,6 @@ import Foundation
 
 class MockSceneOperation: SceneOperation {
 	var executed = false
-
 	func execute(with completion: CompletionBlock?) {
 		executed = true
 		completion?()

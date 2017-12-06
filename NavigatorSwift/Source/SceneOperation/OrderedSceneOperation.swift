@@ -14,7 +14,7 @@ extension SceneOperation {
 	}
 }
 
-class OrderedSceneOperation: SceneOperation {
+struct OrderedSceneOperation: SceneOperation {
 	let first: SceneOperation
 	let last: SceneOperation
 
@@ -23,6 +23,8 @@ class OrderedSceneOperation: SceneOperation {
 		self.last = last
 	}
 }
+
+// MARK: SceneOperation methods
 
 extension OrderedSceneOperation {
 	func execute(with completion: CompletionBlock?) {

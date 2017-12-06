@@ -11,10 +11,6 @@ import UIKit
 @testable import NavigatorSwift
 
 class MockScene: Scene {
-	var _type = ScenePresentationType.push
-	var _view = UIViewController()
-	var configured = false
-
 	init(sceneHandler: SceneHandler, type: ScenePresentationType) {
 		super.init(sceneHandler: sceneHandler,
 				   parameters: [:],
@@ -22,10 +18,13 @@ class MockScene: Scene {
 				   animated: false)
 	}
 
+	var _view = UIViewController()
 	override func view() -> UIViewController {
 		return _view
 	}
 
+
+	var configured = false
 	override func configure(_ viewController: UIViewController) {
 		configured = true
 	}

@@ -8,19 +8,21 @@
 
 import Foundation
 
-class PopoverSceneOperation: SceneOperation, VisibleViewControllerFindable {
+struct PopoverSceneOperation: VisibleViewControllerFindable {
 	fileprivate let popover: Popover
 	fileprivate let scene: Scene
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(popover: Popover, to scene: Scene, renderer: SceneRenderer) {
+	init(popover: Popover, to scene: Scene, renderer: SceneOperationManager) {
 		self.popover = popover
 		self.scene = scene
 		self.renderer = renderer
 	}
 }
 
-extension PopoverSceneOperation {
+// MARK: SceneOperation methods
+
+extension PopoverSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		scene.operationParameters[ParametersKeys.popover] = popover
 		renderer.add(scenes: [scene]).execute(with: completion)

@@ -8,11 +8,11 @@
 
 import Foundation
 
-class AddSceneOperation: SceneOperation {
+struct AddSceneOperation {
 	fileprivate let scenes: [Scene]
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(scenes: [Scene], renderer: SceneRenderer) {
+	init(scenes: [Scene], renderer: SceneOperationManager) {
 		self.scenes = scenes
 		self.renderer = renderer
 	}
@@ -20,7 +20,7 @@ class AddSceneOperation: SceneOperation {
 
 // MARK: SceneOperation methods
 
-extension AddSceneOperation {
+extension AddSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		guard !scenes.isEmpty else {
 			completion?()

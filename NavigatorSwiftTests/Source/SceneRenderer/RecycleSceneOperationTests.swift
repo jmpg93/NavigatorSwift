@@ -16,8 +16,8 @@ class RecycleSceneOperationTests: SceneOperationTests {
 	override func setUp() {
 		super.setUp()
 
-		let mockSceneRenderer = MockSceneRenderer(window: MockWindow(), viewControllerContainer: MockViewControllerContainer())
-		sut = RecycleSceneOperation(scenes: [], renderer: mockSceneRenderer)
+		let mockSceneOperationManager = MockSceneOperationManager(window: MockWindow(), viewControllerContainer: MockViewControllerContainer())
+		sut = RecycleSceneOperation(scenes: [], renderer: mockSceneOperationManager)
 	}
 }
 

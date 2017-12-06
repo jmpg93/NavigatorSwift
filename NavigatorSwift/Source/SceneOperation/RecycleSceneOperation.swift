@@ -8,11 +8,11 @@
 
 import Foundation
 
-class RecycleSceneOperation: SceneOperation, NextViewControllerFindable {
+struct RecycleSceneOperation: NextViewControllerFindable {
 	fileprivate let scenes: [Scene]
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(scenes: [Scene], renderer: SceneRenderer) {
+	init(scenes: [Scene], renderer: SceneOperationManager) {
 		self.scenes = scenes
 		self.renderer = renderer
 	}
@@ -24,7 +24,7 @@ class RecycleSceneOperation: SceneOperation, NextViewControllerFindable {
 
 // MARK: SceneOperation methods
 
-extension RecycleSceneOperation {
+extension RecycleSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		guard !scenes.isEmpty else {
 			completion?()

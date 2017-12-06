@@ -19,9 +19,9 @@ extension ReloadSceneOperationTests {
 	func testReloadableRootWithMatchingScene_execute_reloadViewController() {
 		//given
 		let root = givenMockViewController(with: Constants.anyScene)
-		let mockSceneRenderer = givenSceenRenderer(root: root)
+		let mockSceneOperationManager = givenSceenRenderer(root: root)
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload, isReloadable: true)
-		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneRenderer)
+		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneOperationManager)
 
 		//when
 		sut.execute(with: nil)
@@ -34,9 +34,9 @@ extension ReloadSceneOperationTests {
 	func testNotReloadableRootWithMatchingScene_execute_reloadViewController() {
 		//given
 		let root = givenMockViewController(with: Constants.anyScene)
-		let mockSceneRenderer = givenSceenRenderer(root: root)
+		let mockSceneOperationManager = givenSceenRenderer(root: root)
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload, isReloadable: false)
-		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneRenderer)
+		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneOperationManager)
 
 		//when
 		sut.execute(with: nil)
@@ -49,9 +49,9 @@ extension ReloadSceneOperationTests {
 	func testRootWithNotMatchingScene_execute_doNotReloadViewController() {
 		//given
 		let root = givenMockViewController(with: Constants.anyOtherScene)
-		let mockSceneRenderer = givenSceenRenderer(root: root)
+		let mockSceneOperationManager = givenSceenRenderer(root: root)
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload)
-		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneRenderer)
+		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneOperationManager)
 
 		//when
 		sut.execute(with: nil)
@@ -63,9 +63,9 @@ extension ReloadSceneOperationTests {
 
 	func testNoRoot_execute_doNotReloadViewController() {
 		//given
-		let mockSceneRenderer = givenMockSceneRenderer(window: MockWindow(), root: MockNavigationController())
+		let mockSceneOperationManager = givenMockSceneOperationManager(window: MockWindow(), root: MockNavigationController())
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload)
-		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneRenderer)
+		sut = ReloadSceneOperation(scene: mockScene, renderer: mockSceneOperationManager)
 
 		//when
 		sut.execute(with: nil)
@@ -83,9 +83,9 @@ extension ReloadSceneOperationTests {
 		return mockViewController
 	}
 
-	func givenSceenRenderer(root: UIViewController) -> MockSceneRenderer {
+	func givenSceenRenderer(root: UIViewController) -> MockSceneOperationManager {
 		let mockNavigationController = MockNavigationController(viewControllers: [root])
-		return givenMockSceneRenderer(window: MockWindow(), root: mockNavigationController)
+		return givenMockSceneOperationManager(window: MockWindow(), root: mockNavigationController)
 	}
 }
 

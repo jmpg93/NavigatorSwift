@@ -8,11 +8,11 @@
 
 import Foundation
 
-class DismissFirstSceneOperation: SceneOperation, VisibleViewControllerFindable {
+struct DismissFirstSceneOperation: VisibleViewControllerFindable {
 	fileprivate let animated: Bool
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(animated: Bool, renderer: SceneRenderer) {
+	init(animated: Bool, renderer: SceneOperationManager) {
 		self.animated = animated
 		self.renderer = renderer
 	}
@@ -20,7 +20,7 @@ class DismissFirstSceneOperation: SceneOperation, VisibleViewControllerFindable 
 
 // MARK: SceneOperation methods
 
-extension DismissFirstSceneOperation {
+extension DismissFirstSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		let visibleViewController = self.visibleViewController(from: renderer.visibleNavigationController)
 

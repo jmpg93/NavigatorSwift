@@ -10,14 +10,6 @@ import Foundation
 import UIKit
 
 class MockNavigationController: UINavigationController {
-	var dismissed = false
-	var popped = false
-	var poppedToRoot = false
-	var pushed = false
-	var _isBeingDisplayedModally = false
-	var _presentingViewController: UIViewController? = nil
-	var _viewControllers: [UIViewController] = []
-
 	convenience init() {
 		self.init(viewControllers: [])
 	}
@@ -31,29 +23,35 @@ class MockNavigationController: UINavigationController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+	var _isBeingDisplayedModally = false
 	var isBeingDisplayedModally: Bool {
 		return _isBeingDisplayedModally
 	}
 
 	var overridePresentingViewController = false
+	var _presentingViewController: UIViewController? = nil
 	override var presentingViewController: UIViewController? {
 		return overridePresentingViewController ? _presentingViewController : super.presentingViewController
 	}
 
+	var dismissed = false
 	override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 		dismissed = true
 	}
 
+	var popped = false
 	override func popViewController(animated: Bool) -> UIViewController? {
 		popped = true
 		return nil
 	}
 
+	var poppedToRoot = false
 	override func popToRootViewController(animated: Bool) -> [UIViewController]? {
 		poppedToRoot = true
 		return nil
 	}
 
+	var pushed = false
 	override func pushViewController(_ viewController: UIViewController, animated: Bool) {
 		pushed = true
 	}

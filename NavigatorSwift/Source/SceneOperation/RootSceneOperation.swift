@@ -8,17 +8,17 @@
 
 import Foundation
 
-class RootSceneOperation: SceneOperation {
+class RootSceneOperation {
 	fileprivate let scene: Scene
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(scene: Scene, renderer: SceneRenderer) {
+	init(scene: Scene, renderer: SceneOperationManager) {
 		self.scene = scene
 		self.renderer = renderer
 	}
 }
 
-extension RootSceneOperation {
+extension RootSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		let buildedViewController = scene.view()
 

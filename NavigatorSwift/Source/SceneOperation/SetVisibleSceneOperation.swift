@@ -9,17 +9,19 @@
 import Foundation
 import UIKit
 
-class SetVisibleSceneOperation: SceneOperation {
+struct SetVisibleSceneOperation {
 	fileprivate let viewController: UIViewController
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(viewController: UIViewController, renderer: SceneRenderer) {
+	init(viewController: UIViewController, renderer: SceneOperationManager) {
 		self.viewController = viewController
 		self.renderer = renderer
 	}
 }
 
-extension SetVisibleSceneOperation {
+// MARK: SceneOperation methods
+
+extension SetVisibleSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		let group = DispatchGroup()
 

@@ -43,6 +43,8 @@
 		189A94611FD71AD000D4DB32 /* NextViewControllerFindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A94601FD71AD000D4DB32 /* NextViewControllerFindable.swift */; };
 		189A94641FD7F1BC00D4DB32 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A94631FD7F1BC00D4DB32 /* UIColor+Utils.swift */; };
 		189A94661FD805E400D4DB32 /* SetVisibleSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A94651FD805E400D4DB32 /* SetVisibleSceneOperation.swift */; };
+		189A94691FD820C400D4DB32 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A94681FD820C400D4DB32 /* Array+Utils.swift */; };
+		189A946B1FD8310900D4DB32 /* MockWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A946A1FD8310900D4DB32 /* MockWindow.swift */; };
 		18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */; };
 		18A101C21F72D956009F39A1 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A101C11F72D956009F39A1 /* Popover.swift */; };
 		18BF68EC1FC738DA00374A33 /* PopOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BF68EB1FC738DA00374A33 /* PopOperationTests.swift */; };
@@ -66,8 +68,7 @@
 		6C27A9601F59E2E900311918 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A95F1F59E2E900311918 /* Scene.swift */; };
 		6C27A9621F59E2FD00311918 /* SceneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9611F59E2FD00311918 /* SceneHandler.swift */; };
 		6C27A9661F59E33200311918 /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9651F59E33200311918 /* SceneBuilder.swift */; };
-		6C27A9731F5A096400311918 /* SceneRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9721F5A096400311918 /* SceneRenderer.swift */; };
-		6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2967AF1F5C565400F3C3A0 /* ViewController.swift */; };
+		6C27A9731F5A096400311918 /* SceneOperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9721F5A096400311918 /* SceneOperationManager.swift */; };
 		6C2967B61F5C5FFB00F3C3A0 /* NavigatorSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */; };
 		6C2C20EF1F63519D004AE759 /* SetScenesOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */; };
@@ -184,6 +185,8 @@
 		189A94601FD71AD000D4DB32 /* NextViewControllerFindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewControllerFindable.swift; sourceTree = "<group>"; };
 		189A94631FD7F1BC00D4DB32 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		189A94651FD805E400D4DB32 /* SetVisibleSceneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVisibleSceneOperation.swift; sourceTree = "<group>"; };
+		189A94681FD820C400D4DB32 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		189A946A1FD8310900D4DB32 /* MockWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWindow.swift; sourceTree = "<group>"; };
 		18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSceneOperation.swift; sourceTree = "<group>"; };
 		18A101C11F72D956009F39A1 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		18BF68EB1FC738DA00374A33 /* PopOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOperationTests.swift; sourceTree = "<group>"; };
@@ -212,8 +215,7 @@
 		6C27A95F1F59E2E900311918 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		6C27A9611F59E2FD00311918 /* SceneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneHandler.swift; sourceTree = "<group>"; };
 		6C27A9651F59E33200311918 /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
-		6C27A9721F5A096400311918 /* SceneRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRenderer.swift; sourceTree = "<group>"; };
-		6C2967AF1F5C565400F3C3A0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6C27A9721F5A096400311918 /* SceneOperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOperationManager.swift; sourceTree = "<group>"; };
 		6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallSceneOperationTest.swift; sourceTree = "<group>"; };
 		6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetScenesOperationTest.swift; sourceTree = "<group>"; };
 		6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneOperationTests.swift; sourceTree = "<group>"; };
@@ -334,7 +336,6 @@
 		182774861F5C3B9400CD935F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				6C2967AE1F5C564000F3C3A0 /* Utils */,
 				6C2967AB1F5C54D500F3C3A0 /* Mocks */,
 				6C2967BB1F5C68CA00F3C3A0 /* SceneRenderer */,
 			);
@@ -357,18 +358,29 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		18C8720A1F69B9E000701144 /* SceneURL */ = {
+		189A94671FD81F8300D4DB32 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				6CC8BAD11F5A0F0400559655 /* ViewControllerContainer.swift */,
+				6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */,
+				6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		18C8720A1F69B9E000701144 /* SceneURLHandler */ = {
 			isa = PBXGroup;
 			children = (
 				18C8720B1F69B9ED00701144 /* SceneURLHandler.swift */,
 				1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */,
 			);
-			path = SceneURL;
+			path = SceneURLHandler;
 			sourceTree = "<group>";
 		};
 		18FB82EB1F5D563E00E08E0E /* Navigator */ = {
 			isa = PBXGroup;
 			children = (
+				189A94671FD81F8300D4DB32 /* Containers */,
 				6CC4FA981F5AD190003B748A /* Navigator.swift */,
 				18C872061F69B81300701144 /* NavigatorPreviewing.swift */,
 				1810B16F1F685423003B9CA0 /* NavNavigator.swift */,
@@ -381,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */,
+				189A94681FD820C400D4DB32 /* Array+Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -466,10 +479,10 @@
 				6C27A96F1F5A090600311918 /* Domain */,
 				18FB82EB1F5D563E00E08E0E /* Navigator */,
 				6CC4FA951F5AC995003B748A /* SceneProvider */,
-				6C27A9701F5A093000311918 /* SceneHandler */,
-				6C27A9711F5A094500311918 /* SceneRenderer */,
-				18C8720A1F69B9E000701144 /* SceneURL */,
 				6C27A96D1F59E3A500311918 /* SceneBuilder */,
+				18C8720A1F69B9E000701144 /* SceneURLHandler */,
+				6C27A9701F5A093000311918 /* SceneHandler */,
+				6C27A9711F5A094500311918 /* SceneOperationManager */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -505,22 +518,20 @@
 			path = SceneHandler;
 			sourceTree = "<group>";
 		};
-		6C27A9711F5A094500311918 /* SceneRenderer */ = {
+		6C27A9711F5A094500311918 /* SceneOperationManager */ = {
 			isa = PBXGroup;
 			children = (
-				6C27A9721F5A096400311918 /* SceneRenderer.swift */,
+				6C27A9721F5A096400311918 /* SceneOperationManager.swift */,
 				6CA5947E1F6319FA00CF37AB /* SceneOperation */,
-				6CC8BAD11F5A0F0400559655 /* ViewControllerContainer.swift */,
-				6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */,
-				6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */,
 			);
-			path = SceneRenderer;
+			path = SceneOperationManager;
 			sourceTree = "<group>";
 		};
 		6C2967AB1F5C54D500F3C3A0 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
 				182FF4991FC37A3F00117406 /* MockSceneOperation.swift */,
+				189A946A1FD8310900D4DB32 /* MockWindow.swift */,
 				182FF49B1FC37B2A00117406 /* MockScene.swift */,
 				182FF49D1FC37BCB00117406 /* MockSceneHandler.swift */,
 				182FF4A31FC37F2B00117406 /* MockViewControllerContainer.swift */,
@@ -529,14 +540,6 @@
 				182FF4A71FC383EA00117406 /* MockNavigationController.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		6C2967AE1F5C564000F3C3A0 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				6C2967AF1F5C565400F3C3A0 /* ViewController.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		6C2967BB1F5C68CA00F3C3A0 /* SceneRenderer */ = {
@@ -786,7 +789,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				182FF49C1FC37B2A00117406 /* MockScene.swift in Sources */,
-				6C2967B01F5C565400F3C3A0 /* ViewController.swift in Sources */,
 				1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */,
 				6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */,
 				1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */,
@@ -802,6 +804,7 @@
 				182FF49A1FC37A3F00117406 /* MockSceneOperation.swift in Sources */,
 				182FF4A61FC3827900117406 /* MockViewController.swift in Sources */,
 				182FF4A81FC383EA00117406 /* MockNavigationController.swift in Sources */,
+				189A946B1FD8310900D4DB32 /* MockWindow.swift in Sources */,
 				1827747C1F5C3B8400CD935F /* SceneRendererTests.swift in Sources */,
 				6C2C20EF1F63519D004AE759 /* SetScenesOperationTest.swift in Sources */,
 				182FF49E1FC37BCB00117406 /* MockSceneHandler.swift in Sources */,
@@ -837,6 +840,7 @@
 				183A1F841F688223005550C1 /* Preview.swift in Sources */,
 				6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */,
 				6C27A9601F59E2E900311918 /* Scene.swift in Sources */,
+				189A94691FD820C400D4DB32 /* Array+Utils.swift in Sources */,
 				6CA5948D1F63248900CF37AB /* VisibleViewControllerFindable.swift in Sources */,
 				189A94611FD71AD000D4DB32 /* NextViewControllerFindable.swift in Sources */,
 				6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */,
@@ -845,7 +849,7 @@
 				6CC4FA971F5AC9A1003B748A /* SceneProvider.swift in Sources */,
 				6C27A9621F59E2FD00311918 /* SceneHandler.swift in Sources */,
 				188DB1821F6466CF00E9024E /* OrderedSceneOperation.swift in Sources */,
-				6C27A9731F5A096400311918 /* SceneRenderer.swift in Sources */,
+				6C27A9731F5A096400311918 /* SceneOperationManager.swift in Sources */,
 				18C872071F69B81300701144 /* NavigatorPreviewing.swift in Sources */,
 				1810B1721F685E9B003B9CA0 /* TabNavigator.swift in Sources */,
 				6C27A95E1F59E2D500311918 /* ScenePresentationType.swift in Sources */,

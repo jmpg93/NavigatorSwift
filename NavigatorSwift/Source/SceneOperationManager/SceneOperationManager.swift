@@ -1,5 +1,5 @@
 //
-//  SceneRenderer.swift
+//  SceneOperationManager.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 1/9/17.
@@ -11,7 +11,7 @@ import UIKit
 
 public typealias CompletionBlock = () -> Void
 
-public class SceneRenderer: VisibleViewControllerFindable {
+public class SceneOperationManager: VisibleViewControllerFindable {
 	let window: UIWindow
 	var viewControllerContainer: ViewControllerContainer
 
@@ -35,7 +35,7 @@ public class SceneRenderer: VisibleViewControllerFindable {
 	}
 
 	/// Changes the current navigation stack to conform an array of Scenes, in the process of build the new navigation stack
-	/// SceneRenderer will try to recycle the view controllers that are currently in the stack.
+	/// SceneOperationManager will try to recycle the view controllers that are currently in the stack.
 	///
 	/// - parameter scenes: An array of Scenes that represents how should be the new navigation stack.
 	func set(scenes: [Scene]) -> SceneOperation {

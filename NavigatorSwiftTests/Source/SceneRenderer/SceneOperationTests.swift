@@ -29,13 +29,13 @@ extension SceneOperationTests {
 		return mockViewControllerContainer
 	}
 
-	func givenMockSceneRenderer(window: UIWindow, root: UINavigationController, scene: SceneName? = nil) -> MockSceneRenderer {
+	func givenMockSceneOperationManager(window: UIWindow, root: UINavigationController, scene: SceneName? = nil) -> MockSceneOperationManager {
 		if let scene = scene {
 			root.visibleViewController!.sceneName = scene.value
 		}
 
 		let mockContainer = givenMockViewControllerContainer(root: root)
-		return MockSceneRenderer(window: window, viewControllerContainer: mockContainer)
+		return MockSceneOperationManager(window: window, viewControllerContainer: mockContainer)
 	}
 
 	func givenMockSceneHandler(name: SceneName,

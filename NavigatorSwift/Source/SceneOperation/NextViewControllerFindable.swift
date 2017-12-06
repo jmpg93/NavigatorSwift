@@ -64,14 +64,3 @@ private extension NextViewControllerFindable {
 		return navigationController.viewControllers.first ?? presentedViewController
 	}
 }
-
-extension Array where Element: Hashable {
-	func after(item: Element) -> Element? {
-		if let index = self.index(of: item), index + 1 < self.count {
-			return self[index + 1]
-		}
-		return nil
-	}
-}
-
-

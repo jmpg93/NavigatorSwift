@@ -10,31 +10,29 @@ import Foundation
 import UIKit
 
 class MockViewController: UIViewController {
-	var dismissed = false
-	var _isBeingDisplayedModally = false
-	var _navigationController: UINavigationController? = nil
-	var _presentingViewController: UIViewController? = nil
-
-	var didPresentViewController = false
-
 	var overrideNavigationController = false
+	var _navigationController: UINavigationController? = nil
 	override var navigationController: UINavigationController? {
 		return overrideNavigationController ? _navigationController : super.navigationController
 	}
 
 	var overridePresentingViewController = false
+	var _presentingViewController: UIViewController? = nil
 	override var presentingViewController: UIViewController? {
 		return overridePresentingViewController ? _presentingViewController : super.presentingViewController
 	}
 
+	var dismissed = false
 	override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 		dismissed = true
 	}
 
+	var _isBeingDisplayedModally = false
 	var isBeingDisplayedModally: Bool {
 		return _isBeingDisplayedModally
 	}
 
+	var didPresentViewController = false
 	override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
 		didPresentViewController = true
 	}

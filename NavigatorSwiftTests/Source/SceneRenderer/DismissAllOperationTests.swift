@@ -53,7 +53,7 @@ extension DismissAllOperationTests {
 	}
 
 	func givenSUT(animated: Bool, root: UINavigationController) -> DismissAllOperation {
-		let mockRenderer = givenMockSceneRenderer(window: MockWindow(), root: root)
+		let mockRenderer = givenMockSceneOperationManager(window: MockWindow(), root: root)
 		return DismissAllOperation(animated: animated,
 		                           renderer: mockRenderer)
 	}

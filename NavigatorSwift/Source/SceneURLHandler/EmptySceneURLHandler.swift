@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class EmptySceneURLHandler: SceneURLHandler {
+public struct EmptySceneURLHandler: SceneURLHandler {
 	public func scenes(from url: URL) -> [SceneName] {
 		return []
 	}

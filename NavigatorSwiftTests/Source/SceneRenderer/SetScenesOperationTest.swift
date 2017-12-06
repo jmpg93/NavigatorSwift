@@ -110,7 +110,7 @@ extension SetScenesOperationTest {
 	              root: UIViewController,
 	              scene: SceneName? = nil ) -> SetScenesOperation {
 		let nav = UINavigationController(rootViewController: root)
-		let mockRenderer = givenMockSceneRenderer(window: MockWindow(), root: nav, scene: scene)
+		let mockRenderer = givenMockSceneOperationManager(window: MockWindow(), root: nav, scene: scene)
 		mockRenderer._dismissAllOperation = mockDismissAllOperation
 		mockRenderer._recycleOperation = mockRecycleOperation
 		mockRenderer._addScenesOperation = mockAddOperation

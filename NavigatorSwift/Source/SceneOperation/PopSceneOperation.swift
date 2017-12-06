@@ -9,17 +9,19 @@
 import Foundation
 import UIKit
 
-class PopSceneOperation: VisibleViewControllerFindable {
+struct PopSceneOperation: VisibleViewControllerFindable {
 	fileprivate let popToRoot: Bool
 	fileprivate let animated: Bool
-	fileprivate let renderer: SceneRenderer
+	fileprivate let renderer: SceneOperationManager
 
-	init(toRoot popToRoot: Bool, animated: Bool, renderer: SceneRenderer) {
+	init(toRoot popToRoot: Bool, animated: Bool, renderer: SceneOperationManager) {
 		self.popToRoot = popToRoot
 		self.animated = animated
 		self.renderer = renderer
 	}
 }
+
+// MARK: SceneOperation methods
 
 extension PopSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {

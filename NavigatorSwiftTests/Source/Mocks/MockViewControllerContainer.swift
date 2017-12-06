@@ -12,22 +12,21 @@ import UIKit
 
 class MockViewControllerContainer: MockViewController, ViewControllerContainer {
 	var _rootViewController = UIViewController()
-	var _firstLevelNavigationControllers: [UINavigationController] = []
-	var _visibleNavigationController = UINavigationController()
-	var _selectedViewController = false
-
 	var rootViewController: UIViewController {
 		return _rootViewController
 	}
 
+	var _firstLevelNavigationControllers: [UINavigationController] = []
 	var firstLevelNavigationControllers: [UINavigationController] {
 		return _firstLevelNavigationControllers
 	}
 
+	var _visibleNavigationController = UINavigationController()
 	var visibleNavigationController: UINavigationController {
 		return _visibleNavigationController
 	}
 
+	var _selectedViewController = false
 	func setSelectedViewController(_ selectedViewController: UIViewController) {
 		self._selectedViewController = true
 	}
