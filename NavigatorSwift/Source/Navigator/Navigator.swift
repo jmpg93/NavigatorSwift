@@ -18,7 +18,7 @@ public protocol Navigator: class {
 
 public extension Navigator {
 	func root(_ scene: SceneName, parameters: Parameters = [:]) {
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal)
+		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .root)
 		navigate(with: sceneOperationManager.root(scene: scene))
 	}
 }

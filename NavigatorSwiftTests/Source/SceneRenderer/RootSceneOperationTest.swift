@@ -9,14 +9,14 @@
 @testable import NavigatorSwift
 import XCTest
 
-class InstallSceneOperationTest: SceneOperationTests {
+class RootSceneOperationTest: SceneOperationTests {
 	// Class under test
 	fileprivate var sut: RootSceneOperation!
 }
 
 // MARK: Tests
 
-extension InstallSceneOperationTest {
+extension RootSceneOperationTest {
 	func testGivenScene_installScene_setRootViewController() {
 		//given
 		let view = MockViewController()
@@ -50,7 +50,7 @@ extension InstallSceneOperationTest {
 	}
 }
 
-extension InstallSceneOperationTest {
+extension RootSceneOperationTest {
 	func givenNavigationController() -> MockNavigationController {
 		let view = MockViewController()
 		return MockNavigationController(viewControllers: [view])

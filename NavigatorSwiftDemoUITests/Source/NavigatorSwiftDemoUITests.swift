@@ -38,7 +38,7 @@ class NavigatorSwiftDemoUITests: XCTestCase {
 		static let base = [Constants.modal, Constants.push, Constants.modalNav]
 		static let dismiss = [Constants.modalDismissFirst, Constants.modalDismissScene, Constants.modalModalDismissAll]
 		static let pop = [Constants.pushPop, Constants.pushPushPopToRoot]
-		static let custom = [/*Constants.transition*/, Constants.popover, Constants.set2Scenes]
+		static let custom = [Constants.transition Constants.popover, Constants.set2Scenes]
 		static let recycle = [Constants.rootModal, Constants.rootModalNav, Constants.rootModalNavPush]
 	}
 

@@ -70,7 +70,7 @@
 		6C27A9661F59E33200311918 /* SceneBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9651F59E33200311918 /* SceneBuilder.swift */; };
 		6C27A9731F5A096400311918 /* SceneOperationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9721F5A096400311918 /* SceneOperationManager.swift */; };
 		6C2967B61F5C5FFB00F3C3A0 /* NavigatorSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */; };
+		6C2C20ED1F63516D004AE759 /* RootSceneOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EC1F63516D004AE759 /* RootSceneOperationTest.swift */; };
 		6C2C20EF1F63519D004AE759 /* SetScenesOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */; };
 		6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */; };
 		6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */; };
@@ -216,7 +216,7 @@
 		6C27A9611F59E2FD00311918 /* SceneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneHandler.swift; sourceTree = "<group>"; };
 		6C27A9651F59E33200311918 /* SceneBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneBuilder.swift; sourceTree = "<group>"; };
 		6C27A9721F5A096400311918 /* SceneOperationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOperationManager.swift; sourceTree = "<group>"; };
-		6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallSceneOperationTest.swift; sourceTree = "<group>"; };
+		6C2C20EC1F63516D004AE759 /* RootSceneOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootSceneOperationTest.swift; sourceTree = "<group>"; };
 		6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetScenesOperationTest.swift; sourceTree = "<group>"; };
 		6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneOperationTests.swift; sourceTree = "<group>"; };
 		6C85F1BB1F5C44FF009FB1CA /* Cuckoo.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Cuckoo.framework.dSYM; path = Carthage/Build/iOS/Cuckoo.framework.dSYM; sourceTree = "<group>"; };
@@ -550,7 +550,7 @@
 				1827747B1F5C3B8400CD935F /* SceneRendererTests.swift */,
 				18BF68EF1FC73DA500374A33 /* AddSceneOperationTests.swift */,
 				18BF68ED1FC73C5400374A33 /* OrderedSceneOperationTests.swift */,
-				6C2C20EC1F63516D004AE759 /* InstallSceneOperationTest.swift */,
+				6C2C20EC1F63516D004AE759 /* RootSceneOperationTest.swift */,
 				1822ECB91FCAECED00F3D597 /* ReloadOperationTests.swift */,
 				6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */,
 				189212301F6DD21E0047E2FD /* DismissAllOperationTests.swift */,
@@ -790,7 +790,7 @@
 			files = (
 				182FF49C1FC37B2A00117406 /* MockScene.swift in Sources */,
 				1895BF3F1F71B947005E34A0 /* DismissFirstSceneOperationTests.swift in Sources */,
-				6C2C20ED1F63516D004AE759 /* InstallSceneOperationTest.swift in Sources */,
+				6C2C20ED1F63516D004AE759 /* RootSceneOperationTest.swift in Sources */,
 				1895BF3B1F71AF21005E34A0 /* DismissSceneOperationTests.swift in Sources */,
 				18BF68EC1FC738DA00374A33 /* PopOperationTests.swift in Sources */,
 				182FF4A41FC37F2B00117406 /* MockViewControllerContainer.swift in Sources */,
