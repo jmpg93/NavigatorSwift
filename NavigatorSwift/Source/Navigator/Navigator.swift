@@ -154,7 +154,7 @@ extension Navigator {
 
 public extension Navigator {
 	func view(for scene: SceneName, parameters: Parameters = [:]) -> UIViewController? {
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal, animated: true)
+		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .root)
 
 		return scene.view()
 	}
