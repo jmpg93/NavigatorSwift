@@ -53,7 +53,7 @@ private extension NextViewControllerFindable {
 			return contentViewController(with: presentedViewController)
 		}
 
-		return nil
+		return presentedViewController
 	}
 
 	func contentViewController(with presentedViewController: UIViewController) -> UIViewController {

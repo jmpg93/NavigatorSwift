@@ -53,10 +53,10 @@ extension AddSceneOperation: SceneOperation {
 				navigationController.modalPresentationStyle = newViewController.modalPresentationStyle
 				navigationController.transitioningDelegate = newViewController.transitioningDelegate
 				newViewController.transitioningDelegate = nil
-				visibleViewController.present(navigationController, animated: animated, completion: completion)
+				currentVisibleViewController?.present(navigationController, animated: animated, completion: completion)
 
 			case .modal:
-				visibleViewController.present(newViewController, animated: animated, completion: completion)
+				currentVisibleViewController?.present(newViewController, animated: animated, completion: completion)
 
 			case .root:
 				manager.root(scene: scene).execute(with: completion)

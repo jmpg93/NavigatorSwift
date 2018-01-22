@@ -60,7 +60,7 @@ enum Presentation {
 		case .rootModalNavPush:
 			return "root modalNav push"
 		case .set(let scenes):
-			return "set \(scenes.count) scenes"
+			return "root set \(scenes.count) scenes"
 		}
 	}
 }

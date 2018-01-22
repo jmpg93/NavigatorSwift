@@ -110,6 +110,7 @@ extension Collection: UICollectionViewDelegate {
 				navigator.push(.collection, parameters: Constants.pushParameters, animated: context.animated)
 			case .set(let scenes):
 				navigator.build { builder in
+					builder.root(.collection)
 					for scene in scenes {
 						builder.present(scene, parameters: Constants.modalParameters, animated: context.animated)
 					}

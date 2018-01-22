@@ -26,7 +26,7 @@ class NavigatorSwiftDemoUITests: XCTestCase {
 		static let preview = "preview"
 		static let pushPop = "push pop"
 		static let pushPushPopToRoot = "push popToRoot"
-		static let set2Scenes = "set 2 scenes"
+		static let set2Scenes = "root set 2 scenes"
 		static let dismissAll = "dismissAll"
 		static let popToRoot = "popToRoot"
 		static let rootModal = "root modal"
