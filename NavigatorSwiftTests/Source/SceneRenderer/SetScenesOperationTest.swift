@@ -114,7 +114,7 @@ extension SetScenesOperationTest {
 		mockRenderer._dismissAllOperation = mockDismissAllOperation
 		mockRenderer._recycleOperation = mockRecycleOperation
 		mockRenderer._addScenesOperation = mockAddOperation
-		return SetScenesOperation(scenes: scenes, renderer: mockRenderer)
+		return SetScenesOperation(scenes: scenes, manager: mockRenderer)
 	}
 }
 

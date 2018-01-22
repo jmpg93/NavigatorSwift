@@ -17,7 +17,7 @@ class RecycleSceneOperationTests: SceneOperationTests {
 		super.setUp()
 
 		let mockSceneOperationManager = MockSceneOperationManager(window: MockWindow(), viewControllerContainer: MockViewControllerContainer())
-		sut = RecycleSceneOperation(scenes: [], renderer: mockSceneOperationManager)
+		sut = RecycleSceneOperation(scenes: [], manager: mockSceneOperationManager)
 	}
 }
 

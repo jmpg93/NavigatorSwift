@@ -11,12 +11,12 @@ import Foundation
 struct ApplyTransitionSceneOperation: VisibleViewControllerFindable {
 	fileprivate let transition: Transition
 	fileprivate let scene: Scene
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(transition: Transition, to scene: Scene, renderer: SceneOperationManager) {
+	init(transition: Transition, to scene: Scene, manager: SceneOperationManager) {
 		self.transition = transition
 		self.scene = scene
-		self.renderer = renderer
+		self.manager = manager
 	}
 }
 
@@ -25,7 +25,7 @@ struct ApplyTransitionSceneOperation: VisibleViewControllerFindable {
 extension ApplyTransitionSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		scene.operationParameters[ParametersKeys.transition] = transition
-		renderer.add(scenes: [scene]).execute(with: completion)
+		manager.add(scenes: [scene]).execute(with: completion)
 	}
 }
 

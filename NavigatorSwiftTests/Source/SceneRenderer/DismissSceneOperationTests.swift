@@ -74,6 +74,6 @@ extension DismissSceneOperationTests {
 	func givenSUT(sceneName: SceneName, animated: Bool, modalView: UIViewController) -> DismissSceneOperation {
 		let mockNavigationController = MockNavigationController(viewControllers: [modalView])
 		let mockSceneOperationManager = givenMockSceneOperationManager(window: MockWindow(), root: mockNavigationController)
-		return DismissSceneOperation(sceneName: sceneName, animated: animated, renderer: mockSceneOperationManager)
+		return DismissSceneOperation(sceneName: sceneName, animated: animated, manager: mockSceneOperationManager)
 	}
 }

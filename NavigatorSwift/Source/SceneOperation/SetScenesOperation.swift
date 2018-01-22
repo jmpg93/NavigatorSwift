@@ -10,11 +10,11 @@ import Foundation
 
 struct SetScenesOperation {
 	fileprivate var scenes: [Scene]
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(scenes: [Scene], renderer: SceneOperationManager) {
+	init(scenes: [Scene], manager: SceneOperationManager) {
 		self.scenes = scenes
-		self.renderer = renderer
+		self.manager = manager
 	}
 }
 
@@ -28,13 +28,13 @@ extension SetScenesOperation: SceneOperation {
 		}
 		
 		if isRootViewController(matching: rootScene) {
-			renderer
+			manager
 				.recycle(scenes: scenes)
 				.execute(with: completion)
 		} else {
-			renderer
+			manager
 				.dismissAll(animated: false)
-				.then(renderer.add(scenes: scenes))
+				.then(manager.add(scenes: scenes))
 				.execute(with: completion)
 		}
 	}
@@ -47,7 +47,7 @@ extension SetScenesOperation {
 	func isRootViewController(matching scene: Scene) -> Bool {
 		var isEqual: Bool = false
 
-		if let rootViewController = renderer.rootViewController as? UINavigationController {
+		if let rootViewController = manager.rootViewController as? UINavigationController {
 			isEqual = rootViewController.viewControllers.first?.sceneName == scene.sceneHandler.name.value
 		}
 

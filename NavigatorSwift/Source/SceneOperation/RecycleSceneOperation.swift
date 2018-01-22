@@ -10,15 +10,15 @@ import Foundation
 
 struct RecycleSceneOperation: NextViewControllerFindable {
 	fileprivate let scenes: [Scene]
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(scenes: [Scene], renderer: SceneOperationManager) {
+	init(scenes: [Scene], manager: SceneOperationManager) {
 		self.scenes = scenes
-		self.renderer = renderer
+		self.manager = manager
 	}
 
 	fileprivate var viewControllerContainer: ViewControllerContainer {
-		return renderer.viewControllerContainer
+		return manager.viewControllerContainer
 	}
 }
 
@@ -38,7 +38,7 @@ extension RecycleSceneOperation: SceneOperation {
 		}
 
 		// Move to the target root tab or navigation.
-		renderer.setSelectedViewController(rootNavigationController)
+		manager.setSelectedViewController(rootNavigationController)
 
 		// Get the first view controller of the stack.
 		var _next = rootNavigationController.viewControllers.first
@@ -59,8 +59,8 @@ extension RecycleSceneOperation: SceneOperation {
 
 		guard let last = _last else { fatalError("No root view controller found") }
 
-		let addSceneOperation = renderer.add(scenes: scenesNotInStackYet)
-		let setVisibleOperation = renderer.setVisible(viewController: last)
+		let addSceneOperation = manager.add(scenes: scenesNotInStackYet)
+		let setVisibleOperation = manager.setVisible(viewController: last)
 
 		setVisibleOperation
 			.then(addSceneOperation)

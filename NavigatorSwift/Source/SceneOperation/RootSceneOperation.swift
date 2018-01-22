@@ -10,11 +10,11 @@ import Foundation
 
 class RootSceneOperation {
 	fileprivate let scene: Scene
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(scene: Scene, renderer: SceneOperationManager) {
+	init(scene: Scene, manager: SceneOperationManager) {
 		self.scene = scene
-		self.renderer = renderer
+		self.manager = manager
 	}
 }
 
@@ -23,17 +23,17 @@ extension RootSceneOperation: SceneOperation {
 		let buildedViewController = scene.view()
 
 		if let buildedViewController = buildedViewController as? ViewControllerContainer {
-			renderer.viewControllerContainer = buildedViewController
+			manager.viewControllerContainer = buildedViewController
 		} else {
 			let navigationBarContainer = NavigationBarContainer()
-			renderer.viewControllerContainer = navigationBarContainer
+			manager.viewControllerContainer = navigationBarContainer
 
 			let navigationController = navigationBarContainer.visibleNavigationController
 			navigationController.pushViewController(buildedViewController, animated: false)
 		}
 
-		renderer.window.rootViewController = renderer.rootViewController
-		renderer.window.makeKeyAndVisible()
+		manager.window.rootViewController = manager.rootViewController
+		manager.window.makeKeyAndVisible()
 
 		completion?()
 	}

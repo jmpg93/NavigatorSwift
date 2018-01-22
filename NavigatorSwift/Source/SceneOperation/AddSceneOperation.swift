@@ -10,11 +10,11 @@ import Foundation
 
 struct AddSceneOperation {
 	fileprivate let scenes: [Scene]
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(scenes: [Scene], renderer: SceneOperationManager) {
+	init(scenes: [Scene], manager: SceneOperationManager) {
 		self.scenes = scenes
-		self.renderer = renderer
+		self.manager = manager
 	}
 }
 
@@ -27,7 +27,7 @@ extension AddSceneOperation: SceneOperation {
 			return
 		}
 		
-		let visibleViewController = renderer.visibleViewController(from: renderer.rootViewController)
+		let visibleViewController = manager.visibleViewController(from: manager.rootViewController)
 		var currentVisibleViewController: UIViewController? = visibleViewController
 
 		if let navigationController = visibleViewController as? UINavigationController {
@@ -59,7 +59,7 @@ extension AddSceneOperation: SceneOperation {
 				visibleViewController.present(newViewController, animated: animated, completion: completion)
 
 			case .root:
-				renderer.root(scene: scene).execute(with: completion)
+				manager.root(scene: scene).execute(with: completion)
 				
 			case .reload:
 				continue

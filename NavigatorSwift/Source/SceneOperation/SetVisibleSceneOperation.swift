@@ -11,11 +11,11 @@ import UIKit
 
 struct SetVisibleSceneOperation {
 	fileprivate let viewController: UIViewController
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(viewController: UIViewController, renderer: SceneOperationManager) {
+	init(viewController: UIViewController, manager: SceneOperationManager) {
 		self.viewController = viewController
-		self.renderer = renderer
+		self.manager = manager
 	}
 }
 

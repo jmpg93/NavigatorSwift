@@ -10,11 +10,11 @@ import Foundation
 
 class ReloadSceneOperation: VisibleViewControllerFindable {
 	fileprivate let scene: Scene
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(scene: Scene, renderer: SceneOperationManager) {
+	init(scene: Scene, manager: SceneOperationManager) {
 		self.scene = scene
-		self.renderer = renderer
+		self.manager = manager
 	}
 }
 
@@ -22,7 +22,7 @@ class ReloadSceneOperation: VisibleViewControllerFindable {
 
 extension ReloadSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		let visibleViewController = self.visibleViewController(from: renderer.visibleNavigationController)
+		let visibleViewController = self.visibleViewController(from: manager.visibleNavigationController)
 
 
 		if scene.sceneHandler.name.value == visibleViewController.sceneName, scene.sceneHandler.isReloadable {

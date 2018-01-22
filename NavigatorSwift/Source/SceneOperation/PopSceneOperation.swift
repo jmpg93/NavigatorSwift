@@ -12,12 +12,12 @@ import UIKit
 struct PopSceneOperation: VisibleViewControllerFindable {
 	fileprivate let popToRoot: Bool
 	fileprivate let animated: Bool
-	fileprivate let renderer: SceneOperationManager
+	fileprivate let manager: SceneOperationManager
 
-	init(toRoot popToRoot: Bool, animated: Bool, renderer: SceneOperationManager) {
+	init(toRoot popToRoot: Bool, animated: Bool, manager: SceneOperationManager) {
 		self.popToRoot = popToRoot
 		self.animated = animated
-		self.renderer = renderer
+		self.manager = manager
 	}
 }
 
@@ -25,7 +25,7 @@ struct PopSceneOperation: VisibleViewControllerFindable {
 
 extension PopSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		let visibleViewController = self.visibleViewController(from: renderer.rootViewController)
+		let visibleViewController = self.visibleViewController(from: manager.rootViewController)
 
 		guard let navigationController = visibleViewController.navigationController else {
 			completion?()

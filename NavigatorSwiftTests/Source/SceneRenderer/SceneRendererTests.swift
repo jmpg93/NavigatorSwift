@@ -96,8 +96,8 @@ extension SceneOperationManagerTests {
 // MARK: Helpers general
 
 extension SceneOperationManagerTests {
-	func visibleViewController(for renderer: SceneOperationManager) -> UIViewController {
-		return renderer
+	func visibleViewController(for manager: SceneOperationManager) -> UIViewController {
+		return manager
 			.viewControllerContainer
 			.visibleNavigationController
 			.visibleViewController!
