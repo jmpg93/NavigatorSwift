@@ -6,8 +6,14 @@ NavigatorSwift is a framework to easily navigate between your views.
 
 ### Create a navigator
 ```swift
-let window = UIWindow()
-let navigator = NavNavigator(window: window)
+// NavigationController container based navigator
+let navigator = NavNavigator(window: UIWindow())
+
+// TabBarController container based navigator
+let navigator = TabNavigator(window: UIWindow())
+
+// Custom container based navigator
+let navigator = ContainerNavigator(window: UIWindow(), viewControllerContainer: customViewControllerContainer)
 ```
 
 ### Create a Scene and register it
@@ -21,7 +27,7 @@ class LoginScene: SceneHandler {
 		return .login
 	}
 
-	func buildViewController(with parameters: Parameters) -> UIViewController {
+	func view(with parameters: Parameters) -> UIViewController {
 		let vc = UIViewController()
 		vc.view.backgroundColor = .red
 		return vc
