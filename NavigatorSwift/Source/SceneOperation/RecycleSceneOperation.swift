@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct RecycleSceneOperation: NextViewControllerFindable {
 	fileprivate let scenes: [Scene]
@@ -84,6 +85,7 @@ extension RecycleSceneOperation: SceneOperation {
 
 		case .modal:
 			return viewController.presentingViewController != nil
+				&& viewController.navigationController == nil
 
 		case .modalNavigation:
 			return viewController.navigationController != nil

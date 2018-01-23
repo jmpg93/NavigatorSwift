@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol Navigator: class {
 	var sceneProvider: SceneProvider { get }
@@ -154,9 +155,7 @@ extension Navigator {
 
 public extension Navigator {
 	func view(for scene: SceneName, parameters: Parameters = [:]) -> UIViewController? {
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .root)
-
-		return scene.view()
+		return sceneProvider.scene(with: scene, parameters: parameters, type: .root).view()
 	}
 }
 

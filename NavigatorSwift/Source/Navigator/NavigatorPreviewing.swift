@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol NavigatorPreviewing: class {
 	var previews: [UIView: (Preview, UIViewControllerPreviewing)] { get set }

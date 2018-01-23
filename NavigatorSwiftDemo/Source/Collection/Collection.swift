@@ -23,6 +23,10 @@ class Collection: UIViewController {
 		static let modalNavParameters = [CollectionScenHandler.Parameter.stateLabel: "modalNav"]
 		static let transitionParameters = [CollectionScenHandler.Parameter.stateLabel: "transition"]
 		static let popoverParameters = [CollectionScenHandler.Parameter.stateLabel: "popover"]
+
+		static func rootSetParameters(index: Int) -> Parameters {
+			return [CollectionScenHandler.Parameter.stateLabel: "root set \(index + 1) scenes"]
+		}
 	}
 
 	var stateText = Constants.defaultStateText
@@ -111,8 +115,8 @@ extension Collection: UICollectionViewDelegate {
 			case .set(let scenes):
 				navigator.build { builder in
 					builder.root(.collection)
-					for scene in scenes {
-						builder.present(scene, parameters: Constants.modalParameters, animated: context.animated)
+					for (index, scene) in scenes.enumerated() {
+						builder.present(scene, parameters: Constants.rootSetParameters(index: index), animated: context.animated)
 					}
 				}
 			case .modalNavigation:

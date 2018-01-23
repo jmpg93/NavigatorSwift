@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct AddSceneOperation {
 	fileprivate let scenes: [Scene]
@@ -28,45 +29,83 @@ extension AddSceneOperation: SceneOperation {
 		}
 		
 		let visibleViewController = manager.visibleViewController(from: manager.rootViewController)
-		var currentVisibleViewController: UIViewController? = visibleViewController
+		recursiveShow(scenes: scenes, visibleViewController: visibleViewController, completion: completion)
+	}
+}
 
-		if let navigationController = visibleViewController as? UINavigationController {
-			currentVisibleViewController = navigationController.viewControllers.first
-		} else if let searchController = visibleViewController as? UISearchController {
-			currentVisibleViewController = searchController.presentingViewController
-		} else {
-			currentVisibleViewController = visibleViewController
+private extension AddSceneOperation {
+	func recursiveShow(scenes: [Scene], visibleViewController: UIViewController?, completion: CompletionBlock?) {
+		guard !scenes.isEmpty else {
+			completion?()
+			return
 		}
 
-		var navigationController: UINavigationController? = currentVisibleViewController?.navigationController
+		var scenes = scenes
+		let scene = scenes.removeFirst()
 
-		for scene in scenes {
-			let newViewController = scene.view()
-			let animated = scene.isAnimated
+		let newViewController = scene.view()
+		let animated = scene.isAnimated
 
-			switch scene.type {
-			case .push:
-				navigationController?.pushViewController(newViewController, animated: animated)
-
-			case .modalNavigation:
-				let navigationController = UINavigationController(rootViewController: newViewController)
-				navigationController.modalPresentationStyle = newViewController.modalPresentationStyle
-				navigationController.transitioningDelegate = newViewController.transitioningDelegate
-				newViewController.transitioningDelegate = nil
-				currentVisibleViewController?.present(navigationController, animated: animated, completion: completion)
-
-			case .modal:
-				currentVisibleViewController?.present(newViewController, animated: animated, completion: completion)
-
-			case .root:
-				manager.root(scene: scene).execute(with: completion)
-				
-			case .reload:
-				continue
-			}
-
-			currentVisibleViewController = newViewController
-			navigationController = currentVisibleViewController?.navigationController
+		let recursiveCall: CompletionBlock =  {
+			self.recursiveShow(scenes: scenes, visibleViewController: newViewController, completion: completion)
 		}
+
+		switch scene.type {
+		case .push:
+			self.push(from: visibleViewController?.navigationController, newViewController, animated: animated, completion: recursiveCall)
+
+		case .modalNavigation:
+			self.presentWithNavigation(from: visibleViewController, newViewController, animated: animated, completion: recursiveCall)
+
+		case .modal:
+			self.present(from: visibleViewController, newViewController, animated: animated, completion: recursiveCall)
+
+		case .root:
+			self.root(scene: scene, completion: recursiveCall)
+
+		case .reload:
+			recursiveCall()
+		}
+	}
+}
+
+private extension AddSceneOperation {
+	func present(from: UIViewController?, _ viewController: UIViewController, animated: Bool, completion: @escaping CompletionBlock) {
+		guard let from = from else {
+			completion()
+			return
+		}
+
+		from.present(viewController, animated: animated, completion: completion)
+	}
+
+	func presentWithNavigation(from: UIViewController?, _ viewController: UIViewController, animated: Bool, completion: @escaping CompletionBlock) {
+		guard let from = from else {
+			completion()
+			return
+		}
+
+		let navigationController = UINavigationController(rootViewController: viewController)
+		navigationController.modalPresentationStyle = viewController.modalPresentationStyle
+		navigationController.transitioningDelegate = viewController.transitioningDelegate
+		viewController.transitioningDelegate = nil
+
+		present(from: from, navigationController, animated: animated, completion: completion)
+	}
+
+	func push(from: UINavigationController?, _ viewController: UIViewController, animated: Bool, completion: @escaping CompletionBlock) {
+		guard let from = from else {
+			completion()
+			return
+		}
+
+		CATransaction.begin()
+		from.pushViewController(viewController, animated: animated)
+		CATransaction.setCompletionBlock(completion)
+		CATransaction.commit()
+	}
+
+	func root(scene: Scene, completion: @escaping CompletionBlock) {
+		self.manager.root(scene: scene).execute(with: completion)
 	}
 }

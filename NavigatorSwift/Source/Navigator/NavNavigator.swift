@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final public class NavNavigator: Navigator, NavigatorPreviewing {
 	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]

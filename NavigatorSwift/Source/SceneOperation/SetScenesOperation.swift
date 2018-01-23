@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct SetScenesOperation {
 	fileprivate var scenes: [Scene]

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class Preview: NSObject {
 	fileprivate let scene: Scene

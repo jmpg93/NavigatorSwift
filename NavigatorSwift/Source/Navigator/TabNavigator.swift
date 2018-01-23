@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public final class TabNavigator: Navigator, NavigatorPreviewing {
 	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
