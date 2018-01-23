@@ -44,7 +44,8 @@ class Collection: UIViewController {
 	}
 
 	deinit {
-		print("DEINIT")
+		// TODO: In some cases the view is created (and instantly deallocated) even if you know the view cannot be presented.
+		//print("DEINIT")
 	}
 }
 
