@@ -115,7 +115,7 @@ extension Collection: UICollectionViewDelegate {
 				navigator.push(.collection, parameters: Constants.pushParameters, animated: context.animated)
 			case .set(let scenes):
 				navigator.build { builder in
-					builder.root(.collection)
+					builder.root(.collection, parameters: Constants.rootParameters)
 					for (index, scene) in scenes.enumerated() {
 						builder.present(scene, parameters: Constants.rootSetParameters(index: index), animated: context.animated)
 					}

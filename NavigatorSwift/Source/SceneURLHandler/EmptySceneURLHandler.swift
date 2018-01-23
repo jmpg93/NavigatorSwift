@@ -9,7 +9,7 @@
 import Foundation
 
 public struct EmptySceneURLHandler: SceneURLHandler {
-	public func scenes(from url: URL) -> [SceneName] {
+	public func sceneContexts(from url: URL) -> [SceneURLContext] {
 		return []
 	}
 }

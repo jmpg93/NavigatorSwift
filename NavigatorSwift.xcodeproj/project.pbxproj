@@ -90,6 +90,8 @@
 		6CC4FA991F5AD190003B748A /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC4FA981F5AD190003B748A /* Navigator.swift */; };
 		6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8BAD11F5A0F0400559655 /* ViewControllerContainer.swift */; };
 		6CC8BAD41F5A127200559655 /* NavigationBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */; };
+		6CCC9E3A2017CB7A00BEDFEC /* ContainerNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC9E392017CB7A00BEDFEC /* ContainerNavigator.swift */; };
+		6CCC9E3C2017CDC000BEDFEC /* SceneURLContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC9E3B2017CDC000BEDFEC /* SceneURLContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +238,8 @@
 		6CC4FA981F5AD190003B748A /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		6CC8BAD11F5A0F0400559655 /* ViewControllerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerContainer.swift; sourceTree = "<group>"; };
 		6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarContainer.swift; sourceTree = "<group>"; };
+		6CCC9E392017CB7A00BEDFEC /* ContainerNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerNavigator.swift; sourceTree = "<group>"; };
+		6CCC9E3B2017CDC000BEDFEC /* SceneURLContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneURLContext.swift; sourceTree = "<group>"; };
 		6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cuckoo.framework; path = Carthage/Build/iOS/Cuckoo.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -373,6 +377,7 @@
 			children = (
 				18C8720B1F69B9ED00701144 /* SceneURLHandler.swift */,
 				1822ECB51FCAE87E00F3D597 /* EmptySceneURLHandler.swift */,
+				6CCC9E3B2017CDC000BEDFEC /* SceneURLContext.swift */,
 			);
 			path = SceneURLHandler;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				18C872061F69B81300701144 /* NavigatorPreviewing.swift */,
 				1810B16F1F685423003B9CA0 /* NavNavigator.swift */,
 				1810B1711F685E9B003B9CA0 /* TabNavigator.swift */,
+				6CCC9E392017CB7A00BEDFEC /* ContainerNavigator.swift */,
 			);
 			path = Navigator;
 			sourceTree = "<group>";
@@ -845,6 +851,7 @@
 				189A94611FD71AD000D4DB32 /* NextViewControllerFindable.swift in Sources */,
 				6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */,
 				6CB38DD01F5AF01C003C5E9C /* SceneName.swift in Sources */,
+				6CCC9E3A2017CB7A00BEDFEC /* ContainerNavigator.swift in Sources */,
 				180FBA9B1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift in Sources */,
 				6CC4FA971F5AC9A1003B748A /* SceneProvider.swift in Sources */,
 				6C27A9621F59E2FD00311918 /* SceneHandler.swift in Sources */,
@@ -857,6 +864,7 @@
 				6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */,
 				1822ECB81FCAE9BF00F3D597 /* ReloadSceneOperation.swift in Sources */,
 				6CA594911F63286000CF37AB /* SetScenesOperation.swift in Sources */,
+				6CCC9E3C2017CDC000BEDFEC /* SceneURLContext.swift in Sources */,
 				6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */,
 				18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */,
 				1810B1701F685423003B9CA0 /* NavNavigator.swift in Sources */,

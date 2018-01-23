@@ -39,6 +39,10 @@ public extension SceneBuilder {
 	func presentNavigation(_ sceneName: SceneName, parameters: Parameters = [:], animated: Bool = true) {
 		add(sceneName, type: .modalNavigation, parameters: parameters, animated: animated)
 	}
+
+	func add(context: SceneURLContext) {
+		add(context.sceneName, type: context.type, parameters: context.parameters, animated: context.isAnimated)
+	}
 }
 
 // MARK: - Public methods

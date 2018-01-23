@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol SceneURLHandler {
-	func scenes(from url: URL) -> [SceneName]
+	func sceneContexts(from url: URL) -> [SceneURLContext]
 }

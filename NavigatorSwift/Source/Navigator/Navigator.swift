@@ -97,8 +97,8 @@ public extension Navigator {
 
 public extension Navigator {
 	func url(_ url: URL, completion: CompletionBlock? = nil) {
-		let builder = urlBuilder(for: url)
-		build(using: builder, completion: completion)
+		let sceneContexts = sceneURLHandler.sceneContexts(from: url)
+		build { sceneContexts.forEach($0.add) }
 	}
 }
 
@@ -169,18 +169,6 @@ public extension Navigator {
 	func register(_ sceneHandlers: [SceneHandler]) {
 		for sceneHandler in sceneHandlers {
 			register(sceneHandler)
-		}
-	}
-}
-
-// MARK: - Navigating with Scenes
-
-private extension Navigator {
-	func urlBuilder(for url: URL) -> (SceneBuilder) -> Void {
-		return { builder in
-			//TODO: Upgrade this
-			let scenes = self.sceneURLHandler.scenes(from: url)
-			scenes.forEach { builder.present($0) }
 		}
 	}
 }
