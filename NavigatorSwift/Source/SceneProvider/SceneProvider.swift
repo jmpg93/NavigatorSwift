@@ -11,6 +11,10 @@ import Foundation
 public class SceneProvider {
 	/// Contains all the scenes registered in the system by their name.
 	fileprivate var sceneHandlersByName: [SceneName: SceneHandler] = [:]
+
+	public init() {
+		
+	}
 }
 
 // MARK: - Internal Methods
