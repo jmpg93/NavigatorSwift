@@ -30,8 +30,8 @@ public class SceneOperationManager: VisibleViewControllerFindable {
 		return viewControllerContainer.visibleNavigationController
 	}
 
-	func setSelectedViewController(_ selectedViewController: UIViewController) {
-		viewControllerContainer.setSelectedViewController(selectedViewController)
+	func select(viewController: UIViewController) {
+		viewControllerContainer.select(viewController: viewController)
 	}
 
 	/// Changes the current navigation stack to conform an array of Scenes, in the process of build the new navigation stack

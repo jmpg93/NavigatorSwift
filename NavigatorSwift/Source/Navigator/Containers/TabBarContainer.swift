@@ -9,26 +9,25 @@
 import Foundation
 import UIKit
 
-class TabBarContainer {
-	let tabBarController = UITabBarController()
+public class TabBarContainer: UITabBarController {
+
 }
 
 extension TabBarContainer: ViewControllerContainer {
-	var rootViewController: UIViewController {
-		return tabBarController
+	public var rootViewController: UIViewController {
+		return self
 	}
 
-	var firstLevelNavigationControllers: [UINavigationController] {
-		let viewControllers = tabBarController.viewControllers ?? []
+	public var firstLevelNavigationControllers: [UINavigationController] {
+		let viewControllers = self.viewControllers ?? []
 		return viewControllers.flatMap { $0 as? UINavigationController }
 	}
 
-	var visibleNavigationController: UINavigationController {
-		return tabBarController.selectedViewController as! UINavigationController
+	public var visibleNavigationController: UINavigationController {
+		return selectedViewController as! UINavigationController
 	}
 
-	func setSelectedViewController(_ rootViewController: UIViewController) {
-		tabBarController.selectedViewController = rootViewController
+	public func select(viewController: UIViewController) {
+		self.selectedViewController = viewController
 	}
-	
 }

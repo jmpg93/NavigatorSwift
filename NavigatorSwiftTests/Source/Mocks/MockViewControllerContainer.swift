@@ -27,7 +27,7 @@ class MockViewControllerContainer: MockViewController, ViewControllerContainer {
 	}
 
 	var _selectedViewController = false
-	func setSelectedViewController(_ selectedViewController: UIViewController) {
+	func select(viewController_ selectedViewController: UIViewController) {
 		self._selectedViewController = true
 	}
 }

@@ -17,14 +17,14 @@ public protocol ViewControllerContainer: class {
 	/// Returns the UINavigationController of each navigation stack managed. This is usfel for example by a UITabBarController.
 	var firstLevelNavigationControllers: [UINavigationController] { get }
 
-	///  Returns the visible navigationController.
+	/// Returns the visible navigationController.
 	var visibleNavigationController: UINavigationController { get }
 
 	/// Make the selectedViewController as visible.
 	///
-	/// This method is useful for TMViewControllerContainer that manage a various stacks of navigations, for example
-	///  for a UITabBarController.
-	func setSelectedViewController(_ selectedViewController: UIViewController)
+	/// This method is useful for ViewControllerContainer that manage a various stacks of navigations, for example
+	/// for a UITabBarController.
+	func select(viewController: UIViewController)
 }
 
 extension ViewControllerContainer {

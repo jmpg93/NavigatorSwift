@@ -39,7 +39,7 @@ extension RecycleSceneOperation: SceneOperation {
 		}
 
 		// Move to the target root tab or navigation.
-		manager.setSelectedViewController(rootNavigationController)
+		manager.select(viewController: rootNavigationController)
 
 		// Get the first view controller of the stack.
 		var _next = rootNavigationController.viewControllers.first
