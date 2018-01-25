@@ -16,13 +16,16 @@ final public class TabNavigator: Navigator, NavigatorPreviewing {
 	public let sceneOperationManager: SceneOperationManager
 
 	public init(window: UIWindow,
+				tabBarContainer: TabBarContainer,
 				sceneProvider: SceneProvider = SceneProvider(),
 				sceneURLHandler: SceneURLHandler = EmptySceneURLHandler()) {
-		sceneOperationManager = SceneOperationManager(window: window, viewControllerContainer: TabBarContainer())
+		sceneOperationManager = SceneOperationManager(window: window, viewControllerContainer: tabBarContainer)
 		self.sceneProvider = sceneProvider
 		self.sceneURLHandler = sceneURLHandler
 	}
 }
+
+// MARK: - Public methods
 
 public extension TabNavigator {
 	public func setTabs(_ sceneContexts: [SceneContext]) {
@@ -35,6 +38,8 @@ public extension TabNavigator {
 		}
 	}
 }
+
+// MARK: - Private methods
 
 private extension TabNavigator {
 	func buildViewController(scene: Scene) -> UIViewController {

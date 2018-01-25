@@ -23,7 +23,7 @@ class CollectionSceneHandler: SceneHandler {
 		return .collection
 	}
 
-	func view(with parameters: Parameters) -> UIViewController {
+	func view(with parameters: Parameters = [:]) -> UIViewController {
 		let view = Collection.loadFromStoryBoard()
 		if let state = parameters[Parameter.stateLabel] as? String {
 			view.stateText = state

@@ -45,7 +45,7 @@ public extension SceneBuilder {
 	}
 }
 
-// MARK: - Public methods
+// MARK: - Private methods
 
 private extension SceneBuilder {
 	func add(_ sceneName: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {

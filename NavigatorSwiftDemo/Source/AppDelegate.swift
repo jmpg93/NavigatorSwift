@@ -46,18 +46,29 @@ private extension AppDelegate {
 		globalNavigator.root(.tabBar)
 		globalNavigator.setTabs([.blue, .red, .collection])
 
-		DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+		navigate(afer: 2)
+		navigate(afer: 4)
+	}
+}
+
+// MARK: Private methods
+
+private extension AppDelegate {
+	func navigate(afer: TimeInterval) {
+		DispatchQueue.global().asyncAfter(deadline: .now() + afer) {
 			DispatchQueue.main.async {
 				globalNavigator.build { builder in
 					builder.root(.tabBar)
 					builder.tab(.red)
+					builder.presentNavigation(.blue)
+					builder.push(.collection)
 				}
 			}
 		}
 	}
 }
 
-extension SceneContext {
+private extension SceneContext {
 	static let blue = SceneContext(sceneName: .blue)
 	static let red = SceneContext(sceneName: .red)
 	static let collection = SceneContext(sceneName: .collection)

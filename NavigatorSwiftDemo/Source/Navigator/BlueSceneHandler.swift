@@ -18,7 +18,7 @@ class BlueSceneHandler: SceneHandler {
 		return .blue
 	}
 
-	func view(with parameters: Parameters) -> UIViewController {
+	func view(with parameters: Parameters = [:]) -> UIViewController {
 		let view = Collection.loadFromStoryBoard()
 		view.color = .blue
 

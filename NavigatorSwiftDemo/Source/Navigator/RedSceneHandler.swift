@@ -18,7 +18,7 @@ class RedSceneHandler: SceneHandler {
 		return .red
 	}
 
-	func view(with parameters: Parameters) -> UIViewController {
+	func view(with parameters: Parameters = [:]) -> UIViewController {
 		let view = Collection.loadFromStoryBoard()
 		view.color = .red
 
