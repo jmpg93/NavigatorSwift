@@ -11,5 +11,5 @@ import NavigatorSwift
 import UIKit
 
 let globalWindow = UIWindow()
-let globalNavigator = NavNavigator(window: globalWindow)
+let globalNavigator = TabNavigator(window: globalWindow)
 

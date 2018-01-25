@@ -23,3 +23,21 @@ final public class TabNavigator: Navigator, NavigatorPreviewing {
 		self.sceneURLHandler = sceneURLHandler
 	}
 }
+
+public extension TabNavigator {
+	public func setTabs(_ sceneContexts: [SceneContext]) {
+		let views = sceneContexts
+			.map(sceneProvider.scene)
+			.map(buildViewController)
+
+		if let tabBarContainer = sceneOperationManager.viewControllerContainer as? TabBarContainer {
+			tabBarContainer.viewControllers = views
+		}
+	}
+}
+
+private extension TabNavigator {
+	func buildViewController(scene: Scene) -> UIViewController {
+		return UINavigationController(rootViewController: scene.view())
+	}
+}

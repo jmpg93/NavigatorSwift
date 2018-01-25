@@ -20,16 +20,13 @@ class RootSceneOperation {
 
 extension RootSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		let buildedViewController = scene.view()
+		guard let viewControllerContainer = scene.view() as? ViewControllerContainer else {
+			completion?()
+			return
+		}
 
-		if let buildedViewController = buildedViewController as? ViewControllerContainer {
-			manager.viewControllerContainer = buildedViewController
-		} else {
-			let navigationBarContainer = NavigationBarContainer()
-			manager.viewControllerContainer = navigationBarContainer
-
-			let navigationController = navigationBarContainer.visibleNavigationController
-			navigationController.pushViewController(buildedViewController, animated: false)
+		if !manager.viewControllerContainer.canBeReuse(by: viewControllerContainer) {
+			manager.viewControllerContainer = viewControllerContainer
 		}
 
 		manager.window.rootViewController = manager.rootViewController

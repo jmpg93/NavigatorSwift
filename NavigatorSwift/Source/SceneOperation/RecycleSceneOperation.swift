@@ -27,10 +27,23 @@ struct RecycleSceneOperation: NextViewControllerFindable {
 
 extension RecycleSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
-		guard !scenes.isEmpty else {
+		guard !self.scenes.isEmpty else {
 			completion?()
 			return
 		}
+
+		// Get the root scene
+		var scenes = self.scenes
+		let rootScene = scenes.removeFirst()
+
+		// Checked that the root is matching the scene
+		guard manager.rootViewController.sceneName == rootScene.sceneHandler.name.value else {
+			completion?()
+			return
+		}
+
+		// Reload the rootViewController
+		rootScene.sceneHandler.reload(manager.rootViewController, parameters: rootScene.parameters)
 
 		// Get the navigation controller the scene is refering to, if it matches.
 		guard let rootNavigationController = firstLevelNavigationController(matching: scenes.first) else {
@@ -91,7 +104,7 @@ extension RecycleSceneOperation: SceneOperation {
 			return viewController.navigationController != nil
 				&& viewController.navigationController?.presentingViewController != nil
 			
-		case .reload, .root:
+		case .none, .root:
 			return true
 		}
 	}

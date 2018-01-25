@@ -9,9 +9,9 @@
 import Foundation
 
 public enum ScenePresentationType: String {
+	case root
 	case push
 	case modal
 	case modalNavigation
-	case reload
-	case root
+	case none
 }

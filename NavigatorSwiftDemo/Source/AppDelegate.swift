@@ -42,8 +42,23 @@ private extension AppDelegate {
 	}
 
 	func setUpNavigator() {
-		let collection = CollectionScenHandler()
-		globalNavigator.register(collection)
-		globalNavigator.root(.collection)
+		globalNavigator.register([CollectionSceneHandler(), BlueSceneHandler(), RedSceneHandler(), TabBarSceneHandler()])
+		globalNavigator.root(.tabBar)
+		globalNavigator.setTabs([.blue, .red, .collection])
+
+		DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+			DispatchQueue.main.async {
+				globalNavigator.build { builder in
+					builder.root(.tabBar)
+					builder.tab(.red)
+				}
+			}
+		}
 	}
+}
+
+extension SceneContext {
+	static let blue = SceneContext(sceneName: .blue)
+	static let red = SceneContext(sceneName: .red)
+	static let collection = SceneContext(sceneName: .collection)
 }

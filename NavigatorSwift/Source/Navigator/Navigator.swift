@@ -78,11 +78,11 @@ public extension Navigator {
 // MARK: - Navigate with builder
 
 public extension Navigator {
-	func build(using builder: (SceneBuilder) -> Void) {
+	func build(using builder: SceneBuilderBlock<Self>) {
 		build(using: builder, completion: nil)
 	}
 
-	func build(using builder: (SceneBuilder) -> Void, completion: CompletionBlock?) {
+	func build(using builder: SceneBuilderBlock<Self>, completion: CompletionBlock?) {
 		let (scenes, navigateAbsolutly) = sceneProvider.scenes(with: builder)
 		
 		if navigateAbsolutly {
@@ -146,7 +146,7 @@ public extension Navigator {
 
 extension Navigator {
 	func reload(_ name: SceneName,  parameters: Parameters = [:], completion: CompletionBlock? = nil) {
-		let scene = sceneProvider.scene(with: name, type: .reload)
+		let scene = sceneProvider.scene(with: name, type: .none)
 		sceneOperationManager.reload(scene:scene).execute(with: completion)
 	}
 }

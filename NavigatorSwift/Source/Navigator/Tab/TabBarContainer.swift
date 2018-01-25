@@ -1,32 +1,33 @@
 //
-//  NavigationBarContainer.swift
+//  TabBarContainer.swift
 //  NavigatorSwift
 //
-//  Created by Jose Maria Puerta on 2/9/17.
+//  Created by Jose Maria Puerta on 8/9/17.
 //  Copyright © 2017 Jose Maria Puerta. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-public class NavigationBarContainer: UINavigationController {
+open class TabBarContainer: UITabBarController {
 
 }
 
-extension NavigationBarContainer: ViewControllerContainer {
+extension TabBarContainer: ViewControllerContainer {
 	public var rootViewController: UIViewController {
 		return self
 	}
 
 	public var firstLevelNavigationControllers: [UINavigationController] {
-		return [self]
+		let viewControllers = self.viewControllers ?? []
+		return viewControllers.flatMap { $0 as? UINavigationController }
 	}
 
 	public var visibleNavigationController: UINavigationController {
-		return self
+		return selectedViewController as! UINavigationController
 	}
 
 	public func select(viewController: UIViewController) {
-		popToRootViewController(animated: true)
+		selectedViewController = viewController
 	}
 }

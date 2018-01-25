@@ -46,12 +46,6 @@ extension SetScenesOperation: SceneOperation {
 extension SetScenesOperation {
 	/// Returns true if the rootViewController in Window is handled by the scene
 	func isRootViewController(matching scene: Scene) -> Bool {
-		var isEqual: Bool = false
-
-		if let rootViewController = manager.rootViewController as? UINavigationController {
-			isEqual = rootViewController.viewControllers.first?.sceneName == scene.sceneHandler.name.value
-		}
-
-		return isEqual
+		return manager.rootViewController.sceneName == scene.sceneHandler.name.value
 	}
 }

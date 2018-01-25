@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class SceneBuilder {
+public class SceneBuilder<T: Navigator> {
 	fileprivate let sceneProvider: SceneProvider
 	
 	fileprivate(set) var scenes: [Scene] = []
 	fileprivate(set) var isAbsolutely = false
 
-	public init(using builderBlock: SceneBuilderBlock, sceneProvider: SceneProvider) {
+	public init(using builderBlock: SceneBuilderBlock<T>, sceneProvider: SceneProvider) {
 		self.sceneProvider = sceneProvider
 		builderBlock(self)
 	}
@@ -40,7 +40,7 @@ public extension SceneBuilder {
 		add(sceneName, type: .modalNavigation, parameters: parameters, animated: animated)
 	}
 
-	func add(context: SceneURLContext) {
+	func add(context: SceneContext) {
 		add(context.sceneName, type: context.type, parameters: context.parameters, animated: context.isAnimated)
 	}
 }

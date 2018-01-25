@@ -13,7 +13,7 @@ public struct EmptySceneURLHandler: SceneURLHandler {
 
 	}
 	
-	public func sceneContexts(from url: URL) -> [SceneURLContext] {
+	public func sceneContexts(from url: URL) -> [SceneContext] {
 		return []
 	}
 }

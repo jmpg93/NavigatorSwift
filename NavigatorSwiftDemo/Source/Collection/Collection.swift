@@ -17,19 +17,18 @@ class Collection: UIViewController {
 
 		static let defaultStateText = "root"
 
-		static let rootParameters = [CollectionScenHandler.Parameter.stateLabel: Constants.defaultStateText]
-		static let modalParameters = [CollectionScenHandler.Parameter.stateLabel: "modal"]
-		static let pushParameters = [CollectionScenHandler.Parameter.stateLabel: "push"]
-		static let modalNavParameters = [CollectionScenHandler.Parameter.stateLabel: "modalNav"]
-		static let transitionParameters = [CollectionScenHandler.Parameter.stateLabel: "transition"]
-		static let popoverParameters = [CollectionScenHandler.Parameter.stateLabel: "popover"]
+		static let rootParameters = [CollectionSceneHandler.Parameter.stateLabel: Constants.defaultStateText]
+		static let modalParameters = [CollectionSceneHandler.Parameter.stateLabel: "modal"]
+		static let pushParameters = [CollectionSceneHandler.Parameter.stateLabel: "push"]
+		static let modalNavParameters = [CollectionSceneHandler.Parameter.stateLabel: "modalNav"]
+		static let transitionParameters = [CollectionSceneHandler.Parameter.stateLabel: "transition"]
+		static let popoverParameters = [CollectionSceneHandler.Parameter.stateLabel: "popover"]
 
 		static func rootSetParameters(index: Int) -> Parameters {
-			return [CollectionScenHandler.Parameter.stateLabel: "root set \(index + 1) scenes"]
+			return [CollectionSceneHandler.Parameter.stateLabel: "root set \(index + 1) scenes"]
 		}
 	}
 
-	var stateText = Constants.defaultStateText
 	let transition = LeftTransition()
 	let sections = Section.all
 
@@ -38,9 +37,14 @@ class Collection: UIViewController {
 	@IBOutlet weak var collectionView: UICollectionView!
 	
 	// Properties
-	fileprivate var color = UIColor.random
-	fileprivate var navigator: NavNavigator {
+	var stateText = Constants.defaultStateText
+	var color = UIColor.random
+	var navigator: TabNavigator {
 		return globalNavigator
+	}
+
+	static func loadFromStoryBoard() -> Collection {
+		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection") as! Collection
 	}
 
 	deinit {
@@ -54,7 +58,7 @@ class Collection: UIViewController {
 extension Collection {
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		title = "Collection"
+		
 		stateLabel.text = stateText
 		stateLabel.accessibilityIdentifier = Constants.stateLabelIdentifier
 		automaticallyAdjustsScrollViewInsets = false

@@ -8,5 +8,5 @@
 
 import Foundation
 
-public typealias SceneBuilderBlock = (_ builder: SceneBuilder) -> Void
+public typealias SceneBuilderBlock<T: Navigator> = (_ builder: SceneBuilder<T>) -> Void
 

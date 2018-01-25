@@ -19,7 +19,7 @@ public protocol SceneHandler: class {
 
 public extension SceneHandler {
 	var isReloadable: Bool {
-		return false
+		return true
 	}
 
 	func reload(_ viewController: UIViewController, parameters: Parameters) { }

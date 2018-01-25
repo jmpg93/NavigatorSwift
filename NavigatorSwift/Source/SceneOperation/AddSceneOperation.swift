@@ -63,7 +63,7 @@ private extension AddSceneOperation {
 		case .root:
 			self.root(scene: scene, completion: recursiveCall)
 
-		case .reload:
+		case .none:
 			recursiveCall()
 		}
 	}

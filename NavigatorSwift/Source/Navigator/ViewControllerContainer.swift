@@ -35,4 +35,9 @@ extension ViewControllerContainer {
 			.flatMap { $0.navigationController }
 			.first
 	}
+
+	func canBeReuse(by container: ViewControllerContainer) -> Bool {
+		guard let sceneName = container.rootViewController.sceneName else { return false }
+		return sceneName == rootViewController.sceneName
+	}
 }

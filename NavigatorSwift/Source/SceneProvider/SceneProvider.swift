@@ -25,7 +25,7 @@ extension SceneProvider {
 		sceneHandlersByName[sceneHandler.name] = sceneHandler
 	}
 
-	func scenes(with builder: (SceneBuilder) -> Void) -> (scenes: [Scene], isAbsolutely: Bool) {
+	func scenes<T>(with builder: SceneBuilderBlock<T>) -> (scenes: [Scene], isAbsolutely: Bool) {
 		let sceneBuilder = SceneBuilder(using: builder, sceneProvider: self)
 		return (sceneBuilder.scenes, sceneBuilder.isAbsolutely)
 	}
@@ -35,5 +35,12 @@ extension SceneProvider {
 			fatalError("The scene \(name) was not registered.")
 		}
 		return Scene(sceneHandler: sceneHandler, parameters: parameters, type: type, animated: animated)
+	}
+
+	func scene(with sceneContext: SceneContext) -> Scene {
+		guard let sceneHandler = sceneHandlersByName[sceneContext.sceneName] else {
+			fatalError("The scene \(sceneContext.sceneName) was not registered.")
+		}
+		return Scene(sceneHandler: sceneHandler, parameters: sceneContext.parameters, type: sceneContext.type, animated: sceneContext.isAnimated)
 	}
 }
