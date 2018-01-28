@@ -51,10 +51,14 @@ extension RecycleSceneOperation: SceneOperation {
 		rootScene.sceneHandler.reload(manager.rootViewController, parameters: rootScene.parameters)
 
 		// Get the navigation controller the scene is refering to, if it matches.
-		guard let rootNavigationController = firstLevelNavigationController(matching: scenes.first) else {
-			logTrace("[RecycleSceneOperation] Could not find first level navigation controller matching scene \(String(describing: scenes.first?.sceneHandler.name))")
-			completion?()
-			return
+		// If you do not specify the tab while navigating absolutely, the current selected will be used (viewControllerContainer.visibleNavigationController).
+		let rootNavigationController: UINavigationController
+		if let firstLevelNavigationControllerMatchingScene = firstLevelNavigationController(matching: scenes.first) {
+			logTrace("[RecycleSceneOperation] Found first level navigation controller matching scene \(String(describing: scenes.first?.sceneHandler.name))")
+			rootNavigationController = firstLevelNavigationControllerMatchingScene
+		} else {
+			logTrace("[RecycleSceneOperation] No firstLevelNavigationController found for scene \(String(describing: scenes.first?.sceneHandler.name)). Current visibleNavigationController will be used")
+			rootNavigationController = viewControllerContainer.visibleNavigationController
 		}
 
 		// Move to the target root tab or navigation.
