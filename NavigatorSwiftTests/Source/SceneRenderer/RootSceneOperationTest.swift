@@ -19,8 +19,9 @@ class RootSceneOperationTest: SceneOperationTests {
 extension RootSceneOperationTest {
 	func testGivenScene_installScene_setRootViewController() {
 		//given
-		let view = MockViewController()
-		let scene = givenMockScene(name: Constants.anyScene, view: view, type: .push)
+		let view = MockViewControllerContainer()
+		view._canBeReuse = false
+		let scene = givenMockScene(name: Constants.anyScene, view: view, type: .root)
 		let window = MockWindow()
 		sut = givenSUT(scene: scene, window: window)
 
@@ -28,8 +29,7 @@ extension RootSceneOperationTest {
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertNotNil(view.navigationController)
-		XCTAssertEqual(window.rootViewController, view.navigationController)
+		XCTAssertEqual(window.rootViewController, view)
 		XCTAssertTrue(window.madeKeyAndVisible)
 	}
 

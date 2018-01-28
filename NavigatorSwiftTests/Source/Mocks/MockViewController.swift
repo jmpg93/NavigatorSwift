@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NavigatorSwift
 
 class MockViewController: UIViewController {
 	var overrideNavigationController = false

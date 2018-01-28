@@ -55,7 +55,8 @@ private extension AddSceneOperation {
 			self.push(from: visibleViewController?.navigationController, newViewController, animated: animated, completion: recursiveCall)
 
 		case .modalNavigation:
-			self.presentWithNavigation(from: visibleViewController, newViewController, animated: animated, completion: recursiveCall)
+			let navigationController = scene.sceneHandler.navigation(with: newViewController)
+			self.present(from: visibleViewController, navigationController, animated: animated, completion: recursiveCall)
 
 		case .modal:
 			self.present(from: visibleViewController, newViewController, animated: animated, completion: recursiveCall)
@@ -77,20 +78,6 @@ private extension AddSceneOperation {
 		}
 
 		from.present(viewController, animated: animated, completion: completion)
-	}
-
-	func presentWithNavigation(from: UIViewController?, _ viewController: UIViewController, animated: Bool, completion: @escaping CompletionBlock) {
-		guard let from = from else {
-			completion()
-			return
-		}
-
-		let navigationController = UINavigationController(rootViewController: viewController)
-		navigationController.modalPresentationStyle = viewController.modalPresentationStyle
-		navigationController.transitioningDelegate = viewController.transitioningDelegate
-		viewController.transitioningDelegate = nil
-
-		present(from: from, navigationController, animated: animated, completion: completion)
 	}
 
 	func push(from: UINavigationController?, _ viewController: UIViewController, animated: Bool, completion: @escaping CompletionBlock) {

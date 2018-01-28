@@ -35,7 +35,7 @@ extension ReloadSceneOperationTests {
 		//given
 		let root = givenMockViewController(with: Constants.anyScene)
 		let mockSceneOperationManager = givenSceenRenderer(root: root)
-		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .reload, isReloadable: false)
+		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .none, isReloadable: false)
 		sut = ReloadSceneOperation(scene: mockScene, manager: mockSceneOperationManager)
 
 		//when

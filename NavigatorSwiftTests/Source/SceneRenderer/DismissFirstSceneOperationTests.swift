@@ -9,7 +9,6 @@
 @testable import NavigatorSwift
 import XCTest
 
-
 class DismissFirstSceneOperationTests: SceneOperationTests {
 	// Class under test
 	fileprivate var sut: DismissFirstSceneOperation!

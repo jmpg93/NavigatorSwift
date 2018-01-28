@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-open class TabBarContainer: UITabBarController {
+open class TabBarContainer: UITabBarController, ViewControllerContainer {
 
 }
 
-extension TabBarContainer: ViewControllerContainer {
+extension TabBarContainer {
 	public var rootViewController: UIViewController {
 		return self
 	}

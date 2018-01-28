@@ -12,3 +12,7 @@ import NavigatorSwift
 open class TabBar: TabBarContainer {
 
 }
+
+open class NavBar: NavigationBarContainer {
+
+}

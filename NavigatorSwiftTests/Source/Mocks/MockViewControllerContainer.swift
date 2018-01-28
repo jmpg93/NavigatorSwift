@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
-@testable import NavigatorSwift
+import NavigatorSwift
 
-class MockViewControllerContainer: MockViewController, ViewControllerContainer {
+class MockViewControllerContainer: MockViewController {
 	var _rootViewController = UIViewController()
 	var rootViewController: UIViewController {
 		return _rootViewController
@@ -27,7 +27,16 @@ class MockViewControllerContainer: MockViewController, ViewControllerContainer {
 	}
 
 	var _selectedViewController = false
-	func select(viewController_ selectedViewController: UIViewController) {
+	func select(viewController selectedViewController: UIViewController) {
 		self._selectedViewController = true
 	}
+
+	var _canBeReuse = true
+	func canBeReuse(by container: ViewControllerContainer) -> Bool {
+		return true
+	}
+}
+
+extension MockViewControllerContainer: ViewControllerContainer {
+
 }

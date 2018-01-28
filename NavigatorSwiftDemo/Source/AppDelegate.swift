@@ -11,7 +11,7 @@ import NavigatorSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	fileprivate enum Constants {
+	enum Constants {
 		static let uiTesting = "UITests"
 	}
 
