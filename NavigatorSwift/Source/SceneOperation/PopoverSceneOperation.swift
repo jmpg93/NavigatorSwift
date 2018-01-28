@@ -24,6 +24,7 @@ struct PopoverSceneOperation: VisibleViewControllerFindable {
 
 extension PopoverSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[PopSceneOperation] Executing operation")
 		scene.operationParameters[ParametersKeys.popover] = popover
 		manager.add(scenes: [scene]).execute(with: completion)
 	}

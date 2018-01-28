@@ -24,6 +24,7 @@ struct ApplyTransitionSceneOperation: VisibleViewControllerFindable {
 
 extension ApplyTransitionSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[AddSceneOperation] Executing operation")
 		scene.operationParameters[ParametersKeys.transition] = transition
 		manager.add(scenes: [scene]).execute(with: completion)
 	}

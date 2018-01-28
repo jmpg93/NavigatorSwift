@@ -50,6 +50,7 @@ public extension SceneBuilder {
 private extension SceneBuilder {
 	func add(_ sceneName: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {
 		let scene = sceneProvider.scene(with: sceneName, parameters: parameters, type: type, animated: animated)
+		logTrace("[SceneBuilder] Added scene \(scene)")
 		scenes.append(scene)
 	}
 }

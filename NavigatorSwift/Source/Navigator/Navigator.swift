@@ -18,8 +18,9 @@ public protocol Navigator: class {
 // MARK: - Set root with Scene names
 
 public extension Navigator {
-	func root(_ scene: SceneName, parameters: Parameters = [:]) {
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .root)
+	func root(_ name: SceneName, parameters: Parameters = [:]) {
+		logDebug("[Navigator] Root \(name)")
+		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .root)
 		navigate(with: sceneOperationManager.root(scene: scene))
 	}
 }
@@ -28,16 +29,19 @@ public extension Navigator {
 
 public extension Navigator {
 	func push(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Push \(name)")
 		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .push, animated: animated)
 		navigate(with: sceneOperationManager.add(scenes: [scene]), completion: completion)
 	}
 
 	func present(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Present \(name)")
 		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modal, animated: animated)
 		navigate(with: sceneOperationManager.add(scenes: [scene]), completion: completion)
 	}
 
 	func presentNavigation(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Root \(name)")
 		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modalNavigation, animated: animated)
 		navigate(with: sceneOperationManager.add(scenes: [scene]), completion: completion)
 	}
@@ -47,22 +51,27 @@ public extension Navigator {
 
 public extension Navigator {
 	func pop(animated: Bool = true, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Pop")
 		navigate(with: sceneOperationManager.pop(animated: animated), completion: completion)
 	}
 
 	func popToRoot(animated: Bool = true, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Pop to root")
 		navigate(with: sceneOperationManager.popToRoot(animated: animated), completion: completion)
 	}
 
 	func dismiss(animated: Bool = true, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Dismiss first")
 		navigate(with: sceneOperationManager.dismiss(animated: animated), completion: completion)
 	}
 
-	func dismiss(_ sceneName: SceneName, animated: Bool = true, completion: CompletionBlock? = nil) {
-		navigate(with: sceneOperationManager.dismiss(sceneName: sceneName, animated: animated), completion: completion)
+	func dismiss(_ name: SceneName, animated: Bool = true, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Dismiss scene \(name)")
+		navigate(with: sceneOperationManager.dismiss(sceneName: name, animated: animated), completion: completion)
 	}
 
 	func dismissAll(animated: Bool, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Dismiss all")
 		navigate(with: sceneOperationManager.dismissAll(animated: animated), completion: completion)
 	}
 }
@@ -86,8 +95,10 @@ public extension Navigator {
 		let (scenes, navigateAbsolutly) = sceneProvider.scenes(with: builder)
 		
 		if navigateAbsolutly {
+			logDebug("[Navigator] Build absolutly navigation")
 			navigate(with: sceneOperationManager.set(scenes: scenes), completion: completion)
 		} else {
+			logDebug("[Navigator] Build relative navigation")
 			navigate(with: sceneOperationManager.add(scenes: scenes), completion: completion)
 		}
 	}
@@ -97,6 +108,7 @@ public extension Navigator {
 
 public extension Navigator {
 	func url(_ url: URL, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] URL \(url)")
 		let sceneContexts = sceneURLHandler.sceneContexts(from: url)
 		build { sceneContexts.forEach($0.add) }
 	}
@@ -105,10 +117,10 @@ public extension Navigator {
 // MARK: - Transition
 
 public extension Navigator {
-	func transition(to scene: SceneName, parameters: Parameters = [:], with transition: Transition, completion: CompletionBlock? = nil) {
+	func transition(to name: SceneName, parameters: Parameters = [:], with transition: Transition, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Transition \(name)")
 		let type: ScenePresentationType = transition.insideNavigationBar ? .modalNavigation : .modal
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: type, animated: true)
-
+		let scene = sceneProvider.scene(with: name, parameters: parameters, type: type, animated: true)
 		sceneOperationManager.transition(transition, to: scene).execute(with: completion)
 	}
 }
@@ -116,15 +128,16 @@ public extension Navigator {
 // MARK: - Popover
 
 public extension Navigator {
-	func popover(_ scene: SceneName,  parameters: Parameters = [:], with popover: Popover, completion: CompletionBlock? = nil) {
+	func popover(_ name: SceneName,  parameters: Parameters = [:], with popover: Popover, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Popover \(name)")
 		let type: ScenePresentationType = popover.insideNavigationBar ? .modalNavigation : .modal
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: type, animated: true)
-
+		let scene = sceneProvider.scene(with: name, parameters: parameters, type: type, animated: true)
 		sceneOperationManager.popover(popover, to: scene).execute(with: completion)
 	}
 
-	func popover(_ scene: SceneName, parameters: Parameters = [:], from button: UIBarButtonItem, completion: CompletionBlock? = nil) {
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal, animated: true)
+	func popover(_ name: SceneName, parameters: Parameters = [:], from button: UIBarButtonItem, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Popover \(name) from barButtonItem")
+		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modal, animated: true)
 
 		let popover = Popover()
 		popover.barButtonItem = button
@@ -132,9 +145,9 @@ public extension Navigator {
 		sceneOperationManager.popover(popover, to: scene).execute(with: completion)
 	}
 
-	func popover(_ scene: SceneName, parameters: Parameters = [:], from view: UIView, completion: CompletionBlock? = nil) {
-		let scene = sceneProvider.scene(with: scene, parameters: parameters, type: .modal, animated: true)
-
+	func popover(_ name: SceneName, parameters: Parameters = [:], from view: UIView, completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Popover \(name) from view")
+		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modal, animated: true)
 		let popover = Popover()
 		popover.sourceView = view
 		popover.sourceRect = view.frame
@@ -146,6 +159,7 @@ public extension Navigator {
 
 extension Navigator {
 	func reload(_ name: SceneName,  parameters: Parameters = [:], completion: CompletionBlock? = nil) {
+		logDebug("[Navigator] Reload \(name)")
 		let scene = sceneProvider.scene(with: name, type: .none)
 		sceneOperationManager.reload(scene:scene).execute(with: completion)
 	}
@@ -154,8 +168,9 @@ extension Navigator {
 // MARK: - View
 
 public extension Navigator {
-	func view(for scene: SceneName, parameters: Parameters = [:]) -> UIViewController? {
-		return sceneProvider.scene(with: scene, parameters: parameters, type: .root).view()
+	func view(for name: SceneName, parameters: Parameters = [:]) -> UIViewController? {
+		logDebug("[Navigator] View \(name)")
+		return sceneProvider.scene(with: name, parameters: parameters, type: .root).view()
 	}
 }
 

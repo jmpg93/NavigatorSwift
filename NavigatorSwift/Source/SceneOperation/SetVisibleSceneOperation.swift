@@ -23,6 +23,8 @@ struct SetVisibleSceneOperation {
 
 extension SetVisibleSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[SetVisibleSceneOperation] Executing operation")
+
 		let group = DispatchGroup()
 
 		if let presentingViewController = viewController.presentedViewController?.presentingViewController {

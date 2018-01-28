@@ -23,16 +23,20 @@ struct SetScenesOperation {
 
 extension SetScenesOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[SetScenesOperation] Executing operation")
 		guard let rootScene = scenes.first else {
+			logTrace("[SetScenesOperation] No scenes to set")
 			completion?()
 			return
 		}
 		
 		if isRootViewController(matching: rootScene) {
+			logTrace("[SetScenesOperation] Stack can be recycled")
 			manager
 				.recycle(scenes: scenes)
 				.execute(with: completion)
 		} else {
+			logTrace("[SetScenesOperation] Stack can't be recycled")
 			manager
 				.dismissAll(animated: false)
 				.then(manager.add(scenes: scenes))

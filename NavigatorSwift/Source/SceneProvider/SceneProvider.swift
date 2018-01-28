@@ -32,14 +32,14 @@ extension SceneProvider {
 
 	func scene(with name: SceneName, parameters: Parameters = [:], type: ScenePresentationType, animated: Bool = true) -> Scene {
 		guard let sceneHandler = sceneHandlersByName[name] else {
-			fatalError("The scene \(name) was not registered.")
+			fatalError("The scene \(name) is not registered.")
 		}
 		return Scene(sceneHandler: sceneHandler, parameters: parameters, type: type, animated: animated)
 	}
 
 	func scene(with sceneContext: SceneContext) -> Scene {
 		guard let sceneHandler = sceneHandlersByName[sceneContext.sceneName] else {
-			fatalError("The scene \(sceneContext.sceneName) was not registered.")
+			fatalError("The scene \(sceneContext.sceneName) is not registered.")
 		}
 		return Scene(sceneHandler: sceneHandler, parameters: sceneContext.parameters, type: sceneContext.type, animated: sceneContext.isAnimated)
 	}

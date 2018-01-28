@@ -27,7 +27,10 @@ struct RecycleSceneOperation: NextViewControllerFindable {
 
 extension RecycleSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[RecycleSceneOperation] Executing operation")
+
 		guard !self.scenes.isEmpty else {
+			logTrace("[RecycleSceneOperation] No scenes to recycle")
 			completion?()
 			return
 		}
@@ -38,20 +41,24 @@ extension RecycleSceneOperation: SceneOperation {
 
 		// Checked that the root is matching the scene
 		guard manager.rootViewController.sceneName == rootScene.sceneHandler.name.value else {
+			logTrace("[RecycleSceneOperation] No root scene matching current root viewViewController")
 			completion?()
 			return
 		}
 
 		// Reload the rootViewController
+		logTrace("[RecycleSceneOperation] Reloading root scene")
 		rootScene.sceneHandler.reload(manager.rootViewController, parameters: rootScene.parameters)
 
 		// Get the navigation controller the scene is refering to, if it matches.
 		guard let rootNavigationController = firstLevelNavigationController(matching: scenes.first) else {
+			logTrace("[RecycleSceneOperation] Could not find first level navigation controller matching scene \(String(describing: scenes.first?.sceneHandler.name))")
 			completion?()
 			return
 		}
 
 		// Move to the target root tab or navigation.
+		logTrace("[RecycleSceneOperation] Selecting scene \(String(describing: scenes.first?.sceneHandler.name))")
 		manager.select(viewController: rootNavigationController)
 
 		// Get the first view controller of the stack.
@@ -64,6 +71,7 @@ extension RecycleSceneOperation: SceneOperation {
 			guard let next = _next else { break }
 			guard isViewController(next, recyclableBy: scene) else { break }
 
+			logTrace("[RecycleSceneOperation] Reloading scene \(scene)")
 			scene.sceneHandler.reload(next, parameters: scene.parameters)
 			scenesNotInStackYet.removeFirst()
 
@@ -73,8 +81,9 @@ extension RecycleSceneOperation: SceneOperation {
 
 		guard let last = _last else { fatalError("No root view controller found") }
 
-		let addSceneOperation = manager.add(scenes: scenesNotInStackYet)
+		logTrace("[RecycleSceneOperation] \(scenesNotInStackYet.count) scenes (\(scenesNotInStackYet.map({ $0.sceneHandler.name }))) could not be recycled with the current stack")
 		let setVisibleOperation = manager.setVisible(viewController: last)
+		let addSceneOperation = manager.add(scenes: scenesNotInStackYet)
 
 		setVisibleOperation
 			.then(addSceneOperation)

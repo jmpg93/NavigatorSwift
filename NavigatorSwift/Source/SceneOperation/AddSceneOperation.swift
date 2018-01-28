@@ -23,7 +23,9 @@ struct AddSceneOperation {
 
 extension AddSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[AddSceneOperation] Executing operation")
 		guard !scenes.isEmpty else {
+			logTrace("[AddSceneOperation] No scenes to add")
 			completion?()
 			return
 		}
@@ -52,19 +54,24 @@ private extension AddSceneOperation {
 
 		switch scene.type {
 		case .push:
+			logTrace("[AddSceneOperation] Pushing scene \(scene)")
 			self.push(from: visibleViewController?.navigationController, newViewController, animated: animated, completion: recursiveCall)
 
 		case .modalNavigation:
+			logTrace("[AddSceneOperation] Presenting inside navigation scene \(scene)")
 			let navigationController = scene.sceneHandler.navigation(with: newViewController)
 			self.present(from: visibleViewController, navigationController, animated: animated, completion: recursiveCall)
 
 		case .modal:
+			logTrace("[AddSceneOperation] Presenting scene \(scene)")
 			self.present(from: visibleViewController, newViewController, animated: animated, completion: recursiveCall)
 
 		case .root:
+			logTrace("[AddSceneOperation] Setting root scene \(scene)")
 			self.root(scene: scene, completion: recursiveCall)
 
 		case .none:
+			logTrace("[AddSceneOperation] Doing nothing for scene \(scene)")
 			recursiveCall()
 		}
 	}

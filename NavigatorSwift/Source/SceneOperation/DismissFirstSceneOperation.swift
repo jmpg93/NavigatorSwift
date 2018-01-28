@@ -22,11 +22,15 @@ struct DismissFirstSceneOperation: VisibleViewControllerFindable {
 
 extension DismissFirstSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[DismissFirstSceneOperation] Executing operation")
+
 		let visibleViewController = self.visibleViewController(from: manager.visibleNavigationController)
 
 		if visibleViewController.isBeingDisplayedModally {
+			logTrace("[DismissFirstSceneOperation] Dismissing scene \(String(describing: visibleViewController.sceneName))")
 			visibleViewController.dismiss(animated: animated, completion: completion)
 		} else {
+			logTrace("[DismissFirstSceneOperation] Could not dismiss first viewController")
 			completion?()
 		}
 	}

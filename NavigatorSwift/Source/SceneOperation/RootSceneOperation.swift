@@ -20,13 +20,19 @@ class RootSceneOperation {
 
 extension RootSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[RootSceneOperation] Executing operation")
+
 		guard let viewControllerContainer = scene.view() as? ViewControllerContainer else {
+			logError("[RootSceneOperation] View builded from \(scene) is not a ViewControllerContainer")
 			completion?()
 			return
 		}
 
 		if !manager.viewControllerContainer.canBeReuse(by: viewControllerContainer) {
+			logError("[RootSceneOperation] Current ViewControllerContainer can't be reused for scene \(scene)")
 			manager.viewControllerContainer = viewControllerContainer
+		} else {
+			logError("[RootSceneOperation] Current ViewControllerContainer will be reused for scene \(scene)")
 		}
 
 		manager.window.rootViewController = manager.rootViewController

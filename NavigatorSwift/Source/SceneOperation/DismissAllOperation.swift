@@ -22,6 +22,8 @@ struct DismissAllOperation {
 
 extension DismissAllOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
+		logTrace("[DismissAllOperation] Executing operation")
+
 		manager.rootViewController.dismiss(animated: animated, completion: completion)
 
 		if !animated {

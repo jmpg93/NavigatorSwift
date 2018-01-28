@@ -39,3 +39,9 @@ extension SceneName: ExpressibleByStringLiteral {
 		self.init(stringLiteral: value)
 	}
 }
+
+extension SceneName: CustomStringConvertible {
+	public var description: String {
+		return value
+	}
+}

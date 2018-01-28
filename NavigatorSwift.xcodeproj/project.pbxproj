@@ -97,6 +97,7 @@
 		6CC8BAD41F5A127200559655 /* NavigationBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */; };
 		6CCC9E3A2017CB7A00BEDFEC /* ContainerNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC9E392017CB7A00BEDFEC /* ContainerNavigator.swift */; };
 		6CCC9E3C2017CDC000BEDFEC /* SceneContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC9E3B2017CDC000BEDFEC /* SceneContext.swift */; };
+		6CEAEEFC201E0E72005A533D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEAEEF3201E0E72005A533D /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,6 +251,7 @@
 		6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarContainer.swift; sourceTree = "<group>"; };
 		6CCC9E392017CB7A00BEDFEC /* ContainerNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerNavigator.swift; sourceTree = "<group>"; };
 		6CCC9E3B2017CDC000BEDFEC /* SceneContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneContext.swift; sourceTree = "<group>"; };
+		6CEAEEF3201E0E72005A533D /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6CFCDC2D1F5C3F69003C41E6 /* Cuckoo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cuckoo.framework; path = Carthage/Build/iOS/Cuckoo.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -492,6 +494,7 @@
 		6C27A9571F59E22000311918 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				6CEAEEEB201E0E63005A533D /* Logger */,
 				6C1322D11F5AD95A00A7D3E9 /* Helpers */,
 				6C27A96F1F5A090600311918 /* Domain */,
 				18FB82EB1F5D563E00E08E0E /* Navigator */,
@@ -628,6 +631,14 @@
 				6CC4FA961F5AC9A1003B748A /* SceneProvider.swift */,
 			);
 			path = SceneProvider;
+			sourceTree = "<group>";
+		};
+		6CEAEEEB201E0E63005A533D /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				6CEAEEF3201E0E72005A533D /* Logger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		6CFCDC2C1F5C3F68003C41E6 /* Frameworks */ = {
@@ -884,6 +895,7 @@
 				6C27A9601F59E2E900311918 /* Scene.swift in Sources */,
 				189A94691FD820C400D4DB32 /* Array+Utils.swift in Sources */,
 				6CA5948D1F63248900CF37AB /* VisibleViewControllerFindable.swift in Sources */,
+				6CEAEEFC201E0E72005A533D /* Logger.swift in Sources */,
 				189A94611FD71AD000D4DB32 /* NextViewControllerFindable.swift in Sources */,
 				6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */,
 				6CB38DD01F5AF01C003C5E9C /* SceneName.swift in Sources */,
