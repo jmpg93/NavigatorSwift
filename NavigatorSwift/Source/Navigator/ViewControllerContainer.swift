@@ -30,13 +30,14 @@ public protocol ViewControllerContainer: class {
 extension ViewControllerContainer {
 	func firstLevelNavigationController(matching scene: Scene) -> UINavigationController? {
 		return firstLevelNavigationControllers
+			.lazy
 			.flatMap { $0.viewControllers.first }
 			.filter { scene.sceneHandler.name.value == $0.sceneName }
 			.flatMap { $0.navigationController }
 			.first
 	}
 
-	func canBeReuse(by container: ViewControllerContainer) -> Bool {
+	public func canBeReused(by container: ViewControllerContainer) -> Bool {
 		guard let sceneName = container.rootViewController.sceneName else { return false }
 		return sceneName == rootViewController.sceneName
 	}

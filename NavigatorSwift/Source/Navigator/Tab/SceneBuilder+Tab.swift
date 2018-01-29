@@ -9,7 +9,7 @@
 import Foundation
 
 public extension SceneBuilder where T: TabNavigator {
-	func tab(_ sceneName: SceneName, parameters: Parameters = [:], animated: Bool = true) {
-		add(context: SceneContext(sceneName: sceneName, parameters: parameters, type: .none, isAnimated: animated))
+	func tab(_ sceneName: SceneName, parameters: Parameters = [:]) {
+		add(context: SceneContext(sceneName: sceneName, parameters: parameters, type: .none, isAnimated: true))
 	}
 }

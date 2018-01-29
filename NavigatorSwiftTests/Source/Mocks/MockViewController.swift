@@ -32,7 +32,7 @@ class MockViewController: UIViewController {
 	var isBeingDisplayedModally: Bool {
 		return _isBeingDisplayedModally
 	}
-
+	
 	var didPresentViewController = false
 	override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
 		didPresentViewController = true

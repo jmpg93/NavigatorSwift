@@ -42,14 +42,7 @@ class Collection: UIViewController {
 	var navigator: TabNavigator {
 		return globalNavigator
 	}
-
-	var rootScene: SceneName {
-		if isUITesting {
-			return .collection
-		} else {
-			return .tabBar
-		}
-	}
+	
 	static func loadFromStoryBoard() -> Collection {
 		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection") as! Collection
 	}
@@ -126,7 +119,8 @@ extension Collection: UICollectionViewDelegate {
 				navigator.push(.collection, parameters: Constants.pushParameters, animated: context.animated)
 			case .set(let scenes):
 				navigator.build { builder in
-					builder.root(rootScene, parameters: Constants.rootParameters)
+					builder.root(.tabBar, parameters: Constants.rootParameters)
+					builder.tab(.blue)
 					for (index, scene) in scenes.enumerated() {
 						builder.present(scene, parameters: Constants.rootSetParameters(index: index), animated: context.animated)
 					}
@@ -154,17 +148,20 @@ extension Collection: UICollectionViewDelegate {
 				navigator.present(.collection, parameters: Constants.modalParameters, animated: context.animated)
 			case .rootModal:
 				navigator.build { builder in
-					builder.root(rootScene, parameters: Constants.rootParameters)
+					builder.root(.tabBar, parameters: Constants.rootParameters)
+					builder.tab(.blue)
 					builder.present(.collection, parameters: Constants.modalParameters)
 				}
 			case .rootModalNav:
 				navigator.build { builder in
-					builder.root(rootScene, parameters: Constants.rootParameters)
+					builder.root(.tabBar, parameters: Constants.rootParameters)
+					builder.tab(.blue)
 					builder.presentNavigation(.collection, parameters: Constants.modalNavParameters)
 				}
 			case .rootModalNavPush:
 				navigator.build { builder in
-					builder.root(rootScene, parameters: Constants.rootParameters)
+					builder.root(.tabBar, parameters: Constants.rootParameters)
+					builder.tab(.blue)
 					builder.presentNavigation(.collection, parameters: Constants.modalNavParameters)
 					builder.push(.collection, parameters: Constants.pushParameters)
 				}

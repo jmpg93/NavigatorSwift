@@ -122,6 +122,13 @@
 			remoteGlobalIDString = 6C27A94A1F59E1ED00311918;
 			remoteInfo = NavigatorSwift;
 		};
+		6C569B21201FAE4000F5B5A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C27A9421F59E1ED00311918 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C27A94A1F59E1ED00311918;
+			remoteInfo = NavigatorSwift;
+		};
 		6CC4D3E81F5C540E001BDD9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6C27A9421F59E1ED00311918 /* Project object */;
@@ -675,6 +682,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6C569B22201FAE4000F5B5A5 /* PBXTargetDependency */,
 				1822ECA91FC9B92100F3D597 /* PBXTargetDependency */,
 			);
 			name = NavigatorSwiftDemoUITests;
@@ -952,6 +960,11 @@
 			isa = PBXTargetDependency;
 			target = 6C27A94A1F59E1ED00311918 /* NavigatorSwift */;
 			targetProxy = 6C1322F21F5ADDA900A7D3E9 /* PBXContainerItemProxy */;
+		};
+		6C569B22201FAE4000F5B5A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C27A94A1F59E1ED00311918 /* NavigatorSwift */;
+			targetProxy = 6C569B21201FAE4000F5B5A5 /* PBXContainerItemProxy */;
 		};
 		6CC4D3E91F5C540E001BDD9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

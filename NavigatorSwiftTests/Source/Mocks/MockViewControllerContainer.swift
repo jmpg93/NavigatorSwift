@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import NavigatorSwift
 
-class MockViewControllerContainer: MockViewController {
+class MockViewControllerContainer: MockViewController, ViewControllerContainer {
 	var _rootViewController = UIViewController()
 	var rootViewController: UIViewController {
 		return _rootViewController
@@ -35,8 +35,4 @@ class MockViewControllerContainer: MockViewController {
 	func canBeReuse(by container: ViewControllerContainer) -> Bool {
 		return true
 	}
-}
-
-extension MockViewControllerContainer: ViewControllerContainer {
-
 }

@@ -28,7 +28,7 @@ extension RootSceneOperation: SceneOperation {
 			return
 		}
 
-		if !manager.viewControllerContainer.canBeReuse(by: viewControllerContainer) {
+		if !manager.viewControllerContainer.canBeReused(by: viewControllerContainer) {
 			logError("[RootSceneOperation] Current ViewControllerContainer can't be reused for scene \(scene)")
 			manager.viewControllerContainer = viewControllerContainer
 		} else {
