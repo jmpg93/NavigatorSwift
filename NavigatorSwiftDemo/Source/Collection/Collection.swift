@@ -17,15 +17,39 @@ class Collection: UIViewController {
 
 		static let defaultStateText = "root"
 
-		static let rootParameters = [CollectionSceneHandler.Parameter.stateLabel: Constants.defaultStateText]
-		static let modalParameters = [CollectionSceneHandler.Parameter.stateLabel: "modal"]
-		static let pushParameters = [CollectionSceneHandler.Parameter.stateLabel: "push"]
-		static let modalNavParameters = [CollectionSceneHandler.Parameter.stateLabel: "modalNav"]
-		static let transitionParameters = [CollectionSceneHandler.Parameter.stateLabel: "transition"]
-		static let popoverParameters = [CollectionSceneHandler.Parameter.stateLabel: "popover"]
+		static var _navigationStackCount = 1
+
+		static var navigationStackCount: Int {
+			defer { _navigationStackCount += 1 }
+			return _navigationStackCount
+		}
+
+		static var rootParameters: Parameters {
+			return [CollectionSceneHandler.Parameter.stateLabel: "\(Constants.defaultStateText) \(navigationStackCount)"]
+		}
+
+		static var modalParameters: Parameters {
+			return [CollectionSceneHandler.Parameter.stateLabel: "modal \(navigationStackCount)"]
+		}
+
+		static var pushParameters: Parameters {
+			return [CollectionSceneHandler.Parameter.stateLabel: "push \(navigationStackCount)"]
+		}
+
+		static var modalNavParameters: Parameters {
+			return [CollectionSceneHandler.Parameter.stateLabel: "modalNav \(navigationStackCount)"]
+		}
+
+		static var transitionParameters: Parameters {
+			return [CollectionSceneHandler.Parameter.stateLabel: "transition \(navigationStackCount)"]
+		}
+
+		static var popoverParameters: Parameters {
+			return [CollectionSceneHandler.Parameter.stateLabel: "popover \(navigationStackCount)"]
+		}
 
 		static func rootSetParameters(index: Int) -> Parameters {
-			return [CollectionSceneHandler.Parameter.stateLabel: "root set \(index + 1) scenes"]
+			return [CollectionSceneHandler.Parameter.stateLabel: "root set \(index + 1) scenes \(navigationStackCount)"]
 		}
 	}
 

@@ -26,20 +26,17 @@ class NavigatorSwiftDemoUITests: XCTestCase {
 		static let preview = "preview"
 		static let pushPop = "push pop"
 		static let pushPushPopToRoot = "push popToRoot"
-		static let set2Scenes = "root set 2 scenes"
 		static let dismissAll = "dismissAll"
 		static let popToRoot = "popToRoot"
 		static let rootModal = "root modal"
+		static let rootSet2Scenes = "root set 2 scenes"
 		static let rootModalNav = "root modalNav"
 		static let rootModalNavPush = "root modalNav push"
 	}
 
 	fileprivate enum TestsCases {
-		static let base = [Constants.modal, Constants.push, Constants.modalNav]
 		static let dismiss = [Constants.modalDismissFirst, Constants.modalDismissScene, Constants.modalModalDismissAll]
 		static let pop = [Constants.pushPop, Constants.pushPushPopToRoot]
-		static let custom = [/*Constants.transition,*/ Constants.popover, Constants.set2Scenes]
-		static let recycle = [Constants.rootModal, Constants.rootModalNav, Constants.rootModalNavPush]
 	}
 
 	var app: XCUIApplication!
@@ -53,19 +50,30 @@ class NavigatorSwiftDemoUITests: XCTestCase {
 		app.launch()
 	}
 
-	func test_base() {
-		//given
-		let states = TestsCases.base
 
-		for state in states {
-			//when
-			tapCell(state)
+	func test_modal() {
+		//when
+		tapCell(Constants.modal)
 
-			//then
-			assertState(state)
-			backToRoot()
-		}
-    }
+		//then
+		assertState("modal 1")
+	}
+
+	func test_modalNav() {
+		//when
+		tapCell(Constants.modalNav)
+
+		//then
+		assertState("modalNav 1")
+	}
+
+	func test_push() {
+		//when
+		tapCell(Constants.push)
+
+		//then
+		assertState("push 1")
+	}
 
 	func test_dismiss() {
 		//given
@@ -95,79 +103,244 @@ class NavigatorSwiftDemoUITests: XCTestCase {
 		}
 	}
 
-	func test_custom() {
+	func testGivenRootModal_tapRootModal_recycle() {
 		//given
-		let states = TestsCases.custom
+		let state = Constants.rootModal
+		let finalState = "modal 2"
+		tapCell(state)
 
-		for state in states {
-			//when
-			tapCell(state)
+		//when
+		wait(finalState)
+		tapCell(state)
 
-			//then
-			assertState(state)
-			backToRoot()
-		}
+		//then
+		assertState(finalState)
 	}
 
-	func test_recycle() {
+	func testGivenRootModalNav_tapRootModalNav_recycle() {
 		//given
-		let states = TestsCases.recycle
+		let state = Constants.rootModalNav
+		let finalState = "modalNav 2"
+		tapCell(state)
 
-		for state in states {
-			//when
-			tapCell(state)
+		//when
+		wait(finalState)
+		tapCell(state)
 
-			//then
-			let recycledState = stateForRecycle(state: state)
-			assertState(recycledState)
-			backToRoot()
-		}
+		//then
+		assertState(finalState)
 	}
 
-	func testGivenModal_recycle() {
+	func testGivenRootModalNavPush_tapRootModalNavPush_recycle() {
+		//given
+		let state = Constants.rootModalNavPush
+		let finalState = "push 3"
+		tapCell(state)
+
+		//when
+		wait(finalState)
+		tapCell(state)
+
+		//then
+		assertState(finalState)
+	}
+
+	func testGivenRootSet2Scenes_tapRootSet2Scenes_recycle() {
+		//given
+		let state = Constants.rootSet2Scenes
+		let finalState = "root set 2 scenes 3"
+		tapCell(state)
+
+		//when
+		wait(finalState)
+		tapCell(state)
+
+		//then
+		assertState(finalState)
+	}
+
+	// Modal
+
+	func testGivenModal_rootModal_recycle() {
 		//given
 		tapCell(Constants.modal)
 
+		//when
+		tapCell(Constants.rootModal)
+
 		//then
-		test_recycle()
+		assertState("modal 1")
 	}
 
-	func testGivenModalModal_recycle() {
+	func testGivenModalModal_rootModal_recycle() {
 		//given
 		tapCell(Constants.modalModal)
 
+		//when
+		tapCell(Constants.rootModal)
+
 		//then
-		test_recycle()
+		assertState("modal 1")
 	}
 
-	func testGivenPush_recycle() {
+	func testGivenPush_rootModal_doesNotRecycle() {
 		//given
 		tapCell(Constants.push)
 
+		//when
+		tapCell(Constants.rootModal)
+
 		//then
-		test_recycle()
+		assertState("modal 3")
 	}
 
-	func testGivenPushPush_recycle() {
+	func testGivenPushPush_rootModal_doesNotRecycle() {
 		//given
 		tapCell(Constants.pushPush)
 
+		//when
+		tapCell(Constants.rootModal)
+
 		//then
-		test_recycle()
+		assertState("modal 4")
 	}
 
-	func testGivenModalNav_recycle() {
+	func testGivenModalNav_rootModal_doesNotRecycle() {
 		//given
 		tapCell(Constants.modalNav)
 
+		//when
+		tapCell(Constants.rootModal)
+
 		//then
-		test_recycle()
+		assertState("modal 3")
+	}
+
+	func testGivenModalModalNav_rootModal_recycle() {
+		//given
+		tapCell(Constants.modal)
+		tapCell(Constants.modalNav)
+
+		//when
+		tapCell(Constants.rootModal)
+
+		//then
+		assertState("modal 1")
+	}
+
+	func testGivenModalNavPush_rootModal_doesNotRecycle() {
+		//given
+		tapCell(Constants.modalNav)
+
+		//when
+		tapCell(Constants.rootModalNavPush)
+
+		//then
+		assertState("push 4")
+	}
+
+	// RootModalNavPush
+
+	func testGivenModal_tapRootModalNavPush_doesNotRecycle() {
+		//given
+		tapCell(Constants.modal)
+
+		//when
+		tapCell(Constants.rootModalNavPush)
+
+		//then
+		assertState("push 4")
+	}
+
+	func testGivenPush_tapRootModalNavPush_doesNotRecycle() {
+		//given
+		tapCell(Constants.push)
+
+		//when
+		tapCell(Constants.rootModalNavPush)
+
+		//then
+		assertState("push 4")
+	}
+
+	func testGivenPushPush_tapRootModalNavPush_doesNotRecycle() {
+		//given
+		tapCell(Constants.pushPush)
+
+		//when
+		tapCell(Constants.rootModalNavPush)
+
+		//then
+		assertState("push 5")
+	}
+
+	func testGivenModalNav_tapRootModalNavPush_recycle() {
+		//given
+		tapCell(Constants.modalNav)
+
+		//when
+		tapCell(Constants.rootModalNavPush)
+
+		//then
+		assertState("push 4")
+	}
+
+	func testGivenModalNavModalNav_tapPushPush_pushScenes() {
+		//given
+		tapCell(Constants.modalNav)
+		tapCell(Constants.modalNav)
+
+		//when
+		tapCell(Constants.pushPush)
+
+		//then
+		assertState("push 4")
+	}
+
+
+	func testGivenModalModalModalModal_tapDismissAll_dismissAll() {
+		//given
+		tapCell(Constants.modalModal)
+		tapCell(Constants.modalModal)
+
+		//when
+		tapCell(Constants.dismissAll)
+
+		//then
+		assertState("root")
+	}
+
+	func testGivenPushPushModalModalModalNav_tapRootModal_doesNotRecycle() {
+		//given
+		tapCell(Constants.pushPush)
+		tapCell(Constants.modalModal)
+		tapCell(Constants.modalNav)
+
+		//when
+		tapCell(Constants.rootModal)
+
+		//then
+		assertState("modal 7")
+	}
+
+	// PopToRoot
+
+	func testGivenPushPushPushPush_tapPopToRoot_popToRoot() {
+		//given
+		tapCell(Constants.pushPush)
+		tapCell(Constants.pushPush)
+
+		//when
+		tapCell(Constants.popToRoot)
+
+		//then
+		assertState("root")
 	}
 }
 
 extension NavigatorSwiftDemoUITests {
 	func tapCell(_ cell: String) {
-		XCUIApplication().collectionViews.staticTexts[cell].tap()
+		XCUIApplication().collectionViews.staticTexts[cell].firstMatch.tap()
 	}
 
 	func assertState(_ state: String) {
@@ -184,9 +357,5 @@ extension NavigatorSwiftDemoUITests {
 		wait(Constants.dismissAll)
 		tapCell(Constants.popToRoot)
 		wait(Constants.popToRoot)
-	}
-
-	func stateForRecycle(state: String) -> String {
-		return state.components(separatedBy: .whitespaces).last ?? state
 	}
 }
