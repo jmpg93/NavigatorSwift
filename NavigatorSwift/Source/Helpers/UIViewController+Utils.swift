@@ -24,6 +24,7 @@ extension UIViewController {
 		}
 	}
 
+	/// Returnsthe ScenePresentationType based on his current hierarchy.
 	var scenePresentationType: ScenePresentationType {
 		if self is ViewControllerContainer {
 			return .root
@@ -36,6 +37,30 @@ extension UIViewController {
 		} else {
 			return .none
 		}
+	}
+
+	/// Returns true if the viewController presented as require the ScenePresentationType (by checking the hierarchy of the viewController), false otherwise.
+	func isPresentedAsRequire(for type: ScenePresentationType) -> Bool {
+		switch (type, scenePresentationType) {
+		case (.push, .push),
+			 (.modal, .modal),
+			 (.modalNavigation, .modalNavigation),
+			 (.root, .root),
+			 (_, .none),
+			 (.none, _):
+			return true
+		default:
+			return false
+		}
+	}
+
+	/// Returns true if the viewController can be handled by the scene and also is presented as require the scene, false otherwise.
+	func isRecyclable(by scene: Scene) -> Bool {
+		let isManagedByScene = scene.sceneHandler.name.value == sceneName
+		let isReloadable = scene.sceneHandler.isReloadable
+		let isPresentedAsRequireScene = isPresentedAsRequire(for: scene.type)
+
+		return isManagedByScene && isPresentedAsRequireScene && isReloadable
 	}
 }
 

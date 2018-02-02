@@ -32,7 +32,6 @@ extension DismissSceneOperation: SceneOperation {
 			logTrace("[DismissFirstSceneOperation] Dismissing scene \(String(describing: visibleViewController.sceneName))")
 			visibleViewController.dismiss(animated: animated, completion: completion)
 		} else {
-			sceneName
 			completion?()
 		}
 	}

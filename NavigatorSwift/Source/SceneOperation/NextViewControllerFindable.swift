@@ -15,20 +15,16 @@ public protocol NextViewControllerFindable {
 
 public extension NextViewControllerFindable {
 	func next(before viewController: UIViewController) -> UIViewController? {
+		if let content = contentViewController(with: viewController) {
+			return content
+		}
+
 		if let next = next(before: viewController, using: viewController.navigationController) {
 			return next
 		}
 
 		if let next = next(before: viewController, using: viewController.presentedViewController) {
 			return next
-		}
-
-		if let nav = viewController as? UINavigationController, let first = nav.viewControllers.first {
-			return first
-		}
-
-		if let tab = viewController as? UITabBarController, let selected = tab.selectedViewController {
-			return selected
 		}
 
 		return nil
@@ -44,7 +40,7 @@ private extension NextViewControllerFindable {
 		}
 
 		if let presentedViewController = navigationController.presentedViewController {
-			return contentViewController(with: presentedViewController)
+			return contentViewController(with: presentedViewController) ?? presentedViewController
 		}
 
 		return nil
@@ -53,22 +49,26 @@ private extension NextViewControllerFindable {
 	func next(before viewController: UIViewController, using presentedViewController: UIViewController?) -> UIViewController? {
 		guard let presentedViewController = presentedViewController else { return nil }
 
-		if let navigationController = presentedViewController.navigationController {
-			return navigationController.viewControllers.after(item: presentedViewController)
+		if let content = contentViewController(with: presentedViewController) {
+			return content
 		}
 
 		if let presentedViewController = presentedViewController.presentedViewController {
-			return contentViewController(with: presentedViewController)
+			return contentViewController(with: presentedViewController) ?? presentedViewController
 		}
 
 		return presentedViewController
 	}
 
-	func contentViewController(with presentedViewController: UIViewController) -> UIViewController {
-		guard let navigationController = presentedViewController as? UINavigationController else {
-			 return presentedViewController
+	func contentViewController(with container: UIViewController) -> UIViewController? {
+		if let navigation = container as? UINavigationController, let first = navigation.viewControllers.first {
+			return contentViewController(with: first) ?? first
 		}
 
-		return navigationController.viewControllers.first ?? presentedViewController
+		if let tabBar = container as? UITabBarController, let selected = tabBar.selectedViewController {
+			return contentViewController(with: selected) ?? selected
+		}
+
+		return nil
 	}
 }

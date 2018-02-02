@@ -35,45 +35,23 @@ extension RecycleSceneOperation: SceneOperation {
 			return
 		}
 
-		// Get the root scene
+		// Scenes not in stack 
 		var scenes = self.scenes
-		let rootScene = scenes.removeFirst()
 
-		// Checked that the root is matching the scene
-		guard manager.rootViewController.sceneName == rootScene.sceneHandler.name.value else {
-			logTrace("[RecycleSceneOperation] No root scene matching current root viewViewController")
-			completion?()
-			return
-		}
-
-		// Reload the rootViewController
-		logTrace("[RecycleSceneOperation] Reloading root scene")
-		rootScene.sceneHandler.reload(manager.rootViewController, parameters: rootScene.parameters)
-
-		// Get the navigation controller the scene is refering to, if it matches.
-		guard let rootNavigationController = firstLevelNavigationController(matching: scenes.first) else {
-			logTrace("[RecycleSceneOperation] Found first level navigation controller matching scene \(String(describing: scenes.first?.sceneHandler.name))")
-			completion?()
-			return
-		}
-
-		// Move to the target root tab or navigation.
-		logTrace("[RecycleSceneOperation] Selecting scene \(String(describing: scenes.first?.sceneHandler.name))")
-		manager.select(viewController: rootNavigationController)
-
-		// Get the first view controller of the stack.
-		var _next = rootNavigationController.viewControllers.first
+		var _next: UIViewController? = viewControllerContainer.rootViewController
 		var _last = _next
 
-		var scenesNotInStackYet = scenes
-
 		for scene in scenes {
-			guard let next = _next else { break }
-			guard isViewController(next, recyclableBy: scene) else { break }
+			guard let next = _next, next.isRecyclable(by: scene) else { break }
 
+			logTrace("[RecycleSceneOperation] Selecting first level navigation controller with scene \(scene.sceneHandler.name)")
+			if let first = firstLevelNavigationController(matching: scene) {
+				manager.select(viewController: first)
+			}
+			
 			logTrace("[RecycleSceneOperation] Reloading scene \(scene)")
 			scene.sceneHandler.reload(next, parameters: scene.parameters)
-			scenesNotInStackYet.removeFirst()
+			scenes.removeFirst()
 
 			_last = next
 			_next = self.next(before: next)
@@ -81,37 +59,14 @@ extension RecycleSceneOperation: SceneOperation {
 
 		guard let last = _last else { fatalError("No root view controller found") }
 
-		logTrace("[RecycleSceneOperation] \(scenesNotInStackYet.count) scenes (\(scenesNotInStackYet.map({ $0.sceneHandler.name }))) could not be recycled with the current stack")
+		logTrace("[RecycleSceneOperation] \(scenes.count) scenes (\(scenes.map({ $0.sceneHandler.name }))) could not be recycled with the current stack")
+
 		let setVisibleOperation = manager.setVisible(viewController: last)
-		let addSceneOperation = manager.add(scenes: scenesNotInStackYet)
+		let addSceneOperation = manager.add(scenes: scenes)
 
 		setVisibleOperation
 			.then(addSceneOperation)
 			.execute(with: completion)
-	}
-
-	///Returns true if the viewController can be handled by the scene and also is presented as require the scene, false otherwise.
-	func isViewController(_ viewController: UIViewController, recyclableBy scene: Scene) -> Bool {
-		let isManagedByScene = scene.sceneHandler.name.value == viewController.sceneName
-		let isReloadable = scene.sceneHandler.isReloadable
-		let isPresentedAsRequireScene = isViewController(viewController, presentedAsRequire: scene.type)
-
-		return isManagedByScene && isPresentedAsRequireScene && isReloadable
-	}
-
-	///Returns true if the viewController presented as require the ScenePresentationType (by checking the hierarchy of the viewController), false otherwise.
-	func isViewController(_ viewController: UIViewController, presentedAsRequire type: ScenePresentationType) -> Bool {
-		switch (type, viewController.scenePresentationType) {
-		case (.push, .push),
-			 (.modal, .modal),
-			 (.modalNavigation, .modalNavigation),
-			 (.root, .root),
-			 (_, .none),
-			 (.none, _):
-			return true
-		default:
-			return false
-		}
 	}
 }
 
