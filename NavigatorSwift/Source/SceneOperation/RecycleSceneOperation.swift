@@ -101,20 +101,16 @@ extension RecycleSceneOperation: SceneOperation {
 
 	///Returns true if the viewController presented as require the ScenePresentationType (by checking the hierarchy of the viewController), false otherwise.
 	func isViewController(_ viewController: UIViewController, presentedAsRequire type: ScenePresentationType) -> Bool {
-		switch type {
-		case .push:
-			return viewController.navigationController != nil
-
-		case .modal:
-			return viewController.presentingViewController != nil
-				&& viewController.navigationController == nil
-
-		case .modalNavigation:
-			return viewController.navigationController != nil
-				&& viewController.navigationController?.presentingViewController != nil
-			
-		case .none, .root:
+		switch (type, viewController.scenePresentationType) {
+		case (.push, .push),
+			 (.modal, .modal),
+			 (.modalNavigation, .modalNavigation),
+			 (.root, .root),
+			 (_, .none),
+			 (.none, _):
 			return true
+		default:
+			return false
 		}
 	}
 }

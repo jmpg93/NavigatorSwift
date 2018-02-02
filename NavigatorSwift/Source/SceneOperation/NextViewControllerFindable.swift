@@ -23,6 +23,14 @@ public extension NextViewControllerFindable {
 			return next
 		}
 
+		if let nav = viewController as? UINavigationController, let first = nav.viewControllers.first {
+			return first
+		}
+
+		if let tab = viewController as? UITabBarController, let selected = tab.selectedViewController {
+			return selected
+		}
+
 		return nil
 	}
 }

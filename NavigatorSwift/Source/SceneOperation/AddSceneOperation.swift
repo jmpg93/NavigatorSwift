@@ -30,7 +30,7 @@ extension AddSceneOperation: SceneOperation {
 			return
 		}
 		
-		let visibleViewController = manager.visibleViewController(from: manager.rootViewController)
+		let visibleViewController = manager.visible(from: manager.rootViewController)
 		recursiveShow(scenes: scenes, visibleViewController: visibleViewController, completion: completion)
 	}
 }

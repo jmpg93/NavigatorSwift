@@ -9,7 +9,7 @@
 import Foundation
 
 extension SceneOperation {
-	func then(_ operation: SceneOperation) -> SceneOperation {
+	public func then(_ operation: SceneOperation) -> SceneOperation {
 		return OrderedSceneOperation(first: self, last: operation)
 	}
 }

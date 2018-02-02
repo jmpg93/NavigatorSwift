@@ -24,7 +24,7 @@ extension ReloadSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[ReloadSceneOperation] Executing operation")
 
-		let visibleViewController = self.visibleViewController(from: manager.visibleNavigationController)
+		let visibleViewController = self.visible(from: manager.visibleNavigationController)
 
 		if scene.sceneHandler.name.value == visibleViewController.sceneName, scene.sceneHandler.isReloadable {
 			scene.sceneHandler.reload(visibleViewController, parameters: scene.parameters)

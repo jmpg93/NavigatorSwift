@@ -39,7 +39,7 @@ extension SceneOperationManagerTests {
 		let nav = UINavigationController()
 
 		// when
-		let visibleView = sut.visibleViewController(from: nav)
+		let visibleView = sut.visible(from: nav)
 
 		// then
 		XCTAssertEqual(nav, visibleView)
@@ -51,7 +51,7 @@ extension SceneOperationManagerTests {
 		let nav = UINavigationController(rootViewController: view)
 
 		// when
-		let visibleView = sut.visibleViewController(from: nav)
+		let visibleView = sut.visible(from: nav)
 
 		// then
 		XCTAssertEqual(view, visibleView)
@@ -62,7 +62,7 @@ extension SceneOperationManagerTests {
 		let tabBar = UITabBarController()
 
 		// when
-		let visibleView = sut.visibleViewController(from: tabBar)
+		let visibleView = sut.visible(from: tabBar)
 
 		// then
 		XCTAssertEqual(tabBar, visibleView)
@@ -75,7 +75,7 @@ extension SceneOperationManagerTests {
 		tabBar.setViewControllers([view], animated: false)
 
 		// when
-		let visibleView = sut.visibleViewController(from: tabBar)
+		let visibleView = sut.visible(from: tabBar)
 
 		// then
 		XCTAssertEqual(view, visibleView)
@@ -86,7 +86,7 @@ extension SceneOperationManagerTests {
 		let view = UIViewController()
 
 		// when
-		let visibleView = sut.visibleViewController(from: view)
+		let visibleView = sut.visible(from: view)
 
 		// then
 		XCTAssertEqual(view, visibleView)

@@ -27,7 +27,7 @@ extension PopSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[PopSceneOperation] Executing operation")
 
-		let visibleViewController = self.visibleViewController(from: manager.rootViewController)
+		let visibleViewController = self.visible(from: manager.rootViewController)
 
 		guard let navigationController = visibleViewController.navigationController else {
 			logTrace("[PopSceneOperation] No navigation controller found in the most visible view controller \(visibleViewController)")

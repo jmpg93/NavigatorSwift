@@ -61,6 +61,7 @@
 		6C1322E71F5ADC4100A7D3E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C1322E51F5ADC4100A7D3E9 /* LaunchScreen.storyboard */; };
 		6C1322EF1F5ADC8500A7D3E9 /* RedSceneHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1322EE1F5ADC8500A7D3E9 /* RedSceneHandler.swift */; };
 		6C1322F51F5ADDD200A7D3E9 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1322F41F5ADDD200A7D3E9 /* Navigator.swift */; };
+		6C21BC2C20212AF1004A3327 /* BuildCurrentStateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C21BC2B20212AF1004A3327 /* BuildCurrentStateOperation.swift */; };
 		6C27A9501F59E1ED00311918 /* NavigatorSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C27A94E1F59E1ED00311918 /* NavigatorSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C27A95A1F59E2A000311918 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A9591F59E2A000311918 /* Parameters.swift */; };
 		6C27A95C1F59E2C100311918 /* SceneBuilderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27A95B1F59E2C100311918 /* SceneBuilderBlock.swift */; };
@@ -220,6 +221,7 @@
 		6C1322E81F5ADC4100A7D3E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C1322EE1F5ADC8500A7D3E9 /* RedSceneHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedSceneHandler.swift; sourceTree = "<group>"; };
 		6C1322F41F5ADDD200A7D3E9 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		6C21BC2B20212AF1004A3327 /* BuildCurrentStateOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildCurrentStateOperation.swift; sourceTree = "<group>"; };
 		6C27A94B1F59E1ED00311918 /* NavigatorSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NavigatorSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C27A94E1F59E1ED00311918 /* NavigatorSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigatorSwift.h; sourceTree = "<group>"; };
 		6C27A94F1F59E1ED00311918 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				6CA594811F631A7600CF37AB /* RootSceneOperation.swift */,
 				6CA5948C1F63248900CF37AB /* VisibleViewControllerFindable.swift */,
 				189A94601FD71AD000D4DB32 /* NextViewControllerFindable.swift */,
+				6C21BC2B20212AF1004A3327 /* BuildCurrentStateOperation.swift */,
 			);
 			name = SceneOperation;
 			path = ../SceneOperation;
@@ -921,6 +924,7 @@
 				6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */,
 				1822ECB81FCAE9BF00F3D597 /* ReloadSceneOperation.swift in Sources */,
 				6CA594911F63286000CF37AB /* SetScenesOperation.swift in Sources */,
+				6C21BC2C20212AF1004A3327 /* BuildCurrentStateOperation.swift in Sources */,
 				6CCC9E3C2017CDC000BEDFEC /* SceneContext.swift in Sources */,
 				6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */,
 				18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */,

@@ -23,6 +23,20 @@ extension UIViewController {
 			objc_setAssociatedObject(self, &AssociatedKeys.sceneNameKey, newValue as NSString?, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		}
 	}
+
+	var scenePresentationType: ScenePresentationType {
+		if self is ViewControllerContainer {
+			return .root
+		} else if navigationController != nil && navigationController?.presentingViewController != nil {
+			return .modalNavigation
+		} else if presentingViewController != nil && navigationController == nil {
+			return .modal
+		} else if navigationController != nil {
+			return .push
+		} else {
+			return .none
+		}
+	}
 }
 
 extension UIView {

@@ -9,22 +9,18 @@
 import Foundation
 import UIKit
 
-protocol VisibleViewControllerFindable {
-	func visibleViewController(from fromViewController: UIViewController) -> UIViewController
+protocol VisibleViewControllerFindable: NextViewControllerFindable {
+	func visible(from fromViewController: UIViewController) -> UIViewController
 }
 
 extension VisibleViewControllerFindable {
-	func visibleViewController(from fromViewController: UIViewController) -> UIViewController {
-		if let visibleViewController = (fromViewController as? UINavigationController)?.visibleViewController {
-			return self.visibleViewController(from: visibleViewController)
-		} else if let selectedViewController = (fromViewController as? UITabBarController)?.selectedViewController {
-			return visibleViewController(from: selectedViewController)
-		} else if let visibleViewController = (fromViewController as? ViewControllerContainer)?.visibleNavigationController.visibleViewController {
-			return self.visibleViewController(from: visibleViewController)
-		} else if let presentedViewController = fromViewController.presentedViewController {
-			return visibleViewController(from: presentedViewController)
-		} else {
-			return fromViewController
+	func visible(from fromViewController: UIViewController) -> UIViewController {
+		var _next = fromViewController
+
+		while let next = next(before: _next) {
+			_next = next
 		}
+
+		return _next
 	}
 }

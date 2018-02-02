@@ -24,7 +24,7 @@ extension DismissFirstSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[DismissFirstSceneOperation] Executing operation")
 
-		let visibleViewController = self.visibleViewController(from: manager.visibleNavigationController)
+		let visibleViewController = self.visible(from: manager.visibleNavigationController)
 
 		if visibleViewController.isBeingDisplayedModally {
 			logTrace("[DismissFirstSceneOperation] Dismissing scene \(String(describing: visibleViewController.sceneName))")
