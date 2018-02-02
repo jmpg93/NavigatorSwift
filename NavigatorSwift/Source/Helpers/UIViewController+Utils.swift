@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: Hierarchy methods
+
 extension UIViewController {
 	private enum AssociatedKeys {
 		static var sceneNameKey = "ns_SceneNameKey"
@@ -26,13 +28,13 @@ extension UIViewController {
 
 	/// Returnsthe ScenePresentationType based on his current hierarchy.
 	var scenePresentationType: ScenePresentationType {
-		if self is ViewControllerContainer {
+		if isRoot {
 			return .root
-		} else if navigationController != nil && navigationController?.presentingViewController != nil {
+		} else if isModalNavigation {
 			return .modalNavigation
-		} else if presentingViewController != nil && navigationController == nil {
+		} else if isModal {
 			return .modal
-		} else if navigationController != nil {
+		} else if isPush {
 			return .push
 		} else {
 			return .none
@@ -62,13 +64,7 @@ extension UIViewController {
 
 		return isManagedByScene && isPresentedAsRequireScene && isReloadable
 	}
-}
 
-extension UIView {
-	static let defaultAnimationDuration: TimeInterval = 0.35
-}
-
-extension UIViewController {
 	var isBeingDisplayedModally: Bool {
 		let presentedModally = presentingViewController?.presentedViewController == self
 		let ancestorNavigationControllerPresentedModally = navigationController != nil && navigationController?.presentingViewController?.presentedViewController == navigationController
@@ -77,5 +73,28 @@ extension UIViewController {
 		return presentedModally
 			|| ancestorNavigationControllerPresentedModally
 			|| ancestorTabBarControllerPresentedModally
+	}
+}
+
+// MARK: Private methods
+
+private extension UIViewController {
+	var isRoot: Bool {
+		return self is ViewControllerContainer
+	}
+
+	var isModal: Bool {
+		return presentingViewController != nil
+			&& navigationController == nil
+	}
+
+	var isModalNavigation: Bool {
+		return navigationController != nil
+			&& navigationController?.presentingViewController != nil
+			&& navigationController?.viewControllers.index(of: self) == 0
+	}
+
+	var isPush: Bool {
+		return navigationController != nil
 	}
 }
