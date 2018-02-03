@@ -11,7 +11,7 @@ import XCTest
 
 class OrderedSceneOperationTests: SceneOperationTests {
 	// Class under test
-	private var sut: OrderedSceneOperation!
+	fileprivate var sut: OrderedSceneOperation!
 }
 
 extension OrderedSceneOperationTests {

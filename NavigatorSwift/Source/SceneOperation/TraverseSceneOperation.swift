@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public typealias SceneViewState = (SceneName, ScenePresentationType)
+public typealias SceneViewState = (name: SceneName, type: ScenePresentationType)
 public typealias TraverseBlock = ([SceneViewState]) -> Void
 
 public struct TraverseSceneOperation: NextViewControllerFindable {

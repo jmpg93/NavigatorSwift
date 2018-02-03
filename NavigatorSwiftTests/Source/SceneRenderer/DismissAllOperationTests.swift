@@ -12,7 +12,7 @@ import XCTest
 
 class DismissAllOperationTests: SceneOperationTests {
 	// Class under test
-	private var sut: DismissAllOperation!
+	fileprivate var sut: DismissAllOperation!
 }
 
 // MARK: Tests

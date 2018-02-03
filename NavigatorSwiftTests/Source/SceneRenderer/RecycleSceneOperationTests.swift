@@ -11,12 +11,12 @@ import XCTest
 
 class RecycleSceneOperationTests: SceneOperationTests {
 	// Class under test
-	private var sut: RecycleSceneOperation!
+	fileprivate var sut: RecycleSceneOperation!
 
 	override func setUp() {
 		super.setUp()
 
-		let mockSceneOperationManager = MockSceneOperationManager(window: MockWindow(), viewControllerContainer: MockViewControllerContainer())
+		let mockSceneOperationManager = MockSceneOperationManager(window: MockWindow())
 		sut = RecycleSceneOperation(scenes: [], manager: mockSceneOperationManager)
 	}
 }

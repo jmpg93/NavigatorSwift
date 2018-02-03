@@ -24,10 +24,7 @@ class SceneOperationManagerTests: SceneOperationTests {
 
 	override func setUp() {
 		super.setUp()
-		let window = MockWindow()
-		let view = UINavigationController()
-		let mockViewControllerContainer = givenMockViewControllerContainer(root: view)
-		sut = SceneOperationManager(window: window, viewControllerContainer: mockViewControllerContainer)
+		sut = SceneOperationManager(window: MockWindow())
 	}
 }
 
@@ -98,8 +95,7 @@ extension SceneOperationManagerTests {
 extension SceneOperationManagerTests {
 	func visibleViewController(for manager: SceneOperationManager) -> UIViewController {
 		return manager
-			.viewControllerContainer
-			.visibleNavigationController
+			.visibleNavigationController!
 			.visibleViewController!
 	}
 }

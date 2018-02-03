@@ -11,7 +11,7 @@ import XCTest
 
 class RootSceneOperationTest: SceneOperationTests {
 	// Class under test
-	private var sut: RootSceneOperation!
+	fileprivate var sut: RootSceneOperation!
 }
 
 // MARK: Tests

@@ -177,7 +177,11 @@ public extension Navigator {
 // MARK: - Traverse
 
 public extension Navigator {
-	func traverse(block: @escaping TraverseBlock, completion: CompletionBlock? = nil) {
+	func traverse(block: @escaping TraverseBlock) {
+		traverse(block: block, completion: nil)
+	}
+
+	func traverse(block: @escaping TraverseBlock, completion: CompletionBlock?) {
 		logDebug("Traverse")
 		navigate(with: sceneOperationManager.traverse(block: block), completion: completion)
 	}

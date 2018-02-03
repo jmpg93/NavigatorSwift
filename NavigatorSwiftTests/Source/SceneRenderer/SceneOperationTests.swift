@@ -34,8 +34,10 @@ extension SceneOperationTests {
 			root.visibleViewController!.sceneName = scene.value
 		}
 
-		let mockContainer = givenMockViewControllerContainer(root: root)
-		return MockSceneOperationManager(window: window, viewControllerContainer: mockContainer)
+		let manager = MockSceneOperationManager(window: window)
+		manager.set(container: givenMockViewControllerContainer(root: root))
+
+		return manager
 	}
 
 	func givenMockSceneHandler(name: SceneName,

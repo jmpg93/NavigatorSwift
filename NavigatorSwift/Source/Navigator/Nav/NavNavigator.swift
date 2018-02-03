@@ -12,7 +12,7 @@ import UIKit
 final public class NavNavigator: Navigator, NavigatorPreviewing {
 	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
 	public let sceneProvider: SceneProvider
-	public var sceneURLHandler: SceneURLHandler
+	public let sceneURLHandler: SceneURLHandler
 	public let sceneOperationManager: SceneOperationManager
 
 	public init(window: UIWindow,
