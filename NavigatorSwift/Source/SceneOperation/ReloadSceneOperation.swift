@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ReloadSceneOperation: VisibleViewControllerFindable {
+class ReloadSceneOperation {
 	fileprivate let scene: Scene
 	fileprivate let manager: SceneOperationManager
 
@@ -24,7 +24,13 @@ extension ReloadSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[ReloadSceneOperation] Executing operation")
 
-		let visibleViewController = self.visible(from: manager.visibleNavigationController)
+		guard let visibleNavigationController = manager.visibleNavigationController else {
+			logTrace("[ReloadSceneOperation] No visible navigation controller found")
+			completion?()
+			return
+		}
+
+		let visibleViewController = manager.visible(from: visibleNavigationController)
 
 		if scene.sceneHandler.name.value == visibleViewController.sceneName, scene.sceneHandler.isReloadable {
 			scene.sceneHandler.reload(visibleViewController, parameters: scene.parameters)

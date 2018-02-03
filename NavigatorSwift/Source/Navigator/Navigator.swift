@@ -12,7 +12,7 @@ import UIKit
 public protocol Navigator: class {
 	var sceneProvider: SceneProvider { get }
 	var sceneOperationManager: SceneOperationManager { get }
-	var sceneURLHandler: SceneURLHandler { get set }
+	var sceneURLHandler: SceneURLHandler { get }
 }
 
 // MARK: - Set root with Scene names
@@ -171,6 +171,15 @@ public extension Navigator {
 	func view(for name: SceneName, parameters: Parameters = [:]) -> UIViewController? {
 		logDebug("View \(name)")
 		return sceneProvider.scene(with: name, parameters: parameters, type: .root).view()
+	}
+}
+
+// MARK: - Traverse
+
+public extension Navigator {
+	func traverse(block: @escaping TraverseBlock, completion: CompletionBlock? = nil) {
+		logDebug("Traverse")
+		navigate(with: sceneOperationManager.traverse(block: block), completion: completion)
 	}
 }
 

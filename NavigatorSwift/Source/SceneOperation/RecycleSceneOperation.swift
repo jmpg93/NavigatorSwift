@@ -17,10 +17,6 @@ struct RecycleSceneOperation: NextViewControllerFindable {
 		self.scenes = scenes
 		self.manager = manager
 	}
-
-	fileprivate var viewControllerContainer: ViewControllerContainer {
-		return manager.viewControllerContainer
-	}
 }
 
 // MARK: SceneOperation methods
@@ -38,7 +34,7 @@ extension RecycleSceneOperation: SceneOperation {
 		// Scenes not in stack 
 		var scenes = self.scenes
 
-		var _next: UIViewController? = viewControllerContainer.rootViewController
+		var _next: UIViewController? = manager.rootViewController
 		var _last = _next
 
 		for scene in scenes {
@@ -73,6 +69,6 @@ extension RecycleSceneOperation: SceneOperation {
 private extension RecycleSceneOperation {
 	func firstLevelNavigationController(matching scene: Scene?) -> UINavigationController? {
 		guard let scene = scene else { return nil }
-		return viewControllerContainer.firstLevelNavigationController(matching: scene)
+		return manager.firstLevelNavigationController(matching: scene)
 	}
 }

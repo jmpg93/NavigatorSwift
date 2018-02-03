@@ -29,7 +29,7 @@ extension RecycleSceneOperationTests {
 		modal._presentingViewController = MockViewController()
 		
 		// when
-		let isPresentedAsRequire = sut.isViewController(modal, presentedAsRequire: .modal)
+		let isPresentedAsRequire = modal.isPresentedAsRequire(for: .modal)
 
 		// then
 		XCTAssertTrue(isPresentedAsRequire)
@@ -40,7 +40,7 @@ extension RecycleSceneOperationTests {
 		let modal = MockViewController()
 
 		// when
-		let isPresentedAsRequire = sut.isViewController(modal, presentedAsRequire: .modal)
+		let isPresentedAsRequire = modal.isPresentedAsRequire(for: .modal)
 
 		// then
 		XCTAssertFalse(isPresentedAsRequire)
@@ -53,7 +53,7 @@ extension RecycleSceneOperationTests {
 		pushed._navigationController = MockNavigationController()
 
 		// when
-		let isPresentedAsRequire = sut.isViewController(pushed, presentedAsRequire: .push)
+		let isPresentedAsRequire = pushed.isPresentedAsRequire(for: .push)
 
 		// then
 		XCTAssertTrue(isPresentedAsRequire)
@@ -64,7 +64,7 @@ extension RecycleSceneOperationTests {
 		let nonPushed = MockViewController()
 
 		// when
-		let isPresentedAsRequire = sut.isViewController(nonPushed, presentedAsRequire: .push)
+		let isPresentedAsRequire = nonPushed.isPresentedAsRequire(for: .push)
 
 		// then
 		XCTAssertFalse(isPresentedAsRequire)
@@ -80,7 +80,7 @@ extension RecycleSceneOperationTests {
 		modalNavigation._navigationController = navigationController
 
 		// when
-		let isPresentedAsRequire = sut.isViewController(modalNavigation, presentedAsRequire: .modalNavigation)
+		let isPresentedAsRequire = modalNavigation.isPresentedAsRequire(for: .modalNavigation)
 
 		// then
 		XCTAssertTrue(isPresentedAsRequire)
@@ -91,7 +91,7 @@ extension RecycleSceneOperationTests {
 		let nonModalNavigation = MockViewController()
 
 		// when
-		let isPresentedAsRequire = sut.isViewController(nonModalNavigation, presentedAsRequire: .modalNavigation)
+		let isPresentedAsRequire = nonModalNavigation.isPresentedAsRequire(for: .modalNavigation)
 
 		// then
 		XCTAssertFalse(isPresentedAsRequire)

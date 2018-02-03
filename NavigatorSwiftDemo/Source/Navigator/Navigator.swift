@@ -11,7 +11,7 @@ import NavigatorSwift
 import UIKit
 
 let globalWindow = UIWindow()
-let globalNavigator = TabNavigator(window: globalWindow, tabBarContainer: TabBarSceneHandler().view() as! TabBarContainer)
+let globalNavigator = TabNavigator(window: globalWindow)
 
 var isUITesting: Bool {
 	return ProcessInfo.processInfo.arguments.contains(AppDelegate.Constants.uiTesting)

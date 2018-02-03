@@ -13,25 +13,36 @@ public typealias CompletionBlock = () -> Void
 
 public class SceneOperationManager: VisibleViewControllerFindable {
 	let window: UIWindow
-	var viewControllerContainer: ViewControllerContainer
+	private var viewControllerContainer: ViewControllerContainer?
 
-	init(window: UIWindow, viewControllerContainer: ViewControllerContainer) {
+	init(window: UIWindow) {
 		self.window = window
-		self.viewControllerContainer = viewControllerContainer
-
-		window.rootViewController = viewControllerContainer.rootViewController
 	}
 
-	var rootViewController: UIViewController {
-		return viewControllerContainer.rootViewController
+	var rootViewController: UIViewController? {
+		return viewControllerContainer?.rootViewController
 	}
 
-	var visibleNavigationController: UINavigationController {
-		return viewControllerContainer.visibleNavigationController
+	var visibleNavigationController: UINavigationController? {
+		return viewControllerContainer?.visibleNavigationController
+	}
+
+	func set(container: ViewControllerContainer) {
+		viewControllerContainer = container
+		window.rootViewController = container.rootViewController
+		window.makeKeyAndVisible()
 	}
 
 	func select(viewController: UIViewController) {
-		viewControllerContainer.select(viewController: viewController)
+		viewControllerContainer?.select(viewController: viewController)
+	}
+
+	func canReused(container: ViewControllerContainer) -> Bool {
+		return viewControllerContainer?.canBeReused(by: container) ?? false
+	}
+
+	func firstLevelNavigationController(matching scene: Scene) -> UINavigationController? {
+		return viewControllerContainer?.firstLevelNavigationController(matching: scene)
 	}
 
 	/// Changes the current navigation stack to conform an array of Scenes, in the process of build the new navigation stack
@@ -128,4 +139,12 @@ public class SceneOperationManager: VisibleViewControllerFindable {
 	func setVisible(viewController: UIViewController) -> SceneOperation {
 		return SetVisibleSceneOperation(viewController: viewController, manager: self)
 	}
+
+	/// Creates the current stack based on the hierarchy of the app.
+	///
+	/// - parameter block: The block to be execute with the current stack
+	func traverse(block: @escaping TraverseBlock) -> SceneOperation {
+		return TraverseSceneOperation(traverseBlock: block, manager: self)
+	}
 }
+

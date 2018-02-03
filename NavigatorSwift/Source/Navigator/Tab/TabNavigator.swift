@@ -16,10 +16,9 @@ final public class TabNavigator: Navigator, NavigatorPreviewing {
 	public let sceneOperationManager: SceneOperationManager
 
 	public init(window: UIWindow,
-				tabBarContainer: TabBarContainer,
 				sceneProvider: SceneProvider = SceneProvider(),
 				sceneURLHandler: SceneURLHandler = EmptySceneURLHandler()) {
-		sceneOperationManager = SceneOperationManager(window: window, viewControllerContainer: tabBarContainer)
+		sceneOperationManager = SceneOperationManager(window: window)
 		self.sceneProvider = sceneProvider
 		self.sceneURLHandler = sceneURLHandler
 	}
@@ -33,7 +32,7 @@ public extension TabNavigator {
 			.map(sceneProvider.scene)
 			.map(buildViewController)
 
-		if let tabBarContainer = sceneOperationManager.viewControllerContainer as? TabBarContainer {
+		if let tabBarContainer = sceneOperationManager.rootViewController as? TabBarContainer {
 			tabBarContainer.viewControllers = views
 		}
 	}

@@ -24,13 +24,21 @@ struct AddSceneOperation {
 extension AddSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[AddSceneOperation] Executing operation")
+
 		guard !scenes.isEmpty else {
 			logTrace("[AddSceneOperation] No scenes to add")
 			completion?()
 			return
 		}
-		
-		let visibleViewController = manager.visible(from: manager.rootViewController)
+
+		guard let rootViewController = manager.rootViewController else {
+			logTrace("[AddSceneOperation] No root view controller found")
+			completion?()
+			return
+		}
+
+		let visibleViewController = manager.visible(from: rootViewController)
+
 		recursiveShow(scenes: scenes, visibleViewController: visibleViewController, completion: completion)
 	}
 }

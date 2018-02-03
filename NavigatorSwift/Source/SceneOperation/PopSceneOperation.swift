@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct PopSceneOperation: VisibleViewControllerFindable {
+struct PopSceneOperation {
 	fileprivate let popToRoot: Bool
 	fileprivate let animated: Bool
 	fileprivate let manager: SceneOperationManager
@@ -27,7 +27,13 @@ extension PopSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[PopSceneOperation] Executing operation")
 
-		let visibleViewController = self.visible(from: manager.rootViewController)
+		guard let rootViewController = manager.rootViewController else {
+			logTrace("[PopSceneOperation] No root view controller found")
+			completion?()
+			return
+		}
+
+		let visibleViewController = manager.visible(from: rootViewController)
 
 		guard let navigationController = visibleViewController.navigationController else {
 			logTrace("[PopSceneOperation] No navigation controller found in the most visible view controller \(visibleViewController)")

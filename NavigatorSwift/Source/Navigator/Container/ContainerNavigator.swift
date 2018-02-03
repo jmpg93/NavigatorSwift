@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final public class ContainerNavigator: Navigator, NavigatorPreviewing {
 	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
@@ -15,10 +16,9 @@ final public class ContainerNavigator: Navigator, NavigatorPreviewing {
 	public let sceneOperationManager: SceneOperationManager
 
 	public init(window: UIWindow,
-				viewControllerContainer: ViewControllerContainer,
 				sceneProvider: SceneProvider = SceneProvider(),
 				sceneURLHandler: SceneURLHandler = EmptySceneURLHandler()) {
-		sceneOperationManager = SceneOperationManager(window: window, viewControllerContainer: viewControllerContainer)
+		sceneOperationManager = SceneOperationManager(window: window)
 		self.sceneProvider = sceneProvider
 		self.sceneURLHandler = sceneURLHandler
 	}

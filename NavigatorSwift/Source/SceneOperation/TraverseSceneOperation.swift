@@ -1,5 +1,5 @@
 //
-//  BuildCurrentStateOperation.swift
+//  TraverseSceneOperation.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 30/1/18.
@@ -7,24 +7,28 @@
 //
 
 import Foundation
+import UIKit
 
-public struct BuildCurrentStateOperation: NextViewControllerFindable {
-	public typealias SceneViewState = (SceneName, ScenePresentationType)
+public typealias SceneViewState = (SceneName, ScenePresentationType)
+public typealias TraverseBlock = ([SceneViewState]) -> Void
 
-	fileprivate let operation: ([SceneViewState]) -> Void
+public struct TraverseSceneOperation: NextViewControllerFindable {
+	fileprivate let traverseBlock: ([SceneViewState]) -> Void
 	fileprivate let manager: SceneOperationManager
 
-	public init(operation: @escaping ([SceneViewState]) -> Void, manager: SceneOperationManager) {
-		self.operation = operation
+	public init(traverseBlock: @escaping TraverseBlock, manager: SceneOperationManager) {
+		self.traverseBlock = traverseBlock
 		self.manager = manager
 	}
 }
 
 // MARK: SceneOperation methods
 
-extension BuildCurrentStateOperation: SceneOperation {
+extension TraverseSceneOperation: SceneOperation {
 	public func execute(with completion: CompletionBlock?) {
-		var _next: UIViewController? = manager.viewControllerContainer.rootViewController
+		logTrace("[TraverseSceneOperation] Executing operation")
+
+		var _next: UIViewController? = manager.rootViewController
 		var views: [UIViewController] = []
 
 		while let next = _next {
@@ -38,7 +42,7 @@ extension BuildCurrentStateOperation: SceneOperation {
 			.map { $0 == nil ? nil : (SceneName($0!), $1) }
 			.flatMap { $0 }
 
-		operation(scenes)
+		traverseBlock(scenes)
 		completion?()
 	}
 }

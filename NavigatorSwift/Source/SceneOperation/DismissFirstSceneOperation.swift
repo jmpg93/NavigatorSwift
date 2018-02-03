@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DismissFirstSceneOperation: VisibleViewControllerFindable {
+struct DismissFirstSceneOperation {
 	fileprivate let animated: Bool
 	fileprivate let manager: SceneOperationManager
 
@@ -24,7 +24,13 @@ extension DismissFirstSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[DismissFirstSceneOperation] Executing operation")
 
-		let visibleViewController = self.visible(from: manager.visibleNavigationController)
+		guard let visibleNavigationController = manager.visibleNavigationController else {
+			logTrace("[DismissAllOperation] No visible navigation controller found")
+			completion?()
+			return
+		}
+
+		let visibleViewController = manager.visible(from: visibleNavigationController)
 
 		if visibleViewController.isBeingDisplayedModally {
 			logTrace("[DismissFirstSceneOperation] Dismissing scene \(String(describing: visibleViewController.sceneName))")

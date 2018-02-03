@@ -28,15 +28,12 @@ extension RootSceneOperation: SceneOperation {
 			return
 		}
 
-		if !manager.viewControllerContainer.canBeReused(by: viewControllerContainer) {
-			logError("[RootSceneOperation] Current ViewControllerContainer can't be reused for scene \(scene)")
-			manager.viewControllerContainer = viewControllerContainer
+		if !manager.canReused(container: viewControllerContainer) {
+			logDebug("[RootSceneOperation] Current ViewControllerContainer can't be reused for scene \(scene)")
+			manager.set(container: viewControllerContainer)
 		} else {
-			logError("[RootSceneOperation] Current ViewControllerContainer will be reused for scene \(scene)")
+			logDebug("[RootSceneOperation] Current ViewControllerContainer will be reused for scene \(scene)")
 		}
-
-		manager.window.rootViewController = manager.rootViewController
-		manager.window.makeKeyAndVisible()
 
 		completion?()
 	}

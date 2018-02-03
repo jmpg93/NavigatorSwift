@@ -24,7 +24,13 @@ extension DismissAllOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[DismissAllOperation] Executing operation")
 
-		manager.rootViewController.dismiss(animated: animated, completion: completion)
+		guard let rootViewController = manager.rootViewController else {
+			logTrace("[DismissAllOperation] No root view controller found")
+			completion?()
+			return
+		}
+
+		rootViewController.dismiss(animated: animated, completion: completion)
 
 		if !animated {
 			completion?()
