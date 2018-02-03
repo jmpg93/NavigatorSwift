@@ -29,13 +29,11 @@ final public class TabNavigator: Navigator, NavigatorPreviewing {
 
 public extension TabNavigator {
 	public func setTabs(_ sceneContexts: [SceneContext]) {
-		let views = sceneContexts
+		guard let tabBarContainer = sceneOperationManager.rootViewController as? TabBarContainer else { return }
+
+		tabBarContainer.viewControllers = sceneContexts
 			.map(sceneProvider.scene)
 			.map(buildViewController)
-
-		if let tabBarContainer = sceneOperationManager.rootViewController as? TabBarContainer {
-			tabBarContainer.viewControllers = views
-		}
 	}
 }
 
