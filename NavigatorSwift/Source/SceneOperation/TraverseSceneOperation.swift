@@ -13,7 +13,7 @@ public typealias SceneViewState = (name: SceneName, type: ScenePresentationType)
 public typealias TraverseBlock = ([SceneViewState]) -> Void
 
 public struct TraverseSceneOperation: NextViewControllerFindable {
-	private let traverseBlock: ([SceneViewState]) -> Void
+	private let traverseBlock: TraverseBlock
 	private let manager: SceneOperationManager
 
 	public init(traverseBlock: @escaping TraverseBlock, manager: SceneOperationManager) {

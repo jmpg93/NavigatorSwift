@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PopoverSceneOperation: VisibleViewControllerFindable {
+struct PopoverSceneOperation {
 	private let popover: Popover
 	private let scene: Scene
 	private let manager: SceneOperationManager

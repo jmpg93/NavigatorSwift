@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct RecycleSceneOperation: NextViewControllerFindable {
+struct RecycleSceneOperation {
 	private let scenes: [Scene]
 	private let manager: SceneOperationManager
 
@@ -50,7 +50,7 @@ extension RecycleSceneOperation: SceneOperation {
 			scenes.removeFirst()
 
 			_last = next
-			_next = self.next(before: next)
+			_next = manager.next(before: next)
 		}
 
 		guard let last = _last else { fatalError("No root view controller found") }

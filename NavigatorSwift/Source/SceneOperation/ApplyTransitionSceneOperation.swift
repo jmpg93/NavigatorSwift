@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ApplyTransitionSceneOperation: VisibleViewControllerFindable {
+struct ApplyTransitionSceneOperation {
 	private let transition: Transition
 	private let scene: Scene
 	private let manager: SceneOperationManager
