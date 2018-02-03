@@ -103,16 +103,24 @@ navigator.transition(to: .someScene, with: someInteractiveTransition)
 ```swift
 let loginView = navigator.view(for: .login)
 ```
+- Traverse (get the current stack hierarchy; sceneName and presentationType):
+```swift
+globalNavigator.traverse { state in
+	if state.map({ $0.name }).contains(.collection) {
+		// Do something
+	}
+}
+```
 - Relative stack navigation using builder:
 ```swift
 navigator.build { builder in
 	builder.modal(.detail)
 }
 ```
-- Absolute stack navigation using builder (the current stack will be recycled):
+- Absolute stack navigation using builder (the current stack will be recycled and reloaded if possible):
 ```swift
 navigator.build { builder in
-	builder.root(name: .login) // Setting root will rebuild the stack.
+	builder.root(name: .login)
 	builder.modalNavigation(.home)
 	builder.push(.detail)
 }
