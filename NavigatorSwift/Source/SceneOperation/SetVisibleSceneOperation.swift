@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 struct SetVisibleSceneOperation {
-	fileprivate let viewController: UIViewController
-	fileprivate let manager: SceneOperationManager
+	private let viewController: UIViewController
+	private let manager: SceneOperationManager
 
 	init(viewController: UIViewController, manager: SceneOperationManager) {
 		self.viewController = viewController

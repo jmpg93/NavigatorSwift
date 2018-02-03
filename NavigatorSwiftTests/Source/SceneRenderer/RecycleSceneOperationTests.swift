@@ -11,7 +11,7 @@ import XCTest
 
 class RecycleSceneOperationTests: SceneOperationTests {
 	// Class under test
-	fileprivate var sut: RecycleSceneOperation!
+	private var sut: RecycleSceneOperation!
 
 	override func setUp() {
 		super.setUp()

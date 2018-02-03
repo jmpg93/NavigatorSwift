@@ -10,7 +10,7 @@ import UIKit
 import NavigatorSwift
 
 class Collection: UIViewController {
-	fileprivate enum Constants {
+	private enum Constants {
 		static let cellIdentifier = "Cell"
 		static let headerIdentifier = "Header"
 		static let stateLabelIdentifier = "StateLabel"

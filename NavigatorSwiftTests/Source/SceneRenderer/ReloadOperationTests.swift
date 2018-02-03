@@ -12,7 +12,7 @@ import XCTest
 
 class ReloadSceneOperationTests: SceneOperationTests {
 	// Class under test
-	fileprivate var sut: ReloadSceneOperation!
+	private var sut: ReloadSceneOperation!
 }
 
 extension ReloadSceneOperationTests {

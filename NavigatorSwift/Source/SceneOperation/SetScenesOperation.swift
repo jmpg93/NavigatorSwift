@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 struct SetScenesOperation {
-	fileprivate var scenes: [Scene]
-	fileprivate let manager: SceneOperationManager
+	private var scenes: [Scene]
+	private let manager: SceneOperationManager
 
 	init(scenes: [Scene], manager: SceneOperationManager) {
 		self.scenes = scenes

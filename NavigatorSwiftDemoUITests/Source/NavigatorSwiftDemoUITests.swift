@@ -9,7 +9,7 @@
 import XCTest
 
 class NavigatorSwiftDemoUITests: XCTestCase {
-	fileprivate enum Constants {
+	private enum Constants {
 		static let uiTesting = "UITests"
 
 		static let root = "root"
@@ -34,7 +34,7 @@ class NavigatorSwiftDemoUITests: XCTestCase {
 		static let rootModalNavPush = "root modalNav push"
 	}
 
-	fileprivate enum TestsCases {
+	private enum TestsCases {
 		static let dismiss = [Constants.modalDismissFirst, Constants.modalDismissScene, Constants.modalModalDismissAll]
 		static let pop = [Constants.pushPop, Constants.pushPushPopToRoot]
 	}

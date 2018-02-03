@@ -11,7 +11,7 @@ import XCTest
 
 class DismissSceneOperationTests: SceneOperationTests {
 	// Class under test
-	fileprivate var sut: DismissSceneOperation!
+	private var sut: DismissSceneOperation!
 }
 
 // MARK: Tests

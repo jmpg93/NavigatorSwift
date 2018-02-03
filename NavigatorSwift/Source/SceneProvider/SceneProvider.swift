@@ -9,11 +9,13 @@
 import Foundation
 
 public class SceneProvider {
-	/// Contains all the scenes registered in the system by their name.
-	fileprivate var sceneHandlersByName: [SceneName: SceneHandler] = [:]
+	let manager: SceneOperationManager
 
-	public init() {
-		
+	/// Contains all the scenes registered in the system by their name.
+	private var sceneHandlersByName: [SceneName: SceneHandler] = [:]
+
+	public init(manager: SceneOperationManager) {
+		self.manager = manager
 	}
 }
 

@@ -9,8 +9,8 @@
 import Foundation
 
 struct DismissAllOperation {
-	fileprivate let animated: Bool
-	fileprivate let manager: SceneOperationManager
+	private let animated: Bool
+	private let manager: SceneOperationManager
 
 	init(animated: Bool, manager: SceneOperationManager) {
 		self.animated = animated

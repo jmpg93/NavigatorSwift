@@ -9,8 +9,8 @@
 import Foundation
 
 class ReloadSceneOperation {
-	fileprivate let scene: Scene
-	fileprivate let manager: SceneOperationManager
+	private let scene: Scene
+	private let manager: SceneOperationManager
 
 	init(scene: Scene, manager: SceneOperationManager) {
 		self.scene = scene

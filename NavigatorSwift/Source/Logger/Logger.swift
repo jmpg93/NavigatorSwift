@@ -94,7 +94,7 @@ public class Logger {
 		log(.trace, items: items, separator: separator, terminator: terminator, file: file, line: line, column: column, function: function)
 	}
 
-	private func log(_ logLevel: Level, items: [Any], separator: String?, terminator: String?, file: String, line: Int, column: Int, function: String, date: Date = Date()) {
+	fileprivate func log(_ logLevel: Level, items: [Any], separator: String?, terminator: String?, file: String, line: Int, column: Int, function: String, date: Date = Date()) {
 		let separator = separator ?? self.separator
 		let terminator = terminator ?? self.terminator
 
@@ -143,7 +143,7 @@ public func >=(a: Level, b: Level) -> Bool {
 	return a.rawValue >= b.rawValue
 }
 
-fileprivate extension DateFormatter {
+private extension DateFormatter {
 	convenience init(dateFormat: String) {
 		self.init()
 		self.dateFormat = dateFormat

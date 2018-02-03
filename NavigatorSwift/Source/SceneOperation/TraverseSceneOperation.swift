@@ -13,8 +13,8 @@ public typealias SceneViewState = (SceneName, ScenePresentationType)
 public typealias TraverseBlock = ([SceneViewState]) -> Void
 
 public struct TraverseSceneOperation: NextViewControllerFindable {
-	fileprivate let traverseBlock: ([SceneViewState]) -> Void
-	fileprivate let manager: SceneOperationManager
+	private let traverseBlock: ([SceneViewState]) -> Void
+	private let manager: SceneOperationManager
 
 	public init(traverseBlock: @escaping TraverseBlock, manager: SceneOperationManager) {
 		self.traverseBlock = traverseBlock
@@ -28,7 +28,7 @@ extension TraverseSceneOperation: SceneOperation {
 	public func execute(with completion: CompletionBlock?) {
 		logTrace("[TraverseSceneOperation] Executing operation")
 
-		var _next: UIViewController? = manager.rootViewController
+		var _next = manager.rootViewController
 		var views: [UIViewController] = []
 
 		while let next = _next {

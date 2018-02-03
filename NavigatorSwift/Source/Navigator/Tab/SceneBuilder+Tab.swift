@@ -12,4 +12,21 @@ public extension SceneBuilder where T: TabNavigator {
 	func tab(_ sceneName: SceneName, parameters: Parameters = [:]) {
 		add(context: SceneContext(sceneName: sceneName, parameters: parameters, type: .none, isAnimated: true))
 	}
+
+	func currentTab() {
+		tab(currentTabSceneName)
+	}
+}
+
+private extension SceneBuilder where T: TabNavigator {
+	var currentTabSceneName: SceneName {
+		return SceneName(
+			sceneProvider
+			.manager
+			.visibleNavigationController!
+			.viewControllers
+			.first!
+			.sceneName!
+		)
+	}
 }

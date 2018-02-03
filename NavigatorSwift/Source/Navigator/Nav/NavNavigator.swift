@@ -16,10 +16,11 @@ final public class NavNavigator: Navigator, NavigatorPreviewing {
 	public let sceneOperationManager: SceneOperationManager
 
 	public init(window: UIWindow,
-				sceneProvider: SceneProvider = SceneProvider(),
 				sceneURLHandler: SceneURLHandler = EmptySceneURLHandler()) {
-		sceneOperationManager = SceneOperationManager(window: window)
-		self.sceneProvider = sceneProvider
+		let sceneOperationManager = SceneOperationManager(window: window)
+		self.sceneOperationManager = sceneOperationManager
 		self.sceneURLHandler = sceneURLHandler
+
+		self.sceneProvider = SceneProvider(manager: sceneOperationManager)
 	}
 }

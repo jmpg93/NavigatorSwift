@@ -11,7 +11,7 @@ import XCTest
 
 
 class SceneOperationManagerTests: SceneOperationTests {
-	fileprivate enum Constants {
+	private enum Constants {
 		static let anyScene: SceneName = "anyScene"
 		static let anyOtherScene: SceneName = "anyOtherScene"
 		static let anyBlock: () -> Void = { }

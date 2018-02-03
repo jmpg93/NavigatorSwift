@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 struct RecycleSceneOperation: NextViewControllerFindable {
-	fileprivate let scenes: [Scene]
-	fileprivate let manager: SceneOperationManager
+	private let scenes: [Scene]
+	private let manager: SceneOperationManager
 
 	init(scenes: [Scene], manager: SceneOperationManager) {
 		self.scenes = scenes
@@ -34,14 +34,14 @@ extension RecycleSceneOperation: SceneOperation {
 		// Scenes not in stack 
 		var scenes = self.scenes
 
-		var _next: UIViewController? = manager.rootViewController
+		var _next = manager.rootViewController
 		var _last = _next
 
 		for scene in scenes {
 			guard let next = _next, next.isRecyclable(by: scene) else { break }
 
-			logTrace("[RecycleSceneOperation] Selecting first level navigation controller with scene \(scene.sceneHandler.name)")
 			if let first = firstLevelNavigationController(matching: scene) {
+				logTrace("[RecycleSceneOperation] Selecting first level navigation controller with scene \(scene.sceneHandler.name)")
 				manager.select(viewController: first)
 			}
 			

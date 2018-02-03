@@ -9,9 +9,9 @@
 import Foundation
 
 struct ApplyTransitionSceneOperation: VisibleViewControllerFindable {
-	fileprivate let transition: Transition
-	fileprivate let scene: Scene
-	fileprivate let manager: SceneOperationManager
+	private let transition: Transition
+	private let scene: Scene
+	private let manager: SceneOperationManager
 
 	init(transition: Transition, to scene: Scene, manager: SceneOperationManager) {
 		self.transition = transition

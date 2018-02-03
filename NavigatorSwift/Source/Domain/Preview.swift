@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 public class Preview: NSObject {
-	fileprivate let scene: Scene
-	fileprivate let completion: CompletionBlock?
+	private let scene: Scene
+	private let completion: CompletionBlock?
 	let fromViewController: UIViewController
 
 	init(scene: Scene,

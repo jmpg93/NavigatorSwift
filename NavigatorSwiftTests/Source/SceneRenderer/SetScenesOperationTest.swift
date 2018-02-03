@@ -11,11 +11,11 @@ import XCTest
 
 class SetScenesOperationTest: SceneOperationTests {
 	// Class under test
-	fileprivate var sut: SetScenesOperation!
+	private var sut: SetScenesOperation!
 
-	fileprivate var mockDismissAllOperation: MockSceneOperation!
-	fileprivate var mockAddOperation: MockSceneOperation!
-	fileprivate var mockRecycleOperation: MockSceneOperation!
+	private var mockDismissAllOperation: MockSceneOperation!
+	private var mockAddOperation: MockSceneOperation!
+	private var mockRecycleOperation: MockSceneOperation!
 
 	override func setUp() {
 		super.setUp()

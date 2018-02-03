@@ -9,9 +9,9 @@
 import Foundation
 
 struct PopoverSceneOperation: VisibleViewControllerFindable {
-	fileprivate let popover: Popover
-	fileprivate let scene: Scene
-	fileprivate let manager: SceneOperationManager
+	private let popover: Popover
+	private let scene: Scene
+	private let manager: SceneOperationManager
 
 	init(popover: Popover, to scene: Scene, manager: SceneOperationManager) {
 		self.popover = popover

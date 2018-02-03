@@ -9,10 +9,10 @@
 import Foundation
 
 public class SceneBuilder<T: Navigator> {
-	fileprivate let sceneProvider: SceneProvider
+	let sceneProvider: SceneProvider
 	
-	fileprivate(set) var scenes: [Scene] = []
-	fileprivate(set) var isAbsolutely = false
+	private(set) var scenes: [Scene] = []
+	private(set) var isAbsolutely = false
 
 	public init(using builderBlock: SceneBuilderBlock<T>, sceneProvider: SceneProvider) {
 		self.sceneProvider = sceneProvider

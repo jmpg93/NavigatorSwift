@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 struct PopSceneOperation {
-	fileprivate let popToRoot: Bool
-	fileprivate let animated: Bool
-	fileprivate let manager: SceneOperationManager
+	private let popToRoot: Bool
+	private let animated: Bool
+	private let manager: SceneOperationManager
 
 	init(toRoot popToRoot: Bool, animated: Bool, manager: SceneOperationManager) {
 		self.popToRoot = popToRoot
