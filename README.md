@@ -105,7 +105,7 @@ let loginView = navigator.view(for: .login)
 ```
 - Traverse (get the current stack hierarchy; sceneName and presentationType):
 ```swift
-globalNavigator.traverse { state in
+navigator.traverse { state in
 	if state.map({ $0.name }).contains(.collection) {
 		// Do something
 	}
