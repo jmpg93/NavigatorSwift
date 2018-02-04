@@ -12,7 +12,7 @@ import UIKit
 public typealias SceneViewState = (name: SceneName, type: ScenePresentationType)
 public typealias TraverseBlock = ([SceneViewState]) -> Void
 
-public struct TraverseSceneOperation: NextViewControllerFindable {
+public struct TraverseSceneOperation {
 	private let traverseBlock: TraverseBlock
 	private let manager: SceneOperationManager
 
@@ -24,7 +24,7 @@ public struct TraverseSceneOperation: NextViewControllerFindable {
 
 // MARK: SceneOperation methods
 
-extension TraverseSceneOperation: SceneOperation {
+extension TraverseSceneOperation: SceneOperation, StateSearchable {
 	public func execute(with completion: CompletionBlock?) {
 		logTrace("[TraverseSceneOperation] Executing operation")
 
@@ -33,7 +33,7 @@ extension TraverseSceneOperation: SceneOperation {
 
 		while let next = _next {
 			views.append(next)
-			_next = self.next(before: next)
+			_next = manager.next(before: next)
 		}
 
 		let scenes: [SceneViewState] = views
@@ -44,5 +44,27 @@ extension TraverseSceneOperation: SceneOperation {
 
 		traverseBlock(scenes)
 		completion?()
+	}
+}
+
+protocol StateSearchable {
+	func state(from viewController: UIViewController) -> [SceneViewState]
+}
+
+extension StateSearchable {
+	func state(from viewController: UIViewController, manager: SceneOperationManager) -> [SceneViewState] {
+		var _next = manager.rootViewController
+		var views: [UIViewController] = []
+
+		while let next = _next {
+			views.append(next)
+			_next = manager.next(before: next)
+		}
+
+		return views
+			.lazy
+			.map { ($0.sceneName, $0.scenePresentationType) }
+			.map { $0 == nil ? nil : (SceneName($0!), $1) }
+			.flatMap { $0 }
 	}
 }

@@ -79,6 +79,9 @@
 		6C2C20ED1F63516D004AE759 /* RootSceneOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EC1F63516D004AE759 /* RootSceneOperationTest.swift */; };
 		6C2C20EF1F63519D004AE759 /* SetScenesOperationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */; };
 		6C2C20F11F6354A7004AE759 /* SceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */; };
+		6C37A67C20264AC70011F818 /* SceneOperationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C37A67B20264AC70011F818 /* SceneOperationInterceptor.swift */; };
+		6C37A67E20264EDB0011F818 /* SceneOperationInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C37A67D20264EDB0011F818 /* SceneOperationInterceptable.swift */; };
+		6C37A680202650280011F818 /* InterceptorContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C37A67F202650280011F818 /* InterceptorContext.swift */; };
 		6CA5947D1F6311F700CF37AB /* TabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */; };
 		6CA594801F631A0F00CF37AB /* SceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5947F1F631A0F00CF37AB /* SceneOperation.swift */; };
 		6CA594821F631A7600CF37AB /* RootSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA594811F631A7600CF37AB /* RootSceneOperation.swift */; };
@@ -242,6 +245,9 @@
 		6C2C20EC1F63516D004AE759 /* RootSceneOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootSceneOperationTest.swift; sourceTree = "<group>"; };
 		6C2C20EE1F63519D004AE759 /* SetScenesOperationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetScenesOperationTest.swift; sourceTree = "<group>"; };
 		6C2C20F01F6354A7004AE759 /* SceneOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneOperationTests.swift; sourceTree = "<group>"; };
+		6C37A67B20264AC70011F818 /* SceneOperationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOperationInterceptor.swift; sourceTree = "<group>"; };
+		6C37A67D20264EDB0011F818 /* SceneOperationInterceptable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneOperationInterceptable.swift; sourceTree = "<group>"; };
+		6C37A67F202650280011F818 /* InterceptorContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterceptorContext.swift; sourceTree = "<group>"; };
 		6C85F1BB1F5C44FF009FB1CA /* Cuckoo.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Cuckoo.framework.dSYM; path = Carthage/Build/iOS/Cuckoo.framework.dSYM; sourceTree = "<group>"; };
 		6CA5947C1F6311F700CF37AB /* TabBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarContainer.swift; sourceTree = "<group>"; };
 		6CA5947F1F631A0F00CF37AB /* SceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneOperation.swift; path = NavigatorSwift/Source/SceneOperation/SceneOperation.swift; sourceTree = SOURCE_ROOT; };
@@ -515,6 +521,7 @@
 				18C8720A1F69B9E000701144 /* SceneURLHandler */,
 				6C27A9701F5A093000311918 /* SceneHandler */,
 				6C27A9711F5A094500311918 /* SceneOperationManager */,
+				6C37A67A20264AAE0011F818 /* Interceptor */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -611,6 +618,16 @@
 				6CC8BAD31F5A127200559655 /* NavigationBarContainer.swift */,
 			);
 			path = Nav;
+			sourceTree = "<group>";
+		};
+		6C37A67A20264AAE0011F818 /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				6C37A67B20264AC70011F818 /* SceneOperationInterceptor.swift */,
+				6C37A67F202650280011F818 /* InterceptorContext.swift */,
+				6C37A67D20264EDB0011F818 /* SceneOperationInterceptable.swift */,
+			);
+			path = Interceptor;
 			sourceTree = "<group>";
 		};
 		6CA5947E1F6319FA00CF37AB /* SceneOperation */ = {
@@ -905,7 +922,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CA594881F63227400CF37AB /* DismissAllOperation.swift in Sources */,
+				6C37A67C20264AC70011F818 /* SceneOperationInterceptor.swift in Sources */,
 				183A1F841F688223005550C1 /* Preview.swift in Sources */,
+				6C37A680202650280011F818 /* InterceptorContext.swift in Sources */,
 				6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */,
 				6C27A9601F59E2E900311918 /* Scene.swift in Sources */,
 				189A94691FD820C400D4DB32 /* Array+Utils.swift in Sources */,
@@ -920,6 +939,7 @@
 				6CC4FA971F5AC9A1003B748A /* SceneProvider.swift in Sources */,
 				6C27A9621F59E2FD00311918 /* SceneHandler.swift in Sources */,
 				188DB1821F6466CF00E9024E /* OrderedSceneOperation.swift in Sources */,
+				6C37A67E20264EDB0011F818 /* SceneOperationInterceptable.swift in Sources */,
 				6C27A9731F5A096400311918 /* SceneOperationManager.swift in Sources */,
 				18C872071F69B81300701144 /* NavigatorPreviewing.swift in Sources */,
 				1810B1721F685E9B003B9CA0 /* TabNavigator.swift in Sources */,

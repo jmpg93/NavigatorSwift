@@ -43,6 +43,8 @@ extension AddSceneOperation: SceneOperation {
 	}
 }
 
+// MARK: Private method
+
 private extension AddSceneOperation {
 	func recursiveShow(scenes: [Scene], visibleViewController: UIViewController?, completion: CompletionBlock?) {
 		guard !scenes.isEmpty else {

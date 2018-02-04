@@ -76,14 +76,6 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Navigate with operation
-
-public extension Navigator {
-	func navigate(with operation: SceneOperation, completion: CompletionBlock? = nil) {
-		operation.execute(with: completion)
-	}
-}
-
 // MARK: - Navigate with builder
 
 public extension Navigator {
@@ -187,7 +179,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - SceneHandler Registrar
+// MARK: - SceneHandler Register
 
 public extension Navigator {
 	func register(_ sceneHandler: SceneHandler) {
