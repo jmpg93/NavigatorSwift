@@ -9,11 +9,11 @@
 import Foundation
 
 public protocol SceneOperationInterceptor {
-	func operation(with operation: SceneOperationInterceptable) -> SceneOperation?
+	func operation(with operation: InterceptableSceneOperation) -> SceneOperation?
 }
 
 public extension SceneOperationInterceptor {
-	func operation(with operation: SceneOperationInterceptable) -> SceneOperation? {
+	func operation(with operation: InterceptableSceneOperation) -> SceneOperation? {
 		return operation
 	}
 }

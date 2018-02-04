@@ -21,7 +21,7 @@ struct AddSceneOperation {
 
 // MARK: SceneOperation methods
 
-extension AddSceneOperation: SceneOperation {
+extension AddSceneOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[AddSceneOperation] Executing operation")
 
@@ -40,6 +40,13 @@ extension AddSceneOperation: SceneOperation {
 		let visibleViewController = manager.visible(from: rootViewController)
 
 		recursiveShow(scenes: scenes, visibleViewController: visibleViewController, completion: completion)
+	}
+
+	func context() -> InterceptorContext {
+		let from = manager.state(from: manager.rootViewController)
+		let to = scenes.map(ScenePresentationState.init)
+
+		return InterceptorContext(from: from, to: to)
 	}
 }
 

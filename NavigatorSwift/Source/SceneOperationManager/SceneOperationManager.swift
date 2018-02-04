@@ -11,7 +11,7 @@ import UIKit
 
 public typealias CompletionBlock = () -> Void
 
-public class SceneOperationManager: VisibleViewControllerFindable {
+public class SceneOperationManager: HierarchyStateSearchable {
 	let window: UIWindow
 	private var viewControllerContainer: ViewControllerContainer?
 

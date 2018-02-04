@@ -25,6 +25,17 @@ public struct SceneContext {
 	}
 }
 
+// MARK: - Internal methods
+
+extension SceneContext {
+	init(scene: Scene) {
+		self.init(sceneName: scene.sceneHandler.name,
+				  parameters: scene.parameters,
+				  type: scene.type,
+				  isAnimated: scene.isAnimated)
+	}
+}
+
 extension SceneContext: CustomStringConvertible {
 	public var description: String {
 		return "SceneContext [scenename: \(sceneName), parameters: \(parameters), type: \(type), animated: \(isAnimated)]"

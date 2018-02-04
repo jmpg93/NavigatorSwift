@@ -21,7 +21,7 @@ struct SetScenesOperation {
 
 // MARK: SceneOperation methods
 
-extension SetScenesOperation: SceneOperation {
+extension SetScenesOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[SetScenesOperation] Executing operation")
 		guard let rootScene = scenes.first else {
@@ -42,6 +42,13 @@ extension SetScenesOperation: SceneOperation {
 				.then(manager.add(scenes: scenes))
 				.execute(with: completion)
 		}
+	}
+
+	func context() -> InterceptorContext {
+		let from = manager.state(from: manager.rootViewController)
+		let to = scenes.map(ScenePresentationState.init)
+
+		return InterceptorContext(from: from, to: to)
 	}
 }
 

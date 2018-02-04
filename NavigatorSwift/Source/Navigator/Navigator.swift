@@ -15,6 +15,14 @@ public protocol Navigator: class {
 	var sceneURLHandler: SceneURLHandler { get }
 }
 
+// MARK: - Navigate with operation
+
+public extension Navigator {
+	func navigate(with operation: SceneOperation, completion: CompletionBlock? = nil) {
+		operation.execute(with: completion)
+	}
+}
+
 // MARK: - Set root with Scene names
 
 public extension Navigator {

@@ -9,6 +9,8 @@
 import Foundation
 
 public struct InterceptorContext {
-	public let from: [SceneViewState]
-	public let to: [SceneOperation]
+	public static let empty = InterceptorContext(from: [], to: [])
+	
+	public let from: [ScenePresentationState]
+	public let to: [ScenePresentationState]
 }

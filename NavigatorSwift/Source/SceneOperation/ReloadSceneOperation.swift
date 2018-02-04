@@ -20,7 +20,7 @@ class ReloadSceneOperation {
 
 // MARK: SceneOperation methods
 
-extension ReloadSceneOperation: SceneOperation {
+extension ReloadSceneOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[ReloadSceneOperation] Executing operation")
 
@@ -37,5 +37,11 @@ extension ReloadSceneOperation: SceneOperation {
 		}
 
 		completion?()
+	}
+
+	func context() -> InterceptorContext {
+		let from = manager.state(from: manager.rootViewController)
+
+		return InterceptorContext(from: from, to: from)
 	}
 }

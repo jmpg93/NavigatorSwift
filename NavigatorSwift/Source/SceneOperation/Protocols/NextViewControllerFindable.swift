@@ -13,6 +13,8 @@ public protocol NextViewControllerFindable {
 	func next(before viewController: UIViewController) -> UIViewController?
 }
 
+// MARK: - Default implementation
+
 public extension NextViewControllerFindable {
 	func next(before viewController: UIViewController) -> UIViewController? {
 		if let content = contentViewController(with: viewController) {
@@ -30,6 +32,8 @@ public extension NextViewControllerFindable {
 		return nil
 	}
 }
+
+// MARK: - Private methods
 
 private extension NextViewControllerFindable {
 	func next(before viewController: UIViewController, using navigationController: UINavigationController?) -> UIViewController? {

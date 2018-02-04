@@ -22,7 +22,7 @@ struct DismissSceneOperation {
 
 // MARK: SceneOperation methods
 
-extension DismissSceneOperation: SceneOperation {
+extension DismissSceneOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[DismissSceneOperation] Executing operation")
 
@@ -40,5 +40,16 @@ extension DismissSceneOperation: SceneOperation {
 		} else {
 			completion?()
 		}
+	}
+
+	func context() -> InterceptorContext {
+		guard let sceneName = manager.rootViewController?.sceneName else {
+			return .empty
+		}
+
+		let from = manager.state(from: manager.rootViewController)
+		let to = from.droping(top: .modal)
+
+		return InterceptorContext(from: from, to: to)
 	}
 }

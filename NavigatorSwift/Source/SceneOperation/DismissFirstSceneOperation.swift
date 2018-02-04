@@ -20,7 +20,7 @@ struct DismissFirstSceneOperation {
 
 // MARK: SceneOperation methods
 
-extension DismissFirstSceneOperation: SceneOperation {
+extension DismissFirstSceneOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[DismissFirstSceneOperation] Executing operation")
 
@@ -39,5 +39,16 @@ extension DismissFirstSceneOperation: SceneOperation {
 			logTrace("[DismissFirstSceneOperation] Could not dismiss first viewController")
 			completion?()
 		}
+	}
+
+	func context() -> InterceptorContext {
+		guard let sceneName = manager.rootViewController?.sceneName else {
+			return .empty
+		}
+
+		let from = manager.state(from: manager.rootViewController)
+		let to = from.droping(first: .modal)
+
+		return InterceptorContext(from: from, to: to)
 	}
 }

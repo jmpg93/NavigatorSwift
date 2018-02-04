@@ -23,7 +23,7 @@ struct PopSceneOperation {
 
 // MARK: SceneOperation methods
 
-extension PopSceneOperation: SceneOperation {
+extension PopSceneOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[PopSceneOperation] Executing operation")
 
@@ -53,5 +53,16 @@ extension PopSceneOperation: SceneOperation {
 		DispatchQueue.main.asyncAfter(deadline: .now() + animationTime) {
 			completion?()
 		}
+	}
+
+	func context() -> InterceptorContext {
+		guard let sceneName = manager.rootViewController?.sceneName else {
+			return .empty
+		}
+
+		let from = manager.state(from: manager.rootViewController)
+		let to = from.droping(top: .push)
+
+		return InterceptorContext(from: from, to: to)
 	}
 }

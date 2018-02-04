@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
-protocol VisibleViewControllerFindable: NextViewControllerFindable {
+public protocol VisibleViewControllerFindable: NextViewControllerFindable {
 	func visible(from fromViewController: UIViewController) -> UIViewController
 }
 
-extension VisibleViewControllerFindable {
+// MARK: - Default implementation
+
+public extension VisibleViewControllerFindable {
 	func visible(from fromViewController: UIViewController) -> UIViewController {
 		var _next = fromViewController
 

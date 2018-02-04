@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol SceneOperationInterceptable: SceneOperation {
+public protocol InterceptableSceneOperation: SceneOperation {
 	func context() -> InterceptorContext
 }

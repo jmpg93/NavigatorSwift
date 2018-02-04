@@ -46,5 +46,3 @@ extension SetVisibleSceneOperation: SceneOperation {
 		}
 	}
 }
-
-

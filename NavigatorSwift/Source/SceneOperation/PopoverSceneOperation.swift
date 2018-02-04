@@ -22,10 +22,17 @@ struct PopoverSceneOperation {
 
 // MARK: SceneOperation methods
 
-extension PopoverSceneOperation: SceneOperation {
+extension PopoverSceneOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[PopSceneOperation] Executing operation")
 		scene.operationParameters[ParametersKeys.popover] = popover
 		manager.add(scenes: [scene]).execute(with: completion)
+	}
+
+	func context() -> InterceptorContext {
+		let from = manager.state(from: manager.rootViewController)
+		let to = from.adding(scene: scene)
+
+		return InterceptorContext(from: from, to: to)
 	}
 }
