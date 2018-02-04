@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 struct AddSceneOperation {
-	private let scenes: [Scene]
-	private let manager: SceneOperationManager
+	fileprivate let scenes: [Scene]
+	fileprivate let manager: SceneOperationManager
 
 	init(scenes: [Scene], manager: SceneOperationManager) {
 		self.scenes = scenes
@@ -31,13 +31,13 @@ extension AddSceneOperation: InterceptableSceneOperation {
 			return
 		}
 
-		guard let rootViewController = manager.rootViewController else {
-			logTrace("[AddSceneOperation] No root view controller found")
-			completion?()
-			return
-		}
+		let visibleViewController: UIViewController?
 
-		let visibleViewController = manager.visible(from: rootViewController)
+		if let rootViewController = manager.rootViewController {
+			visibleViewController = manager.visible(from: rootViewController)
+		} else {
+			visibleViewController = nil
+		}
 
 		recursiveShow(scenes: scenes, visibleViewController: visibleViewController, completion: completion)
 	}
@@ -50,7 +50,7 @@ extension AddSceneOperation: InterceptableSceneOperation {
 	}
 }
 
-// MARK: Private method
+// MARK: Recursion methods
 
 private extension AddSceneOperation {
 	func recursiveShow(scenes: [Scene], visibleViewController: UIViewController?, completion: CompletionBlock?) {
@@ -63,39 +63,55 @@ private extension AddSceneOperation {
 		let scene = scenes.removeFirst()
 
 		let newViewController = scene.view()
-		let animated = scene.isAnimated
-
-		let recursiveCall: CompletionBlock =  {
+		let recursiveCall: CompletionBlock = {
 			self.recursiveShow(scenes: scenes, visibleViewController: newViewController, completion: completion)
 		}
 
 		switch scene.type {
 		case .push:
 			logTrace("[AddSceneOperation] Pushing scene \(scene)")
-			self.push(from: visibleViewController?.navigationController, newViewController, animated: animated, completion: recursiveCall)
+			push(newViewController, from: visibleViewController?.navigationController, animated: scene.isAnimated, completion: recursiveCall)
 
 		case .modalNavigation:
 			logTrace("[AddSceneOperation] Presenting inside navigation scene \(scene)")
 			let navigationController = scene.sceneHandler.navigation(with: newViewController)
-			self.present(from: visibleViewController, navigationController, animated: animated, completion: recursiveCall)
+			present(navigationController, from: visibleViewController, animated: scene.isAnimated, completion: recursiveCall)
 
 		case .modal:
 			logTrace("[AddSceneOperation] Presenting scene \(scene)")
-			self.present(from: visibleViewController, newViewController, animated: animated, completion: recursiveCall)
+			present(newViewController, from: visibleViewController, animated: scene.isAnimated, completion: recursiveCall)
 
 		case .root:
 			logTrace("[AddSceneOperation] Setting root scene \(scene)")
-			self.root(scene: scene, completion: recursiveCall)
+			root(scene: scene, completion: recursiveCall)
 
 		case .none:
 			logTrace("[AddSceneOperation] Doing nothing for scene \(scene)")
-			recursiveCall()
+			let firstLevelNavigation = manager.firstLevelNavigationController(matching: scene)
+			if let firstLevelNavigation = firstLevelNavigation {
+				manager.select(viewController: firstLevelNavigation)
+			}
+			recursiveShow(scenes: scenes, visibleViewController: firstLevelNavigation?.viewControllers.first, completion: completion)
+		}
+	}
+
+	func newViewController(for scene: Scene) -> UIViewController? {
+		switch scene.type {
+		case .modal,
+			 .modalNavigation,
+			 .root,
+			 .push:
+			return scene.view()
+		case .none:
+			return manager.firstLevelNavigationController(matching: scene)
 		}
 	}
 }
 
+// MARK: Private methods
+
 private extension AddSceneOperation {
-	func present(from: UIViewController?, _ viewController: UIViewController, animated: Bool, completion: @escaping CompletionBlock) {
+	func present(_ viewController: UIViewController, from: UIViewController?, animated: Bool, completion: @escaping CompletionBlock) {
 		guard let from = from else {
 			completion()
 			return
@@ -104,7 +120,7 @@ private extension AddSceneOperation {
 		from.present(viewController, animated: animated, completion: completion)
 	}
 
-	func push(from: UINavigationController?, _ viewController: UIViewController, animated: Bool, completion: @escaping CompletionBlock) {
+	func push(_ viewController: UIViewController, from: UINavigationController?, animated: Bool, completion: @escaping CompletionBlock) {
 		guard let from = from else {
 			completion()
 			return
@@ -117,6 +133,6 @@ private extension AddSceneOperation {
 	}
 
 	func root(scene: Scene, completion: @escaping CompletionBlock) {
-		self.manager.root(scene: scene).execute(with: completion)
+		manager.root(scene: scene).execute(with: completion)
 	}
 }
