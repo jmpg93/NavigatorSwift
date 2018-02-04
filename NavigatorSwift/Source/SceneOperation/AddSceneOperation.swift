@@ -62,48 +62,26 @@ private extension AddSceneOperation {
 		var scenes = scenes
 		let scene = scenes.removeFirst()
 
-		let newViewController = scene.view()
-		let recursiveCall: CompletionBlock = {
-			self.recursiveShow(scenes: scenes, visibleViewController: newViewController, completion: completion)
-		}
-
 		switch scene.type {
 		case .push:
 			logTrace("[AddSceneOperation] Pushing scene \(scene)")
-			push(newViewController, from: visibleViewController?.navigationController, animated: scene.isAnimated, completion: recursiveCall)
+			push(scene, from: visibleViewController?.navigationController, scenes: scenes, completion: completion)
 
 		case .modalNavigation:
 			logTrace("[AddSceneOperation] Presenting inside navigation scene \(scene)")
-			let navigationController = scene.sceneHandler.navigation(with: newViewController)
-			present(navigationController, from: visibleViewController, animated: scene.isAnimated, completion: recursiveCall)
+			presentNavigation(scene, from: visibleViewController, scenes: scenes, completion: completion)
 
 		case .modal:
 			logTrace("[AddSceneOperation] Presenting scene \(scene)")
-			present(newViewController, from: visibleViewController, animated: scene.isAnimated, completion: recursiveCall)
+			present(scene, from: visibleViewController, scenes: scenes, completion: completion)
 
 		case .root:
 			logTrace("[AddSceneOperation] Setting root scene \(scene)")
-			root(scene: scene, completion: recursiveCall)
+			root(scene: scene, scenes: scenes, completion: completion)
 
-		case .none:
+		case .select:
 			logTrace("[AddSceneOperation] Doing nothing for scene \(scene)")
-			let firstLevelNavigation = manager.firstLevelNavigationController(matching: scene)
-			if let firstLevelNavigation = firstLevelNavigation {
-				manager.select(viewController: firstLevelNavigation)
-			}
-			recursiveShow(scenes: scenes, visibleViewController: firstLevelNavigation?.viewControllers.first, completion: completion)
-		}
-	}
-
-	func newViewController(for scene: Scene) -> UIViewController? {
-		switch scene.type {
-		case .modal,
-			 .modalNavigation,
-			 .root,
-			 .push:
-			return scene.view()
-		case .none:
-			return manager.firstLevelNavigationController(matching: scene)
+			select(scene, scenes: scenes, completion: completion)
 		}
 	}
 }
@@ -111,28 +89,74 @@ private extension AddSceneOperation {
 // MARK: Private methods
 
 private extension AddSceneOperation {
-	func present(_ viewController: UIViewController, from: UIViewController?, animated: Bool, completion: @escaping CompletionBlock) {
+	func present(_ scene: Scene, from: UIViewController?, scenes: [Scene], completion: CompletionBlock?) {
 		guard let from = from else {
-			completion()
+			logTrace("[AddSceneOperation] Could not present \(scene). No fromViewController.")
+			completion?()
 			return
 		}
 
-		from.present(viewController, animated: animated, completion: completion)
+		let viewController = scene.view()
+
+		let recursiveCompletion: CompletionBlock = {
+			self.recursiveShow(scenes: scenes, visibleViewController: viewController, completion: completion)
+		}
+
+		from.present(viewController, animated: scene.isAnimated, completion: recursiveCompletion)
 	}
 
-	func push(_ viewController: UIViewController, from: UINavigationController?, animated: Bool, completion: @escaping CompletionBlock) {
+	func presentNavigation(_ scene: Scene, from: UIViewController?, scenes: [Scene], completion: CompletionBlock?) {
 		guard let from = from else {
-			completion()
+			logTrace("[AddSceneOperation] Could not present \(scene). No fromViewController.")
+			completion?()
 			return
+		}
+
+		let viewController = scene.sceneHandler.navigation(with: scene.view())
+
+		let recursiveCompletion: CompletionBlock = {
+			self.recursiveShow(scenes: scenes, visibleViewController: viewController.viewControllers.first, completion: completion)
+		}
+
+		from.present(viewController, animated: scene.isAnimated, completion: recursiveCompletion)
+	}
+
+	func push(_ scene: Scene, from: UINavigationController?, scenes: [Scene], completion: CompletionBlock?) {
+		guard let from = from else {
+			logTrace("[AddSceneOperation] Could not push \(scene). No navigation controller.")
+			completion?()
+			return
+		}
+
+		let viewController = scene.view()
+
+		let recursiveCompletion: CompletionBlock = {
+			self.recursiveShow(scenes: scenes, visibleViewController: viewController, completion: completion)
 		}
 
 		CATransaction.begin()
-		from.pushViewController(viewController, animated: animated)
-		CATransaction.setCompletionBlock(completion)
+		from.pushViewController(viewController, animated: scene.isAnimated)
+		CATransaction.setCompletionBlock(recursiveCompletion)
 		CATransaction.commit()
 	}
 
-	func root(scene: Scene, completion: @escaping CompletionBlock) {
-		manager.root(scene: scene).execute(with: completion)
+	func root(scene: Scene, scenes: [Scene], completion: CompletionBlock?) {
+		let recursiveCompletion: CompletionBlock = {
+			self.recursiveShow(scenes: scenes, visibleViewController: self.manager.rootViewController, completion: completion)
+		}
+
+		manager.root(scene: scene).execute(with: recursiveCompletion)
+	}
+
+	func select(_ scene: Scene, scenes: [Scene], completion: CompletionBlock?) {
+		guard let firstLevelNavigation = manager.firstLevelNavigationController(matching: scene) else {
+			logTrace("[AddSceneOperation] Could not select \(scene). No first level navigation controller.")
+			completion?()
+			return
+		}
+
+		manager.select(viewController: firstLevelNavigation)
+		
+		recursiveShow(scenes: scenes, visibleViewController: firstLevelNavigation.viewControllers.first, completion: completion)
 	}
 }
