@@ -16,7 +16,7 @@ public struct SceneContext {
 	
 	public init(sceneName: SceneName,
 				parameters: Parameters = [:],
-				type: ScenePresentationType = .none,
+				type: ScenePresentationType = .select,
 				isAnimated: Bool = true) {
 		self.sceneName = sceneName
 		self.parameters = parameters

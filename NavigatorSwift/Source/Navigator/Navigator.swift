@@ -160,7 +160,7 @@ public extension Navigator {
 extension Navigator {
 	func reload(_ name: SceneName,  parameters: Parameters = [:], completion: CompletionBlock? = nil) {
 		logDebug("Reload \(name)")
-		let scene = sceneProvider.scene(with: name, type: .none)
+		let scene = sceneProvider.scene(with: name, type: .select)
 		sceneOperationManager.reload(scene:scene).execute(with: completion)
 	}
 }

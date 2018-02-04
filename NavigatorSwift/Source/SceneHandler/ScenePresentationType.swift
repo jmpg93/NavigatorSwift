@@ -13,5 +13,5 @@ public enum ScenePresentationType: String {
 	case push
 	case modal
 	case modalNavigation
-	case none
+	case select
 }

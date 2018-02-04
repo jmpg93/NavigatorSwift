@@ -37,7 +37,7 @@ extension UIViewController {
 		} else if isPush {
 			return .push
 		} else {
-			return .none
+			return .select
 		}
 	}
 
@@ -48,8 +48,8 @@ extension UIViewController {
 			 (.modal, .modal),
 			 (.modalNavigation, .modalNavigation),
 			 (.root, .root),
-			 (_, .none),
-			 (.none, _):
+			 (.select, _),
+			 (_, .select):
 			return true
 		default:
 			return false
