@@ -44,11 +44,10 @@ extension SetScenesOperation: InterceptableSceneOperation {
 		}
 	}
 
-	func context() -> InterceptorContext {
+	func context() -> SceneOperationContext {
 		let from = manager.state(from: manager.rootViewController)
-		let to = scenes.map(ScenePresentationState.init)
-
-		return InterceptorContext(from: from, to: to)
+		
+		return SceneOperationContext(from: from, to: scenes)
 	}
 }
 

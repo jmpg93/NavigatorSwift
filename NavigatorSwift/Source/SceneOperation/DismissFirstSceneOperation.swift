@@ -41,14 +41,10 @@ extension DismissFirstSceneOperation: InterceptableSceneOperation {
 		}
 	}
 
-	func context() -> InterceptorContext {
-		guard let sceneName = manager.rootViewController?.sceneName else {
-			return .empty
-		}
-
+	func context() -> SceneOperationContext {
 		let from = manager.state(from: manager.rootViewController)
-		let to = from.droping(first: .modal)
+		let to = from.dropping(first: .modal)
 
-		return InterceptorContext(from: from, to: to)
+		return SceneOperationContext(from: from, to: to)
 	}
 }

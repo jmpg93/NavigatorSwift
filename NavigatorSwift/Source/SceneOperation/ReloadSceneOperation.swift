@@ -39,9 +39,9 @@ extension ReloadSceneOperation: InterceptableSceneOperation {
 		completion?()
 	}
 
-	func context() -> InterceptorContext {
+	func context() -> SceneOperationContext {
 		let from = manager.state(from: manager.rootViewController)
 
-		return InterceptorContext(from: from, to: from)
+		return SceneOperationContext(from: from, to: from)
 	}
 }

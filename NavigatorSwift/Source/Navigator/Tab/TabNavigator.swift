@@ -11,6 +11,8 @@ import UIKit
 
 final public class TabNavigator: Navigator, NavigatorPreviewing {
 	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
+	public var interceptors: [SceneOperationInterceptor] = []
+
 	public let sceneProvider: SceneProvider
 	public let sceneURLHandler: SceneURLHandler
 	public let sceneOperationManager: SceneOperationManager

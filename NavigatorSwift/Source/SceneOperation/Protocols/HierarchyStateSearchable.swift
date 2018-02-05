@@ -9,13 +9,13 @@
 import Foundation
 
 public protocol HierarchyStateSearchable: VisibleViewControllerFindable {
-	func state(from viewController: UIViewController?) -> [ScenePresentationState]
+	func state(from viewController: UIViewController?) -> [SceneState]
 }
 
 // MARK: - Default implementation
 
 public extension HierarchyStateSearchable {
-	func state(from viewController: UIViewController?) -> [ScenePresentationState] {
+	func state(from viewController: UIViewController?) -> [SceneState] {
 		var _next = viewController
 		var views: [UIViewController] = []
 
@@ -29,6 +29,6 @@ public extension HierarchyStateSearchable {
 			.map { ($0.sceneName, $0.scenePresentationType) }
 			.map { $0 == nil ? nil : (SceneName($0!), $1) }
 			.flatMap { $0 }
-			.map(ScenePresentationState.init)
+			.map(SceneState.init)
 	}
 }

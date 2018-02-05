@@ -42,6 +42,7 @@ private extension AppDelegate {
 	}
 
 	func setUpNavigator() {
+		globalNavigator.register(Interceptor.shared)
 		globalNavigator.register([CollectionSceneHandler(), BlueSceneHandler(), RedSceneHandler(), TabBarSceneHandler()])
 		globalNavigator.root(.tabBar)
 		globalNavigator.setTabs([.blue, .red])

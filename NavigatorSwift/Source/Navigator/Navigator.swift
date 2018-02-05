@@ -10,16 +10,21 @@ import Foundation
 import UIKit
 
 public protocol Navigator: class {
-	var sceneProvider: SceneProvider { get }
 	var sceneOperationManager: SceneOperationManager { get }
+	var sceneProvider: SceneProvider { get }
 	var sceneURLHandler: SceneURLHandler { get }
+	var interceptors: [SceneOperationInterceptor] { get set }
 }
 
 // MARK: - Navigate with operation
 
 public extension Navigator {
 	func navigate(with operation: SceneOperation, completion: CompletionBlock? = nil) {
-		operation.execute(with: completion)
+		if let operation = operation as? InterceptableSceneOperation, let interceptor = interceptor(for: operation) {
+			interceptor.execute(operation, with: completion)
+		} else {
+			operation.execute(with: completion)
+		}
 	}
 }
 
@@ -200,3 +205,36 @@ public extension Navigator {
 		}
 	}
 }
+
+
+// MARK: - SceneHandler Register
+
+public extension Navigator {
+	func register(_ interceptor: SceneOperationInterceptor) {
+		interceptors.append(interceptor)
+	}
+
+	func register(_ interceptors: [SceneOperationInterceptor]) {
+		interceptors.forEach(register)
+	}
+
+	func unregister(_ interceptor: SceneOperationInterceptor) {
+		interceptors.forEach(unregister)
+	}
+
+	func unregister(_ interceptors: [SceneOperationInterceptor]) {
+	}
+}
+
+// MARK: - SceneHandler Register
+
+public extension Navigator {
+	func navigate(with operation: InterceptableSceneOperation, completion: CompletionBlock? = nil) {
+
+	}
+
+	func interceptor(for operation: InterceptableSceneOperation) -> SceneOperationInterceptor? {
+		return interceptors.first(where: { $0.shouldIntercept(operation: operation) })
+	}
+}
+

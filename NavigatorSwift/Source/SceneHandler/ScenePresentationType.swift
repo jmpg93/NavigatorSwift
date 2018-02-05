@@ -15,3 +15,13 @@ public enum ScenePresentationType: String {
 	case modalNavigation
 	case select
 }
+
+extension ScenePresentationType: Hashable {
+	public static func ==(lhs: ScenePresentationType, rhs: ScenePresentationType) -> Bool {
+		return lhs.rawValue == rhs.rawValue
+	}
+
+	public var hashValue: Int {
+		return rawValue.hashValue
+	}
+}

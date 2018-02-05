@@ -1,5 +1,5 @@
 //
-//  InterceptorContext.swift
+//  SceneOperationContext.swift
 //  NavigatorSwift
 //
 //  Created by Jose Maria Puerta on 3/2/18.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct InterceptorContext {
-	public static let empty = InterceptorContext(from: [], to: [])
+public struct SceneOperationContext {
+	public static let empty = SceneOperationContext(from: [], to: [])
 	
 	public let from: [ScenePresentationState]
 	public let to: [ScenePresentationState]

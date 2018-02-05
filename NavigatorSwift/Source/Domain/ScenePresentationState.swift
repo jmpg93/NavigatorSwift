@@ -8,40 +8,66 @@
 
 import Foundation
 
-public struct ScenePresentationState {
-	public let name: SceneName
-	public let type: ScenePresentationType
+public protocol ScenePresentationState {
+	var name: SceneName { get }
+	var type: ScenePresentationType { get }
+}
 
-	public init(name: SceneName, type: ScenePresentationType) {
-		self.name = name
-		self.type = type
+// MARK: Extensions
+
+extension Scene: ScenePresentationState {
+	public var name: SceneName {
+		return sceneHandler.name
 	}
 }
 
-// MARK: - Internal methods
+extension SceneState: ScenePresentationState {
 
-extension ScenePresentationState {
-	init(scene: Scene) {
-		self.init(name: scene.sceneHandler.name, type: scene.type)
-	}
 }
 
 // MARK: - Array utils
 
-extension Array where Element: ScenePresentationState {
-	func dropping(top: ScenePresentationType) -> [ScenePresentationState] {
-		return self
+public extension Array where Element: ScenePresentationState {
+	func dropping(from type: ScenePresentationType) -> [ScenePresentationState] {
+		if let index = index(of: type) {
+			return Array(self[0..<index])
+		} else {
+			return self
+		}
 	}
 
-	func dropping(bottom: ScenePresentationType) -> [ScenePresentationState] {
-		return self
+	func dropping(first type: ScenePresentationType) -> [ScenePresentationState] {
+		if let last = last, type == last.type {
+			return Array(dropLast())
+		} else {
+			return self
+		}
 	}
 
-	func dropping(first: ScenePresentationType) -> [ScenePresentationState] {
-		return reversed()
+	func appending(_ state: ScenePresentationState) -> [ScenePresentationState] {
+		return appending([state])
 	}
 
-	func adding(scene: Scene) -> [ScenePresentationState] {
-		return self + [ScenePresentationState(scene: scene)]
+	func appending(_ states: [ScenePresentationState]) -> [ScenePresentationState] {
+		return self + states
+	}
+
+	private func index(of type: ScenePresentationType) -> Index? {
+		return lazy
+			.enumerated()
+			.first(where: { typesMathes($0.element.type, type) })
+			.map({ $0.offset })
+	}
+
+	private func typesMathes(_ leftType: ScenePresentationType, _ rightType: ScenePresentationType) -> Bool {
+		switch (leftType, rightType) {
+		case (.modal, .modal),
+			 (.modalNavigation, .modalNavigation),
+			 (.modalNavigation, .modal),
+			 (.modal, .modalNavigation):
+			return true
+		default:
+			return leftType.rawValue == rightType.rawValue
+		}
 	}
 }

@@ -38,10 +38,9 @@ extension RootSceneOperation: InterceptableSceneOperation {
 		completion?()
 	}
 
-	func context() -> InterceptorContext {
+	func context() -> SceneOperationContext {
 		let from = manager.state(from: manager.rootViewController)
-		let to = [ScenePresentationState(scene: scene)]
 
-		return InterceptorContext(from: from, to: to)
+		return SceneOperationContext(from: from, to: [scene])
 	}
 }
