@@ -106,7 +106,7 @@ let loginView = navigator.view(for: .login)
 - Traverse (get the current stack hierarchy; sceneName and presentationType):
 ```swift
 navigator.traverse { state in
-	if state.map({ $0.name }).contains(.collection) {
+	if state.names.contains(.collection) {
 		// Do something
 	}
 }
@@ -124,14 +124,14 @@ If you use relative navigation, you can add new scenes over the current hierarch
 - Absolute stack navigation using builder (the current stack will be recycled and reloaded if possible):
 ```swift
 navigator.build { builder in
-	builder.root(name: .login)
-	builder.modalNavigation(.home)
-	builder.push(.detail)
+	builder.root(name: .home)
+	builder.modalNavigation(.login)
 }
 ```
 If you use absolute navigation, the hierarchy will be rebuilded from root. If the current hierarchy match the targeted hierarchy, the view controllers will be recycled and reloaded.
 
 - Operation based navigation:
+
 For more complex navigation you can create and concatenate operations that will be executed serially. This can be easyly archived by creating a new ```SceneOperation``` and extending the ```Navigator``` protocol.
 
 ```swift
@@ -159,14 +159,15 @@ extension SomeOperation: SceneOperation {
 }
 ```
 - Interceptors:
+
 By implementing the protocol `SceneOperationInterceptor` you can intercept all the operations being executed by the navigator.
 This protocol allows you to change the behavior of the navigator in some cases. 
 
-For example if you want to display the system location persmissions alerts just before presenting some map view you can create a new interceptor:
+For example if you want to display the system location persmissions alert just before presenting some map view you can create a new interceptor:
 ```
 class SystemPermissionsInterceptor: SceneOperationInterceptor {
 	func operation(with operation: SceneOperation, context: SceneOperationContext) -> SceneOperation? {
-		return ShowLocationPermissionsSceneOperation().then(operation)
+		return ShowLocationPermissionsIfNeededSceneOperation().then(operation)
 	}
 
 	func shouldIntercept(operation: SceneOperation, context: SceneOperationContext) -> Bool {
