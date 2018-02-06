@@ -175,7 +175,7 @@ class SystemPermissionsInterceptor: SceneOperationInterceptor {
 	}
 }
 ```
-If you want to stop the execution of the operation, you must return nil on the ```operation(with:context:)```
+If you want to stop the execution of the operation, you must return nil on ```operation(with:context:)```
 
 To start intercepting operations, a registration of the interceptor is needed.
 ```swift
