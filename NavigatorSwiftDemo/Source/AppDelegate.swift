@@ -42,7 +42,7 @@ private extension AppDelegate {
 	}
 
 	func setUpNavigator() {
-		globalNavigator.register(Interceptor.shared)
+		globalNavigator.register(Interceptor())
 		globalNavigator.register([CollectionSceneHandler(), BlueSceneHandler(), RedSceneHandler(), TabBarSceneHandler()])
 		globalNavigator.root(.tabBar)
 		globalNavigator.setTabs([.blue, .red])
@@ -57,6 +57,7 @@ private extension AppDelegate {
 			DispatchQueue.main.async {
 				globalNavigator.build { builder in
 					builder.root(.tabBar)
+					builder.currentTab()
 					builder.tab(.red)
 					builder.presentNavigation(.blue)
 					builder.push(.collection)

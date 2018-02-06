@@ -9,9 +9,7 @@
 import Foundation
 import NavigatorSwift
 
-class Interceptor: SceneOperationInterceptor {
-	static let shared = Interceptor()
-	
+class Interceptor: SceneOperationInterceptor {	
 	func operation(with operation: SceneOperation, context: SceneOperationContext) -> SceneOperation? {
 		print("\(type(of: operation)) with final context \(context.targetState.names)")
 		return operation

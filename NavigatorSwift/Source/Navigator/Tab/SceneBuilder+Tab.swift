@@ -14,6 +14,7 @@ public extension SceneBuilder where T: TabNavigator {
 	}
 
 	func currentTab() {
+		guard let currentTabSceneName = currentTabSceneName else { return }
 		tab(currentTabSceneName)
 	}
 }
@@ -21,14 +22,14 @@ public extension SceneBuilder where T: TabNavigator {
 // MARK: Private methods
 
 private extension SceneBuilder where T: TabNavigator {
-	var currentTabSceneName: SceneName {
-		return SceneName(
-			sceneProvider
+	var currentTabSceneName: SceneName? {
+		guard let name = sceneProvider
 			.manager
-			.visibleNavigationController!
+			.visibleNavigationController?
 			.viewControllers
-			.first!
-			.sceneName!
-		)
+			.first?
+			.sceneName else { return nil }
+
+		return SceneName(name)
 	}
 }
