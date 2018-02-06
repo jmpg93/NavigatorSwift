@@ -13,7 +13,7 @@ let navigator = NavNavigator(window: UIWindow())
 let navigator = TabNavigator(window: UIWindow())
 
 // Custom container based navigator
-let navigator = ContainerNavigator(window: UIWindow(), viewControllerContainer: customViewControllerContainer)
+let navigator = ContainerNavigator(window: UIWindow())
 ```
 
 ### Create a Scene and register it
