@@ -44,9 +44,7 @@ extension SetScenesOperation: InterceptableSceneOperation {
 		}
 	}
 
-	func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-		
+	func context(from: [SceneState]) -> SceneOperationContext {		
 		return SceneOperationContext(from: from, to: scenes)
 	}
 }

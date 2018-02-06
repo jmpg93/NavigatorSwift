@@ -27,7 +27,7 @@ final public class TabNavigator: Navigator, NavigatorPreviewing {
 	}
 }
 
-// MARK: - Public methods
+// MARK: Public methods
 
 public extension TabNavigator {
 	public func setTabs(_ sceneContexts: [SceneContext]) {
@@ -39,7 +39,7 @@ public extension TabNavigator {
 	}
 }
 
-// MARK: - Private methods
+// MARK: Private methods
 
 private extension TabNavigator {
 	func buildViewController(scene: Scene) -> UIViewController {

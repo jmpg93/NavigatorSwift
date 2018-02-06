@@ -25,7 +25,7 @@ public struct SceneContext {
 	}
 }
 
-// MARK: - Internal methods
+// MARK: Internal methods
 
 extension SceneContext {
 	init(scene: Scene) {

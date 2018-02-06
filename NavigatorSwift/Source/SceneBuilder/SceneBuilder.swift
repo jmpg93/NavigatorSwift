@@ -20,7 +20,7 @@ public class SceneBuilder<T: Navigator> {
 	}
 }
 
-// MARK: - Public methods
+// MARK: Public methods
 
 public extension SceneBuilder {
 	func root(_ sceneName: SceneName, parameters: Parameters = [:]) {
@@ -45,7 +45,7 @@ public extension SceneBuilder {
 	}
 }
 
-// MARK: - Private methods
+// MARK: Private methods
 
 private extension SceneBuilder {
 	func add(_ sceneName: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {

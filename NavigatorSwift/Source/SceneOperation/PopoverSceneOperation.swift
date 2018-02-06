@@ -29,10 +29,7 @@ extension PopoverSceneOperation: InterceptableSceneOperation {
 		manager.add(scenes: [scene]).execute(with: completion)
 	}
 
-	func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-		let to = from.appending(scene)
-
-		return SceneOperationContext(from: from, to: to)
+	func context(from: [SceneState]) -> SceneOperationContext {
+		return SceneOperationContext(from: from, to: from.appending(scene))
 	}
 }

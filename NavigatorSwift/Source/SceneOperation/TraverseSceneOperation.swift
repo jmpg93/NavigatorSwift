@@ -33,9 +33,7 @@ extension TraverseSceneOperation: InterceptableSceneOperation {
 		completion?()
 	}
 
-	public func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-
+	public func context(from: [SceneState]) -> SceneOperationContext {
 		return SceneOperationContext(from: from, to: from)
 	}
 }

@@ -18,6 +18,8 @@ class RootSceneOperation {
 	}
 }
 
+// MARK: SceneOperation methods
+
 extension RootSceneOperation: InterceptableSceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[RootSceneOperation] Executing operation")
@@ -38,9 +40,7 @@ extension RootSceneOperation: InterceptableSceneOperation {
 		completion?()
 	}
 
-	func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-
+	func context(from: [SceneState]) -> SceneOperationContext {
 		return SceneOperationContext(from: from, to: [scene])
 	}
 }

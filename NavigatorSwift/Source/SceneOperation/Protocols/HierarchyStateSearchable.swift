@@ -12,7 +12,7 @@ public protocol HierarchyStateSearchable: VisibleViewControllerFindable {
 	func state(from viewController: UIViewController?) -> [SceneState]
 }
 
-// MARK: - Default implementation
+// MARK: Default implementation
 
 public extension HierarchyStateSearchable {
 	func state(from viewController: UIViewController?) -> [SceneState] {
@@ -30,5 +30,13 @@ public extension HierarchyStateSearchable {
 			.map { $0 == nil ? nil : (SceneName($0!), $1) }
 			.flatMap { $0 }
 			.map(SceneState.init)
+	}
+}
+
+// MARK: Handy method
+
+extension HierarchyStateSearchable where Self: SceneOperationManager {
+	var currentState: [SceneState] {
+		return state(from: rootViewController)
 	}
 }

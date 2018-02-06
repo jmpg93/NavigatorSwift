@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol InterceptableSceneOperation: SceneOperation {
-	func context() -> SceneOperationContext
+	func context(from: [SceneState]) -> SceneOperationContext
 }

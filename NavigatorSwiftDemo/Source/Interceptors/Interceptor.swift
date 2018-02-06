@@ -12,11 +12,14 @@ import NavigatorSwift
 class Interceptor: SceneOperationInterceptor {
 	static let shared = Interceptor()
 	
-	func operation(with operation: InterceptableSceneOperation) -> SceneOperation? {
-
-		let toContextName = operation.context().to.map({ $0.name })
+	func operation(with operation: SceneOperation, context: SceneOperationContext) -> SceneOperation? {
+		let toContextName = context.to.map({ $0.name })
 		print("\(type(of: operation)) with final context \(toContextName)")
 
 		return operation
+	}
+
+	func shouldIntercept(operation: SceneOperation, context: SceneOperationContext) -> Bool {
+		return true
 	}
 }

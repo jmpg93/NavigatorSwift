@@ -13,7 +13,7 @@ public protocol VisibleViewControllerFindable: NextViewControllerFindable {
 	func visible(from fromViewController: UIViewController) -> UIViewController
 }
 
-// MARK: - Default implementation
+// MARK: Default implementation
 
 public extension VisibleViewControllerFindable {
 	func visible(from fromViewController: UIViewController) -> UIViewController {

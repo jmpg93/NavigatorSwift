@@ -8,12 +8,6 @@
 
 import Foundation
 
-extension SceneOperation {
-	public func then(_ operation: SceneOperation) -> SceneOperation {
-		return OrderedSceneOperation(first: self, last: operation)
-	}
-}
-
 struct OrderedSceneOperation: SceneOperation {
 	let first: SceneOperation
 	let last: SceneOperation

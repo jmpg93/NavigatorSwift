@@ -42,10 +42,7 @@ extension DismissSceneOperation: InterceptableSceneOperation {
 		}
 	}
 
-	func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-		let to = from.dropping(from: .modal)
-
-		return SceneOperationContext(from: from, to: to)
+	func context(from: [SceneState]) -> SceneOperationContext {
+		return SceneOperationContext(from: from, to: from.dropping(from: .modal))
 	}
 }

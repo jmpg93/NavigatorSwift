@@ -55,15 +55,11 @@ extension PopSceneOperation: InterceptableSceneOperation {
 		}
 	}
 
-	func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-		let to: [ScenePresentationState]
-		if popToRoot {
-			to = from.dropping(from: .push)
-		} else {
-			to = from.dropping(first: .push)
-		}
-
+	func context(from: [SceneState]) -> SceneOperationContext {
+		let to = popToRoot
+			? from.dropping(from: .push)
+			: from.dropping(first: .push)
+		
 		return SceneOperationContext(from: from, to: to)
 	}
 }

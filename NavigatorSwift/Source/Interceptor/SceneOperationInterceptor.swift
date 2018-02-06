@@ -9,34 +9,18 @@
 import Foundation
 
 public protocol SceneOperationInterceptor: class {
-	func operation(with operation: InterceptableSceneOperation) -> SceneOperation?
-	func shouldIntercept(operation: InterceptableSceneOperation) -> Bool
+	func operation(for operation: SceneOperation, with context: SceneOperationContext) -> SceneOperation?
+	func shouldIntercept(_ operation: SceneOperation, with context: SceneOperationContext) -> Bool
 }
 
-// - MARK: Public methods
+// MARK: Public methods
 
 public extension SceneOperationInterceptor {
-	func operation(with operation: InterceptableSceneOperation) -> SceneOperation? {
+	func operation(for operation: SceneOperation, with context: SceneOperationContext) -> SceneOperation? {
 		return operation
 	}
 
-	func shouldIntercept(operation: InterceptableSceneOperation) -> Bool {
-		return true
-	}
-}
-
-// - MARK: Private methods
-
-extension SceneOperationInterceptor {
-	func execute(_ operation: InterceptableSceneOperation, with completion: CompletionBlock?) {
-		if shouldIntercept(operation: operation) {
-			if let operation = self.operation(with: operation) {
-				operation.execute(with: completion)
-			} else {
-				completion?()
-			}
-		} else {
-			operation.execute(with: completion)
-		}
+	func shouldIntercept(_ operation: SceneOperation, with context: SceneOperationContext) -> Bool {
+		return false
 	}
 }

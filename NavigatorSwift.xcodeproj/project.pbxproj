@@ -10,6 +10,9 @@
 		180FBA9B1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180FBA9A1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift */; };
 		1810B1701F685423003B9CA0 /* NavNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810B16F1F685423003B9CA0 /* NavNavigator.swift */; };
 		1810B1721F685E9B003B9CA0 /* TabNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810B1711F685E9B003B9CA0 /* TabNavigator.swift */; };
+		181FEB83202A392E00B53D59 /* EmptySceneOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FEB82202A392E00B53D59 /* EmptySceneOperation.swift */; };
+		181FEB87202A3FD400B53D59 /* ScenePresentationState+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FEB86202A3FD400B53D59 /* ScenePresentationState+Utils.swift */; };
+		181FEB89202A42F500B53D59 /* SceneOperation+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181FEB88202A42F500B53D59 /* SceneOperation+Utils.swift */; };
 		18201AE32027236F0091C1A4 /* ScenePresentationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18201AE22027236F0091C1A4 /* ScenePresentationState.swift */; };
 		18201AE62027243D0091C1A4 /* HierarchyStateSearchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18201AE52027243D0091C1A4 /* HierarchyStateSearchable.swift */; };
 		1822EC8E1FC993EE00F3D597 /* RecycleSceneOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822EC8D1FC993EE00F3D597 /* RecycleSceneOperationTests.swift */; };
@@ -174,6 +177,9 @@
 		180FBA9A1F64350600E6AF68 /* ApplyTransitionSceneOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyTransitionSceneOperation.swift; sourceTree = "<group>"; };
 		1810B16F1F685423003B9CA0 /* NavNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavNavigator.swift; sourceTree = "<group>"; };
 		1810B1711F685E9B003B9CA0 /* TabNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigator.swift; sourceTree = "<group>"; };
+		181FEB82202A392E00B53D59 /* EmptySceneOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySceneOperation.swift; sourceTree = "<group>"; };
+		181FEB86202A3FD400B53D59 /* ScenePresentationState+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePresentationState+Utils.swift"; sourceTree = "<group>"; };
+		181FEB88202A42F500B53D59 /* SceneOperation+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneOperation+Utils.swift"; sourceTree = "<group>"; };
 		18201AE22027236F0091C1A4 /* ScenePresentationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenePresentationState.swift; sourceTree = "<group>"; };
 		18201AE52027243D0091C1A4 /* HierarchyStateSearchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyStateSearchable.swift; sourceTree = "<group>"; };
 		1822EC8D1FC993EE00F3D597 /* RecycleSceneOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecycleSceneOperationTests.swift; sourceTree = "<group>"; };
@@ -448,6 +454,8 @@
 				6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */,
 				6C25C25D202501BE00C0FCC6 /* UIView+Utils.swift */,
 				189A94681FD820C400D4DB32 /* Array+Utils.swift */,
+				181FEB86202A3FD400B53D59 /* ScenePresentationState+Utils.swift */,
+				181FEB88202A42F500B53D59 /* SceneOperation+Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -669,6 +677,7 @@
 				6CA594871F63227400CF37AB /* DismissAllOperation.swift */,
 				6CA594941F6332A100CF37AB /* DismissFirstSceneOperation.swift */,
 				6CA594921F6331AA00CF37AB /* DismissSceneOperation.swift */,
+				181FEB82202A392E00B53D59 /* EmptySceneOperation.swift */,
 				188DB1811F6466CF00E9024E /* OrderedSceneOperation.swift */,
 				6CA594891F63239600CF37AB /* PopSceneOperation.swift */,
 				18A101BF1F72D7D4009F39A1 /* PopoverSceneOperation.swift */,
@@ -956,6 +965,7 @@
 				6C37A680202650280011F818 /* SceneOperationContext.swift in Sources */,
 				6C1322D31F5AD96600A7D3E9 /* UIViewController+Utils.swift in Sources */,
 				18201AE62027243D0091C1A4 /* HierarchyStateSearchable.swift in Sources */,
+				181FEB87202A3FD400B53D59 /* ScenePresentationState+Utils.swift in Sources */,
 				6C27A9601F59E2E900311918 /* Scene.swift in Sources */,
 				189A94691FD820C400D4DB32 /* Array+Utils.swift in Sources */,
 				6CA5948D1F63248900CF37AB /* VisibleViewControllerFindable.swift in Sources */,
@@ -983,6 +993,7 @@
 				6C21BC2C20212AF1004A3327 /* TraverseSceneOperation.swift in Sources */,
 				6CCC9E3C2017CDC000BEDFEC /* SceneContext.swift in Sources */,
 				6CC8BAD21F5A0F0400559655 /* ViewControllerContainer.swift in Sources */,
+				181FEB89202A42F500B53D59 /* SceneOperation+Utils.swift in Sources */,
 				18A101C01F72D7D4009F39A1 /* PopoverSceneOperation.swift in Sources */,
 				6C54F3F62028D63E00C48604 /* SceneState.swift in Sources */,
 				1810B1701F685423003B9CA0 /* NavNavigator.swift in Sources */,
@@ -1000,6 +1011,7 @@
 				189A94661FD805E400D4DB32 /* SetVisibleSceneOperation.swift in Sources */,
 				18C8720C1F69B9ED00701144 /* SceneURLHandler.swift in Sources */,
 				6CA5948A1F63239600CF37AB /* PopSceneOperation.swift in Sources */,
+				181FEB83202A392E00B53D59 /* EmptySceneOperation.swift in Sources */,
 				6C27A95C1F59E2C100311918 /* SceneBuilderBlock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -42,11 +42,8 @@ extension AddSceneOperation: InterceptableSceneOperation {
 		recursiveShow(scenes: scenes, visibleViewController: visibleViewController, completion: completion)
 	}
 
-	func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-		let to = from.appending(scenes)
-
-		return SceneOperationContext(from: from, to: to)
+	func context(from: [SceneState]) -> SceneOperationContext {
+		return SceneOperationContext(from: from, to: from.appending(scenes))
 	}
 }
 

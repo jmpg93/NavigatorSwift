@@ -21,7 +21,7 @@ struct RecycleSceneOperation {
 
 // MARK: SceneOperation methods
 
-extension RecycleSceneOperation: InterceptableSceneOperation {
+extension RecycleSceneOperation: SceneOperation {
 	func execute(with completion: CompletionBlock?) {
 		logTrace("[RecycleSceneOperation] Executing operation")
 
@@ -64,13 +64,9 @@ extension RecycleSceneOperation: InterceptableSceneOperation {
 			.then(addSceneOperation)
 			.execute(with: completion)
 	}
-
-	func context() -> SceneOperationContext {
-		let from = manager.state(from: manager.rootViewController)
-
-		return SceneOperationContext(from: from, to: scenes)
-	}
 }
+
+// MARK: Private methods
 
 private extension RecycleSceneOperation {
 	func firstLevelNavigationController(matching scene: Scene?) -> UINavigationController? {

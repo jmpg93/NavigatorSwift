@@ -19,7 +19,7 @@ public class SceneProvider {
 	}
 }
 
-// MARK: - Internal Methods
+// MARK: Internal Methods
 
 extension SceneProvider {
 	func registerScene(for sceneHandler: SceneHandler) {

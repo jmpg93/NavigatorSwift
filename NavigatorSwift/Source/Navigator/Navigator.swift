@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: Protocol definition
+
 public protocol Navigator: class {
 	var sceneOperationManager: SceneOperationManager { get }
 	var sceneProvider: SceneProvider { get }
@@ -16,19 +18,19 @@ public protocol Navigator: class {
 	var interceptors: [SceneOperationInterceptor] { get set }
 }
 
-// MARK: - Navigate with operation
+// MARK: Navigate with operation
 
 public extension Navigator {
 	func navigate(with operation: SceneOperation, completion: CompletionBlock? = nil) {
-		if let operation = operation as? InterceptableSceneOperation, let interceptor = interceptor(for: operation) {
-			interceptor.execute(operation, with: completion)
+		if let interceptedOperation = self.interceptedOperation(for: operation) {
+			interceptedOperation.execute(with: completion)
 		} else {
 			operation.execute(with: completion)
 		}
 	}
 }
 
-// MARK: - Set root with Scene names
+// MARK: Set root with Scene names
 
 public extension Navigator {
 	func root(_ name: SceneName, parameters: Parameters = [:]) {
@@ -38,7 +40,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Navigating with Scene names
+// MARK: Navigating with Scene names
 
 public extension Navigator {
 	func push(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
@@ -60,7 +62,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Poping and Dismissing Scenes
+// MARK: Poping and Dismissing Scenes
 
 public extension Navigator {
 	func pop(animated: Bool = true, completion: CompletionBlock? = nil) {
@@ -89,7 +91,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Navigate with builder
+// MARK: Navigate with builder
 
 public extension Navigator {
 	func build(using builder: SceneBuilderBlock<Self>) {
@@ -109,7 +111,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Deeplink
+// MARK: Deeplink
 
 public extension Navigator {
 	func url(_ url: URL, completion: CompletionBlock? = nil) {
@@ -119,7 +121,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Transition
+// MARK: Transition
 
 public extension Navigator {
 	func transition(to name: SceneName, parameters: Parameters = [:], with transition: Transition, completion: CompletionBlock? = nil) {
@@ -130,7 +132,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Popover
+// MARK: Popover
 
 public extension Navigator {
 	func popover(_ name: SceneName,  parameters: Parameters = [:], with popover: Popover, completion: CompletionBlock? = nil) {
@@ -160,7 +162,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Reload
+// MARK: Reload
 
 extension Navigator {
 	func reload(_ name: SceneName,  parameters: Parameters = [:], completion: CompletionBlock? = nil) {
@@ -170,7 +172,7 @@ extension Navigator {
 	}
 }
 
-// MARK: - View
+// MARK: View
 
 public extension Navigator {
 	func view(for name: SceneName, parameters: Parameters = [:]) -> UIViewController? {
@@ -179,7 +181,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - Traverse
+// MARK: Traverse
 
 public extension Navigator {
 	func traverse(block: @escaping TraverseBlock) {
@@ -192,7 +194,7 @@ public extension Navigator {
 	}
 }
 
-// MARK: - SceneHandler Register
+// MARK: SceneHandler Register
 
 public extension Navigator {
 	func register(_ sceneHandler: SceneHandler) {
@@ -207,7 +209,7 @@ public extension Navigator {
 }
 
 
-// MARK: - SceneHandler Register
+// MARK: SceneHandler Register
 
 public extension Navigator {
 	func register(_ interceptor: SceneOperationInterceptor) {
@@ -226,15 +228,18 @@ public extension Navigator {
 	}
 }
 
-// MARK: - SceneHandler Register
+// MARK: SceneHandler Register
 
-public extension Navigator {
-	func navigate(with operation: InterceptableSceneOperation, completion: CompletionBlock? = nil) {
+private extension Navigator {
+	func interceptedOperation(for operation: SceneOperation) -> SceneOperation? {
+		guard let operation = operation as? InterceptableSceneOperation else { return nil }
 
-	}
+		let context = operation.context(from: sceneOperationManager.currentState)
 
-	func interceptor(for operation: InterceptableSceneOperation) -> SceneOperationInterceptor? {
-		return interceptors.first(where: { $0.shouldIntercept(operation: operation) })
+		guard let interceptor = interceptors.first(for: operation, with: context) else { return nil }
+
+		// If the interceptor has returned nil, an EmptySceneOperation is retrieved
+		//  to complete without executing any other operation
+		return interceptor.operation(for: operation, with: context) ?? EmptySceneOperation()
 	}
 }
-

@@ -13,7 +13,7 @@ public protocol NextViewControllerFindable {
 	func next(before viewController: UIViewController) -> UIViewController?
 }
 
-// MARK: - Default implementation
+// MARK: Default implementation
 
 public extension NextViewControllerFindable {
 	func next(before viewController: UIViewController) -> UIViewController? {
@@ -33,7 +33,7 @@ public extension NextViewControllerFindable {
 	}
 }
 
-// MARK: - Private methods
+// MARK: Private methods
 
 private extension NextViewControllerFindable {
 	func next(before viewController: UIViewController, using navigationController: UINavigationController?) -> UIViewController? {

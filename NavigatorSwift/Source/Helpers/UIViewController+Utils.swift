@@ -48,8 +48,7 @@ extension UIViewController {
 			 (.modal, .modal),
 			 (.modalNavigation, .modalNavigation),
 			 (.root, .root),
-			 (.select, _),
-			 (_, .select):
+			 (.select, .select):
 			return true
 		default:
 			return false
