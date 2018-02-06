@@ -95,7 +95,7 @@ private extension UIViewController {
 	}
 
 	var isPush: Bool {
-		//TODO: Check this condition.
-		return navigationController != nil && !(parent is ViewControllerContainer)
+		return navigationController != nil
+			&& navigationController?.viewControllers.index(of: self) != 0
 	}
 }
