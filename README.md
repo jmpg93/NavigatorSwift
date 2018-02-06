@@ -163,19 +163,21 @@ extension SomeOperation: SceneOperation {
 By implementing the protocol `SceneOperationInterceptor` you can intercept all the operations being executed by the navigator.
 This protocol allows you to change the behavior of the navigator in some cases. 
 
-For example if you want to display the system location persmissions alert just before presenting some map view you can create a new interceptor:
-```
+For example for displaying the contacts persmissions alert just before presenting some edit contact view:
+```swift
 class SystemPermissionsInterceptor: SceneOperationInterceptor {
 	func operation(with operation: SceneOperation, context: SceneOperationContext) -> SceneOperation? {
-		return ShowLocationPermissionsIfNeededSceneOperation().then(operation)
+		return ShowContactPermissionsIfNeededSceneOperation().then(operation)
 	}
 
 	func shouldIntercept(operation: SceneOperation, context: SceneOperationContext) -> Bool {
-		return context.targetState.names.contains(.map)
+		return context.targetState.names.contains(.editContact)
 	}
 }
 ```
-Then you just need to register your interceptor.
-```
+If you want to stop the execution of the operation, you must return nil on the ```operation(with:context:)```
+
+To start intercepting operations, a registration of the interceptor is needed.
+```swift
 navigator.register(SystemPermissionsInterceptor())
 ```
