@@ -165,7 +165,7 @@ This protocol allows you to change the behavior of the navigator in some cases.
 
 For example for displaying the contacts persmissions alert just before presenting some edit contact view:
 ```swift
-class SystemPermissionsInterceptor: SceneOperationInterceptor {
+class ContactsPermissionsInterceptor: SceneOperationInterceptor {
 	func operation(with operation: SceneOperation, context: SceneOperationContext) -> SceneOperation? {
 		return ShowContactPermissionsIfNeededSceneOperation().then(operation)
 	}
@@ -177,7 +177,7 @@ class SystemPermissionsInterceptor: SceneOperationInterceptor {
 ```
 If you want to stop the execution of the operation, you must return nil on ```operation(with:context:)```
 
-To start intercepting operations, a registration of the interceptor is needed.
+To start intercepting, a registration of the interceptor is needed.
 ```swift
-navigator.register(SystemPermissionsInterceptor())
+navigator.register(ContactsPermissionsInterceptor())
 ```
