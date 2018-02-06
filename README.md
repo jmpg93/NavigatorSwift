@@ -114,9 +114,13 @@ navigator.traverse { state in
 - Relative stack navigation using builder:
 ```swift
 navigator.build { builder in
-	builder.modal(.detail)
+	builder.modal(.contact)
+	builder.modalNavigation(.detail)
+	builder.push(.avatar)
 }
 ```
+If you use relative navigation, you can add new scenes over the current hierarchy.
+
 - Absolute stack navigation using builder (the current stack will be recycled and reloaded if possible):
 ```swift
 navigator.build { builder in
@@ -125,7 +129,10 @@ navigator.build { builder in
 	builder.push(.detail)
 }
 ```
-- Operation based navigation. For more complex navigation you can create and concatenate operations that will be executed serially. This can be easyly archived by creating a new ```SceneOperation``` and extending the ```Navigator``` protocol.
+If you use absolute navigation, the hierarchy will be rebuilded from root. If the current hierarchy match the targeted hierarchy, the view controllers will be recycled and reloaded.
+
+- Operation based navigation:
+For more complex navigation you can create and concatenate operations that will be executed serially. This can be easyly archived by creating a new ```SceneOperation``` and extending the ```Navigator``` protocol.
 
 ```swift
 class SomeOperation {
@@ -150,4 +157,24 @@ extension SomeOperation: SceneOperation {
 			.execute(with: completion)
 	}
 }
+```
+- Interceptors:
+By implementing the protocol `SceneOperationInterceptor` you can intercept all the operations being executed by the navigator.
+This protocol allows you to change the behavior of the navigator in some cases. 
+
+For example if you want to display the system location persmissions alerts just before presenting some map view you can create a new interceptor:
+```
+class SystemPermissionsInterceptor: SceneOperationInterceptor {
+	func operation(with operation: SceneOperation, context: SceneOperationContext) -> SceneOperation? {
+		return ShowLocationPermissionsSceneOperation().then(operation)
+	}
+
+	func shouldIntercept(operation: SceneOperation, context: SceneOperationContext) -> Bool {
+		return context.targetState.names.contains(.map)
+	}
+}
+```
+Then you just need to register your interceptor.
+```
+navigator.register(SystemPermissionsInterceptor())
 ```
