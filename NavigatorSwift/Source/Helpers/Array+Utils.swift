@@ -74,3 +74,15 @@ public extension Array where Element: ScenePresentationState {
 		}
 	}
 }
+
+// MARK: ScenePresentationState
+
+public extension Array where Element == ScenePresentationState {
+	var names: [SceneName] {
+		return map({ $0.name })
+	}
+
+	var types: [ScenePresentationType] {
+		return map({ $0.type })
+	}
+}

@@ -60,6 +60,6 @@ extension PopSceneOperation: InterceptableSceneOperation {
 			? from.dropping(from: .push)
 			: from.dropping(first: .push)
 		
-		return SceneOperationContext(from: from, to: to)
+		return SceneOperationContext(currentState: from, targetState: to)
 	}
 }

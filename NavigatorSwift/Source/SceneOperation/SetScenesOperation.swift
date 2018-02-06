@@ -45,7 +45,7 @@ extension SetScenesOperation: InterceptableSceneOperation {
 	}
 
 	func context(from: [SceneState]) -> SceneOperationContext {		
-		return SceneOperationContext(from: from, to: scenes)
+		return SceneOperationContext(currentState: from, targetState: scenes)
 	}
 }
 

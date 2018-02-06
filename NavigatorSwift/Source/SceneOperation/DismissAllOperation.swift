@@ -38,6 +38,6 @@ extension DismissAllOperation: InterceptableSceneOperation {
 	}
 
 	func context(from: [SceneState]) -> SceneOperationContext {
-		return SceneOperationContext(from: from, to: from.dropping(from: .modal))
+		return SceneOperationContext(currentState: from, targetState: from.dropping(from: .modal))
 	}
 }

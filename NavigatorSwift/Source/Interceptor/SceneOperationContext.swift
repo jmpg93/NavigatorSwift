@@ -9,8 +9,8 @@
 import Foundation
 
 public struct SceneOperationContext {
-	public static let empty = SceneOperationContext(from: [], to: [])
+	public static let empty = SceneOperationContext(currentState: [], targetState: [])
 	
-	public let from: [ScenePresentationState]
-	public let to: [ScenePresentationState]
+	public let currentState: [ScenePresentationState]
+	public let targetState: [ScenePresentationState]
 }

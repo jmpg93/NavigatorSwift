@@ -13,13 +13,7 @@ class Interceptor: SceneOperationInterceptor {
 	static let shared = Interceptor()
 	
 	func operation(with operation: SceneOperation, context: SceneOperationContext) -> SceneOperation? {
-		let toContextName = context.to.map({ $0.name })
-		print("\(type(of: operation)) with final context \(toContextName)")
-
+		print("\(type(of: operation)) with final context \(context.targetState.names)")
 		return operation
-	}
-
-	func shouldIntercept(operation: SceneOperation, context: SceneOperationContext) -> Bool {
-		return true
 	}
 }

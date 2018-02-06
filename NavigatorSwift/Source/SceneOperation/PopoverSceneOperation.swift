@@ -30,6 +30,6 @@ extension PopoverSceneOperation: InterceptableSceneOperation {
 	}
 
 	func context(from: [SceneState]) -> SceneOperationContext {
-		return SceneOperationContext(from: from, to: from.appending(scene))
+		return SceneOperationContext(currentState: from, targetState: from.appending(scene))
 	}
 }

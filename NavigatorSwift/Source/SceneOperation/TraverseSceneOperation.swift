@@ -34,6 +34,6 @@ extension TraverseSceneOperation: InterceptableSceneOperation {
 	}
 
 	public func context(from: [SceneState]) -> SceneOperationContext {
-		return SceneOperationContext(from: from, to: from)
+		return SceneOperationContext(currentState: from, targetState: from)
 	}
 }
