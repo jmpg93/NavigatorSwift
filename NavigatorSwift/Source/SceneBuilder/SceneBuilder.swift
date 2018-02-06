@@ -9,7 +9,7 @@
 import Foundation
 
 public class SceneBuilder<T: Navigator> {
-	let sceneProvider: SceneProvider
+	public let sceneProvider: SceneProvider
 	
 	private(set) var scenes: [Scene] = []
 	private(set) var isAbsolutely = false

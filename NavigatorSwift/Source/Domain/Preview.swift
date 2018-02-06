@@ -12,7 +12,7 @@ import UIKit
 public class Preview: NSObject {
 	private let scene: Scene
 	private let completion: CompletionBlock?
-	let fromViewController: UIViewController
+	public let fromViewController: UIViewController
 
 	init(scene: Scene,
 	     fromViewController: UIViewController,

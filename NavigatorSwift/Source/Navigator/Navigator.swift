@@ -12,17 +12,17 @@ import UIKit
 // MARK: Protocol definition
 
 public protocol Navigator: class {
-	var sceneOperationManager: SceneOperationManager { get }
-	var sceneProvider: SceneProvider { get }
-	var sceneURLHandler: SceneURLHandler { get }
-	var interceptors: [SceneOperationInterceptor] { get set }
+	var manager: SceneOperationManager { get }
+	var provider: SceneProvider { get }
+	var urlHandler: SceneURLHandler { get }
+	var interceptors: [SceneOperationInterceptor] { get  set }
 }
 
 // MARK: Navigate with operation
 
 public extension Navigator {
 	func navigate(with operation: SceneOperation, completion: CompletionBlock? = nil) {
-		if let interceptedOperation = self.interceptedOperation(for: operation) {
+		if let interceptedOperation = interceptedOperation(for: operation) {
 			interceptedOperation.execute(with: completion)
 		} else {
 			operation.execute(with: completion)
@@ -35,8 +35,8 @@ public extension Navigator {
 public extension Navigator {
 	func root(_ name: SceneName, parameters: Parameters = [:]) {
 		logDebug("Root \(name)")
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .root)
-		navigate(with: sceneOperationManager.root(scene: scene))
+		let scene = provider.scene(with: name, parameters: parameters, type: .root)
+		navigate(with: manager.root(scene: scene))
 	}
 }
 
@@ -45,20 +45,20 @@ public extension Navigator {
 public extension Navigator {
 	func push(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
 		logDebug("Push \(name)")
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .push, animated: animated)
-		navigate(with: sceneOperationManager.add(scenes: [scene]), completion: completion)
+		let scene = provider.scene(with: name, parameters: parameters, type: .push, animated: animated)
+		navigate(with: manager.add(scenes: [scene]), completion: completion)
 	}
 
 	func present(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
 		logDebug("Present \(name)")
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modal, animated: animated)
-		navigate(with: sceneOperationManager.add(scenes: [scene]), completion: completion)
+		let scene = provider.scene(with: name, parameters: parameters, type: .modal, animated: animated)
+		navigate(with: manager.add(scenes: [scene]), completion: completion)
 	}
 
 	func presentNavigation(_ name: SceneName, parameters: Parameters = [:], animated: Bool = true, completion: CompletionBlock? = nil) {
 		logDebug("Root \(name)")
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modalNavigation, animated: animated)
-		navigate(with: sceneOperationManager.add(scenes: [scene]), completion: completion)
+		let scene = provider.scene(with: name, parameters: parameters, type: .modalNavigation, animated: animated)
+		navigate(with: manager.add(scenes: [scene]), completion: completion)
 	}
 }
 
@@ -67,27 +67,27 @@ public extension Navigator {
 public extension Navigator {
 	func pop(animated: Bool = true, completion: CompletionBlock? = nil) {
 		logDebug("Pop")
-		navigate(with: sceneOperationManager.pop(animated: animated), completion: completion)
+		navigate(with: manager.pop(animated: animated), completion: completion)
 	}
 
 	func popToRoot(animated: Bool = true, completion: CompletionBlock? = nil) {
 		logDebug("Pop to root")
-		navigate(with: sceneOperationManager.popToRoot(animated: animated), completion: completion)
+		navigate(with: manager.popToRoot(animated: animated), completion: completion)
 	}
 
 	func dismiss(animated: Bool = true, completion: CompletionBlock? = nil) {
 		logDebug("Dismiss first")
-		navigate(with: sceneOperationManager.dismiss(animated: animated), completion: completion)
+		navigate(with: manager.dismiss(animated: animated), completion: completion)
 	}
 
 	func dismiss(_ name: SceneName, animated: Bool = true, completion: CompletionBlock? = nil) {
 		logDebug("Dismiss scene \(name)")
-		navigate(with: sceneOperationManager.dismiss(sceneName: name, animated: animated), completion: completion)
+		navigate(with: manager.dismiss(sceneName: name, animated: animated), completion: completion)
 	}
 
 	func dismissAll(animated: Bool, completion: CompletionBlock? = nil) {
 		logDebug("Dismiss all")
-		navigate(with: sceneOperationManager.dismissAll(animated: animated), completion: completion)
+		navigate(with: manager.dismissAll(animated: animated), completion: completion)
 	}
 }
 
@@ -99,14 +99,14 @@ public extension Navigator {
 	}
 
 	func build(using builder: SceneBuilderBlock<Self>, completion: CompletionBlock?) {
-		let (scenes, navigateAbsolutly) = sceneProvider.scenes(with: builder)
+		let (scenes, navigateAbsolutly) = provider.scenes(with: builder)
 		
 		if navigateAbsolutly {
 			logDebug("Build absolutly navigation")
-			navigate(with: sceneOperationManager.set(scenes: scenes), completion: completion)
+			navigate(with: manager.set(scenes: scenes), completion: completion)
 		} else {
 			logDebug("Build relative navigation")
-			navigate(with: sceneOperationManager.add(scenes: scenes), completion: completion)
+			navigate(with: manager.add(scenes: scenes), completion: completion)
 		}
 	}
 }
@@ -116,7 +116,7 @@ public extension Navigator {
 public extension Navigator {
 	func url(_ url: URL, completion: CompletionBlock? = nil) {
 		logDebug("URL \(url)")
-		let sceneContexts = sceneURLHandler.sceneContexts(from: url)
+		let sceneContexts = urlHandler.sceneContexts(from: url)
 		build { sceneContexts.forEach($0.add) }
 	}
 }
@@ -127,8 +127,8 @@ public extension Navigator {
 	func transition(to name: SceneName, parameters: Parameters = [:], with transition: Transition, completion: CompletionBlock? = nil) {
 		logDebug("Transition \(name)")
 		let type: ScenePresentationType = transition.insideNavigationBar ? .modalNavigation : .modal
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: type, animated: true)
-		sceneOperationManager.transition(transition, to: scene).execute(with: completion)
+		let scene = provider.scene(with: name, parameters: parameters, type: type, animated: true)
+		manager.transition(transition, to: scene).execute(with: completion)
 	}
 }
 
@@ -138,27 +138,27 @@ public extension Navigator {
 	func popover(_ name: SceneName,  parameters: Parameters = [:], with popover: Popover, completion: CompletionBlock? = nil) {
 		logDebug("Popover \(name)")
 		let type: ScenePresentationType = popover.insideNavigationBar ? .modalNavigation : .modal
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: type, animated: true)
-		sceneOperationManager.popover(popover, to: scene).execute(with: completion)
+		let scene = provider.scene(with: name, parameters: parameters, type: type, animated: true)
+		manager.popover(popover, to: scene).execute(with: completion)
 	}
 
 	func popover(_ name: SceneName, parameters: Parameters = [:], from button: UIBarButtonItem, completion: CompletionBlock? = nil) {
 		logDebug("Popover \(name) from barButtonItem")
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modal, animated: true)
+		let scene = provider.scene(with: name, parameters: parameters, type: .modal, animated: true)
 
 		let popover = Popover()
 		popover.barButtonItem = button
 
-		sceneOperationManager.popover(popover, to: scene).execute(with: completion)
+		manager.popover(popover, to: scene).execute(with: completion)
 	}
 
 	func popover(_ name: SceneName, parameters: Parameters = [:], from view: UIView, completion: CompletionBlock? = nil) {
 		logDebug("Popover \(name) from view")
-		let scene = sceneProvider.scene(with: name, parameters: parameters, type: .modal, animated: true)
+		let scene = provider.scene(with: name, parameters: parameters, type: .modal, animated: true)
 		let popover = Popover()
 		popover.sourceView = view
 		popover.sourceRect = view.frame
-		sceneOperationManager.popover(popover, to: scene).execute(with: completion)
+		manager.popover(popover, to: scene).execute(with: completion)
 	}
 }
 
@@ -167,8 +167,8 @@ public extension Navigator {
 extension Navigator {
 	func reload(_ name: SceneName,  parameters: Parameters = [:], completion: CompletionBlock? = nil) {
 		logDebug("Reload \(name)")
-		let scene = sceneProvider.scene(with: name, type: .select)
-		sceneOperationManager.reload(scene:scene).execute(with: completion)
+		let scene = provider.scene(with: name, type: .select)
+		manager.reload(scene:scene).execute(with: completion)
 	}
 }
 
@@ -177,7 +177,7 @@ extension Navigator {
 public extension Navigator {
 	func view(for name: SceneName, parameters: Parameters = [:]) -> UIViewController? {
 		logDebug("View \(name)")
-		return sceneProvider.scene(with: name, parameters: parameters, type: .root).view()
+		return provider.scene(with: name, parameters: parameters, type: .root).view()
 	}
 }
 
@@ -190,7 +190,7 @@ public extension Navigator {
 
 	func traverse(block: @escaping TraverseBlock, completion: CompletionBlock?) {
 		logDebug("Traverse")
-		navigate(with: sceneOperationManager.traverse(block: block), completion: completion)
+		navigate(with: manager.traverse(block: block), completion: completion)
 	}
 }
 
@@ -198,7 +198,7 @@ public extension Navigator {
 
 public extension Navigator {
 	func register(_ sceneHandler: SceneHandler) {
-		sceneProvider.registerScene(for: sceneHandler)
+		provider.register(sceneHandler)
 	}
 
 	func register(_ sceneHandlers: [SceneHandler]) {
@@ -207,7 +207,6 @@ public extension Navigator {
 		}
 	}
 }
-
 
 // MARK: SceneHandler Register
 
@@ -221,10 +220,12 @@ public extension Navigator {
 	}
 
 	func unregister(_ interceptor: SceneOperationInterceptor) {
-		interceptors.forEach(unregister)
+		guard let index = interceptors.index(where: { $0 === interceptor }) else { return }
+		interceptors.remove(at: index)
 	}
 
 	func unregister(_ interceptors: [SceneOperationInterceptor]) {
+		interceptors.forEach(unregister)
 	}
 }
 
@@ -234,7 +235,7 @@ private extension Navigator {
 	func interceptedOperation(for operation: SceneOperation) -> SceneOperation? {
 		guard let operation = operation as? InterceptableSceneOperation else { return nil }
 
-		let context = operation.context(from: sceneOperationManager.currentState)
+		let context = operation.context(from: manager.currentState)
 
 		guard let interceptor = interceptors.first(for: operation, with: context) else { return nil }
 

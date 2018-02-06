@@ -18,6 +18,8 @@ public extension SceneBuilder where T: TabNavigator {
 	}
 }
 
+// MARK: Private methods
+
 private extension SceneBuilder where T: TabNavigator {
 	var currentTabSceneName: SceneName {
 		return SceneName(

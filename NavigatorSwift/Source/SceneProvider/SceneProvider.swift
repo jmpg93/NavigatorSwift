@@ -9,7 +9,7 @@
 import Foundation
 
 public class SceneProvider {
-	let manager: SceneOperationManager
+	public let manager: SceneOperationManager
 
 	/// Contains all the scenes registered in the system by their name.
 	private var sceneHandlersByName: [SceneName: SceneHandler] = [:]
@@ -22,7 +22,7 @@ public class SceneProvider {
 // MARK: Internal Methods
 
 extension SceneProvider {
-	func registerScene(for sceneHandler: SceneHandler) {
+	func register(_ sceneHandler: SceneHandler) {
 		assert(sceneHandlersByName[sceneHandler.name] == nil, "Already registered scene named \(sceneHandler.name)")
 		sceneHandlersByName[sceneHandler.name] = sceneHandler
 	}

@@ -451,11 +451,11 @@
 		6C1322D11F5AD95A00A7D3E9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */,
-				6C25C25D202501BE00C0FCC6 /* UIView+Utils.swift */,
 				189A94681FD820C400D4DB32 /* Array+Utils.swift */,
 				181FEB86202A3FD400B53D59 /* ScenePresentationState+Utils.swift */,
 				181FEB88202A42F500B53D59 /* SceneOperation+Utils.swift */,
+				6C1322D21F5AD96600A7D3E9 /* UIViewController+Utils.swift */,
+				6C25C25D202501BE00C0FCC6 /* UIView+Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

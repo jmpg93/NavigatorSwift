@@ -16,6 +16,8 @@ public enum ScenePresentationType: String {
 	case select
 }
 
+// MARK: Hashable
+
 extension ScenePresentationType: Hashable {
 	public static func ==(lhs: ScenePresentationType, rhs: ScenePresentationType) -> Bool {
 		return lhs.rawValue == rhs.rawValue

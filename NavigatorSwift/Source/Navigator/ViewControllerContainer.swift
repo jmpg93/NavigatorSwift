@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 public protocol ViewControllerContainer: class {
-
 	/// The root ViewController that will set as root of UIWindow.
 	var rootViewController: UIViewController { get }
 

@@ -9,4 +9,3 @@
 import Foundation
 
 public typealias SceneBuilderBlock<T: Navigator> = (_ builder: SceneBuilder<T>) -> Void
-

@@ -13,6 +13,8 @@ open class NavigationBarContainer: UINavigationController {
 
 }
 
+// MARK: ViewControllerContainer
+
 extension NavigationBarContainer: ViewControllerContainer {
 	public var rootViewController: UIViewController {
 		return self

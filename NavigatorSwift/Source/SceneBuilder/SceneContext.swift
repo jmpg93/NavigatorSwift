@@ -36,6 +36,8 @@ extension SceneContext {
 	}
 }
 
+// MARK: CustomStringConvertible
+
 extension SceneContext: CustomStringConvertible {
 	public var description: String {
 		return "SceneContext [scenename: \(sceneName), parameters: \(parameters), type: \(type), animated: \(isAnimated)]"
