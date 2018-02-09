@@ -142,6 +142,8 @@ navigator.build { builder in
 ```
 If you use absolute navigation, the hierarchy will be rebuilded from root. If the current hierarchy match the targeted hierarchy, the view controllers will be recycled and reloaded.
 
+Use absolute navigation to **present a certain hierarchy no matter what is the current state**.
+
 - Operation based navigation:
 
 For more complex navigation you can create and concatenate operations that will be executed serially. This can be easyly archived by creating a new ```SceneOperation``` and extending the ```Navigator``` protocol.
