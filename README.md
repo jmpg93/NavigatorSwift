@@ -32,6 +32,16 @@ class LoginScene: SceneHandler {
 		vc.view.backgroundColor = .red
 		return vc
 	}
+	
+	// Optional
+	func reload(_ viewController: UIViewController, parameters: Parameters) {
+		// Do nothing by default
+	}
+	
+	// Optional
+	var isReloadable: Bool {
+		return true
+	}
 }
 ```
 
@@ -83,6 +93,8 @@ navigator.pop()
 ```swift
 navigator.reload(.someScene)
 ```
+Calls the method reload from the scene handler.
+
 - URLs:
 ```swift
 navigator.url(someURL)
