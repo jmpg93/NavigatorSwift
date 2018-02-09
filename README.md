@@ -16,6 +16,8 @@ let navigator = TabNavigator(window: UIWindow())
 let navigator = ContainerNavigator(window: UIWindow())
 ```
 
+The navigator is the main entry point. It's the one you told were you want go and how.
+
 ### Create a Scene and register it
 ```swift
 extension SceneName {
@@ -54,6 +56,8 @@ navigator.register(LoginScene())
 navigator.root(.login)
 navigator.push(.someScene)
 ```
+
+The root scene is the one which it's going to be set as rootViewController of the UIWindow.
 
 ## Features
 
@@ -127,7 +131,7 @@ navigator.traverse { state in
 ```swift
 navigator.build { builder in
 	builder.modal(.contact)
-	builder.modalNavigation(.detail)
+	builder.modalNavigation(.detail) // Modal presentation with a navigation controller.
 	builder.push(.avatar)
 }
 ```
@@ -142,7 +146,7 @@ navigator.build { builder in
 ```
 If you use absolute navigation, the hierarchy will be rebuilded from root. If the current hierarchy match the targeted hierarchy, the view controllers will be recycled and reloaded.
 
-Use absolute navigation to **present a certain hierarchy no matter what is the current state**.
+Use absolute navigation to **show a certain hierarchy no matter what is the current state**.
 
 - Operation based navigation:
 
