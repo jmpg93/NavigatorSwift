@@ -70,11 +70,6 @@ class Collection: UIViewController {
 	static func loadFromStoryBoard() -> Collection {
 		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection") as! Collection
 	}
-
-	deinit {
-		// TODO: In some cases the view is created (and instantly deallocated) even if you know the view cannot be presented.
-		//print("DEINIT")
-	}
 }
 
 // MARK: View life cycle
@@ -190,19 +185,6 @@ extension Collection: UICollectionViewDelegate {
 					builder.push(.collection, parameters: Constants.pushParameters)
 				}
 			}
-		}
-	}
-}
-
-protocol BlueNavigator {
-	func navigateToBlue(userId: String)
-}
-
-extension TabNavigator: BlueNavigator {
-	func navigateToBlue(userId: String) {
-		build { builder in
-			builder.root(.tabBar)
-			builder.tab(.blue, parameters: ["userId": userId])
 		}
 	}
 }

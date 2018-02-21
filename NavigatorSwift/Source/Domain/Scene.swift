@@ -48,7 +48,7 @@ class Scene {
 
 extension Scene: CustomStringConvertible {
 	var description: String {
-		return "Scene \(sceneHandler.name) [parameters: \(parameters) type: \(type) animated: \(isAnimated)]"
+		return "Scene [name: \(sceneHandler.name) parameters: \(parameters) type: \(type) animated: \(isAnimated)]"
 	}
 }
 

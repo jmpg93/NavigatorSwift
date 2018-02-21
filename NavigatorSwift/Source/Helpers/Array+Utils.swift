@@ -58,15 +58,13 @@ public extension Array where Element: ScenePresentationState {
 	private func index(of type: ScenePresentationType) -> Index? {
 		return lazy
 			.enumerated()
-			.first(where: { typesMathes($0.element.type, type) })
+			.first(where: { typesMatches($0.element.type, type) })
 			.map({ $0.offset })
 	}
 
-	private func typesMathes(_ leftType: ScenePresentationType, _ rightType: ScenePresentationType) -> Bool {
+	private func typesMatches(_ leftType: ScenePresentationType, _ rightType: ScenePresentationType) -> Bool {
 		switch (leftType, rightType) {
-		case (.modal, .modal),
-			 (.modalNavigation, .modalNavigation),
-			 (.modalNavigation, .modal),
+		case (.modalNavigation, .modal),
 			 (.modal, .modalNavigation):
 			return true
 		default:
