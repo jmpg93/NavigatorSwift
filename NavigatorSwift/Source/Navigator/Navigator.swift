@@ -164,7 +164,7 @@ public extension Navigator {
 
 // MARK: Reload
 
-extension Navigator {
+public extension Navigator {
 	func reload(_ name: SceneName,  parameters: Parameters = [:], completion: CompletionBlock? = nil) {
 		logDebug("Reload \(name)")
 		let scene = provider.scene(with: name, type: .select)
