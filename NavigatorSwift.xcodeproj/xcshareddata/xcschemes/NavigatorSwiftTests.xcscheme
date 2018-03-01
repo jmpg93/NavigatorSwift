@@ -22,23 +22,6 @@
                BlueprintName = "NavigatorSwiftTests"
                ReferencedContainer = "container:NavigatorSwift.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "DismissFirstSceneOperationTests">
-               </Test>
-               <Test
-                  Identifier = "DismissSceneOperationTests">
-               </Test>
-               <Test
-                  Identifier = "RecycleSceneOperationTests">
-               </Test>
-               <Test
-                  Identifier = "RootSceneOperationTest">
-               </Test>
-               <Test
-                  Identifier = "SetScenesOperationTest">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <AdditionalOptions>

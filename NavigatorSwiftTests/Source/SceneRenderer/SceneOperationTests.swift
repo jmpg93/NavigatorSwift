@@ -9,7 +9,6 @@
 @testable import NavigatorSwift
 import XCTest
 
-
 class SceneOperationTests: XCTestCase {
 	public enum Constants {
 		static let anyScene: SceneName = "anyScene"

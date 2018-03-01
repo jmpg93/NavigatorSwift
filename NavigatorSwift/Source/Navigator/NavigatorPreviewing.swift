@@ -23,6 +23,11 @@ public extension NavigatorPreviewing where Self: Navigator {
 		previews[sourceView] = (preview, viewControllerPreviewing)
 	}
 
+	func preview(_ scene: SceneName, from sceneName: SceneName, at sourceView: UIView, parameters: Parameters = [:]) {
+		guard let viewController = manager.firstViewController(matching: scene) else { return }
+		preview(scene, from: viewController, at: sourceView)
+	}
+
 	func removePreview(at sourceView: UIView) {
 		guard let (preview, viewControllerPreviewing) = previews[sourceView] else { return }
 		preview.fromViewController.unregisterForPreviewing(withContext: viewControllerPreviewing)

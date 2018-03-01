@@ -31,6 +31,20 @@ public extension HierarchyStateSearchable {
 			.flatMap { $0 }
 			.map(SceneState.init)
 	}
+
+	func firstViewController(matching sceneName: SceneName) -> UIViewController? {
+		var _next: UIViewController? = nil
+
+		while let next = _next {
+			if next.sceneName == sceneName.value {
+				return next
+			} else {
+				_next = self.next(before: next)
+			}
+		}
+
+		return nil
+	}
 }
 
 // MARK: Handy method
