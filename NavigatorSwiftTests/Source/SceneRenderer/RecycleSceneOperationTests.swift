@@ -120,7 +120,7 @@ extension RecycleSceneOperationTests {
 			nav.pushViewController(vc, animated: false)
 		case .modalNavigation:
 			nav.present(UINavigationController(rootViewController: vc), animated: false, completion: nil)
-		case .none, .root:
+		case .select, .root:
 			break
 		}
 
