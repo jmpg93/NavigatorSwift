@@ -192,6 +192,10 @@ public extension Navigator {
 		logDebug("Traverse")
 		navigate(with: manager.traverse(block: block), completion: completion)
 	}
+
+	var currentState: [SceneState] {
+		return manager.currentState
+	}
 }
 
 // MARK: SceneHandler Register

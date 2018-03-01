@@ -73,6 +73,11 @@ private extension NextViewControllerFindable {
 			return contentViewController(with: selected) ?? selected
 		}
 
+		if let viewControllerContainer = container as? ViewControllerContainer {
+			let visible = viewControllerContainer.visibleNavigationController
+			return contentViewController(with: visible) ?? visible
+		}
+		
 		return nil
 	}
 }

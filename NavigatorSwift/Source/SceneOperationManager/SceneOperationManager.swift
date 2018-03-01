@@ -15,15 +15,15 @@ public class SceneOperationManager: HierarchyStateSearchable {
 	let window: UIWindow
 	private var viewControllerContainer: ViewControllerContainer?
 
-	init(window: UIWindow) {
+	public init(window: UIWindow) {
 		self.window = window
 	}
 
-	var rootViewController: UIViewController? {
+	public var rootViewController: UIViewController? {
 		return viewControllerContainer?.rootViewController
 	}
 
-	var visibleNavigationController: UINavigationController? {
+	public var visibleNavigationController: UINavigationController? {
 		return viewControllerContainer?.visibleNavigationController
 	}
 
