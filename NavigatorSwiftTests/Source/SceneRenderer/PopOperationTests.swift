@@ -17,60 +17,53 @@ class PopOperationTests: SceneOperationTests {
 // MARK: Tests
 
 extension PopOperationTests {
-	func testGivenRootNavigation_execute_rootNavigationPopped() {
+	func testGivenPushedView_execute_rootNavigationPopped() {
 		//given
-		let rootNavigation = MockNavigationController(viewControllers: [MockViewController()])
-		sut = givenSUT(toRoot: false, root: rootNavigation)
+		let pushView = MockViewController()
+		let root = givenRootWithPushedViews([pushView])
+		sut = givenSUT(toRoot: false, root: root)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(rootNavigation.popped)
+		let navigationController = root.navigationController as! MockNavigationController
+		XCTAssertTrue(navigationController.popped)
 	}
 
-	func testGivenRootNavigation_executeToRoot_rootNavigationPoppedToRoot() {
+	func testGivenPushedView_executeToRoot_rootNavigationPoppedToRoot() {
 		//given
-		let rootNavigation = MockNavigationController(viewControllers: [MockViewController()])
-		sut = givenSUT(toRoot: true, root: rootNavigation)
+		let pushView = MockViewController()
+		let root = givenRootWithPushedViews([pushView])
+		sut = givenSUT(toRoot: true, root: root)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(rootNavigation.poppedToRoot)
-	}
-
-	func testGivenRootNavigationWithNoViewController_execute_rootNavigationPoppedToRoot() {
-		//given
-		let rootNavigation = MockNavigationController()
-		sut = givenSUT(toRoot: false, root: rootNavigation)
-
-		// when
-		sut.execute(with: nil)
-
-		// then
-		XCTAssertFalse(rootNavigation.popped)
-	}
-
-	func testGivenRootNavigationWithNoViewController_executeToRoot_rootNavigationPoppedToRoot() {
-		//given
-		let rootNavigation = MockNavigationController()
-		sut = givenSUT(toRoot: true, root: rootNavigation)
-
-		// when
-		sut.execute(with: nil)
-
-		// then
-		XCTAssertFalse(rootNavigation.poppedToRoot)
+		let navigationController = root.navigationController as! MockNavigationController
+		XCTAssertTrue(navigationController.poppedToRoot)
 	}
 }
 
 // MARK: Helpers
 
 extension PopOperationTests {
-	func givenSUT(toRoot: Bool, root: UINavigationController) -> PopSceneOperation {
-		let sceneRender = givenMockSceneOperationManager(window: MockWindow(), root: root)
+	func givenRootWithPushedViews(_ views: [UIViewController]) -> MockViewController {
+		let root = MockViewController()
+		let nav = MockNavigationController(viewControllers: [root] + views)
+		root.overrideNavigationController = true
+		root._navigationController = nav
+		return root
+	}
+
+	func givenSUT(toRoot: Bool, root: MockViewController) -> PopSceneOperation {
+		let navigationController = root.navigationController!
+		let container = MockViewControllerContainer()
+		container._rootViewController = root
+		container._visibleNavigationController = navigationController
+		container._firstLevelNavigationControllers = [navigationController]
+		let sceneRender = givenMockSceneOperationManager(window: MockWindow(), container: container)
 		return PopSceneOperation(toRoot: toRoot, animated: false, manager: sceneRender)
 	}
 }

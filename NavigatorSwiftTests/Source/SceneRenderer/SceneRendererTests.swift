@@ -15,8 +15,8 @@ class SceneOperationManagerTests: SceneOperationTests {
 		static let anyScene: SceneName = "anyScene"
 		static let anyOtherScene: SceneName = "anyOtherScene"
 		static let anyBlock: () -> Void = { }
-		static let anyView = UIViewController()
-		static let anyOtherView = UIViewController()
+		static let anyView = MockViewController()
+		static let anyOtherView = MockViewController()
 	}
 
 	// Class under test
@@ -84,6 +84,19 @@ extension SceneOperationManagerTests {
 
 		// when
 		let visibleView = sut.visible(from: view)
+
+		// then
+		XCTAssertEqual(view, visibleView)
+	}
+
+	func testGivenContainer_visibleViewController_returnRootViewController() {
+		// given
+		let container = MockViewControllerContainer()
+		let view = MockNavigationController()
+		container._visibleNavigationController = view
+
+		// when
+		let visibleView = sut.visible(from: container)
 
 		// then
 		XCTAssertEqual(view, visibleView)

@@ -72,10 +72,10 @@ extension RecycleSceneOperationTests {
 
 	func testGivenSceneWithModalNavigationPresentation_isViewControllerPresentedAsRequired_returnTrue() {
 		// given
-		let navigationController = MockNavigationController()
+		let modalNavigation = MockViewController()
+		let navigationController =  MockNavigationController(viewControllers: [modalNavigation])
 		navigationController.overridePresentingViewController = true
 		navigationController._presentingViewController = MockViewController()
-		let modalNavigation = MockViewController()
 		modalNavigation.overrideNavigationController = true
 		modalNavigation._navigationController = navigationController
 

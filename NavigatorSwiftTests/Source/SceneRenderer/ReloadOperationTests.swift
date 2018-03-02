@@ -19,9 +19,9 @@ extension ReloadSceneOperationTests {
 	func testReloadableRootWithMatchingScene_execute_reloadViewController() {
 		//given
 		let root = givenMockViewController(with: Constants.anyScene)
-		let mockSceneOperationManager = givenSceenRenderer(root: root)
+		let manager = givenSceenOperationManager(root: root)
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .select, isReloadable: true)
-		sut = ReloadSceneOperation(scene: mockScene, manager: mockSceneOperationManager)
+		sut = ReloadSceneOperation(scene: mockScene, manager: manager)
 
 		//when
 		sut.execute(with: nil)
@@ -34,9 +34,9 @@ extension ReloadSceneOperationTests {
 	func testNotReloadableRootWithMatchingScene_execute_reloadViewController() {
 		//given
 		let root = givenMockViewController(with: Constants.anyScene)
-		let mockSceneOperationManager = givenSceenRenderer(root: root)
+		let manager = givenSceenOperationManager(root: root)
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .select, isReloadable: false)
-		sut = ReloadSceneOperation(scene: mockScene, manager: mockSceneOperationManager)
+		sut = ReloadSceneOperation(scene: mockScene, manager: manager)
 
 		//when
 		sut.execute(with: nil)
@@ -49,9 +49,9 @@ extension ReloadSceneOperationTests {
 	func testRootWithNotMatchingScene_execute_doNotReloadViewController() {
 		//given
 		let root = givenMockViewController(with: Constants.anyOtherScene)
-		let mockSceneOperationManager = givenSceenRenderer(root: root)
+		let manager = givenSceenOperationManager(root: root)
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .select)
-		sut = ReloadSceneOperation(scene: mockScene, manager: mockSceneOperationManager)
+		sut = ReloadSceneOperation(scene: mockScene, manager: manager)
 
 		//when
 		sut.execute(with: nil)
@@ -63,9 +63,9 @@ extension ReloadSceneOperationTests {
 
 	func testNoRoot_execute_doNotReloadViewController() {
 		//given
-		let mockSceneOperationManager = givenMockSceneOperationManager(window: MockWindow(), root: MockNavigationController())
+		let manager = givenMockSceneOperationManager(window: MockWindow(), root: MockViewController())
 		let mockScene = givenMockScene(name: Constants.anyScene, view: MockViewController(), type: .select)
-		sut = ReloadSceneOperation(scene: mockScene, manager: mockSceneOperationManager)
+		sut = ReloadSceneOperation(scene: mockScene, manager: manager)
 
 		//when
 		sut.execute(with: nil)
@@ -83,9 +83,8 @@ extension ReloadSceneOperationTests {
 		return mockViewController
 	}
 
-	func givenSceenRenderer(root: UIViewController) -> MockSceneOperationManager {
-		let mockNavigationController = MockNavigationController(viewControllers: [root])
-		return givenMockSceneOperationManager(window: MockWindow(), root: mockNavigationController)
+	func givenSceenOperationManager(root: MockViewController) -> MockSceneOperationManager {
+		return givenMockSceneOperationManager(window: MockWindow(), root: root)
 	}
 }
 

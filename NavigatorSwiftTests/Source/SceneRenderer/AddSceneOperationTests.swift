@@ -20,9 +20,8 @@ extension AddSceneOperationTests {
 	func testGivenModalScene_execute_presentScene() {
 		//given
 		let viewController = MockViewController()
-		let root = MockNavigationController(viewControllers: [viewController])
 		let scene = modalScene
-		sut = givenSUT(scenes: [modalScene], root: root)
+		sut = givenSUT(scenes: [scene], root: viewController)
 
 		// when
 		sut.execute(with: nil)
@@ -34,28 +33,27 @@ extension AddSceneOperationTests {
 
 	func testGivenPushScene_execute_pushScene() {
 		//given
-		let root = MockNavigationController(viewControllers: [UIViewController()])
+		let root = MockViewController()
 		sut = givenSUT(scenes: [pushScene], root: root)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(root.pushed)
+		let navigationController = root.navigationController as! MockNavigationController
+		XCTAssertTrue(navigationController.pushed)
 	}
 
 	func testGivenModalNavigationSceneScene_execute_presentWithNavigationScene() {
 		//given
-		let viewController = MockViewController()
-		let root = MockNavigationController(viewControllers: [viewController])
+		let root = MockViewController()
 		sut = givenSUT(scenes: [modalNavigationScene], root: root)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(viewController.didPresentViewController)
-		//XCTAssertNotNil(scene._view.navigationController)
+		XCTAssertTrue(root.didPresentViewController)
 	}
 }
 
@@ -74,7 +72,7 @@ extension AddSceneOperationTests {
 		return givenMockScene(name: "modalNavigation", view: MockViewController(), type: .modalNavigation)
 	}
 
-	func givenSUT(scenes: [Scene], root: UINavigationController) -> AddSceneOperation {
+	func givenSUT(scenes: [Scene], root: MockViewController) -> AddSceneOperation {
 		let mockSceneOperationManager = givenMockSceneOperationManager(window: MockWindow(), root: root)
 		return AddSceneOperation(scenes: scenes, manager: mockSceneOperationManager)
 	}

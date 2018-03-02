@@ -41,18 +41,15 @@ extension PopSceneOperation: InterceptableSceneOperation {
 			return
 		}
 
+		CATransaction.begin()
 		if popToRoot {
 			logTrace("[PopSceneOperation] Popping to root")
 			navigationController.popToRootViewController(animated: animated)
 		} else {
 			navigationController.popViewController(animated: animated)
 		}
-
-		let animationTime: TimeInterval = animated ? UIView.defaultAnimationDuration : 0.0
-
-		DispatchQueue.main.asyncAfter(deadline: .now() + animationTime) {
-			completion?()
-		}
+		CATransaction.setCompletionBlock(completion)
+		CATransaction.commit()
 	}
 
 	func context(from: [SceneState]) -> SceneOperationContext {

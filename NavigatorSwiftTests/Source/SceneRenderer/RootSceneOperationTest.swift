@@ -29,7 +29,7 @@ extension RootSceneOperationTest {
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertEqual(window.rootViewController, view)
+		XCTAssertEqual(window.rootViewController, view.rootViewController)
 		XCTAssertTrue(window.madeKeyAndVisible)
 	}
 
@@ -51,14 +51,8 @@ extension RootSceneOperationTest {
 }
 
 extension RootSceneOperationTest {
-	func givenNavigationController() -> MockNavigationController {
-		let view = MockViewController()
-		return MockNavigationController(viewControllers: [view])
-	}
-
 	func givenSUT(scene: Scene, window: UIWindow) -> RootSceneOperation {
-		let rootNavigation = givenNavigationController()
-		let mockSceneOperationManager = givenMockSceneOperationManager(window: window, root: rootNavigation)
+		let mockSceneOperationManager = givenMockSceneOperationManager(window: window, root: MockViewController())
 		return RootSceneOperation(scene: scene, manager: mockSceneOperationManager)
 	}
 }

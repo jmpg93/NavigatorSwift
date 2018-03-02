@@ -17,46 +17,30 @@ class DismissSceneOperationTests: SceneOperationTests {
 // MARK: Tests
 
 extension DismissSceneOperationTests {
-	func testGivenRootSceneDisplayedModally_execute_dismissScene() {
+	func testGivenModalScene_execute_dismissScene() {
 		//given
-		let rootViewMock = givenMockViewController(isDisplayedModally: true, sceneName: Constants.anyScene)
-		sut = givenSUT(sceneName: Constants.anyScene, animated: true, modalView: rootViewMock)
+		let modalView = givenMockViewController(isDisplayedModally: true, sceneName: Constants.anyScene)
+		sut = givenSUT(sceneName: Constants.anyScene, animated: true, modalView: modalView)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(rootViewMock.dismissed)
+		XCTAssertTrue(modalView.dismissed)
 	}
 
-	func testGivenRootSceneNotDisplayedModally_execute_doNotDismissScene() {
+	func testGivenModalScenes_execute_dismissScene() {
 		//given
-		let rootViewMock = givenMockViewController(isDisplayedModally: false, sceneName: Constants.anyScene)
-		var executed = false
-		sut = givenSUT(sceneName: Constants.anyScene, animated: true, modalView: rootViewMock)
-
-		// when
-		sut.execute {
-			executed = true
-		}
-
-		// then
-		XCTAssertTrue(executed)
-		XCTAssertFalse(rootViewMock.dismissed)
-	}
-
-	func testGivenRootSceneAndSceneDisplayedModally_execute_dismissScene() {
-		//given
-		let rootViewMock = givenMockViewController(isDisplayedModally: true, sceneName: Constants.anyScene)
-		let otherViewMock = givenMockViewController(isDisplayedModally: true, sceneName: Constants.anyOtherScene)
-		sut = givenSUT(sceneName: Constants.anyScene, animated: true, modalView: rootViewMock)
+		let modalView = givenMockViewController(isDisplayedModally: true, sceneName: Constants.anyScene)
+		let otherModalView = givenMockViewController(isDisplayedModally: true, sceneName: Constants.anyOtherScene)
+		sut = givenSUT(sceneName: Constants.anyOtherScene, animated: true, modalViews: [modalView, otherModalView])
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(rootViewMock.dismissed)
-		XCTAssertFalse(otherViewMock.dismissed)
+		XCTAssertFalse(modalView.dismissed)
+		XCTAssertTrue(otherModalView.dismissed)
 	}
 }
 
@@ -70,9 +54,28 @@ extension DismissSceneOperationTests {
 		return mockView
 	}
 
-	func givenSUT(sceneName: SceneName, animated: Bool, modalView: UIViewController) -> DismissSceneOperation {
-		let mockNavigationController = MockNavigationController(viewControllers: [modalView])
-		let mockSceneOperationManager = givenMockSceneOperationManager(window: MockWindow(), root: mockNavigationController)
-		return DismissSceneOperation(sceneName: sceneName, animated: animated, manager: mockSceneOperationManager)
+	func givenSUT(sceneName: SceneName, animated: Bool, modalView: MockViewController) -> DismissSceneOperation {
+		return givenSUT(sceneName: sceneName, animated: animated, modalViews: [modalView])
+	}
+
+	func givenSUT(sceneName: SceneName, animated: Bool, modalViews: [MockViewController]) -> DismissSceneOperation {
+		let root = MockViewController()
+		let container = MockViewControllerContainer()
+		container._rootViewController = root
+		container._visibleNavigationController = MockNavigationController(viewControllers: [root])
+
+		var lasPresenting = root
+		for modal in modalViews {
+			lasPresenting.overridePresentedViewController = true
+			lasPresenting._presentedViewController = modal
+			modal.overridePresentingViewController = true
+			modal._presentingViewController = lasPresenting
+			lasPresenting = modal
+		}
+
+		let manager = givenMockSceneOperationManager(window: MockWindow(), container: container)
+		return DismissSceneOperation(sceneName: sceneName,
+									 animated: animated,
+									 manager: manager)
 	}
 }

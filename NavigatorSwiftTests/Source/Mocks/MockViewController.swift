@@ -23,6 +23,12 @@ class MockViewController: UIViewController {
 		return overridePresentingViewController ? _presentingViewController : super.presentingViewController
 	}
 
+	var overridePresentedViewController = false
+	var _presentedViewController: UIViewController? = nil
+	override var presentedViewController: UIViewController? {
+		return _presentedViewController
+	}
+
 	var dismissed = false
 	override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
 		dismissed = true

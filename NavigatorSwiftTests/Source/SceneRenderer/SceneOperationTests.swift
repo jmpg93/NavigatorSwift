@@ -14,28 +14,32 @@ class SceneOperationTests: XCTestCase {
 		static let anyScene: SceneName = "anyScene"
 		static let anyOtherScene: SceneName = "anyOtherScene"
 		static let anyBlock: () -> Void = { }
-		static let anyView = UIViewController()
-		static let anyOtherView = UIViewController()
+		static let anyView = MockViewController()
+		static let anyOtherView = MockViewController()
 	}
 }
 
 extension SceneOperationTests {
-	func givenMockViewControllerContainer(root: UINavigationController) -> MockViewControllerContainer {
-		let mockViewControllerContainer = MockViewControllerContainer()
-		mockViewControllerContainer._rootViewController = root
-		mockViewControllerContainer._firstLevelNavigationControllers = [root]
-		mockViewControllerContainer._visibleNavigationController = root
-		return mockViewControllerContainer
+	func givenMockViewControllerContainer(root: MockViewController) -> MockViewControllerContainer {
+		let container = MockViewControllerContainer()
+		container._rootViewController = root
+		let nav = MockNavigationController(viewControllers: [root])
+		container._firstLevelNavigationControllers = [nav]
+		container._visibleNavigationController = nav
+		root.overrideNavigationController = true
+		root._navigationController = nav
+		return container
 	}
 
-	func givenMockSceneOperationManager(window: UIWindow, root: UINavigationController, scene: SceneName? = nil) -> MockSceneOperationManager {
-		if let scene = scene {
-			root.visibleViewController!.sceneName = scene.value
-		}
-
+	func givenMockSceneOperationManager(window: UIWindow, root: MockViewController) -> MockSceneOperationManager {
 		let manager = MockSceneOperationManager(window: window)
 		manager.set(container: givenMockViewControllerContainer(root: root))
+		return manager
+	}
 
+	func givenMockSceneOperationManager(window: UIWindow, container: ViewControllerContainer) -> MockSceneOperationManager {
+		let manager = MockSceneOperationManager(window: window)
+		manager.set(container: container)
 		return manager
 	}
 

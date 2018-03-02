@@ -18,22 +18,22 @@ class DismissAllOperationTests: SceneOperationTests {
 // MARK: Tests
 
 extension DismissAllOperationTests {
-	func testGivenScenes_dismissAllAnimated_dismissRoot() {
+	func test_dismissAllAnimated_dismissRoot() {
 		// given
-		let mockRootNavigationController = givenMockNavigationController()
-		sut = givenSUT(animated: true, root: mockRootNavigationController)
+		let root = MockViewController()
+		sut = givenSUT(animated: true, root: root)
 
 		// when
 		sut.execute(with: nil)
 
 		// then
-		XCTAssertTrue(mockRootNavigationController.dismissed)
+		XCTAssertTrue(root.dismissed)
 	}
 
-	func testGivenScenes_dismissAllNonAnimated_dismissRoot() {
+	func test_dismissAllNonAnimated_dismissRoot() {
 		// given
-		let mockRootNavigationController = givenMockNavigationController()
-		sut = givenSUT(animated: false, root: mockRootNavigationController)
+		let root = MockViewController()
+		sut = givenSUT(animated: false, root: root)
 		var didExecute = false
 
 		// when 
@@ -43,18 +43,14 @@ extension DismissAllOperationTests {
 
 		// then
 		XCTAssertTrue(didExecute)
-		XCTAssertTrue(mockRootNavigationController.dismissed)
+		XCTAssertTrue(root.dismissed)
 	}
 }
 
 extension DismissAllOperationTests {
-	func givenMockNavigationController() -> MockNavigationController {
-		return MockNavigationController()
-	}
-
-	func givenSUT(animated: Bool, root: UINavigationController) -> DismissAllOperation {
-		let mockRenderer = givenMockSceneOperationManager(window: MockWindow(), root: root)
+	func givenSUT(animated: Bool, root: MockViewController) -> DismissAllOperation {
+		let manager = givenMockSceneOperationManager(window: MockWindow(), root: root)
 		return DismissAllOperation(animated: animated,
-		                           manager: mockRenderer)
+		                           manager: manager)
 	}
 }
