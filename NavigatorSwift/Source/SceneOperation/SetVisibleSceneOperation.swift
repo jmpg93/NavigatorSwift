@@ -11,10 +11,14 @@ import UIKit
 
 struct SetVisibleSceneOperation {
 	private let viewController: UIViewController
+	private let animated: Bool
 	private let manager: SceneOperationManager
 
-	init(viewController: UIViewController, manager: SceneOperationManager) {
+	init(viewController: UIViewController,
+		 animated: Bool,
+		 manager: SceneOperationManager) {
 		self.viewController = viewController
+		self.animated = animated
 		self.manager = manager
 	}
 }
@@ -29,13 +33,13 @@ extension SetVisibleSceneOperation: SceneOperation {
 
 		if let presentingViewController = viewController.presentedViewController?.presentingViewController {
 			group.enter()
-			presentingViewController.dismiss(animated: true, completion: group.leave)
+			presentingViewController.dismiss(animated: animated, completion: group.leave)
 		}
 
 		if let navigationController = viewController.navigationController {
 			group.enter()
 			CATransaction.begin()
-			navigationController.popToViewController(viewController, animated: true)
+			navigationController.popToViewController(viewController, animated: animated)
 			CATransaction.setCompletionBlock(group.leave)
 			CATransaction.commit()
 		}

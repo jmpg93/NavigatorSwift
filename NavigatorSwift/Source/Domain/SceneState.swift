@@ -17,3 +17,9 @@ public struct SceneState {
 		self.type = type
 	}
 }
+
+extension SceneState: CustomStringConvertible {
+	public var description: String {
+		return "(name: \(name), type: \(type))"
+	}
+}

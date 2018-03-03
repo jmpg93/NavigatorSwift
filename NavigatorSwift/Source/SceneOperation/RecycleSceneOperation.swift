@@ -57,7 +57,8 @@ extension RecycleSceneOperation: SceneOperation {
 
 		logTrace("[RecycleSceneOperation] \(scenes.count) scenes (\(scenes.map({ $0.sceneHandler.name }))) could not be recycled with the current stack")
 
-		let setVisibleOperation = manager.setVisible(viewController: last)
+		let animated = scenes.first?.isAnimated ?? true
+		let setVisibleOperation = manager.setVisible(viewController: last, animated: animated)
 		let addSceneOperation = manager.add(scenes: scenes)
 
 		setVisibleOperation

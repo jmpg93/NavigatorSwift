@@ -29,7 +29,7 @@ extension SceneProvider {
 
 	func scenes<T>(with builder: SceneBuilderBlock<T>) -> (scenes: [Scene], isAbsolutely: Bool) {
 		let sceneBuilder = SceneBuilder(using: builder, sceneProvider: self)
-		return (sceneBuilder.scenes, sceneBuilder.isAbsolutely)
+		return (sceneBuilder.scenes, sceneBuilder.isAbsolute)
 	}
 
 	func scene(with name: SceneName, parameters: Parameters = [:], type: ScenePresentationType, animated: Bool = true) -> Scene {

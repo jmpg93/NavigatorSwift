@@ -23,6 +23,15 @@ public struct SceneContext {
 		self.type = type
 		self.isAnimated = isAnimated
 	}
+
+	public init(sceneState: SceneState,
+				parameters: Parameters = [:],
+				isAnimated: Bool = true) {
+		self.sceneName = sceneState.name
+		self.parameters = parameters
+		self.type = sceneState.type
+		self.isAnimated = isAnimated
+	}
 }
 
 // MARK: Internal methods
@@ -40,6 +49,6 @@ extension SceneContext {
 
 extension SceneContext: CustomStringConvertible {
 	public var description: String {
-		return "SceneContext [scenename: \(sceneName), parameters: \(parameters), type: \(type), animated: \(isAnimated)]"
+		return "(scenename: \(sceneName), parameters: \(parameters), type: \(type), animated: \(isAnimated))"
 	}
 }

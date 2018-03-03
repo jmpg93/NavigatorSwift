@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 final public class NavNavigator: Navigator, NavigatorPreviewing {
-	public var previews: [UIView : (Preview, UIViewControllerPreviewing)] = [:]
+	public var previews: [UIView : Preview] = [:]
 	public var interceptors: [SceneOperationInterceptor] = []
 	
 	public let provider: SceneProvider

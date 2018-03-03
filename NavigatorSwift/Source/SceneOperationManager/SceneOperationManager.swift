@@ -136,8 +136,8 @@ public class SceneOperationManager: HierarchyStateSearchable {
 	/// Pop and dismiss every view controller above the given view controller.
 	///
 	/// - parameter viewController: The view controller to set as visible.
-	func setVisible(viewController: UIViewController) -> SceneOperation {
-		return SetVisibleSceneOperation(viewController: viewController, manager: self)
+	func setVisible(viewController: UIViewController, animated: Bool) -> SceneOperation {
+		return SetVisibleSceneOperation(viewController: viewController, animated: animated, manager: self)
 	}
 
 	/// Creates the current stack based on the hierarchy of the app.

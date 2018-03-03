@@ -12,7 +12,11 @@ public class SceneBuilder<T: Navigator> {
 	public let sceneProvider: SceneProvider
 	
 	private(set) var scenes: [Scene] = []
-	private(set) var isAbsolutely = false
+	var isAbsolute: Bool {
+		return scenes
+			.map { $0.type }
+			.contains(.root)
+	}
 
 	public init(using builderBlock: SceneBuilderBlock<T>, sceneProvider: SceneProvider) {
 		self.sceneProvider = sceneProvider
@@ -24,7 +28,6 @@ public class SceneBuilder<T: Navigator> {
 
 public extension SceneBuilder {
 	func root(_ sceneName: SceneName, parameters: Parameters = [:]) {
-		isAbsolutely = true
 		add(sceneName, type: .root, parameters: parameters, animated: false)
 	}
 
@@ -43,11 +46,7 @@ public extension SceneBuilder {
 	func add(context: SceneContext) {
 		add(context.sceneName, type: context.type, parameters: context.parameters, animated: context.isAnimated)
 	}
-}
 
-// MARK: Private methods
-
-private extension SceneBuilder {
 	func add(_ sceneName: SceneName, type: ScenePresentationType, parameters: Parameters, animated: Bool) {
 		let scene = sceneProvider.scene(with: sceneName, parameters: parameters, type: type, animated: animated)
 		logTrace("[SceneBuilder] Added scene \(scene)")

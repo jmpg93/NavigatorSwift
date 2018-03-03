@@ -115,9 +115,9 @@ extension Collection: UICollectionViewDataSource {
 		cell.sceneNameLabel.backgroundColor = color
 		
 		if sequence.hasPreview {
-			navigator.preview(.collection, from: self, at: cell)
+			navigator.registerPreview(.collection, type: .modal, from: self, sourceView: cell)
 		} else {
-			navigator.removePreview(at: cell)
+			navigator.unregisterPreview(sourceView: cell)
 		}
 
 		return cell
