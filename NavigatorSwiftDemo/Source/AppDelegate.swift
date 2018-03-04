@@ -49,24 +49,6 @@ private extension AppDelegate {
 	}
 }
 
-// MARK: Private methods
-
-private extension AppDelegate {
-	func navigate(afer: TimeInterval) {
-		DispatchQueue.global().asyncAfter(deadline: .now() + afer) {
-			DispatchQueue.main.async {
-				globalNavigator.build { builder in
-					builder.root(.tabBar)
-					builder.currentTab()
-					builder.tab(.red)
-					builder.presentNavigation(.blue)
-					builder.push(.collection)
-				}
-			}
-		}
-	}
-}
-
 private extension SceneContext {
 	static let blue = SceneContext(sceneName: .blue)
 	static let red = SceneContext(sceneName: .red)

@@ -19,6 +19,6 @@ class TabBarSceneHandler: SceneHandler {
 	}
 
 	func view(with parameters: Parameters = [:]) -> UIViewController {
-		return TabBar()
+		return TabBarContainer()
 	}
 }

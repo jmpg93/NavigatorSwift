@@ -1,5 +1,5 @@
 //
-//  Layout.swift
+//  NavigatorFlowLayout.swift
 //  NavigatorSwiftDemo
 //
 //  Created by jmpuerta on 25/11/17.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Layout: UICollectionViewFlowLayout {
+class NavigatorFlowLayout: UICollectionViewFlowLayout {
 	var items: CGFloat {
 		return 4
 	}

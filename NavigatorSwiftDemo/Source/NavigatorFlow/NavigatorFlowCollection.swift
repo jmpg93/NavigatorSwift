@@ -1,5 +1,5 @@
 //
-//  Collection.swift
+//  NavigatorFlowCollection.swift
 //  NavigatorSwiftDemo
 //
 //  Created by Jose Maria Puerta on 2/9/17.
@@ -9,7 +9,7 @@
 import UIKit
 import NavigatorSwift
 
-class Collection: UIViewController {
+class NavigatorFlowCollection: UIViewController {
 	private enum Constants {
 		static let cellIdentifier = "Cell"
 		static let headerIdentifier = "Header"
@@ -54,7 +54,7 @@ class Collection: UIViewController {
 	}
 
 	let transition = LeftTransition()
-	let sections = Section.all
+	let sections = NavigatorFlowSection.all
 
 	// @IBOutlet
 	@IBOutlet weak var stateLabel: UILabel!
@@ -67,27 +67,27 @@ class Collection: UIViewController {
 		return globalNavigator
 	}
 	
-	static func loadFromStoryBoard() -> Collection {
-		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection") as! Collection
+	static func loadFromStoryBoard() -> NavigatorFlowCollection {
+		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Collection") as! NavigatorFlowCollection
 	}
 }
 
 // MARK: View life cycle
 
-extension Collection {
+extension NavigatorFlowCollection {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		stateLabel.text = stateText
 		stateLabel.accessibilityIdentifier = Constants.stateLabelIdentifier
 		automaticallyAdjustsScrollViewInsets = false
-		collectionView.register(Cell.self, forCellWithReuseIdentifier: Constants.cellIdentifier)
+		collectionView.register(NavigatorFlowCell.self, forCellWithReuseIdentifier: Constants.cellIdentifier)
 	}
 }
 
 // MARK: UICollectionViewDataSource
 
-extension Collection: UICollectionViewDataSource {
+extension NavigatorFlowCollection: UICollectionViewDataSource {
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return sections.count
 	}
@@ -101,14 +101,14 @@ extension Collection: UICollectionViewDataSource {
 			return UICollectionReusableView()
 		}
 
-		let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: Constants.headerIdentifier, for: indexPath) as! Header
+		let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: Constants.headerIdentifier, for: indexPath) as! NavigatorFlowHeader
 		header.sceneNameLabel.text = sections[indexPath.section].name
 
 		return header
 		
 	}
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as! Cell
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as! NavigatorFlowCell
 
 		let sequence = sections[indexPath.section].sequences[indexPath.item]
 		cell.sceneNameLabel.text = sequence.name
@@ -126,7 +126,7 @@ extension Collection: UICollectionViewDataSource {
 
 // MARK: UICollectionViewDataSource
 
-extension Collection: UICollectionViewDelegate {
+extension NavigatorFlowCollection: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let sequence = sections[indexPath.section].sequences[indexPath.item]
 

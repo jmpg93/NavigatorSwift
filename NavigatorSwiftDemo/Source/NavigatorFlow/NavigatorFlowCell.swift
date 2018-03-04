@@ -1,5 +1,5 @@
 //
-//  Header.swift
+//  NavigatorFlowCell.swift
 //  NavigatorSwiftDemo
 //
 //  Created by jmpuerta on 25/11/17.
@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-class Header: UICollectionReusableView {
+class NavigatorFlowCell: UICollectionViewCell {
 	lazy var sceneNameLabel: UILabel = {
 		let label = UILabel(frame: self.bounds)
-		label.textAlignment = .left
-		label.textColor = .black
-		label.backgroundColor = .white
+		label.textAlignment = .center
+		label.textColor = .white
+		label.backgroundColor = .black
 		label.numberOfLines = 0
 		label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		self.addSubview(label)

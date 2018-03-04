@@ -24,7 +24,7 @@ class CollectionSceneHandler: SceneHandler {
 	}
 
 	func view(with parameters: Parameters = [:]) -> UIViewController {
-		let view = Collection.loadFromStoryBoard()
+		let view = NavigatorFlowCollection.loadFromStoryBoard()
 		if let state = parameters[Parameter.stateLabel] as? String {
 			view.stateText = state
 		}

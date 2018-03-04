@@ -19,7 +19,7 @@ class RedSceneHandler: SceneHandler {
 	}
 
 	func view(with parameters: Parameters = [:]) -> UIViewController {
-		let view = Collection.loadFromStoryBoard()
+		let view = NavigatorFlowCollection.loadFromStoryBoard()
 		view.color = .red
 
 		if let state = parameters[CollectionSceneHandler.Parameter.stateLabel] as? String {
